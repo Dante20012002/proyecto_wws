@@ -1,22 +1,76 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = "WWS - Soluciones Digitales" } = Astro.props;
+
+const navLinks = [
+  { text: "Inicio", href: "/" },
+  { text: "Servicios", href: "/servicios" },
+  { text: "Proyectos", href: "/proyectos" },
+  { text: "Contacto", href: "/contacto" }
+];
+
+const socialLinks = [
+  { icon: "/icons/facebook.svg", href: "#", alt: "Facebook" },
+  { icon: "/icons/twitter.svg", href: "#", alt: "Twitter" },
+  { icon: "/icons/linkedin.svg", href: "#", alt: "LinkedIn" },
+  { icon: "/icons/instagram.svg", href: "#", alt: "Instagram" }
+];
+
+const footerLinks = [
+  {
+    title: "Servicios",
+    links: [
+      { text: "Diseño Web", href: "/servicios/diseno-web" },
+      { text: "Desarrollo", href: "/servicios/desarrollo" },
+      { text: "Marketing Digital", href: "/servicios/marketing" }
+    ]
+  },
+  {
+    title: "Empresa",
+    links: [
+      { text: "Sobre Nosotros", href: "/sobre-nosotros" },
+      { text: "Equipo", href: "/equipo" },
+      { text: "Carreras", href: "/carreras" }
+    ]
+  },
+  {
+    title: "Legal",
+    links: [
+      { text: "Términos y Condiciones", href: "/terminos" },
+      { text: "Política de Privacidad", href: "/privacidad" },
+      { text: "Cookies", href: "/cookies" }
+    ]
+  }
+];
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+		<meta name="description" content="WWS - Soluciones digitales innovadoras para tu negocio" />
 	</head>
 	<body>
-		<slot />
+		<Navbar links={navLinks} />
+		<main>
+			<slot />
+		</main>
+		<Footer socialLinks={socialLinks} footerLinks={footerLinks} />
 	</body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<style is:global>
+  main {
+    min-height: calc(100vh - 200px);
+  }
+</style> 
