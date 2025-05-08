@@ -1,31 +1,80 @@
-<section class="w-full bg-white py-12">
-  <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
-    <div class="bg-[#06214E] text-white rounded-lg p-8 flex flex-col gap-4">
-      <h4 class="font-bold text-lg mb-2">Otros medios de contacto</h4>
-      <div class="flex items-center gap-2"><span class="material-icons">phone</span> <span>+57 3115327548</span></div>
-      <div class="flex items-center gap-2"><span class="material-icons">email</span> <span>waterwiseservices@gmail.com</span></div>
-      <div class="flex items-center gap-2"><span class="material-icons">location_on</span> <span>Avenida 6 # 14N - 31</span></div>
-      <img src="/assets/mapa-mini.png" alt="Mapa mini" class="rounded w-full h-32 object-cover my-2" />
-      <div class="flex gap-4 mt-2">
-        <a href="#" class="hover:opacity-80"><img src="/assets/instagram.svg" alt="Instagram" class="w-7 h-7" /></a>
-        <a href="#" class="hover:opacity-80"><img src="/assets/facebook.svg" alt="Facebook" class="w-7 h-7" /></a>
+<section class="w-full bg-white py-8 md:py-12">
+  <div class="max-w-6xl mx-auto px-2 sm:px-4">
+    <div class="flex flex-col md:flex-row rounded-lg overflow-hidden shadow-lg">
+      <!-- Lado izquierdo: info de contacto -->
+      <div class="bg-[#06214E] text-white flex-1 flex flex-col gap-4 p-6 md:p-8 relative min-w-[300px]">
+        <h4 class="font-bold text-xl md:text-2xl mb-2">Otros medios de contacto</h4>
+        <div class="flex items-center gap-3 text-base md:text-lg">
+          <span class="material-icons text-3xl">phone_iphone</span>
+          <span>+57 3115327548</span>
+        </div>
+        <div class="flex items-center gap-3 text-base md:text-lg">
+          <span class="material-icons text-3xl">email</span>
+          <span>waterwiseservices@gmail.com</span>
+        </div>
+        <div class="flex items-center gap-3 text-base md:text-lg">
+          <span class="material-icons text-3xl">location_on</span>
+          <span>Avenida 6 # 14N - 31</span>
+        </div>
+        <img 
+          src="/assets/mapa-mini.png" 
+          alt="Mapa mini" 
+          class="rounded-lg w-full h-24 sm:h-32 md:h-36 object-cover my-2"
+        />
+        <div class="flex gap-6 mt-2 mb-4">
+          <a href="#" class="hover:opacity-80 transition-opacity">
+            <img src="/assets/instagram.svg" alt="Instagram" class="w-8 h-8 md:w-10 md:h-10" />
+          </a>
+          <a href="#" class="hover:opacity-80 transition-opacity">
+            <img src="/assets/facebook.svg" alt="Facebook" class="w-8 h-8 md:w-10 md:h-10" />
+          </a>
+          <a href="#" class="hover:opacity-80 transition-opacity">
+            <img src="/assets/whatsapp.svg" alt="Whatsapp" class="w-8 h-8 md:w-10 md:h-10" />
+          </a>
+        </div>
+        <img src="/assets/logo-footer.svg" alt="WWS Logo" class="absolute left-4 bottom-4 w-32 md:w-40 opacity-20 select-none pointer-events-none" />
       </div>
-      <div class="mt-4"><img src="/assets/logo-footer.svg" alt="WWS Logo" class="w-24" /></div>
-    </div>
-    <div class="bg-[#EAEAEA] rounded-lg p-8 flex flex-col gap-4">
-      <h4 class="text-[#06214E] font-bold text-lg mb-2">Contáctanos</h4>
-      <form class="flex flex-col gap-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input type="text" placeholder="Nombre" class="p-2 rounded border border-gray-300 focus:outline-[#06214E]" />
-          <input type="text" placeholder="Ciudad" class="p-2 rounded border border-gray-300 focus:outline-[#06214E]" />
+      <!-- Lado derecho: formulario -->
+      <div class="bg-white flex-1 flex flex-col p-6 md:p-10 justify-center">
+        <div class="mb-2">
+          <div class="text-[#7CA0C4] font-bold text-lg md:text-xl text-center md:text-left">Lorem ipsum</div>
+          <h2 class="text-[#06214E] font-extrabold text-3xl md:text-5xl text-center md:text-left leading-tight">Contáctanos</h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input type="email" placeholder="Correo" class="p-2 rounded border border-gray-300 focus:outline-[#06214E]" />
-          <input type="text" placeholder="Teléfono" class="p-2 rounded border border-gray-300 focus:outline-[#06214E]" />
-        </div>
-        <textarea placeholder="Mensaje" class="p-2 rounded border border-gray-300 focus:outline-[#06214E]" rows="3"></textarea>
-        <button type="submit" class="bg-[#06214E] text-white rounded px-6 py-2 font-semibold hover:bg-[#00112a] transition">Enviar</button>
-      </form>
+        <form class="mt-6 flex flex-col gap-6 w-full max-w-2xl mx-auto">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="flex flex-col">
+              <label class="text-[#06214E] text-base mb-1" for="nombre">Nombre</label>
+              <input id="nombre" type="text" class="border-0 border-b-2 border-[#06214E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#06214E] placeholder-gray-400" placeholder="" />
+            </div>
+            <div class="flex flex-col">
+              <label class="text-[#06214E] text-base mb-1" for="ciudad">Ciudad</label>
+              <input id="ciudad" type="text" class="border-0 border-b-2 border-[#06214E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#06214E] placeholder-gray-400" placeholder="" />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="flex flex-col">
+              <label class="text-[#06214E] text-base mb-1" for="correo">Correo</label>
+              <input id="correo" type="email" class="border-0 border-b-2 border-[#06214E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#06214E] placeholder-gray-400" placeholder="" />
+            </div>
+            <div class="flex flex-col">
+              <label class="text-[#06214E] text-base mb-1" for="telefono">Teléfono</label>
+              <input id="telefono" type="text" class="border-0 border-b-2 border-[#06214E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#06214E] placeholder-gray-400" placeholder="" />
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <label class="text-[#06214E] text-base mb-1" for="mensaje">Mensaje</label>
+            <textarea id="mensaje" rows="3" class="border-0 border-b-2 border-[#06214E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#06214E] placeholder-gray-400 resize-none"></textarea>
+          </div>
+          <div class="flex justify-center mt-4">
+            <button 
+              type="submit" 
+              class="bg-[#EAEAEA] text-[#06214E] rounded font-extrabold text-xl px-10 py-3 shadow-lg hover:bg-[#d1d5db] transition-colors"
+            >
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </section> 

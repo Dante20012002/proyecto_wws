@@ -8,7 +8,7 @@ const { autoplay = true, interval = 5000 } = Astro.props;
 
 const slides = [
   {
-    image: "/assets/hero.jpg",
+    image: "/assets/Bocatoma rio cauca.jpg",
     title: "EN WATER WISE SERVICES, CREEMOS QUE UN AGUA PURA GARANTIZA UN FUTURO SEGURO.",
     buttonText: "Equipos para tratamiento de agua",
     buttonLink: "/servicios"
@@ -37,18 +37,18 @@ const slides = [
         <img 
           src={slide.image} 
           alt={slide.title || 'Slide image'} 
-          class="w-full h-[600px] object-cover"
+          class="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover"
         />
         <div class="absolute inset-0 bg-[#06214E]/50"></div>
         <div class="absolute inset-0 flex items-center">
           <div class="max-w-6xl mx-auto px-4 w-full">
             <div class="max-w-2xl">
-              {slide.title && <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">{slide.title}</h2>}
-              {slide.description && <p class="text-lg text-white mb-6">{slide.description}</p>}
+              {slide.title && <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-4 text-white">{slide.title}</h2>}
+              {slide.description && <p class="text-sm sm:text-base md:text-lg text-white mb-4 md:mb-6">{slide.description}</p>}
               {slide.buttonText && slide.buttonLink && (
                 <a 
                   href={slide.buttonLink}
-                  class="inline-block bg-[#EAEAEA] text-[#06214E] px-6 py-3 rounded font-semibold hover:bg-white transition-colors"
+                  class="inline-block bg-[#EAEAEA] text-[#06214E] px-4 py-2 md:px-6 md:py-3 rounded text-sm md:text-base font-semibold hover:bg-white transition-colors"
                 >
                   {slide.buttonText}
                 </a>
@@ -62,29 +62,29 @@ const slides = [
 
   <!-- Controles -->
   <button 
-    class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+    class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 md:p-2 rounded-full hover:bg-black/70 transition-colors"
     id="prevButton"
     aria-label="Slide anterior"
   >
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
     </svg>
   </button>
   <button 
-    class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+    class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 md:p-2 rounded-full hover:bg-black/70 transition-colors"
     id="nextButton"
     aria-label="Slide siguiente"
   >
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
     </svg>
   </button>
 
   <!-- Indicadores -->
-  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2" id="indicators">
+  <div class="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-1 md:gap-2" id="indicators">
     {slides.map((_, index) => (
       <button 
-        class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors"
+        class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-white/50 hover:bg-white transition-colors"
         data-index={index}
         aria-label={`Ir al slide ${index + 1}`}
       ></button>
@@ -101,66 +101,44 @@ const slides = [
     private autoplayInterval: number | null;
     private isTransitioning: boolean;
 
-    constructor(
-      private container: HTMLElement,
-      private autoplay: boolean = true,
-      private interval: number = 5000
-    ) {
-      this.track = container.querySelector('#carousel-track') as HTMLElement;
+    constructor() {
+      this.track = document.getElementById('carousel-track') as HTMLElement;
       this.slides = Array.from(this.track.children) as HTMLElement[];
-      this.indicators = Array.from(container.querySelectorAll('#indicators button'));
+      this.indicators = Array.from(document.getElementById('indicators')?.children || []) as HTMLElement[];
       this.currentIndex = 0;
       this.autoplayInterval = null;
       this.isTransitioning = false;
 
-      this.initialize();
+      this.init();
     }
 
-    private initialize() {
-      // Configurar eventos
-      const prevButton = this.container.querySelector('#prevButton');
-      const nextButton = this.container.querySelector('#nextButton');
-
-      prevButton?.addEventListener('click', () => this.prev());
-      nextButton?.addEventListener('click', () => this.next());
+    private init() {
+      // Configurar controles
+      document.getElementById('prevButton')?.addEventListener('click', () => this.prev());
+      document.getElementById('nextButton')?.addEventListener('click', () => this.next());
 
       // Configurar indicadores
       this.indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => this.goTo(index));
+        indicator.addEventListener('click', () => this.goToSlide(index));
       });
 
-      // Configurar autoplay
-      if (this.autoplay) {
-        this.startAutoplay();
-      }
-
-      // Configurar eventos táctiles
-      this.setupTouchEvents();
+      // Iniciar autoplay
+      this.startAutoplay();
 
       // Actualizar indicadores iniciales
       this.updateIndicators();
     }
 
-    private setupTouchEvents() {
-      let startX: number;
-      let endX: number;
+    private startAutoplay() {
+      if (this.autoplayInterval) return;
+      this.autoplayInterval = window.setInterval(() => this.next(), 5000);
+    }
 
-      this.container.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-      });
-
-      this.container.addEventListener('touchend', (e) => {
-        endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
-
-        if (Math.abs(diff) > 50) { // Umbral mínimo para considerar un swipe
-          if (diff > 0) {
-            this.next();
-          } else {
-            this.prev();
-          }
-        }
-      });
+    private stopAutoplay() {
+      if (this.autoplayInterval) {
+        clearInterval(this.autoplayInterval);
+        this.autoplayInterval = null;
+      }
     }
 
     private updateIndicators() {
@@ -175,61 +153,28 @@ const slides = [
       });
     }
 
-    private goTo(index: number) {
+    private goToSlide(index: number) {
       if (this.isTransitioning || index === this.currentIndex) return;
-      
       this.isTransitioning = true;
       this.currentIndex = index;
-      
       this.track.style.transform = `translateX(-${index * 100}%)`;
       this.updateIndicators();
-
-      // Resetear autoplay
-      if (this.autoplay) {
-        this.resetAutoplay();
-      }
-
-      // Remover la clase de transición después de la animación
-      setTimeout(() => {
-        this.isTransitioning = false;
-      }, 500);
+      setTimeout(() => this.isTransitioning = false, 500);
     }
 
     private next() {
       const nextIndex = (this.currentIndex + 1) % this.slides.length;
-      this.goTo(nextIndex);
+      this.goToSlide(nextIndex);
     }
 
     private prev() {
       const prevIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
-      this.goTo(prevIndex);
-    }
-
-    private startAutoplay() {
-      this.autoplayInterval = window.setInterval(() => {
-        this.next();
-      }, this.interval);
-    }
-
-    private resetAutoplay() {
-      if (this.autoplayInterval) {
-        clearInterval(this.autoplayInterval);
-        this.startAutoplay();
-      }
-    }
-
-    public destroy() {
-      if (this.autoplayInterval) {
-        clearInterval(this.autoplayInterval);
-      }
+      this.goToSlide(prevIndex);
     }
   }
 
   // Inicializar el carrusel cuando el DOM esté listo
   document.addEventListener('DOMContentLoaded', () => {
-    const carouselElement = document.getElementById('carousel');
-    if (carouselElement) {
-      new Carousel(carouselElement, true, 5000);
-    }
+    new Carousel();
   });
 </script> 
