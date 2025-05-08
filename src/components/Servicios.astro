@@ -1,0 +1,27 @@
+<section class="w-full bg-[#EAEAEA] py-12">
+  <div class="max-w-6xl mx-auto px-4">
+    <h3 class="text-[#06214E] text-2xl font-bold mb-8 text-center">Nuestros Servicios</h3>
+    <div x-data="{
+      scrollEl: null,
+      next() { this.scrollEl.scrollBy({ left: this.scrollEl.offsetWidth, behavior: 'smooth' }); },
+      prev() { this.scrollEl.scrollBy({ left: -this.scrollEl.offsetWidth, behavior: 'smooth' }); }
+    }" x-init="scrollEl = $refs.carousel" class="relative">
+      <button @click="prev" class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center rounded-full bg-[#06214E] text-white shadow hover:bg-[#00112a] transition"><span class="text-2xl">&#60;</span></button>
+      <div x-ref="carousel" class="flex overflow-x-auto gap-6 scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 md:pb-0">
+        <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center min-w-[280px] max-w-xs snap-center">
+          <img src="/assets/servicio1.jpg" alt="Servicio 1" class="rounded mb-4 w-full h-40 object-cover" />
+          <p class="text-gray-700 text-center text-sm">Lorem ipsum dolor sit amet consectetur. Lacus pulvinar pharetra senectus sociis.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center min-w-[280px] max-w-xs snap-center">
+          <img src="/assets/servicio2.jpg" alt="Servicio 2" class="rounded mb-4 w-full h-40 object-cover" />
+          <p class="text-gray-700 text-center text-sm">Lorem ipsum dolor sit amet consectetur. Lacus pulvinar pharetra senectus sociis.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center min-w-[280px] max-w-xs snap-center">
+          <img src="/assets/servicio3.jpg" alt="Servicio 3" class="rounded mb-4 w-full h-40 object-cover" />
+          <p class="text-gray-700 text-center text-sm">Lorem ipsum dolor sit amet consectetur. Lacus pulvinar pharetra senectus sociis.</p>
+        </div>
+      </div>
+      <button @click="next" class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center rounded-full bg-[#06214E] text-white shadow hover:bg-[#00112a] transition"><span class="text-2xl">&#62;</span></button>
+    </div>
+  </div>
+</section> 

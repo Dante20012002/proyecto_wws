@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+---
+
+<div class="fixed inset-0 w-full h-full bg-[#06214E] flex justify-center items-center z-50 animate-fadeOut">
+  <div class="text-center">
+    <img src="/assets/logo-splash.svg" alt="WWS Logo" class="w-100" />
+    <h1 class="text-5xl font-bold text-[#EAEAEA]">Tu futuro comienza con agua pura</h1>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      const splashScreen = document.querySelector('.animate-fadeOut');
+      if (splashScreen) {
+        splashScreen.remove();
+      }
+    }, 3000);
+  });
+</script>
+
+<style>
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  .animate-fadeOut {
+    animation: fadeOut 2s ease-in-out forwards;
+    animation-delay: 1s;
+  }
+</style> 

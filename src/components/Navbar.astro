@@ -8,51 +8,60 @@ interface Props {
 
 const { links } = Astro.props;
 ---
-
-<nav class="navbar">
-  <div class="navbar-container">
-    <a href="/" class="logo">
-      <img src="/logo.svg" alt="WWS Logo" />
-    </a>
-    <ul class="nav-links">
+<nav class="w-full bg-[#06214E] text-white shadow z-50">
+  <div class="max-w-7xl mx-auto px-4 h-20 grid grid-cols-3 items-center relative">
+    <!-- Logo a la izquierda -->
+    <div class="flex items-center h-full">
+      <a href="/" class="flex items-center gap-2 h-full group">
+        <img src="/assets/logo-navbar.svg" alt="WWS Logo" class="h-12" onerror="this.style.display='none'" />
+        <span class="ml-2 font-bold text-xl hidden group-hover:text-[#C9D6D7] transition-colors duration-300" id="logo-placeholder">WWS</span>
+      </a>
+    </div>
+    <!-- Links centrados -->
+    <ul class="flex justify-center gap-16 h-full items-center">
       {links.map((link) => (
-        <li>
-          <a href={link.href}>{link.text}</a>
+        <li class="relative flex flex-col items-center">
+          <a href={link.href} class="text-white hover:text-[#EAEAEA] font-semibold transition uppercase tracking-wide text-lg relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[2px] after:bg-[#EAEAEA] after:transform after:scale-x-0 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">{link.text}</a>
         </li>
       ))}
     </ul>
+    <!-- Espacio a la derecha para simetría -->
+    <div></div>
+    <!-- Botón hamburguesa solo en móvil -->
+    <button id="menuButton" class="md:hidden absolute right-4 top-1/2 -translate-y-1/2 flex items-center" aria-label="Abrir menú">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <!-- Menú móvil -->
+    <div id="mobileMenu" class="absolute top-20 left-0 w-full bg-[#06214E] shadow-md md:hidden transition-all duration-300 hidden">
+      <ul class="flex flex-col gap-4 py-4 px-6">
+        {links.map((link) => (
+          <li class="relative">
+            <a href={link.href} class="block py-2 px-2 rounded text-white hover:bg-[#EAEAEA] hover:text-[#06214E] font-semibold transition uppercase tracking-wide text-base relative after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[2px] after:bg-[#06214E] after:transform after:scale-x-0 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">{link.text}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 </nav>
 
-<style>
-  .navbar {
-    width: 100%;
-    padding: 1rem 2rem;
-    background: var(--color-background);
-  }
+<script>
+  // Funcionalidad del menú móvil
+  const menuButton = document.getElementById('menuButton');
+  const mobileMenu = document.getElementById('mobileMenu');
+  let isMenuOpen = false;
 
-  .navbar-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  menuButton?.addEventListener('click', () => {
+    isMenuOpen = !isMenuOpen;
+    mobileMenu?.classList.toggle('hidden');
+  });
 
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    text-decoration: none;
-    color: var(--color-text);
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-
-  .nav-links a:hover {
-    color: var(--color-primary);
-  }
-</style> 
+  // Cerrar menú al hacer clic fuera
+  document.addEventListener('click', (event) => {
+    if (isMenuOpen && 
+        !mobileMenu?.contains(event.target as Node) && 
+        !menuButton?.contains(event.target as Node)) {
+      isMenuOpen = false;
+      mobileMenu?.classList.add('hidden');
+    }
+  });
+</script> 
