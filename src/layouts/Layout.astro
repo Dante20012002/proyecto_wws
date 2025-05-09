@@ -5,7 +5,7 @@ import navLinks from '../config/navLinks';
 import socialLinks from '../config/socialLinks';
 import footerLinks from '../config/footerLinks';
 import '../styles/global.css';
-import  SpeedInsights  from "@vercel/speed-insights/astro"
+import SpeedInsights from "@vercel/speed-insights/astro"
 
 interface Props {
   title?: string;
@@ -18,10 +18,11 @@ const { title = "WWS - Soluciones Digitales" } = Astro.props;
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{title}</title>
 		<meta name="description" content="WWS - Soluciones digitales innovadoras para tu negocio" />
+		<SpeedInsights />
 	</head>
 	<body>
 		<Navbar links={navLinks} />
