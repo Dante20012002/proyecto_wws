@@ -6,18 +6,18 @@ interface Link {
 export const LINKS: Link[] = [
   {
     text: 'Inicio',
-    href: '/'
+    href: '/',
   },
   {
     text: 'Servicios',
-    href: '/servicios'
+    href: '/servicios',
   },
   {
     text: 'Nosotros',
-    href: '/nosotros'
+    href: '/nosotros',
   },
   {
     text: 'Contacto',
-    href: '/contacto'
-  }
-]; 
+    href: '/contacto',
+  },
+];

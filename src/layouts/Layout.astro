@@ -10,7 +10,7 @@ interface Props {
   title?: string;
 }
 
-const { title = "WWS - Soluciones Digitales" } = Astro.props;
+const { title = 'WWS - Soluciones Digitales' } = Astro.props;
 
 // Declaración de tipos para Vercel Analytics
 declare global {
@@ -23,30 +23,36 @@ declare global {
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{title}</title>
-		<meta name="description" content="WWS - Soluciones digitales innovadoras para tu negocio" />
-		<script>
-			window.va = window.va || function() {
-				(window.vaq = window.vaq || []).push(arguments);
-			};
-		</script>
-		<script defer src="/_vercel/insights/script.js"></script>
-	</head>
-	<body>
-		<Navbar links={navLinks} />
-		<main>
-			<slot />
-		</main>
-		<Footer socialLinks={socialLinks} footerLinks={footerLinks} />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content="WWS - Soluciones digitales innovadoras para tu negocio" />
+    <script>
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+  </head>
+  <body>
+    <Navbar links={navLinks} />
+    <main>
+      <slot />
+    </main>
+    <Footer socialLinks={socialLinks} footerLinks={footerLinks} />
+  </body>
 </html>
 
 <style is:global>
   main {
     min-height: calc(100vh - 200px);
   }
-</style> 
+</style>
+

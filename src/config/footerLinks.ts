@@ -1,34 +1,34 @@
 const footerLinks = [
   {
-    title: "Menu",
+    title: 'Menu',
     links: [
-      { text: "Home", href: "/" },
-      { text: "Sobre Nosotros", href: "/sobre-nosotros" },
-      { text: "Productos", href: "/productos" },
-      { text: "Contacto", href: "/contacto" },
-      { text: "Catalogo", href: "/catalogo" },
+      { text: 'Home', href: '/' },
+      { text: 'Sobre Nosotros', href: '/sobre-nosotros' },
+      { text: 'Productos', href: '/productos' },
+      { text: 'Contacto', href: '/contacto' },
+      { text: 'Catalogo', href: '/catalogo' },
     ],
   },
   {
-    title: "Servicios",
+    title: 'Servicios',
     links: [
-      { text: "Home", href: "/" },
-      { text: "Sobre Nosotros", href: "/sobre-nosotros" },
-      { text: "Productos", href: "/productos" },
-      { text: "Contacto", href: "/contacto" },
-      { text: "Catalogo", href: "/catalogo" },
+      { text: 'Home', href: '/' },
+      { text: 'Sobre Nosotros', href: '/sobre-nosotros' },
+      { text: 'Productos', href: '/productos' },
+      { text: 'Contacto', href: '/contacto' },
+      { text: 'Catalogo', href: '/catalogo' },
     ],
   },
   {
-    title: "Sobre Nosotros",
+    title: 'Sobre Nosotros',
     links: [
-      { text: "Home", href: "/" },
-      { text: "Sobre Nosotros", href: "/sobre-nosotros" },
-      { text: "Productos", href: "/productos" },
-      { text: "Contacto", href: "/contacto" },
-      { text: "Catalogo", href: "/catalogo" },
+      { text: 'Home', href: '/' },
+      { text: 'Sobre Nosotros', href: '/sobre-nosotros' },
+      { text: 'Productos', href: '/productos' },
+      { text: 'Contacto', href: '/contacto' },
+      { text: 'Catalogo', href: '/catalogo' },
     ],
   },
 ];
 
-export default footerLinks; 
+export default footerLinks;

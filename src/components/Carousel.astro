@@ -8,87 +8,117 @@ const { autoplay = true, interval = 5000 } = Astro.props;
 
 const slides = [
   {
-    image: "/assets/Bocatoma rio cauca.jpg",
-    title: "EN WATER WISE SERVICES, CREEMOS QUE UN AGUA PURA GARANTIZA UN FUTURO SEGURO.",
-    buttonText: "Equipos para tratamiento de agua",
-    buttonLink: "/servicios"
+    image: '/assets/IMAGEN 1.jpg',
+    title: 'EN WATER WISE SERVICES, CREEMOS QUE UN AGUA PURA GARANTIZA UN FUTURO SEGURO.',
+    buttonText: 'Equipos para tratamiento de agua',
+    buttonLink: '/servicios',
   },
   {
-    image: "/assets/Panoramica.jpg",
-    title: "SOLUCIONES INTEGRALES PARA EL TRATAMIENTO DE AGUA",
-    description: "Ofrecemos servicios profesionales y equipos de alta calidad para garantizar agua limpia y segura.",
-    buttonText: "Conoce nuestros servicios",
-    buttonLink: "/servicios"
+    image: '/assets/IMAGEN 2.jpg',
+    title: 'SOLUCIONES INTEGRALES PARA EL TRATAMIENTO DE AGUA',
+    description:
+      'Ofrecemos servicios profesionales y equipos de alta calidad para garantizar agua limpia y segura.',
+    buttonText: 'Conoce nuestros servicios',
+    buttonLink: '/servicios',
   },
   {
-    image: "/assets/Tenjo 1.jpg",
-    title: "TECNOLOGÍA DE PUNTA PARA TU NEGOCIO",
-    description: "Equipos modernos y eficientes para el tratamiento de agua industrial y comercial.",
-    buttonText: "Solicita una cotización",
-    buttonLink: "/contacto"
-  }
+    image: '/assets/IMAGEN 3.jpg',
+    title: 'TECNOLOGÍA DE PUNTA PARA TU NEGOCIO',
+    description:
+      'Equipos modernos y eficientes para el tratamiento de agua industrial y comercial.',
+    buttonText: 'Solicita una cotización',
+    buttonLink: '/contacto',
+  },
 ];
 ---
 
 <div class="relative w-full overflow-hidden" id="carousel">
   <div class="flex transition-transform duration-500 ease-in-out" id="carousel-track">
-    {slides.map((slide) => (
-      <div class="w-full flex-shrink-0 relative">
-        <img 
-          src={slide.image} 
-          alt={slide.title || 'Slide image'} 
-          class="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover"
-        />
-        <div class="absolute inset-0 bg-[#06214E]/50"></div>
-        <div class="absolute inset-0 flex items-center">
-          <div class="max-w-6xl mx-auto px-4 w-full">
-            <div class="max-w-2xl">
-              {slide.title && <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-4 text-white">{slide.title}</h2>}
-              {slide.description && <p class="text-sm sm:text-base md:text-lg text-white mb-4 md:mb-6">{slide.description}</p>}
-              {slide.buttonText && slide.buttonLink && (
-                <a 
-                  href={slide.buttonLink}
-                  class="inline-block bg-[#EAEAEA] text-[#06214E] px-4 py-2 md:px-6 md:py-3 rounded text-sm md:text-base font-semibold hover:bg-white transition-colors"
-                >
-                  {slide.buttonText}
-                </a>
-              )}
+    {
+      slides.map((slide) => (
+        <div class="w-full flex-shrink-0 relative">
+          <img
+            src={slide.image}
+            alt={slide.title || 'Slide image'}
+            class="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover"
+          />
+          <div class="absolute inset-0 bg-[#06214E]/50" />
+          <div class="absolute inset-0 flex items-center">
+            <div class="max-w-6xl mx-auto px-4 w-full">
+              <div class="max-w-2xl">
+                {slide.title && (
+                  <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-4 text-white">
+                    {slide.title}
+                  </h2>
+                )}
+                {slide.description && (
+                  <p class="text-sm sm:text-base md:text-lg text-white mb-4 md:mb-6">
+                    {slide.description}
+                  </p>
+                )}
+                {slide.buttonText && slide.buttonLink && (
+                  <a
+                    href={slide.buttonLink}
+                    class="inline-block bg-[#EAEAEA] text-[#06214E] px-4 py-2 md:px-6 md:py-3 rounded text-sm md:text-base font-semibold hover:bg-white transition-colors"
+                  >
+                    {slide.buttonText}
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    ))}
+      ))
+    }
   </div>
 
   <!-- Controles -->
-  <button 
+  <button
     class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 md:p-2 rounded-full hover:bg-black/70 transition-colors"
     id="prevButton"
     aria-label="Slide anterior"
   >
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-4 w-4 md:h-6 md:w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"
+      ></path>
     </svg>
   </button>
-  <button 
+  <button
     class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 md:p-2 rounded-full hover:bg-black/70 transition-colors"
     id="nextButton"
     aria-label="Slide siguiente"
   >
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-4 w-4 md:h-6 md:w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
     </svg>
   </button>
 
   <!-- Indicadores -->
-  <div class="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-1 md:gap-2" id="indicators">
-    {slides.map((_, index) => (
-      <button 
-        class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-white/50 hover:bg-white transition-colors"
-        data-index={index}
-        aria-label={`Ir al slide ${index + 1}`}
-      ></button>
-    ))}
+  <div
+    class="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-1 md:gap-2"
+    id="indicators"
+  >
+    {
+      slides.map((_, index) => (
+        <button
+          class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-white/50 hover:bg-white transition-colors"
+          data-index={index}
+          aria-label={`Ir al slide ${index + 1}`}
+        />
+      ))
+    }
   </div>
 </div>
 
@@ -104,7 +134,9 @@ const slides = [
     constructor() {
       this.track = document.getElementById('carousel-track') as HTMLElement;
       this.slides = Array.from(this.track.children) as HTMLElement[];
-      this.indicators = Array.from(document.getElementById('indicators')?.children || []) as HTMLElement[];
+      this.indicators = Array.from(
+        document.getElementById('indicators')?.children || []
+      ) as HTMLElement[];
       this.currentIndex = 0;
       this.autoplayInterval = null;
       this.isTransitioning = false;
@@ -159,7 +191,7 @@ const slides = [
       this.currentIndex = index;
       this.track.style.transform = `translateX(-${index * 100}%)`;
       this.updateIndicators();
-      setTimeout(() => this.isTransitioning = false, 500);
+      setTimeout(() => (this.isTransitioning = false), 500);
     }
 
     private next() {
@@ -177,4 +209,5 @@ const slides = [
   document.addEventListener('DOMContentLoaded', () => {
     new Carousel();
   });
-</script> 
+</script>
+
