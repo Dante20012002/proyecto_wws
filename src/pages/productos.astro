@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { productos } from '../data/productos';
+---
+
+<Layout title="Productos - WWS">
+  <section class="relative w-full min-h-[60vh] flex items-center justify-center bg-fixed bg-center bg-cover" style="background-image: url('/productos/.jpg');">
+    <div class="absolute inset-0 bg-[#06214E]/80 z-0"></div>
+    <div class="relative z-10 max-w-5xl w-full px-4 py-16 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+      <div>
+        <h1 class="text-white text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">Soluciones en tratamiento de agua</h1>
+        <p class="text-white text-lg md:text-2xl font-medium drop-shadow-lg">Equipos y sistemas para la industria y el hogar</p>
+      </div>
+      <div class="flex flex-col gap-4 md:gap-6">
+        <div class="flex gap-6 text-white text-5xl md:text-6xl">
+          <span><i class="fa-solid fa-droplet"></i></span>
+          <span><i class="fa-solid fa-gears"></i></span>
+        </div>
+        <div class="flex gap-6 text-white text-5xl md:text-6xl">
+          <span><i class="fa-solid fa-hand-holding-droplet"></i></span>
+          <span><i class="fa-solid fa-helmet-safety"></i></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full bg-[#22345a] py-12 px-0">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4">
+      {productos.map(producto => (
+        <a href={`/productos/${producto.slug}`} class="group block bg-[#1a2740] rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+          <div class="relative w-full aspect-[4/3] overflow-hidden">
+            <img src={producto.imagen} alt={producto.nombre} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-4 flex flex-col gap-2">
+            <h2 class="text-white text-lg font-bold group-hover:text-[#00b4d8] transition-colors duration-300">{producto.nombre}</h2>
+            <p class="text-gray-200 text-sm line-clamp-3">{producto.descripcion}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style is:global>
+.bg-fixed {
+  background-attachment: fixed;
+}
+</style> 
