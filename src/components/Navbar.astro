@@ -14,12 +14,9 @@ const { links } = Astro.props;
     <!-- Logo a la izquierda -->
     <div class="flex items-center h-full flex-1">
       <a href="/" class="flex items-center gap-2 h-full group">
-        <img
-          src="/assets/logo-navbar.svg"
-          alt="WWS Logo"
-          class="h-12"
-          onerror="this.style.display='none'"
-        />
+        <svg class="h-14">
+          <use href="/assets/sprite.svg#logo-splash" />
+        </svg>
         <span
           class="ml-2 font-bold text-xl hidden group-hover:text-[#C9D6D7] transition-colors duration-300"
           id="logo-placeholder">WWS</span

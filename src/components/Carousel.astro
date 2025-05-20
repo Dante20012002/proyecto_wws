@@ -9,23 +9,19 @@ const { autoplay = true, interval = 5000 } = Astro.props;
 const slides = [
   {
     image: '/assets/IMAGEN 1.jpg',
-    title: 'EN WATER WISE SERVICES, CREEMOS QUE UN AGUA PURA GARANTIZA UN FUTURO SEGURO.',
+    title: 'En Water Wise Services, creemos que un agua pura garantiza un futuro seguro.',
     buttonText: 'Equipos para tratamiento de agua',
     buttonLink: '/servicios',
   },
   {
     image: '/assets/IMAGEN 2.jpg',
-    title: 'SOLUCIONES INTEGRALES PARA EL TRATAMIENTO DE AGUA',
-    description:
-      'Ofrecemos servicios profesionales y equipos de alta calidad para garantizar agua limpia y segura.',
+    title: 'Tratamos el agua pensando en el planeta y en las futuras generaciones.',
     buttonText: 'Conoce nuestros servicios',
     buttonLink: '/servicios',
   },
   {
     image: '/assets/IMAGEN 3.jpg',
-    title: 'TECNOLOGÍA DE PUNTA PARA TU NEGOCIO',
-    description:
-      'Equipos modernos y eficientes para el tratamiento de agua industrial y comercial.',
+    title: 'Nuestros equipos garantizan agua de alta calidad para cada necesidad.',
     buttonText: 'Solicita una cotización',
     buttonLink: '/contacto',
   },
@@ -50,11 +46,6 @@ const slides = [
                   <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-4 text-white">
                     {slide.title}
                   </h2>
-                )}
-                {slide.description && (
-                  <p class="text-sm sm:text-base md:text-lg text-white mb-4 md:mb-6">
-                    {slide.description}
-                  </p>
                 )}
                 {slide.buttonText && slide.buttonLink && (
                   <a

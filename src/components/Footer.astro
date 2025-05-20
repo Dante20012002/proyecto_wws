@@ -17,11 +17,13 @@ interface Props {
 const { socialLinks, footerLinks } = Astro.props;
 ---
 
-<footer class="w-full bg-[#06214E] text-white pt-12 pb-6">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="flex flex-col md:flex-row gap-8 md:gap-16 justify-between mb-8">
-      <div class="flex-1 mb-8 md:mb-0">
-        <img src="/assets/logo-footer.svg" alt="WWS Logo" class="mb-4 h-12" />
+<footer class="bg-[#06214E] text-white py-12">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="text-center md:text-left">
+        <svg class="h-12 mb-4">
+          <use href="/assets/sprite.svg#logo-blanco-negro" />
+        </svg>
         <p class="mb-4 text-[#EAEAEA]">Transformando ideas en soluciones digitales innovadoras</p>
         <div class="flex gap-4">
           {
