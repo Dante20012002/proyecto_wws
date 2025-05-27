@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import noticias from '../../data/noticias';
+
+const { slug } = Astro.params;
+const noticia = noticias.find(n => n.slug === slug);
+---
+
+<Layout title={noticia ? noticia.titulo + ' - WWS' : 'Noticia no encontrada'}>
+  <section class="w-full bg-[#EAEAEA] py-8 md:py-12 min-h-screen">
+    <div class="max-w-3xl mx-auto px-4">
+      {noticia ? (
+        <div class="bg-[#D9D9D9] rounded-lg p-6 md:p-10">
+          <h1 class="text-3xl md:text-4xl font-extrabold mb-4">{noticia.titulo}</h1>
+          <div class="text-gray-800 text-base md:text-lg mb-6" set:html={noticia.contenido}></div>
+          {noticia.imagenes.map((img, idx) => (
+            <img src={img} alt={noticia.titulo + ' imagen ' + (idx+1)} class="w-full rounded-lg mb-8 object-cover" width="700" height="300" loading="lazy" decoding="async" />
+          ))}
+        </div>
+      ) : (
+        <div class="bg-[#D9D9D9] rounded-lg p-6 md:p-10 text-center">
+          <h1 class="text-2xl font-bold mb-4">Noticia no encontrada</h1>
+          <p>La noticia que buscas no existe o ha sido eliminada.</p>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout> 
