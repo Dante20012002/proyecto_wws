@@ -33,92 +33,6 @@ const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
   </div>
 </section>
 
-<script>
-  import L from 'leaflet';
-  import { proyectos } from '../data/proyectos';
-
-  // Configuración del mapa
-  const map = L.map('map').setView([4.5709, -74.2973], 6);
-
-  // Añadir capa de mapa base
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
-
-  // Función para obtener el color según el tipo de proyecto
-  const getColorByType = (tipo: string) => {
-    const colors = {
-      instalacion: '#06214E',
-      mantenimiento: '#1a4b9c',
-      consultoria: '#2c6cb0',
-      venta: '#3d8cc4'
-    };
-    return colors[tipo as keyof typeof colors] || '#06214E';
-  };
-
-  // Función para crear un marcador con animación
-  const createAnimatedMarker = (proyecto: typeof proyectos[0]) => {
-    const color = getColorByType(proyecto.tipo);
-    
-    const marker = L.marker([proyecto.ubicacion.lat, proyecto.ubicacion.lng], {
-      icon: L.divIcon({
-        className: 'custom-marker',
-        html: `<div class="marker-pulse" style="background-color: ${color}"></div>`,
-        iconSize: [20, 20]
-      })
-    }).addTo(map);
-
-    // Añadir tooltip con información detallada
-    marker.bindTooltip(`
-      <div class="p-3 max-w-[300px]">
-        <h4 class="font-bold text-[#06214E] text-lg mb-2">${proyecto.nombre}</h4>
-        <p class="text-sm mb-2 line-clamp-2">${proyecto.descripcion}</p>
-        <div class="text-xs text-gray-600 space-y-1">
-          <p><strong>Ubicación:</strong> ${proyecto.ubicacion.ciudad}, ${proyecto.ubicacion.departamento}</p>
-          <p><strong>Fecha:</strong> ${proyecto.fecha}</p>
-          <p><strong>Capacidad:</strong> ${proyecto.capacidad}</p>
-          <p class="line-clamp-3"><strong>Detalles:</strong> ${proyecto.detalles}</p>
-        </div>
-      </div>
-    `, {
-      permanent: false,
-      direction: 'top',
-      className: 'custom-tooltip'
-    });
-
-    // Añadir efecto hover
-    marker.on('mouseover', () => {
-      marker.setIcon(L.divIcon({
-        className: 'custom-marker hover',
-        html: `<div class="marker-pulse hover" style="background-color: ${color}"></div>`,
-        iconSize: [24, 24]
-      }));
-    });
-
-    marker.on('mouseout', () => {
-      marker.setIcon(L.divIcon({
-        className: 'custom-marker',
-        html: `<div class="marker-pulse" style="background-color: ${color}"></div>`,
-        iconSize: [20, 20]
-      }));
-    });
-
-    return marker;
-  };
-
-  // Crear marcadores para cada proyecto
-  const markers = proyectos.map(proyecto => createAnimatedMarker(proyecto));
-
-  // Manejar clic en items de la lista
-  document.querySelectorAll('.proyecto-item').forEach((item, index) => {
-    item.addEventListener('click', () => {
-      const proyecto = proyectos[index];
-      map.setView([proyecto.ubicacion.lat, proyecto.ubicacion.lng], 12);
-      markers[index].openTooltip();
-    });
-  });
-</script>
-
 <style>
   #map {
     z-index: 0;
@@ -198,3 +112,100 @@ const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
   }
 </style>
 
+<script define:vars={{ proyectos }}>
+  // Función para obtener el color según el tipo de proyecto
+  const getColorByType = (tipo) => {
+    const colors = {
+      instalacion: '#06214E',
+      mantenimiento: '#1a4b9c',
+      consultoria: '#2c6cb0',
+      venta: '#3d8cc4'
+    };
+    return colors[tipo] || '#06214E';
+  };
+
+  // Función para crear un marcador con animación
+  const createAnimatedMarker = (proyecto, map, L) => {
+    const color = getColorByType(proyecto.tipo);
+    
+    const marker = L.marker([proyecto.ubicacion.lat, proyecto.ubicacion.lng], {
+      icon: L.divIcon({
+        className: 'custom-marker',
+        html: `<div class="marker-pulse" style="background-color: ${color}"></div>`,
+        iconSize: [20, 20]
+      })
+    }).addTo(map);
+
+    // Añadir tooltip con información detallada
+    marker.bindTooltip(`
+      <div class="p-3 max-w-[300px]">
+        <h4 class="font-bold text-[#06214E] text-lg mb-2">${proyecto.nombre}</h4>
+        <p class="text-sm mb-2 line-clamp-2">${proyecto.descripcion}</p>
+        <div class="text-xs text-gray-600 space-y-1">
+          <p><strong>Ubicación:</strong> ${proyecto.ubicacion.ciudad}, ${proyecto.ubicacion.departamento}</p>
+          <p><strong>Fecha:</strong> ${proyecto.fecha}</p>
+          <p><strong>Capacidad:</strong> ${proyecto.capacidad}</p>
+          <p class="line-clamp-3"><strong>Detalles:</strong> ${proyecto.detalles}</p>
+        </div>
+      </div>
+    `, {
+      permanent: false,
+      direction: 'top',
+      className: 'custom-tooltip'
+    });
+
+    // Añadir efecto hover
+    marker.on('mouseover', () => {
+      marker.setIcon(L.divIcon({
+        className: 'custom-marker hover',
+        html: `<div class="marker-pulse hover" style="background-color: ${color}"></div>`,
+        iconSize: [24, 24]
+      }));
+    });
+
+    marker.on('mouseout', () => {
+      marker.setIcon(L.divIcon({
+        className: 'custom-marker',
+        html: `<div class="marker-pulse" style="background-color: ${color}"></div>`,
+        iconSize: [20, 20]
+      }));
+    });
+
+    return marker;
+  };
+
+  // Inicializar el mapa cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    // Cargar Leaflet dinámicamente
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+    script.crossOrigin = '';
+    
+    script.onload = () => {
+      const L = window.L;
+      
+      // Configuración del mapa
+      const map = L.map('map').setView([4.5709, -74.2973], 6);
+
+      // Añadir capa de mapa base
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Crear marcadores para cada proyecto
+      const markers = proyectos.map(proyecto => createAnimatedMarker(proyecto, map, L));
+
+      // Manejar clic en items de la lista
+      document.querySelectorAll('.proyecto-item').forEach((item, index) => {
+        item.addEventListener('click', () => {
+          const proyecto = proyectos[index];
+          map.setView([proyecto.ubicacion.lat, proyecto.ubicacion.lng], 12);
+          markers[index].openTooltip();
+        });
+      });
+    };
+
+    document.head.appendChild(script);
+  });
+</script>
