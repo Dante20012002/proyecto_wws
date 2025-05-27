@@ -1,0 +1,79 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Navbar links={[
+  { text: 'Home', href: '/' },
+  { text: 'Sobre Nosotros', href: '/sobre-nosotros' },
+  { text: 'Productos', href: '/productos' },
+  { text: 'Contacto', href: '/contacto' },
+  { text: 'Noticias', href: '/noticias' }
+]} />
+
+<!-- Header con fondo e imagen -->
+<section class="relative w-full h-[320px] md:h-[500px] flex items-center bg-cover bg-center" style="background-image: url('/assets/Bocatoma rio cauca.jpg');">
+  <div class="absolute inset-0 bg-black/40"></div>
+  <div class="relative max-w-4xl mx-auto px-4">
+    <h1 class="text-3xl md:text-5xl font-bold text-white drop-shadow-lg leading-tight">LIDERANDO EL TRATAMIENTO<br/>DE AGUAS CON TECNOLOGÍA Y<br/>CONFIANZA</h1>
+  </div>
+</section>
+
+<!-- Sobre Nosotros -->
+<section class="max-w-6xl mx-auto py-12 px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+  <div>
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Sobre Nosotros</h2>
+    <p class="text-lg text-gray-700 mb-4">Garantizar un servicio de alta calidad que genere confianza y satisfacción en nuestros clientes, fortaleciendo nuestra presencia en el mercado Colombiana y suramericano mediante procesos eficientes, asesoría especializada.</p>
+  </div>
+  <div class="flex flex-col gap-4 items-center">
+    <img src="/assets/Soldador.jpg" alt="Soldador" class="rounded-lg shadow-lg w-full max-w-md object-cover h-48 md:h-56" loading="lazy" />
+    <div class="relative -mt-10 md:-mt-12">
+      <span class="inline-block bg-white text-[#06214E] px-6 py-4 rounded-lg text-lg font-bold shadow-lg border-2 border-[#A9C6DF]">+30 Proyectos en Colombia</span>
+    </div>
+  </div>
+</section>
+
+<!-- Misión y Visión -->
+<section class="bg-gray-100 py-12">
+  <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div>
+      <h3 class="text-2xl font-bold mb-2">MISIÓN</h3>
+      <p class="text-gray-700">Brindar soluciones integrales y de alta calidad en procesos de tratamiento y manejo de aguas, a través de la comercialización, instalación y mantenimiento de equipos especializados. Nos comprometemos a ofrecer un servicio excepcional, basado en la asesoría técnica experta, la innovación y la satisfacción total de nuestros clientes en Colombia y Sudamérica.</p>
+    </div>
+    <div>
+      <h3 class="text-2xl font-bold mb-2">VISIÓN</h3>
+      <p class="text-gray-700">Ser reconocidos como la empresa líder en soluciones para la gestión del agua a través de nuestros equipos en Colombia y Sudamérica, destacándose por la excelencia en nuestro servicio y la confiabilidad de nuestros productos. Nos esforzamos por superar las expectativas de nuestros clientes a través de un enfoque centrado en la calidad, la eficiencia y la mejora continua.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Objetivo -->
+<section class="max-w-6xl mx-auto py-12 px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+  <div>
+    <img src="/assets/BARRANQUILLA 1.jpg" alt="Objetivo" class="rounded-lg shadow-lg w-full max-w-lg object-cover h-48 md:h-56" loading="lazy" />
+  </div>
+  <div>
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-4">NUESTRO OBJETIVO</h2>
+    <p class="text-lg text-gray-700">Garantizar un servicio de alta calidad que genere confianza y satisfacción en nuestros clientes, fortaleciendo nuestra presencia en el mercado Colombiana y suramericano mediante procesos eficientes, asesoría especializada y soluciones y equipos innovadores en gestión del agua.</p>
+  </div>
+</section>
+
+<!-- Aliados -->
+<section class="w-full py-12">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-2">NUESTROS <span class="text-[#A9C6DF]">ALIADOS</span></h2>
+    <div class="w-16 h-1 bg-[#A9C6DF] mb-6"></div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-6">
+      {[...Array(6)].map((_, i) => (
+        <div class="flex flex-col items-center text-center">
+          <div class="w-16 h-16 rounded-full bg-[#06214E] mb-2"></div>
+          <h4 class="font-bold text-[#06214E] text-sm mb-1">TITULO</h4>
+          <p class="text-xs text-[#7B8BA3]">Garantizar un servicio de alta calidad que genere confianza y satisfacción en nuestros clientes.</p>
+        </div>
+      ))}
+    </div>
+    <a href="#" class="inline-block bg-[#A9C6DF] text-[#06214E] font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-[#06214E] hover:text-white transition duration-300">CONOCE MÁS</a>
+  </div>
+</section>
+
+<Footer socialLinks={[]} footerLinks={[]} /> 
