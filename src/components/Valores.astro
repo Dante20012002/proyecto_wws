@@ -1,36 +1,61 @@
 <section class="py-16 bg-gray-50">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Nuestros Valores</h2>
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform">Nuestros Valores</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-        <svg class="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-4">
+      <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform">
+        <svg class="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-4" aria-hidden="true" focusable="false">
           <use href="/assets/sprite.svg#valor1" />
         </svg>
-        <h3 class="text-xl font-bold mb-2">Innovación</h3>
-        <p class="text-gray-600">Buscamos constantemente nuevas soluciones y mejoras.</p>
+        <h3 class="text-xl font-bold mb-2 break-words">Innovación</h3>
+        <p class="text-gray-600 text-balance break-words">Buscamos constantemente nuevas soluciones y mejoras.</p>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-        <svg class="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-4">
+      <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform">
+        <svg class="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-4" aria-hidden="true" focusable="false">
           <use href="/assets/sprite.svg#valor2" />
         </svg>
-        <h3 class="text-xl font-bold mb-2">Calidad</h3>
-        <p class="text-gray-600">Nos comprometemos con la excelencia en cada proyecto.</p>
+        <h3 class="text-xl font-bold mb-2 break-words">Calidad</h3>
+        <p class="text-gray-600 text-balance break-words">Nos comprometemos con la excelencia en cada proyecto.</p>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-        <svg class="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-4">
+      <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform">
+        <svg class="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-4" aria-hidden="true" focusable="false">
           <use href="/assets/sprite.svg#valor3" />
         </svg>
-        <h3 class="text-xl font-bold mb-2">Sostenibilidad</h3>
-        <p class="text-gray-600">Desarrollamos soluciones respetuosas con el medio ambiente.</p>
+        <h3 class="text-xl font-bold mb-2 break-words">Sostenibilidad</h3>
+        <p class="text-gray-600 text-balance break-words">Desarrollamos soluciones respetuosas con el medio ambiente.</p>
       </div>
-      <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-        <svg class="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-4">
+      <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform">
+        <svg class="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-4" aria-hidden="true" focusable="false">
           <use href="/assets/sprite.svg#valor4" />
         </svg>
-        <h3 class="text-xl font-bold mb-2">Compromiso</h3>
-        <p class="text-gray-600">Trabajamos con dedicación para cumplir nuestros objetivos.</p>
+        <h3 class="text-xl font-bold mb-2 break-words">Compromiso</h3>
+        <p class="text-gray-600 text-balance break-words">Trabajamos con dedicación para cumplir nuestros objetivos.</p>
       </div>
     </div>
   </div>
 </section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
+  });
+</script>
+<style is:global>
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(32px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.animate-fade-in {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: fade-in 0.8s cubic-bezier(0.4,0,0.2,1) both;
+}
+</style>
 

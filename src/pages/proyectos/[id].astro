@@ -1,6 +1,5 @@
 ---
-import Footer from '../../components/Footer.astro';
-import Navbar from '../../components/Navbar.astro';
+import Layout from '../../layouts/Layout.astro';
 import { proyectos } from '../../data/proyectos';
 
 const { id } = Astro.params;
@@ -13,6 +12,7 @@ const proyecto = proyectos.find(p => String(p.id).trim() === String(id).trim());
 const notFound = !proyecto;
 ---
 
+<Layout title={proyecto ? proyecto.nombre + ' - Proyecto WWS' : 'Proyecto no encontrado - WWS'}>
 {notFound ? (
   <section class="min-h-[60vh] flex flex-col items-center justify-center">
     <h1 class="text-3xl font-bold text-red-600 mb-4">Proyecto no encontrado</h1>
@@ -20,18 +20,10 @@ const notFound = !proyecto;
   </section>
 ) : (
   <>
-    <Navbar links={[
-      { text: 'Home', href: '/' },
-      { text: 'Sobre Nosotros', href: '/sobre-nosotros' },
-      { text: 'Productos', href: '/productos' },
-      { text: 'Contacto', href: '/contacto' },
-      { text: 'Noticias', href: '/noticias' }
-    ]} />
-
     <!-- Header con título grande "PROYECTO" -->
-    <section class="relative h-[220px] md:h-[300px] flex items-center justify-center bg-cover bg-center" style={`background-image: url('${proyecto.imagenPrincipal}')`}>
+    <section class="relative h-[220px] md:h-[300px] flex items-center justify-center bg-cover bg-center animate-fade-in" style={`background-image: url('${proyecto.imagenPrincipal}')`}>
       <div class="absolute inset-0 bg-black/50"></div>
-      <h1 class="relative text-5xl md:text-7xl font-bold text-white tracking-wider drop-shadow-lg">PROYECTO</h1>
+      <h1 class="relative text-5xl md:text-7xl font-bold text-white tracking-wider drop-shadow-lg animate-slide-up">PROYECTO</h1>
     </section>
 
     <!-- Sección de información del proyecto -->
@@ -43,17 +35,18 @@ const notFound = !proyecto;
             <img 
               src={img} 
               alt={`Vista del proyecto ${i+1}`}
-              class="w-full h-40 md:h-56 object-cover rounded-lg shadow-md"
+              class="w-full h-40 md:h-56 object-cover rounded-lg shadow-md max-w-full animate-fade-in"
+              style={{ animationDelay: `${i * 0.2 + 0.2}s` }}
             />
           ))}
-          <div class="col-span-2 flex justify-center items-center">
+          <div class="col-span-2 flex justify-center items-center animate-fade-in" style="animation-delay: 0.5s;">
             <span class="inline-block bg-white text-[#06214E] px-6 py-4 rounded-lg text-lg font-bold shadow-lg border-2 border-[#A9C6DF] -mt-8 md:-mt-12 relative">
               +30 Proyectos en Colombia
             </span>
           </div>
         </div>
         <!-- Información del proyecto -->
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2 animate-slide-up" style="animation-delay: 0.3s;">
           <span class="text-lg font-semibold text-[#06214E] uppercase tracking-wide">{proyecto.ubicacion.ciudad}</span>
           <h2 class="text-3xl md:text-4xl font-extrabold text-black mb-2 leading-tight">{proyecto.nombre}</h2>
           <hr class="border-black w-16 mb-4" />
@@ -65,15 +58,15 @@ const notFound = !proyecto;
     <!-- Sección de equipos utilizados -->
     <section class="bg-gray-100 py-12">
       <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-2xl md:text-3xl font-extrabold mb-8 tracking-wide">EQUIPOS UTILIZADOS</h2>
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-8 tracking-wide animate-slide-up">EQUIPOS UTILIZADOS</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
           {proyecto.imagenesEquipos?.map((img: string, i: number) => (
-            <div class="flex flex-col items-center">
-              <div class="w-full aspect-square overflow-hidden rounded-lg shadow-lg mb-4 bg-white">
+            <div class="flex flex-col items-center animate-fade-in" style={{ animationDelay: `${i * 0.15 + 0.2}s` }}>
+              <div class="w-full aspect-square overflow-hidden rounded-lg shadow-lg mb-4 bg-white max-w-full">
                 <img 
                   src={img} 
                   alt={`Equipo ${i+1}`} 
-                  class="w-full h-full object-cover"
+                  class="w-full h-full object-cover max-w-full"
                   loading="lazy"
                 />
               </div>
@@ -81,7 +74,7 @@ const notFound = !proyecto;
             </div>
           ))}
         </div>
-        <div class="text-center mt-8">
+        <div class="text-center mt-8 animate-fade-in" style="animation-delay: 0.7s;">
           <a 
             href="/productos" 
             class="inline-block bg-[#A9C6DF] text-[#06214E] font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-[#06214E] hover:text-white transition duration-300"
@@ -93,9 +86,9 @@ const notFound = !proyecto;
     </section>
 
     <!-- Sección de resumen y botón SABER MÁS -->
-    <section class="relative py-16 bg-[#EAEAEA]">
+    <section class="relative py-16 bg-[#EAEAEA] animate-fade-in" style="animation-delay: 0.8s;">
       <div class="max-w-3xl mx-auto px-4">
-        <div class="bg-white/90 rounded-lg p-8 shadow-lg">
+        <div class="bg-white/90 rounded-lg p-8 shadow-lg animate-slide-up" style="animation-delay: 1s;">
           <p class="text-gray-800 text-lg text-center mb-6">{proyecto.resumen}</p>
           <div class="text-center">
             <a 
@@ -110,7 +103,23 @@ const notFound = !proyecto;
         </div>
       </div>
     </section>
-
-    <Footer socialLinks={[]} footerLinks={[]} />
   </>
-)} 
+)}
+</Layout>
+
+<style is:global>
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.8s cubic-bezier(0.4,0,0.2,1) both;
+}
+.animate-slide-up {
+  animation: slide-up 0.8s cubic-bezier(0.4,0,0.2,1) both;
+}
+</style> 
