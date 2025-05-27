@@ -12,6 +12,12 @@ export interface Proyecto {
   fecha: string;
   detalles: string;
   capacidad: string;
+  historia?: string;
+  imagenPrincipal?: string;
+  imagenesEquipos?: string[];
+  equipos?: string[];
+  resumen?: string;
+  linkNoticia?: string;
 }
 
 export const proyectos: Proyecto[] = [
@@ -29,7 +35,17 @@ export const proyectos: Proyecto[] = [
     },
     fecha: "2013",
     detalles: "Equipos suministrados: rejas, bandas, cucharas bivalva y compuertas",
-    capacidad: "N/A"
+    capacidad: "N/A",
+    historia: "Durante el año 2013, se llevó a cabo el suministro de rejas, bandas transportadoras, cucharas bivalva y compuertas como parte del equipamiento de tres estaciones elevadoras. Estos elementos fueron seleccionados por su eficiencia y durabilidad, aportando al adecuado funcionamiento de los sistemas de pretratamiento y manejo de aguas residuales.",
+    imagenPrincipal: "/assets/Panoramica.jpg",
+    imagenesEquipos: [
+      "/assets/IMAGEN 1.jpg",
+      "/assets/IMAGEN 2.jpg",
+      "/assets/IMAGEN 3.jpg"
+    ],
+    equipos: ["reja", "banda", "cuchara"],
+    resumen: "Este proyecto permitió mejorar la infraestructura de saneamiento en Barranquilla, beneficiando a miles de habitantes y optimizando el tratamiento de aguas residuales.",
+    linkNoticia: "https://www.elheraldo.co/barranquilla/proyecto-elevadoras"
   },
   {
     id: 2,

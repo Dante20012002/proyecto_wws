@@ -1,0 +1,64 @@
+---
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { proyectos } from '../../data/proyectos';
+
+const { id } = Astro.params;
+const proyecto = proyectos.find(p => String(p.id) === id);
+
+if (!proyecto) {
+  throw new Error('Proyecto no encontrado');
+}
+---
+
+<Navbar links={[
+  { text: 'Home', href: '/' },
+  { text: 'Sobre Nosotros', href: '/sobre-nosotros' },
+  { text: 'Productos', href: '/productos' },
+  { text: 'Contacto', href: '/contacto' },
+  { text: 'Noticias', href: '/noticias' }
+]} />
+
+<!-- Header con imagen, título y badge -->
+<section class="relative h-[340px] md:h-[420px] flex items-end bg-cover bg-center" style={`background-image: url('${proyecto.imagenPrincipal}')`}>
+  <div class="absolute inset-0 bg-black/40"></div>
+  <div class="relative z-10 p-8 flex flex-col items-start md:items-center w-full">
+    <h1 class="text-4xl md:text-6xl font-bold text-white drop-shadow mb-2">{proyecto.nombre}</h1>
+    <span class="bg-white/90 text-[#06214E] font-bold rounded-lg px-6 py-3 text-lg shadow-lg mt-2">
+      +30 Proyectos en Colombia
+    </span>
+  </div>
+</section>
+
+<!-- Historia y galería de equipos en dos columnas -->
+<section class="max-w-6xl mx-auto py-10 px-4 flex flex-col md:flex-row gap-8">
+  <!-- Galería de equipos -->
+  <div class="flex-1 flex flex-col gap-4 justify-center">
+    <h2 class="text-2xl font-bold mb-4 text-center md:text-left">Equipos Utilizados</h2>
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
+      {proyecto.imagenesEquipos?.map((img, i) => (
+        <div class="rounded-lg overflow-hidden shadow">
+          <img src={img} alt={`Equipo ${i+1}`} class="w-full h-40 object-cover" />
+          <div class="text-center font-semibold py-2">Equipo {i+1}</div>
+        </div>
+      ))}
+    </div>
+    <a href="/productos" class="block mx-auto w-max bg-[#A9C6DF] text-[#06214E] font-bold px-6 py-2 rounded shadow hover:bg-[#06214E] hover:text-white transition mt-4">MÁS PRODUCTOS</a>
+  </div>
+  <!-- Historia -->
+  <div class="flex-1 flex flex-col justify-center">
+    <h2 class="text-xl font-bold mb-2 text-[#06214E]">{proyecto.ubicacion.ciudad}</h2>
+    <h3 class="text-2xl font-bold mb-4">{proyecto.nombre}</h3>
+    <p class="text-gray-700 mb-4 text-justify">{proyecto.historia}</p>
+  </div>
+</section>
+
+<!-- Resumen y botón "SABER MÁS" en bloque destacado -->
+<section class="max-w-4xl mx-auto py-8 px-4">
+  <div class="bg-[#EAEAEA] rounded-lg p-6 mb-6 text-center">
+    <p class="text-gray-700 mb-4">{proyecto.resumen}</p>
+    <a href={proyecto.linkNoticia} target="_blank" rel="noopener" class="inline-block bg-[#A9C6DF] text-[#06214E] font-bold px-6 py-2 rounded shadow hover:bg-[#06214E] hover:text-white transition">SABER MÁS</a>
+  </div>
+</section>
+
+<Footer socialLinks={[]} footerLinks={[]} /> 
