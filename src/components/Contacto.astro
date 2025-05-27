@@ -154,30 +154,42 @@ const { socialLinks } = Astro.props;
 </section>
 
 <script>
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-
 if (typeof window !== 'undefined') {
-  setTimeout(() => {
-    const map = L.map('wws-map', {
-      center: [3.4578939885328484, -76.53301965825993],
-      zoom: 16,
-      zoomControl: false,
-      attributionControl: false,
-      dragging: false,
-      scrollWheelZoom: false,
-      doubleClickZoom: false,
-      boxZoom: false,
-      keyboard: false,
-    });
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-    }).addTo(map);
-    const marker = L.marker([3.4578939885328484, -76.53301965825993]).addTo(map);
-    map.on('click', () => {
-      window.open('https://www.google.com/maps?q=3.4578939885328484,-76.53301965825993', '_blank');
-    });
-  }, 0);
+  // Solo carga Leaflet cuando el mapa entra en pantalla
+  const mapContainer = document.getElementById('wws-map');
+  let mapLoaded = false;
+  if (mapContainer) {
+    const observer = new window.IntersectionObserver((entries) => {
+      entries.forEach(async (entry) => {
+        if (entry.isIntersecting && !mapLoaded) {
+          mapLoaded = true;
+          // Importa Leaflet dinámicamente
+          await import('leaflet/dist/leaflet.css');
+          const L = (await import('leaflet')).default;
+          const map = L.map('wws-map', {
+            center: [3.4578939885328484, -76.53301965825993],
+            zoom: 16,
+            zoomControl: false,
+            attributionControl: false,
+            dragging: false,
+            scrollWheelZoom: false,
+            doubleClickZoom: false,
+            boxZoom: false,
+            keyboard: false,
+          });
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+          }).addTo(map);
+          const marker = L.marker([3.4578939885328484, -76.53301965825993]).addTo(map);
+          map.on('click', () => {
+            window.open('https://www.google.com/maps?q=3.4578939885328484,-76.53301965825993', '_blank');
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(mapContainer);
+  }
 }
 </script>
 
