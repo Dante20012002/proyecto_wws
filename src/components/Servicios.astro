@@ -1,167 +1,107 @@
+---
+const servicios = [
+  {
+    img: '/assets/servicio1.jpg',
+    alt: 'Servicio 1',
+    titulo: 'Servicio 1',
+    desc: 'Lorem ipsum dolor sit amet consectetur. Lacus pulvinar pharetra senectus sociis.'
+  },
+  {
+    img: '/assets/servicio2.jpg',
+    alt: 'Servicio 2',
+    titulo: 'Servicio 2',
+    desc: 'Lorem ipsum dolor sit amet consectetur. Lacus pulvinar pharetra senectus sociis.'
+  },
+  {
+    img: '/assets/servicio3.jpg',
+    alt: 'Servicio 3',
+    titulo: 'Servicio 3',
+    desc: 'Lorem ipsum dolor sit amet consectetur. Lacus pulvinar pharetra senectus sociis.'
+  },
+  {
+    img: '/assets/servicio4.jpg',
+    alt: 'Servicio 4',
+    titulo: 'Servicio 4',
+    desc: 'Soluciones avanzadas para el tratamiento de aguas residuales industriales.'
+  },
+  {
+    img: '/assets/servicio5.jpg',
+    alt: 'Servicio 5',
+    titulo: 'Servicio 5',
+    desc: 'Asesoría y consultoría en normativas ambientales y de agua.'
+  },
+  {
+    img: '/assets/servicio6.jpg',
+    alt: 'Servicio 6',
+    titulo: 'Servicio 6',
+    desc: 'Mantenimiento preventivo y correctivo de equipos de tratamiento.'
+  },
+];
+---
 <section class="w-full bg-[#EAEAEA] py-8 md:py-12">
   <div class="max-w-6xl mx-auto px-4">
     <h3 class="text-[#06214E] text-xl sm:text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform">
       Nuestros Servicios
     </h3>
-    <div
-      x-data="{
-      scrollEl: null,
-      next() { this.scrollEl.scrollBy({ left: this.scrollEl.offsetWidth, behavior: 'smooth' }); },
-      prev() { this.scrollEl.scrollBy({ left: -this.scrollEl.offsetWidth, behavior: 'smooth' }); }
-    }"
-      x-init="scrollEl = $refs.carousel"
-      class="relative"
-    >
+    <div class="relative">
       <!-- Controles de navegación -->
       <button
-        @click="prev"
+        id="prev-servicio"
         class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 md:p-2 rounded-full hover:bg-black/70 transition-colors z-10 hidden sm:flex"
         aria-label="Servicio anterior"
+        type="button"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4 md:h-6 md:w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"
-          ></path>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
       </button>
-
       <!-- Carrusel -->
       <div
-        x-ref="carousel"
-        class="flex overflow-x-auto gap-4 md:gap-6 scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 md:pb-0"
+        id="carousel-servicios"
+        class="flex overflow-x-auto overflow-y-hidden gap-4 md:gap-6 scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 md:pb-0 h-[340px] md:h-[370px]"
+        tabindex="0"
+        aria-label="Carrusel de servicios"
       >
-        <div
-          class="bg-white rounded-lg shadow-md p-3 md:p-4 flex flex-col items-center min-w-[250px] sm:min-w-[280px] max-w-xs snap-center hover:shadow-lg transition-shadow fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform"
-        >
-          <img
-            src="/assets/servicio1.jpg"
-            alt="Servicio 1"
-            class="rounded mb-3 md:mb-4 w-full h-32 sm:h-40 object-cover"
-            loading="lazy"
-            decoding="async"
-            fetchpriority="low"
-          />
-          <h4 class="text-[#06214E] font-semibold mb-2 text-sm md:text-base break-words">Servicio 1</h4>
-          <p class="text-gray-700 text-center text-xs sm:text-sm md:text-base text-balance break-words">
-            Lorem ipsum dolor sit amet consectetur. Lacus pulvinar pharetra senectus sociis.
-          </p>
-        </div>
-        <div
-          class="bg-white rounded-lg shadow-md p-3 md:p-4 flex flex-col items-center min-w-[250px] sm:min-w-[280px] max-w-xs snap-center hover:shadow-lg transition-shadow fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform"
-        >
-          <img
-            src="/assets/servicio2.jpg"
-            alt="Servicio 2"
-            class="rounded mb-3 md:mb-4 w-full h-32 sm:h-40 object-cover"
-            loading="lazy"
-            decoding="async"
-            fetchpriority="low"
-          />
-          <h4 class="text-[#06214E] font-semibold mb-2 text-sm md:text-base break-words">Servicio 2</h4>
-          <p class="text-gray-700 text-center text-xs sm:text-sm md:text-base text-balance break-words">
-            Lorem ipsum dolor sit amet consectetur. Lacus pulvinar pharetra senectus sociis.
-          </p>
-        </div>
-        <div
-          class="bg-white rounded-lg shadow-md p-3 md:p-4 flex flex-col items-center min-w-[250px] sm:min-w-[280px] max-w-xs snap-center hover:shadow-lg transition-shadow fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform"
-        >
-          <img
-            src="/assets/servicio3.jpg"
-            alt="Servicio 3"
-            class="rounded mb-3 md:mb-4 w-full h-32 sm:h-40 object-cover"
-            loading="lazy"
-            decoding="async"
-            fetchpriority="low"
-          />
-          <h4 class="text-[#06214E] font-semibold mb-2 text-sm md:text-base break-words">Servicio 3</h4>
-          <p class="text-gray-700 text-center text-xs sm:text-sm md:text-base text-balance break-words">
-            Lorem ipsum dolor sit amet consectetur. Lacus pulvinar pharetra senectus sociis.
-          </p>
-        </div>
-        <div
-          class="bg-white rounded-lg shadow-md p-3 md:p-4 flex flex-col items-center min-w-[250px] sm:min-w-[280px] max-w-xs snap-center hover:shadow-lg transition-shadow fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform"
-        >
-          <img
-            src="/assets/servicio4.jpg"
-            alt="Servicio 4"
-            class="rounded mb-3 md:mb-4 w-full h-32 sm:h-40 object-cover"
-            loading="lazy"
-            decoding="async"
-            fetchpriority="low"
-          />
-          <h4 class="text-[#06214E] font-semibold mb-2 text-sm md:text-base break-words">Servicio 4</h4>
-          <p class="text-gray-700 text-center text-xs sm:text-sm md:text-base text-balance break-words">
-            Soluciones avanzadas para el tratamiento de aguas residuales industriales.
-          </p>
-        </div>
-        <div
-          class="bg-white rounded-lg shadow-md p-3 md:p-4 flex flex-col items-center min-w-[250px] sm:min-w-[280px] max-w-xs snap-center hover:shadow-lg transition-shadow fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform"
-        >
-          <img
-            src="/assets/servicio5.jpg"
-            alt="Servicio 5"
-            class="rounded mb-3 md:mb-4 w-full h-32 sm:h-40 object-cover"
-            loading="lazy"
-            decoding="async"
-            fetchpriority="low"
-          />
-          <h4 class="text-[#06214E] font-semibold mb-2 text-sm md:text-base break-words">Servicio 5</h4>
-          <p class="text-gray-700 text-center text-xs sm:text-sm md:text-base text-balance break-words">
-            Asesoría y consultoría en normativas ambientales y de agua.
-          </p>
-        </div>
-        <div
-          class="bg-white rounded-lg shadow-md p-3 md:p-4 flex flex-col items-center min-w-[250px] sm:min-w-[280px] max-w-xs snap-center hover:shadow-lg transition-shadow fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform"
-        >
-          <img
-            src="/assets/servicio6.jpg"
-            alt="Servicio 6"
-            class="rounded mb-3 md:mb-4 w-full h-32 sm:h-40 object-cover"
-            loading="lazy"
-            decoding="async"
-            fetchpriority="low"
-          />
-          <h4 class="text-[#06214E] font-semibold mb-2 text-sm md:text-base break-words">Servicio 6</h4>
-          <p class="text-gray-700 text-center text-xs sm:text-sm md:text-base text-balance break-words">
-            Mantenimiento preventivo y correctivo de equipos de tratamiento.
-          </p>
-        </div>
+        {servicios.map((servicio, idx) => (
+          <div
+            class="bg-white rounded-lg shadow-md p-3 md:p-4 flex flex-col items-center min-w-[250px] sm:min-w-[280px] max-w-xs snap-center hover:shadow-lg transition-shadow fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform"
+            tabindex="0"
+            aria-label={servicio.titulo}
+          >
+            <img
+              src={servicio.img}
+              alt={servicio.alt}
+              class="rounded mb-3 md:mb-4 w-full h-32 sm:h-40 object-cover"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+            />
+            <h4 class="text-[#06214E] font-semibold mb-2 text-sm md:text-base break-words">{servicio.titulo}</h4>
+            <p class="text-gray-700 text-center text-xs sm:text-sm md:text-base text-balance break-words">
+              {servicio.desc}
+            </p>
+          </div>
+        ))}
       </div>
-
-      <!-- Controles de navegación -->
+      <!-- Botón siguiente -->
       <button
-        @click="next"
+        id="next-servicio"
         class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 md:p-2 rounded-full hover:bg-black/70 transition-colors z-10 hidden sm:flex"
         aria-label="Servicio siguiente"
+        type="button"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4 md:h-6 md:w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"
-          ></path>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
       </button>
-
-      <!-- Indicadores de scroll para móvil -->
-      <div class="flex justify-center gap-2 mt-4 sm:hidden">
-        <div class="w-2 h-2 rounded-full bg-[#06214E]/30"></div>
-        <div class="w-2 h-2 rounded-full bg-[#06214E]/30"></div>
-        <div class="w-2 h-2 rounded-full bg-[#06214E]/30"></div>
-      </div>
+      <!-- Indicadores dinámicos -->
+      <div class="flex justify-center gap-2 mt-4 sm:hidden" id="indicadores-servicios"></div>
     </div>
   </div>
 </section>
 
 <script is:inline>
+  // Animación fade-in
   document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -172,6 +112,103 @@
       });
     }, { threshold: 0.15 });
     document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
+
+    // Carrusel JS puro
+    const carousel = document.getElementById('carousel-servicios');
+    const prevBtn = document.getElementById('prev-servicio');
+    const nextBtn = document.getElementById('next-servicio');
+    const cards = carousel.querySelectorAll('div.snap-center');
+    const indicadores = document.getElementById('indicadores-servicios');
+    let current = 0;
+    // Calcula el desplazamiento horizontal exacto
+    const scrollToCard = (idx) => {
+      if (cards[idx]) {
+        const card = cards[idx];
+        const left = card.offsetLeft - carousel.offsetLeft;
+        carousel.scrollTo({ left, behavior: 'smooth' });
+        current = idx;
+        updateIndicadores();
+      }
+    };
+    // Función para encontrar el índice más cercano al scroll actual
+    const getClosestIndex = () => {
+      let minDist = Infinity;
+      let idx = 0;
+      cards.forEach((card, i) => {
+        const dist = Math.abs(card.offsetLeft - carousel.scrollLeft);
+        if (dist < minDist) {
+          minDist = dist;
+          idx = i;
+        }
+      });
+      return idx;
+    };
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      current = getClosestIndex();
+      if (current > 0) scrollToCard(current - 1);
+    });
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      current = getClosestIndex();
+      if (current < cards.length - 1) scrollToCard(current + 1);
+    });
+    // Indicadores dinámicos
+    function updateIndicadores() {
+      indicadores.innerHTML = '';
+      for (let i = 0; i < cards.length; i++) {
+        const dot = document.createElement('div');
+        dot.className = `w-2 h-2 rounded-full ${i === current ? 'bg-[#06214E]' : 'bg-[#06214E]/30'}`;
+        dot.style.cursor = 'pointer';
+        dot.onclick = () => scrollToCard(i);
+        indicadores.appendChild(dot);
+      }
+    }
+    updateIndicadores();
+    // Actualizar el índice al hacer scroll manual
+    carousel.addEventListener('scroll', () => {
+      let idx = getClosestIndex();
+      if (idx !== current) {
+        current = idx;
+        updateIndicadores();
+      }
+    });
+
+    // Drag-to-scroll con mouse optimizado
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let rafId = null;
+    let lastWalk = 0;
+    function onMouseMove(e) {
+      if (!isDown) return;
+      const x = e.pageX - carousel.offsetLeft;
+      lastWalk = (x - startX) * 0.8; // sensibilidad ajustada
+      if (!rafId) {
+        rafId = requestAnimationFrame(() => {
+          carousel.scrollLeft = scrollLeft - lastWalk;
+          rafId = null;
+        });
+      }
+    }
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      carousel.classList.add('cursor-grabbing');
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+      e.preventDefault();
+    });
+    carousel.addEventListener('mouseleave', () => {
+      isDown = false;
+      carousel.classList.remove('cursor-grabbing');
+    });
+    carousel.addEventListener('mouseup', () => {
+      isDown = false;
+      carousel.classList.remove('cursor-grabbing');
+    });
+    carousel.addEventListener('mousemove', onMouseMove);
   });
 </script>
 <style is:global>
@@ -183,6 +220,12 @@
   opacity: 1 !important;
   transform: none !important;
   animation: fade-in 0.8s cubic-bezier(0.4,0,0.2,1) both;
+}
+/* Ocultar scrollbars */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.cursor-grabbing {
+  cursor: grabbing !important;
 }
 </style>
 

@@ -1,6 +1,7 @@
 const socialLinks = [
-  { icon: '/assets/facebook.svg', href: '#', alt: 'Facebook' },
-  { icon: '/assets/instagram.svg', href: '#', alt: 'Instagram' },
+  { icon: '/assets/sprite.svg#facebook', href: '#', alt: 'Facebook' },
+  { icon: '/assets/sprite.svg#whatsapp', href: '#', alt: 'Whatsapp' },
+  { icon: '/assets/sprite.svg#instagram', href: '#', alt: 'Instagram' },
 ];
 
 export default socialLinks;

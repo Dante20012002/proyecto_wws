@@ -1,110 +1,148 @@
+---
+interface Props {
+  socialLinks: Array<{
+    icon: string;
+    href: string;
+    alt: string;
+  }>;
+}
+
+const { socialLinks } = Astro.props;
+---
+
 <section class="w-full bg-white py-8 md:py-12">
   <div class="max-w-6xl mx-auto px-2 sm:px-4">
     <div class="flex flex-col md:flex-row rounded-lg overflow-hidden shadow-lg">
       <!-- Lado izquierdo: info de contacto -->
       <div
-        class="bg-[#06214E] text-white flex-1 flex flex-col gap-4 p-6 md:p-8 relative min-w-[300px]"
+        class="bg-[#4F6E6E] text-white flex-1 flex flex-col gap-4 p-6 md:p-8 relative min-w-[300px]"
       >
         <h4 class="font-bold text-xl md:text-2xl mb-2">Otros medios de contacto</h4>
         <div class="flex items-center gap-3 text-base md:text-lg">
-          <span class="material-icons text-3xl">phone_iphone</span>
-          <span>+57 3115327548</span>
+          <span class="material-icons text-3xl" aria-hidden="true">phone_iphone</span>
+          <a href="tel:+573115327548" class="hover:opacity-80 transition-opacity">+57 3115327548</a>
         </div>
         <div class="flex items-center gap-3 text-base md:text-lg">
-          <span class="material-icons text-3xl">email</span>
-          <span>waterwiseservices@gmail.com</span>
+          <span class="material-icons text-3xl" aria-hidden="true">email</span>
+          <a href="mailto:waterwiseservices@gmail.com" class="hover:opacity-80 transition-opacity">waterwiseservices@gmail.com</a>
         </div>
         <div class="flex items-center gap-3 text-base md:text-lg">
-          <span class="material-icons text-3xl">location_on</span>
+          <span class="material-icons text-3xl" aria-hidden="true">location_on</span>
           <span>Avenida 6 # 14N - 31</span>
         </div>
-        <img
-          src="/assets/mapa-mini.png"
-          alt="Mapa mini"
-          class="rounded-lg w-full h-24 sm:h-32 md:h-36 object-cover my-2"
-        />
-        <div class="flex gap-6 mt-2 mb-4">
-          <a href="#" class="hover:opacity-80 transition-opacity">
-            <img src="/assets/instagram.svg" alt="Instagram" class="w-8 h-8 md:w-10 md:h-10" />
-          </a>
-          <a href="#" class="hover:opacity-80 transition-opacity">
-            <img src="/assets/facebook.svg" alt="Facebook" class="w-8 h-8 md:w-10 md:h-10" />
-          </a>
-          <a href="#" class="hover:opacity-80 transition-opacity">
-            <img src="/assets/whatsapp.svg" alt="Whatsapp" class="w-8 h-8 md:w-10 md:h-10" />
-          </a>
+        <!-- Mapa interactivo -->
+        <div id="wws-map" class="rounded-lg w-full h-32 sm:h-36 md:h-40 object-cover my-2 cursor-pointer z-0"></div>
+        <!-- Redes sociales en círculos -->
+        <div class="flex gap-6 mt-2 mb-4 justify-center md:justify-start">
+          {socialLinks.map((link) => (
+            <a 
+              href={link.href} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="group rounded-full bg-white w-12 h-12 flex items-center justify-center shadow hover:bg-[#EAEAEA] transition"
+              aria-label={link.alt}
+            >
+              <svg class="w-7 h-7 text-[#4F6E6E] group-hover:scale-110 transition-transform" aria-hidden="true">
+                <use href={link.icon} />
+              </svg>
+            </a>
+          ))}
         </div>
-        <img
-          src="/assets/logo-footer.svg"
-          alt="WWS Logo"
-          class="absolute left-4 bottom-4 w-32 md:w-40 opacity-20 select-none pointer-events-none"
-        />
+        <!-- Logo splash debajo de las redes -->
+        <div class="flex justify-center mt-4">
+          <svg class="w-32 md:w-40 opacity-20 select-none pointer-events-none" aria-hidden="true">
+            <use href="/assets/sprite.svg#logo-splash" />
+          </svg>
+        </div>
       </div>
       <!-- Lado derecho: formulario -->
       <div class="bg-white flex-1 flex flex-col p-6 md:p-10 justify-center">
         <div class="mb-2">
           <div class="text-[#7CA0C4] font-bold text-lg md:text-xl text-center md:text-left">
-            Lorem ipsum
+            ¿Necesitas ayuda?
           </div>
           <h2
-            class="text-[#06214E] font-extrabold text-3xl md:text-5xl text-center md:text-left leading-tight"
+            class="text-[#4F6E6E] font-extrabold text-3xl md:text-5xl text-center md:text-left leading-tight"
           >
             Contáctanos
           </h2>
         </div>
-        <form class="mt-6 flex flex-col gap-6 w-full max-w-2xl mx-auto">
+        <form 
+          class="mt-6 flex flex-col gap-6 w-full max-w-2xl mx-auto"
+          action="/api/contacto"
+          method="POST"
+        >
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="flex flex-col">
-              <label class="text-[#06214E] text-base mb-1" for="nombre">Nombre</label>
+              <label class="text-[#4F6E6E] text-base mb-1" for="nombre">Nombre</label>
               <input
                 id="nombre"
+                name="nombre"
                 type="text"
-                class="border-0 border-b-2 border-[#06214E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#06214E] placeholder-gray-400"
-                placeholder=""
+                required
+                class="border-0 border-b-2 border-[#4F6E6E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#4F6E6E] placeholder-gray-400"
+                placeholder="Tu nombre completo"
+                aria-required="true"
               />
             </div>
             <div class="flex flex-col">
-              <label class="text-[#06214E] text-base mb-1" for="ciudad">Ciudad</label>
+              <label class="text-[#4F6E6E] text-base mb-1" for="ciudad">Ciudad</label>
               <input
                 id="ciudad"
+                name="ciudad"
                 type="text"
-                class="border-0 border-b-2 border-[#06214E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#06214E] placeholder-gray-400"
-                placeholder=""
+                required
+                class="border-0 border-b-2 border-[#4F6E6E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#4F6E6E] placeholder-gray-400"
+                placeholder="Tu ciudad"
+                aria-required="true"
               />
             </div>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="flex flex-col">
-              <label class="text-[#06214E] text-base mb-1" for="correo">Correo</label>
+              <label class="text-[#4F6E6E] text-base mb-1" for="correo">Correo</label>
               <input
                 id="correo"
+                name="correo"
                 type="email"
-                class="border-0 border-b-2 border-[#06214E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#06214E] placeholder-gray-400"
-                placeholder=""
+                required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                class="border-0 border-b-2 border-[#4F6E6E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#4F6E6E] placeholder-gray-400"
+                placeholder="tu@email.com"
+                aria-required="true"
               />
             </div>
             <div class="flex flex-col">
-              <label class="text-[#06214E] text-base mb-1" for="telefono">Teléfono</label>
+              <label class="text-[#4F6E6E] text-base mb-1" for="telefono">Teléfono</label>
               <input
                 id="telefono"
-                type="text"
-                class="border-0 border-b-2 border-[#06214E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#06214E] placeholder-gray-400"
-                placeholder=""
+                name="telefono"
+                type="tel"
+                required
+                pattern="[0-9]{10}"
+                class="border-0 border-b-2 border-[#4F6E6E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#4F6E6E] placeholder-gray-400"
+                placeholder="Tu número de teléfono"
+                aria-required="true"
               />
             </div>
           </div>
           <div class="flex flex-col">
-            <label class="text-[#06214E] text-base mb-1" for="mensaje">Mensaje</label>
+            <label class="text-[#4F6E6E] text-base mb-1" for="mensaje">Mensaje</label>
             <textarea
               id="mensaje"
+              name="mensaje"
               rows="3"
-              class="border-0 border-b-2 border-[#06214E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#06214E] placeholder-gray-400 resize-none"
+              required
+              class="border-0 border-b-2 border-[#4F6E6E] bg-transparent focus:ring-0 focus:border-[#7CA0C4] text-[#4F6E6E] placeholder-gray-400 resize-none"
+              placeholder="¿En qué podemos ayudarte?"
+              aria-required="true"
             ></textarea>
           </div>
           <div class="flex justify-center mt-4">
             <button
               type="submit"
-              class="bg-[#EAEAEA] text-[#06214E] rounded font-extrabold text-xl px-10 py-3 shadow-lg hover:bg-[#d1d5db] transition-colors"
+              class="bg-[#EAEAEA] text-[#4F6E6E] rounded font-extrabold text-xl px-10 py-3 shadow-lg hover:bg-[#d1d5db] transition-colors"
+              aria-label="Enviar mensaje"
             >
               Enviar
             </button>
@@ -114,4 +152,32 @@
     </div>
   </div>
 </section>
+
+<script>
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+if (typeof window !== 'undefined') {
+  setTimeout(() => {
+    const map = L.map('wws-map', {
+      center: [3.4578939885328484, -76.53301965825993],
+      zoom: 16,
+      zoomControl: false,
+      attributionControl: false,
+      dragging: false,
+      scrollWheelZoom: false,
+      doubleClickZoom: false,
+      boxZoom: false,
+      keyboard: false,
+    });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+    }).addTo(map);
+    const marker = L.marker([3.4578939885328484, -76.53301965825993]).addTo(map);
+    map.on('click', () => {
+      window.open('https://www.google.com/maps?q=3.4578939885328484,-76.53301965825993', '_blank');
+    });
+  }, 0);
+}
+</script>
 

@@ -17,49 +17,55 @@ interface Props {
 const { socialLinks, footerLinks } = Astro.props;
 ---
 
-<footer class="bg-[#06214E] text-white py-12">
+<footer class="bg-[#4F6E6E] text-white py-12">
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Logo y redes -->
       <div class="text-center md:text-left">
         <svg class="h-12 mb-4">
-          <use href="/assets/sprite.svg#logo-blanco-negro" />
+          <use href="/assets/sprite.svg#logo-splash" />
         </svg>
         <p class="mb-4 text-[#EAEAEA]">Transformando ideas en soluciones digitales innovadoras</p>
-        <div class="flex gap-4">
-          {
-            socialLinks.map((link) => (
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hover:opacity-80"
-              >
-                <img src={link.icon} alt={link.alt} class="w-7 h-7" />
-              </a>
-            ))
-          }
+        <div class="flex gap-4 justify-center md:justify-start">
+          {socialLinks.map((link) => (
+            <a href={link.href} target="_blank" rel="noopener noreferrer" class="hover:opacity-80">
+              <svg class="w-7 h-7">
+                <use href={link.icon} />
+              </svg>
+            </a>
+          ))}
         </div>
       </div>
-      <div class="flex-[2] grid grid-cols-1 md:grid-cols-3 gap-8">
-        {
-          footerLinks.map((section) => (
-            <div>
-              <h3 class="font-bold mb-4 text-[#EAEAEA]">{section.title}</h3>
-              <ul class="space-y-2">
-                {section.links.map((link) => (
-                  <li>
-                    <a href={link.href} class="hover:text-[#EAEAEA] transition text-sm">
-                      {link.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))
-        }
+      <!-- Enlaces útiles -->
+      <div>
+        <h3 class="font-bold mb-4 text-[#EAEAEA]">Enlaces</h3>
+        <ul class="space-y-2">
+          {footerLinks[0]?.links.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-[#EAEAEA] transition text-sm">
+                {link.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <!-- Contacto -->
+      <div>
+        <h3 class="font-bold mb-4 text-[#EAEAEA]">Contacto</h3>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <span class="font-semibold">Email:</span> contacto@wws.com
+          </li>
+          <li>
+            <span class="font-semibold">Teléfono:</span> +57 123 456 7890
+          </li>
+          <li>
+            <span class="font-semibold">Dirección:</span> Calle 123 #45-67, Bogotá, Colombia
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="border-t border-[#EAEAEA] pt-4 text-center text-xs text-[#EAEAEA]">
+    <div class="border-t border-[#EAEAEA] pt-4 text-center text-xs text-[#EAEAEA] mt-8">
       &copy; {new Date().getFullYear()} WWS. Todos los derechos reservados.
     </div>
   </div>
