@@ -138,85 +138,121 @@ const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
     return colors[tipo] || '#06214E';
   };
 
-  // Función para crear un marcador con animación
-  const createAnimatedMarker = (proyecto, map, L) => {
-    const color = getColorByType(proyecto.tipo);
-    // Icono moderno: círculo con sombra, borde blanco, color dinámico y animación de pulso
-    const baseIcon = (size = 28) => L.divIcon({
-      className: '',
-      html: `<div class="marker-pulse" style="background:${color};width:${size}px;height:${size}px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px 0 rgba(0,0,0,0.18);transition:box-shadow 0.2s,transform 0.2s;position:relative;"><span class='pulse-circle'></span></div>`,
-      iconSize: [size, size],
-      iconAnchor: [size / 2, size / 2]
-    });
-
-    // Crear el marcador con el icono personalizado desde el inicio
-    const marker = L.marker([proyecto.ubicacion.lat, proyecto.ubicacion.lng], {
-      icon: baseIcon(28)
-    }).addTo(map);
-
-    // Añadir tooltip con información detallada
-    marker.bindTooltip(`
-      <div class="p-3 max-w-[300px]">
-        <h4 class="font-bold text-[#06214E] text-lg mb-2">${proyecto.nombre}</h4>
-        <p class="text-sm mb-2 line-clamp-2">${proyecto.descripcion}</p>
-        <div class="text-xs text-gray-600 space-y-1">
-          <p><strong>Ubicación:</strong> ${proyecto.ubicacion.ciudad}, ${proyecto.ubicacion.departamento}</p>
-          <p><strong>Fecha:</strong> ${proyecto.fecha}</p>
-          <p><strong>Capacidad:</strong> ${proyecto.capacidad}</p>
-          <p class="line-clamp-3"><strong>Detalles:</strong> ${proyecto.detalles}</p>
-        </div>
-      </div>
-    `, {
-      permanent: false,
-      direction: 'top',
-      className: 'custom-tooltip'
-    });
-
-    // Hover: solo cambia la clase del div interno
-    marker.on('mouseover', () => {
-      const el = marker.getElement();
-      if (el && el.firstChild) el.firstChild.classList.add('hover');
-    });
-    marker.on('mouseout', () => {
-      const el = marker.getElement();
-      if (el && el.firstChild) el.firstChild.classList.remove('hover');
-    });
-
-    return marker;
-  };
+  // Agrupar proyectos por coordenadas
+  const proyectosPorCoord = {};
+  proyectos.forEach(p => {
+    const key = `${p.ubicacion.lat},${p.ubicacion.lng}`;
+    if (!proyectosPorCoord[key]) proyectosPorCoord[key] = [];
+    proyectosPorCoord[key].push(p);
+  });
 
   // Inicializar el mapa cuando el DOM esté listo
   document.addEventListener('DOMContentLoaded', () => {
-    // Cargar Leaflet dinámicamente
-    const script = document.createElement('script');
-    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-    script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
-    script.crossOrigin = '';
-    
-    script.onload = () => {
-      const L = window.L;
-      
-      // Configuración del mapa
-      const map = L.map('map').setView([4.5709, -74.2973], 6);
+    // Cargar Leaflet y MarkerCluster dinámicamente
+    const leafletScript = document.createElement('script');
+    leafletScript.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    leafletScript.onload = () => {
+      const clusterScript = document.createElement('script');
+      clusterScript.src = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js';
+      clusterScript.onload = () => {
+        const L = window.L;
+        // Configuración del mapa
+        const map = L.map('map').setView([4.5709, -74.2973], 6);
+        // Añadir capa de mapa base
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
 
-      // Añadir capa de mapa base
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-      }).addTo(map);
+        // Crear grupo de cluster
+        const markerCluster = L.markerClusterGroup();
 
-      // Crear marcadores para cada proyecto
-      const markers = proyectos.map(proyecto => createAnimatedMarker(proyecto, map, L));
+        Object.entries(proyectosPorCoord).forEach(([key, proyectosEnCoord]) => {
+          const [lat, lng] = key.split(',').map(Number);
+          const color = getColorByType(proyectosEnCoord[0].tipo);
+          // Tooltip personalizado
+          let tooltipHtml = '';
+          if (proyectosEnCoord.length === 1) {
+            const p = proyectosEnCoord[0];
+            tooltipHtml = `
+              <div class="p-3 max-w-[300px]">
+                <h4 class="font-bold text-[#06214E] text-lg mb-2">${p.nombre}</h4>
+                <p class="text-sm mb-2 line-clamp-2">${p.descripcion}</p>
+                <div class="text-xs text-gray-600 space-y-1">
+                  <p><strong>Ubicación:</strong> ${p.ubicacion.ciudad}, ${p.ubicacion.departamento}</p>
+                  <p><strong>Fecha:</strong> ${p.fecha}</p>
+                  <p><strong>Capacidad:</strong> ${p.capacidad}</p>
+                  <p class="line-clamp-3"><strong>Detalles:</strong> ${p.detalles}</p>
+                </div>
+              </div>
+            `;
+          } else {
+            tooltipHtml = `
+              <div class="p-3 max-w-[300px]">
+                <h4 class="font-bold text-[#06214E] text-lg mb-2">Proyectos en esta ubicación:</h4>
+                <ul>
+                  ${proyectosEnCoord.map(p => `
+                    <li>
+                      <a href="/proyectos/${p.id}" class="text-blue-700 underline font-semibold">${p.nombre}</a>
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            `;
+          }
 
-      // Manejar clic en items de la lista
-      document.querySelectorAll('.proyecto-item').forEach((item, index) => {
-        item.addEventListener('click', () => {
-          const proyecto = proyectos[index];
-          map.setView([proyecto.ubicacion.lat, proyecto.ubicacion.lng], 12);
-          markers[index].openTooltip();
+          const marker = L.marker([lat, lng], {
+            icon: L.divIcon({
+              className: '',
+              html: `<div class="marker-pulse" style="background:${color};width:28px;height:28px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px 0 rgba(0,0,0,0.18);position:relative;"><span class='pulse-circle'></span></div>`,
+              iconSize: [28, 28],
+              iconAnchor: [14, 14]
+            })
+          });
+
+          marker.bindTooltip(tooltipHtml, {
+            permanent: false,
+            direction: 'top',
+            className: 'custom-tooltip'
+          });
+
+          // Si solo hay un proyecto, redirige al hacer clic
+          if (proyectosEnCoord.length === 1) {
+            marker.on('click', () => {
+              window.location.href = `/proyectos/${proyectosEnCoord[0].id}`;
+            });
+          }
+          // Si hay varios, solo muestra el tooltip
+
+          markerCluster.addLayer(marker);
         });
-      });
-    };
 
-    document.head.appendChild(script);
+        map.addLayer(markerCluster);
+
+        // Manejar clic en items de la lista de forma semántica usando el id
+        document.querySelectorAll('.proyecto-item').forEach((item) => {
+          item.addEventListener('click', () => {
+            const id = item.getAttribute('data-id');
+            const p = proyectos.find(p => String(p.id) === id);
+            if (p) {
+              map.setView([p.ubicacion.lat, p.ubicacion.lng], 12);
+              // Buscar el marcador correspondiente y abrir el tooltip
+              // No es trivial con clusters, pero el usuario verá el cluster abierto
+            }
+          });
+        });
+      };
+      document.head.appendChild(clusterScript);
+    };
+    document.head.appendChild(leafletScript);
+
+    // Cargar CSS de MarkerCluster
+    const clusterCSS = document.createElement('link');
+    clusterCSS.rel = 'stylesheet';
+    clusterCSS.href = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css';
+    document.head.appendChild(clusterCSS);
+    const clusterDefaultCSS = document.createElement('link');
+    clusterDefaultCSS.rel = 'stylesheet';
+    clusterDefaultCSS.href = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css';
+    document.head.appendChild(clusterDefaultCSS);
   });
 </script>

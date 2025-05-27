@@ -53,14 +53,20 @@ export const proyectos: Proyecto[] = [
     descripcion: "Proyecto de estación elevadora",
     tipo: "instalacion",
     ubicacion: {
-      lat: 10.9685,
-      lng: -74.7813,
+      lat: 10.967390829994995,
+      lng: -74.7769594936975,
       ciudad: "Barranquilla",
       departamento: "Atlántico"
     },
     fecha: "2013",
     detalles: "Estación elevadora",
-    capacidad: "N/A"
+    capacidad: "N/A",
+    imagenPrincipal: "/assets/Panoramica.jpg",
+    imagenesEquipos: [
+      "/assets/IMAGEN 1.jpg",
+      "/assets/IMAGEN 2.jpg",
+      "/assets/IMAGEN 3.jpg"
+    ],
   },
 
   // Valle del Cauca
@@ -77,7 +83,13 @@ export const proyectos: Proyecto[] = [
     },
     fecha: "2015",
     detalles: "Rejilla fina (zaranda de flujo dual), puente desarenador y sistema de rejillas dobles",
-    capacidad: "11 m³/s"
+    capacidad: "11 m³/s",
+    imagenPrincipal: "/assets/Panoramica.jpg",
+    imagenesEquipos: [
+      "/assets/IMAGEN 1.jpg",
+      "/assets/IMAGEN 2.jpg",
+      "/assets/IMAGEN 3.jpg"
+    ],
   },
   {
     id: 4,
