@@ -31,7 +31,7 @@ const notFound = !proyecto;
       <div class="flex flex-col md:flex-row items-center justify-center gap-8">
         <!-- Imágenes del proyecto (máximo 2) -->
         <div class="grid grid-cols-2 gap-4 w-full md:w-1/2">
-          {proyecto.imagenesEquipos?.slice(0, 2).map((img: string, i: number) => (
+          {proyecto.imagen30proyectos?.slice(0, 2).map((img: string, i: number) => (
             <div class="flex justify-center items-center">
               <img 
                 src={img} 
@@ -72,7 +72,9 @@ const notFound = !proyecto;
                   loading="lazy"
                 />
               </div>
-              <h3 class="text-base md:text-lg font-semibold text-center">Nombre {i+1}</h3>
+              <h3 class="text-base md:text-lg font-semibold text-center">
+                {proyecto.equipos?.[i] ?? `Nombre ${i+1}`}
+              </h3>
             </div>
           ))}
         </div>

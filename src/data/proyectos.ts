@@ -14,6 +14,7 @@ export interface Proyecto {
   capacidad: string;
   historia?: string;
   imagenPrincipal?: string;
+  imagen30proyectos?: string[];
   imagenesEquipos?: string[];
   equipos?: string[];
   resumen?: string;
@@ -37,13 +38,19 @@ export const proyectos: Proyecto[] = [
     detalles: "Equipos suministrados: rejas, bandas, cucharas bivalva y compuertas",
     capacidad: "N/A",
     historia: "Durante el año 2013, se llevó a cabo el suministro de rejas, bandas transportadoras, cucharas bivalva y compuertas como parte del equipamiento de tres estaciones elevadoras. Estos elementos fueron seleccionados por su eficiencia y durabilidad, aportando al adecuado funcionamiento de los sistemas de pretratamiento y manejo de aguas residuales.",
-    imagenPrincipal: "/assets/Panoramica.jpg",
-    imagenesEquipos: [
-      "/assets/IMAGEN 1.jpg",
-      "/assets/IMAGEN 2.jpg",
-      "/assets/IMAGEN 3.jpg"
+    imagenPrincipal: "/assets/BARRANQUILLA 1.jpg",
+    imagen30proyectos: [
+      "/assets/BARRANQUILLA 6.JPG",
+      "/assets/BARRANQUILLA 3.JPG",
     ],
-    equipos: ["reja", "banda", "cuchara"],
+    imagenesEquipos: [
+      "/assets/BARRANQUILLA 6.JPG",
+      "/assets/BARRANQUILLA 4.JPG",
+      "/assets/PIEDECUESTA 4.jpg",
+      "/assets/Rejilla.jpg",
+
+    ],
+    equipos: ["Banda", "Cuchara Bilvalba", "Compuerta", "Rejilla"],
     resumen: "Este proyecto permitió mejorar la infraestructura de saneamiento en Barranquilla, beneficiando a miles de habitantes y optimizando el tratamiento de aguas residuales.",
     linkNoticia: "https://www.elheraldo.co/barranquilla/proyecto-elevadoras"
   },
@@ -104,7 +111,18 @@ export const proyectos: Proyecto[] = [
     },
     fecha: "2017",
     detalles: "Floculadores tipo vertical",
-    capacidad: "N/A"
+    capacidad: "N/A",
+    historia: "Para este proyecto, finalizado en 2015, suministramos una rejilla fina tipo zaranda de flujo dual, un puente desarenador y un sistema de rejillas dobles, todos diseñados para optimizar la captación y protección del sistema. La bocatoma tiene una capacidad de captación de hasta 11 m³/s, lo que la convierte en una infraestructura clave para garantizar un flujo constante y eficiente.",
+    imagenPrincipal: "/assets/BUENAVENTURA 1.jpg",
+    imagen30proyectos: [
+      "/assets/Yumbo 3.webp",
+      "/assets/Bocatoma rio cauca 2.jpg",
+    ],
+    imagenesEquipos: [
+      "/assets/BUENAVENTURA 1.jpg",
+      "/assets/BUENAVENTURA 2.jpg",
+    ],
+    equipos: ["Floculador"],
   },
   {
     id: 5,
