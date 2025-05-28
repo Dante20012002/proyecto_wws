@@ -1,26 +1,92 @@
 ---
+import Layout from '../../layouts/Layout.astro';
 import { productos } from '../../data/productos';
 const { slug } = Astro.params;
 const producto = productos.find(p => p.slug === slug);
 const notFound = !producto;
 ---
 
-{notFound ? (
-  <section class="min-h-[60vh] flex flex-col items-center justify-center">
-    <h1 class="text-3xl font-bold text-red-600 mb-4">Producto no encontrado</h1>
-    <a href="/productos" class="text-blue-600 underline">Volver a productos</a>
-  </section>
-) : (
-  <main class="w-full min-h-[60vh] flex flex-col items-center justify-center bg-[#22345a] py-12 px-4">
-    <div class="max-w-2xl w-full bg-[#1a2740] rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
-      <div class="md:w-1/2 w-full aspect-[4/3] bg-gray-200 flex items-center justify-center">
-        <img src={producto.imagen} alt={producto.nombre} class="w-full h-full object-cover" loading="lazy" />
-      </div>
-      <div class="md:w-1/2 w-full p-8 flex flex-col gap-4 justify-center">
-        <h1 class="text-white text-2xl md:text-3xl font-bold mb-2">{producto.nombre}</h1>
-        <p class="text-gray-200 text-base md:text-lg mb-4">{producto.descripcion}</p>
-        <a href="/productos" class="inline-block mt-4 bg-[#A9C6DF] text-[#06214E] font-bold px-6 py-2 rounded shadow hover:bg-[#06214E] hover:text-white transition">Volver a productos</a>
-      </div>
-    </div>
-  </main>
-)} 
+<Layout title={notFound ? 'Producto no encontrado' : producto.nombre + ' - WWS'}>
+  {notFound ? (
+    <section class="min-h-[60vh] flex flex-col items-center justify-center">
+      <h1 class="text-3xl font-bold text-red-600 mb-4">Producto no encontrado</h1>
+      <a href="/productos" class="text-blue-600 underline">Volver a productos</a>
+    </section>
+  ) : (
+    <main class="w-full min-h-[60vh] bg-[#f5f5f5]">
+      <!-- Header con imagen de fondo y nombre -->
+      <section class="relative w-full h-64 md:h-80 flex items-end justify-start bg-cover bg-center" style={`background-image: url('${producto.imagen}')`}>
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="relative z-10 p-8">
+          <h1 class="text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg">{producto.nombre}</h1>
+        </div>
+      </section>
+
+      <!-- Modelo 3D -->
+      {producto.modelo3d && (
+        <section class="w-full flex justify-center bg-white py-8">
+          <model-viewer
+            src={producto.modelo3d}
+            camera-controls
+            ar
+            auto-rotate
+            style="width: 100%; max-width: 900px; height: 400px; background: #eaeaea; border-radius: 1rem;"
+            exposure="1"
+          >
+            {producto.marcadores3d && producto.marcadores3d.map((m, i) => (
+              <button
+                slot={`hotspot-${i}`}
+                data-position={`${m.x} ${m.y} ${m.z}`}
+                data-normal="0 1 0"
+                class="bg-[#4F6E6E] text-white rounded px-2 py-1 text-xs font-bold"
+                style="pointer-events: auto;"
+              >{m.label}</button>
+            ))}
+          </model-viewer>
+          <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+        </section>
+      )}
+
+      <!-- Galería de imágenes -->
+      {producto.imagenes && producto.imagenes.length > 0 && (
+        <section class="max-w-5xl mx-auto py-8 px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {producto.imagenes.map((img, idx) => (
+            <div class="group block bg-[#12726C] rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+              <div class="relative w-full aspect-[4/3] overflow-hidden">
+                <img src={img} alt={producto.nombre + ' imagen ' + (idx+1)} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" width="400" height="224" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          ))}
+        </section>
+      )}
+
+      <!-- Accesorios -->
+      {producto.accesorios && producto.accesorios.length > 0 && (
+        <section class="max-w-5xl mx-auto py-8 px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {producto.accesorios.map((acc, idx) => (
+            <div class="group block bg-[#12726C] rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+              <div class="relative w-full aspect-[4/3] overflow-hidden">
+                <img src={acc.imagen} alt={acc.nombre} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" width="400" height="160" loading="lazy" decoding="async" />
+              </div>
+              <div class="p-4 flex flex-col gap-2">
+                <h3 class="text-white text-lg font-bold group-hover:text-[#00b4d8] transition-colors duration-300">{acc.nombre}</h3>
+                <p class="text-gray-200 text-sm">{acc.descripcion}</p>
+              </div>
+            </div>
+          ))}
+        </section>
+      )}
+
+      <!-- Descripción y PDF -->
+      <section class="max-w-3xl mx-auto py-8 px-4">
+        <h2 class="text-2xl font-bold mb-4">Descripción</h2>
+        <p class="text-gray-800 mb-6">{producto.descripcion}</p>
+        {producto.pdf && (
+          <a href={producto.pdf} target="_blank" rel="noopener" class="inline-block bg-[#4F6E6E] text-white px-6 py-3 rounded font-bold shadow hover:bg-[#355353] transition">
+            Descargar ficha técnica (PDF)
+          </a>
+        )}
+      </section>
+    </main>
+  )}
+</Layout> 

@@ -28,16 +28,18 @@ const notFound = !proyecto;
 
     <!-- Sección de información del proyecto -->
     <section class="max-w-6xl mx-auto py-12 px-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div class="flex flex-col md:flex-row items-center justify-center gap-8">
         <!-- Imágenes del proyecto (máximo 2) -->
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-2 gap-4 w-full md:w-1/2">
           {proyecto.imagenesEquipos?.slice(0, 2).map((img: string, i: number) => (
-            <img 
-              src={img} 
-              alt={`Vista del proyecto ${i+1}`}
-              class="w-full h-40 md:h-56 object-cover rounded-lg shadow-md max-w-full animate-fade-in"
-              style={{ animationDelay: `${i * 0.2 + 0.2}s` }}
-            />
+            <div class="flex justify-center items-center">
+              <img 
+                src={img} 
+                alt={`Vista del proyecto ${i+1}`}
+                class="w-full h-40 md:h-56 object-cover rounded-lg shadow-md max-w-full animate-fade-in"
+                style={{ animationDelay: `${i * 0.2 + 0.2}s` }}
+              />
+            </div>
           ))}
           <div class="col-span-2 flex justify-center items-center animate-fade-in" style="animation-delay: 0.5s;">
             <span class="inline-block bg-white text-[#06214E] px-6 py-4 rounded-lg text-lg font-bold shadow-lg border-2 border-[#A9C6DF] -mt-8 md:-mt-12 relative">
@@ -46,10 +48,10 @@ const notFound = !proyecto;
           </div>
         </div>
         <!-- Información del proyecto -->
-        <div class="flex flex-col gap-2 animate-slide-up" style="animation-delay: 0.3s;">
+        <div class="flex flex-col gap-2 animate-slide-up text-center md:text-left w-full md:w-1/2" style="animation-delay: 0.3s;">
           <span class="text-lg font-semibold text-[#06214E] uppercase tracking-wide">{proyecto.ubicacion.ciudad}</span>
           <h2 class="text-3xl md:text-4xl font-extrabold text-black mb-2 leading-tight">{proyecto.nombre}</h2>
-          <hr class="border-black w-16 mb-4" />
+          <hr class="border-black w-16 mb-4 mx-auto md:mx-0" />
           <p class="text-gray-700 text-justify">{proyecto.historia}</p>
         </div>
       </div>
@@ -58,19 +60,19 @@ const notFound = !proyecto;
     <!-- Sección de equipos utilizados -->
     <section class="bg-gray-100 py-12">
       <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-2xl md:text-3xl font-extrabold mb-8 tracking-wide animate-slide-up">EQUIPOS UTILIZADOS</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-8 tracking-wide animate-slide-up text-center">EQUIPOS UTILIZADOS</h2>
+        <div class="flex flex-wrap justify-center gap-6">
           {proyecto.imagenesEquipos?.map((img: string, i: number) => (
             <div class="flex flex-col items-center animate-fade-in" style={{ animationDelay: `${i * 0.15 + 0.2}s` }}>
-              <div class="w-full aspect-square overflow-hidden rounded-lg shadow-lg mb-4 bg-white max-w-full">
+              <div class="w-64 aspect-square overflow-hidden rounded-lg shadow-lg mb-4 bg-white flex justify-center items-center">
                 <img 
                   src={img} 
                   alt={`Equipo ${i+1}`} 
-                  class="w-full h-full object-cover max-w-full"
+                  class="w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
-              <h3 class="text-base md:text-lg font-semibold">Nombre {i+1}</h3>
+              <h3 class="text-base md:text-lg font-semibold text-center">Nombre {i+1}</h3>
             </div>
           ))}
         </div>

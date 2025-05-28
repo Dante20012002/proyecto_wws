@@ -1,9 +1,25 @@
+export interface Accesorio {
+  nombre: string;
+  descripcion: string;
+  imagen: string;
+}
+export interface Marcador3D {
+  x: number;
+  y: number;
+  z: number;
+  label: string;
+}
 export interface Producto {
   id: number;
   nombre: string;
   descripcion: string;
-  imagen: string;
+  imagen: string; // principal
+  imagenes?: string[]; // galería
   slug: string;
+  accesorios?: Accesorio[];
+  modelo3d?: string;
+  marcadores3d?: Marcador3D[];
+  pdf?: string;
 }
 
 export const productos: Producto[] = [
@@ -12,14 +28,55 @@ export const productos: Producto[] = [
     nombre: 'C-BDC WATER WISE SERVICES Barredor de lodos de cadena',
     descripcion: 'Barredor de lodos de cadena para sistemas de tratamiento de aguas residuales, eficiente y robusto.',
     imagen: '/assets/PIEDECUESTA 2.jpg',
+    imagenes: [
+      '/assets/PIEDECUESTA 2.jpg',
+      '/assets/PIEDECUESTA 3.jpg',
+      '/assets/PIEDECUESTA 4.jpg',
+      '/assets/PIEDECUESTA 5.jpg'
+    ],
     slug: 'barredor-lodos-cadena',
+    accesorios: [
+      {
+        nombre: 'Motor reductor',
+        descripcion: 'Motor de alta eficiencia para el barredor.',
+        imagen: '/assets/PIEDECUESTA 5.jpg'
+      },
+      {
+        nombre: 'Cadena de arrastre',
+        descripcion: 'Cadena robusta para el sistema de arrastre.',
+        imagen: '/assets/PIEDECUESTA 1.jpg'
+      }
+    ],
+    modelo3d: '/models/3D E-ELM.glb',
+    marcadores3d: [
+      { x: 0.1, y: 0.2, z: 0.3, label: 'Motor' },
+      { x: -0.2, y: 0.1, z: 0.4, label: 'Cadena' }
+    ],
+    pdf: 'https://drive.google.com/uc?export=download&id=ID_DEL_PDF_1'
   },
   {
     id: 2,
     nombre: 'C-CB WATER WISE SERVICES Cuchara bivalva',
     descripcion: 'Cuchara bivalva para manejo de sólidos y limpieza en plantas de tratamiento.',
     imagen: '/assets/IMAGEN 2.jpg',
+    imagenes: [
+      '/assets/IMAGEN 2.jpg',
+      '/assets/IMAGEN 3.jpg'
+    ],
     slug: 'cuchara-bivalva',
+    accesorios: [
+      {
+        nombre: 'Sistema hidráulico',
+        descripcion: 'Permite la apertura y cierre eficiente de la cuchara.',
+        imagen: '/assets/IMAGEN 1.jpg'
+      }
+    ],
+    modelo3d: '/models/cuchara.glb',
+    marcadores3d: [
+      { x: 0.05, y: 0.15, z: 0.2, label: 'Cuchara' },
+      { x: -0.1, y: 0.1, z: 0.3, label: 'Sistema hidráulico' }
+    ],
+    pdf: 'https://drive.google.com/uc?export=download&id=ID_DEL_PDF_2'
   },
   {
     id: 3,
