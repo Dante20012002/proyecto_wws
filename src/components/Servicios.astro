@@ -64,7 +64,7 @@ const servicios = [
       >
         {servicios.map((servicio, idx) => (
           <div
-            class="bg-white rounded-lg shadow-md p-3 md:p-4 flex flex-col items-center min-w-[250px] sm:min-w-[280px] max-w-xs snap-center hover:shadow-lg transition-shadow fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform"
+            class="bg-white rounded-lg shadow-md p-3 md:p-4 flex flex-col items-center min-w-[250px] sm:min-w-[280px] max-w-xs snap-center hover:shadow-lg transition-shadow fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform min-h-[340px] md:min-h-[370px]"
             tabindex="0"
             aria-label={servicio.titulo}
           >
@@ -72,6 +72,8 @@ const servicios = [
               src={servicio.img}
               alt={servicio.alt}
               class="rounded mb-3 md:mb-4 w-full h-32 sm:h-40 object-cover"
+              width="400"
+              height="160"
               loading="lazy"
               decoding="async"
               fetchpriority="low"

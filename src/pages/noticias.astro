@@ -17,7 +17,7 @@ const noticiasPagina = noticias.slice(start, end);
       <h1 class="text-4xl md:text-6xl font-extrabold mb-8 text-[#222]">NOTICIAS</h1>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {noticiasPagina.map((noticia) => (
-          <a href={`/noticias/${noticia.slug}`} class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col hover:shadow-xl transition-shadow">
+          <a href={`/noticias/${noticia.slug}`} class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col hover:shadow-xl transition-shadow min-h-[320px]">
             <img src={noticia.imagenes[0]} alt={noticia.titulo} class="w-full h-40 object-cover" width="400" height="160" loading="lazy" decoding="async" />
             <div class="p-4 flex-1 flex flex-col">
               <h2 class="font-bold text-lg text-[#222] mb-2">{noticia.titulo}</h2>

@@ -31,7 +31,7 @@ const { socialLinks } = Astro.props;
           <span>Avenida 6 # 14N - 31</span>
         </div>
         <!-- Mapa interactivo -->
-        <div id="wws-map" class="rounded-lg w-full h-32 sm:h-36 md:h-40 object-cover my-2 cursor-pointer z-0"></div>
+        <div id="wws-map" class="rounded-lg w-full h-32 sm:h-36 md:h-40 object-cover my-2 cursor-pointer z-0 min-h-[128px] min-w-[200px]" style="min-height:128px;min-width:200px;"></div>
         <!-- Redes sociales en círculos -->
         <div class="flex gap-6 mt-2 mb-4 justify-center md:justify-start">
           {socialLinks.map((link) => (

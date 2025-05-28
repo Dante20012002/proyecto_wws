@@ -1,6 +1,9 @@
 # build output
 dist/
 
+#archivos pesados
+public/assets/pdfs/
+
 # generated types
 .astro/
 
