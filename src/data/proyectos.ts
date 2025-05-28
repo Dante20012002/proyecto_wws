@@ -91,16 +91,15 @@ export const proyectos: Proyecto[] = [
     fecha: "2015",
     detalles: "Rejilla fina (zaranda de flujo dual), puente desarenador y sistema de rejillas dobles",
     capacidad: "11 m³/s",
-    imagenPrincipal: "/assets/Panoramica.jpg",
+    historia: "En esta planta de tratamiento de agua potable se suministraron todos los floculadores tipo vertical. Esta infraestructura es esencial para la decantación de partículas y sólidos, asegurando un proceso eficiente de potabilización del agua. Finalizó operaciones en 2017.",
+    imagenPrincipal: "/assets/Bocatoma rio cauca 2.jpg",
     imagenesEquipos: [
-      "/assets/IMAGEN 1.jpg",
-      "/assets/IMAGEN 2.jpg",
-      "/assets/IMAGEN 3.jpg"
+      "/assets/BUENAVENTURA 2.jpg",
     ],
   },
   {
     id: 4,
-    nombre: "PTAP Buenaventura",
+    nombre: "PTAR Buenaventura",
     descripcion: "Suministro de floculadores tipo vertical",
     tipo: "instalacion",
     ubicacion: {
@@ -120,9 +119,11 @@ export const proyectos: Proyecto[] = [
     ],
     imagenesEquipos: [
       "/assets/BUENAVENTURA 1.jpg",
+      "/assets/Rejilla.jpg",
       "/assets/BUENAVENTURA 2.jpg",
+      
     ],
-    equipos: ["Floculador"],
+    equipos: ["Puente Desarenador", "Rejilla", "Rejilla"],
   },
   {
     id: 5,
@@ -137,7 +138,18 @@ export const proyectos: Proyecto[] = [
     },
     fecha: "2022",
     detalles: "Rejas de cribado, distribuidor de flujo, sedimentador, espesador de lodos y tea quemadora de gas",
-    capacidad: "543 l/s"
+    capacidad: "543 l/s",
+    historia: "Proyecto de tratamiento de aguas residuales que incluye la instalación de rejas de cribado para el pretratamiento, distribuidor de flujo para filtro percolador, sedimentador, espesador de lodos y una tea quemadora de gas. Esta planta tiene una capacidad máxima de 543 l/s y fue puesta en funcionamiento en 2022.",
+    imagenPrincipal: "/assets/Yumbo 1.webp",
+    imagen30proyectos: [
+      "/assets/BUENAVENTURA 1.jpg",
+      "/assets/BUENAVENTURA 2.jpg",
+    ],
+    imagenesEquipos: [
+      "/assets/Yumbo 1.webp",
+      "/assets/Yumbo 2.webp",
+    ],
+    equipos: ["Distribuidor de flujo", "Sedimentador",],
   },
   {
     id: 6,
@@ -152,7 +164,20 @@ export const proyectos: Proyecto[] = [
     },
     fecha: "2024",
     detalles: "Rejas de cribado, distribuidores de flujo, sedimentadores y espesador",
-    capacidad: "887 l/s"
+    capacidad: "887 l/s",
+    historia: "En esta planta se suministraron rejas de cribado para pretratamiento, dos distribuidores de flujo para filtros percoladores, dos sedimentadores y un espesador. La capacidad máxima es de 887 l/s y comenzó operaciones en 2024.",
+    imagenPrincipal: "/assets/Buga 1.jpg",
+    imagen30proyectos: [
+      "/assets/Buga 2.jpg",
+      "/assets/Buga 3.jpg",
+    ],
+    imagenesEquipos: [
+      "/assets/Buga 1.jpg",
+      "/assets/Buga 2.jpg",
+      "/assets/Buga 3.jpg",
+      "/assets/Buga 4.webp",
+    ],
+    equipos: ["Distribuidor de flujo", "Sedimentador", "Espesador de Lodos", "Rejilla"],
   },
   {
     id: 7,
@@ -167,7 +192,17 @@ export const proyectos: Proyecto[] = [
     },
     fecha: "2024",
     detalles: "Sedimentador",
-    capacidad: "157 l/s"
+    capacidad: "157 l/s",
+    historia: "Proyecto enfocado en el tratamiento de aguas residuales, donde se suministró un sedimentador. Esta planta entró en funcionamiento en 2024 con una capacidad de tratamiento de 157 l/s.",
+    imagenPrincipal: "/assets/BARRANQUILLA 2.JPG",
+    imagen30proyectos: [
+      "/assets/Florida 1.webp",
+      "/assets/Buga 4.webp",
+    ],
+    imagenesEquipos: [
+      "/assets/Florida 1.webp",
+    ],
+    equipos: ["Sedimentador"],
   },
 
   // Meta
@@ -184,7 +219,16 @@ export const proyectos: Proyecto[] = [
     },
     fecha: "2011",
     detalles: "Sedimentador",
-    capacidad: "220 l/s"
+    capacidad: "220 l/s",
+    historia: "Para esta planta de tratamiento de aguas residuales se suministró un sedimentador en el año 2011. La planta fue diseñada para tratar un caudal de 220 l/s.",
+    imagenPrincipal: "/assets/Chone 1.jpg",
+    imagen30proyectos: [
+      "/assets/acasias 1.jpg",
+    ],
+    imagenesEquipos: [
+      "/assets/acasias 1.jpg",
+    ],
+    equipos: ["Sedimentador"],
   },
   {
     id: 9,
@@ -193,13 +237,22 @@ export const proyectos: Proyecto[] = [
     tipo: "instalacion",
     ubicacion: {
       lat: 3.9833,
-      lng: -73.7667,
+      lng: -73.7650,
       ciudad: "Acacías",
       departamento: "Meta"
     },
     fecha: "2017",
     detalles: "Percolador para el floculador",
-    capacidad: "N/A"
+    capacidad: "N/A",
+    historia: "En este proyecto se suministró un percolador para el floculador. Forma parte del sistema de tratamiento de aguas del municipio de Acacías y fue ejecutado en 2017.",
+    imagenPrincipal: "/assets/Chone 1.jpg",
+    imagen30proyectos: [
+      "/assets/Chone 1.jpg",
+    ],
+    imagenesEquipos: [
+      "/assets/Chone 1.jpg",
+    ],
+    equipos: ["Percolador"],
   },
   {
     id: 10,
