@@ -88,10 +88,12 @@ const { socialLinks } = Astro.props;
           class="mt-6 flex flex-col gap-6 w-full max-w-2xl mx-auto"
           action="https://formspree.io/f/xanjqoww"
           method="POST"
+          accept-charset="UTF-8"
+          enctype="multipart/form-data"
         >
           <input type="hidden" name="_subject" value="Nuevo contacto desde WWS" />
-          <input type="hidden" name="_replyto" value="%email%" />
           <input type="hidden" name="_next" value="https://waterwiseservices.com/gracias" />
+          <input type="hidden" name="_charset_" value="utf-8" />
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="flex flex-col">
               <label class="text-[#4F6E6E] text-base mb-1" for="nombre">Nombre</label>

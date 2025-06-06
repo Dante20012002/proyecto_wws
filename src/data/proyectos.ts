@@ -47,7 +47,7 @@ export const proyectos: Proyecto[] = [
       "/assets/BARRANQUILLA 6.JPG",
       "/assets/BARRANQUILLA 4.JPG",
       "/assets/PIEDECUESTA 4.jpg",
-      "/assets/Rejilla.jpg",
+      "/assets/BARRANQUILLA 2.jpg",
 
     ],
     equipos: ["Banda", "Cuchara Bilvalba", "Compuerta", "Rejilla"],

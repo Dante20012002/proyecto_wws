@@ -1,5 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// Obtener la lista de aliados
+const aliados = [
+  { 
+    nombre: 'Equom', 
+    logo: '/assets/Aliados/Equom.png',
+    url: 'https://equom.com/'
+  },
+  { 
+    nombre: 'XS Solutions', 
+    logo: '/assets/Aliados/XS Solutions.jpg',
+    url: 'https://xssolutions.co/'
+  },
+  { 
+    nombre: 'Biolam Colombia', 
+    logo: '/assets/Aliados/Biolam Colombia.png',
+    url: 'https://biolamcolombia.com/'
+  },
+  { 
+    nombre: 'Conngeniería', 
+    logo: '/assets/Aliados/Conngeniería.png',
+    url: 'https://conngenieriaingenieros.com/'
+  }
+];
 ---
 
 <Layout title="Sobre Nosotros - WWS">
@@ -18,7 +42,7 @@ import Layout from '../layouts/Layout.astro';
       <p class="text-lg text-gray-700 mb-4 break-words">Garantizar un servicio de alta calidad que genere confianza y satisfacción en nuestros clientes, fortaleciendo nuestra presencia en el mercado Colombiana y suramericano mediante procesos eficientes, asesoría especializada.</p>
     </div>
     <div class="flex flex-col gap-4 items-center">
-      <img src="/assets/Soldador.jpg" alt="Soldador" class="rounded-lg shadow-lg w-full max-w-full object-cover h-48 md:h-56" loading="lazy" />
+      <img src="/assets/Agua.jpg" alt="Agua" class="rounded-lg shadow-lg w-full max-w-full object-cover h-48 md:h-56" loading="lazy" />
       <div class="relative -mt-10 md:-mt-12">
         <span class="inline-block bg-white text-[#06214E] px-6 py-4 rounded-lg text-lg font-bold shadow-lg border-2 border-[#A9C6DF]">+30 Proyectos en Colombia</span>
       </div>
@@ -53,20 +77,82 @@ import Layout from '../layouts/Layout.astro';
   <!-- Aliados -->
   <section class="w-full py-12">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-2">NUESTROS <span class="text-[#A9C6DF]">ALIADOS</span></h2>
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-2">NUESTROS <span class="text-[#819392]">ALIADOS</span></h2>
       <div class="w-16 h-1 bg-[#A9C6DF] mb-6"></div>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-6">
-        {[...Array(6)].map((_, i) => (
-          <div class="flex flex-col items-center text-center break-words">
-            <div class="w-16 h-16 rounded-full bg-[#06214E] mb-2"></div>
-            <h4 class="font-bold text-[#06214E] text-sm mb-1">TITULO</h4>
-            <p class="text-xs text-[#7B8BA3]">Garantizar un servicio de alta calidad que genere confianza y satisfacción en nuestros clientes.</p>
-          </div>
-        ))}
-      </div>
-      <div class="flex justify-center">
-        <a href="#" class="inline-block bg-[#A9C6DF] text-[#06214E] font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-[#06214E] hover:text-white transition duration-300">CONOCE MÁS</a>
+      
+      <!-- Contenedor del carrusel con márgenes controlados -->
+      <div class="relative w-full overflow-hidden">
+        <div class="animate-slide-track">
+          {/* Primera copia de los logos */}
+          {aliados.map((aliado) => (
+            <div class="flex-none w-[250px] flex flex-col items-center text-center">
+              <a href={aliado.url} target="_blank" rel="noopener noreferrer" class="group">
+                <div class="w-28 h-28 rounded-full bg-white shadow-md p-4 flex items-center justify-center mb-3 transition-transform duration-300 group-hover:scale-110">
+                  <img 
+                    src={aliado.logo} 
+                    alt={`Logo de ${aliado.nombre}`} 
+                    class="w-16 h-16 object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                <h4 class="font-bold text-[#81939] text-sm">{aliado.nombre}</h4>
+              </a>
+            </div>
+          ))}
+          {/* Segunda copia para la animación continua */}
+          {aliados.map((aliado) => (
+            <div class="flex-none w-[250px] flex flex-col items-center text-center">
+              <a href={aliado.url} target="_blank" rel="noopener noreferrer" class="group">
+                <div class="w-28 h-28 rounded-full bg-white shadow-md p-4 flex items-center justify-center mb-3 transition-transform duration-300 group-hover:scale-110">
+                  <img 
+                    src={aliado.logo} 
+                    alt={`Logo de ${aliado.nombre}`} 
+                    class="w-16 h-16 object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                <h4 class="font-bold text-[#81939] text-sm">{aliado.nombre}</h4>
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </section>
-</Layout> 
+</Layout>
+
+<style>
+  @-webkit-keyframes slide {
+    0% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+    100% {
+      -webkit-transform: translateX(calc(-250px * 4));
+      transform: translateX(calc(-250px * 4));
+    }
+  }
+
+  @keyframes slide {
+    0% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+    100% {
+      -webkit-transform: translateX(calc(-250px * 4));
+      transform: translateX(calc(-250px * 4));
+    }
+  }
+
+  .animate-slide-track {
+    -webkit-animation: slide 40s linear infinite;
+    animation: slide 40s linear infinite;
+    display: flex;
+    width: calc(250px * 8);
+  }
+
+  .animate-slide-track:hover {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+</style> 
