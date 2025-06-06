@@ -2,7 +2,8 @@ const navLinks = [
   { text: 'Inicio', href: '/' },
   { text: 'Sobre Nosotros', href: '/sobre-nosotros' },
   { text: 'Productos', href: '/productos' },
-  { text: 'Contacto', href: '/contacto' },
+  { text: 'Donde Hemos Estado', href: '#mapa', isScroll: true },
+  { text: 'Contacto', href: '#contacto', isScroll: true },
   { text: 'Noticias', href: '/noticias' },
 ];
 
