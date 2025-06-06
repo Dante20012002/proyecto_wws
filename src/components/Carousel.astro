@@ -11,19 +11,21 @@ const slides = [
     image: '/assets/IMAGEN 1.jpg',
     title: 'En Water Wise Services, creemos que un agua pura garantiza un futuro seguro.',
     buttonText: 'Equipos para tratamiento de agua',
-    buttonLink: '/servicios',
+    buttonLink: '/productos',
   },
   {
     image: '/assets/IMAGEN 2.jpg',
     title: 'Tratamos el agua pensando en el planeta y en las futuras generaciones.',
     buttonText: 'Conoce nuestros servicios',
-    buttonLink: '/servicios',
+    buttonLink: '#servicios',
+    isScroll: true,
   },
   {
     image: '/assets/IMAGEN 3.jpg',
     title: 'Nuestros equipos garantizan agua de alta calidad para cada necesidad.',
     buttonText: 'Solicita una cotización',
-    buttonLink: '/contacto',
+    buttonLink: '#contacto',
+    isScroll: true,
   },
 ];
 ---
@@ -50,7 +52,8 @@ const slides = [
                 {slide.buttonText && slide.buttonLink && (
                   <a
                     href={slide.buttonLink}
-                    class="inline-block bg-[#EAEAEA] text-[#06214E] px-4 py-2 md:px-6 md:py-3 rounded text-sm md:text-base font-semibold hover:bg-white transition-colors"
+                    class="inline-block bg-[#EAEAEA] text-[#4F6E6E] px-4 py-2 md:px-6 md:py-3 rounded text-sm md:text-base font-semibold hover:bg-white transition-colors"
+                    data-scroll={slide.isScroll}
                   >
                     {slide.buttonText}
                   </a>
@@ -199,6 +202,23 @@ const slides = [
   // Inicializar el carrusel cuando el DOM esté listo
   document.addEventListener('DOMContentLoaded', () => {
     new Carousel();
+
+    // Manejar el scrolling suave
+    document.querySelectorAll('a[data-scroll="true"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href')?.replace('#', '');
+        if (targetId) {
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
   });
 </script>
 
