@@ -104,13 +104,43 @@ const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     max-width: 300px !important;
+    min-width: 250px !important;
   }
 
   :global(.custom-tooltip) {
     font-family: system-ui, -apple-system, sans-serif;
   }
 
+  /* Estilos específicos para el contenido del tooltip */
+  :global(.tooltip-content) {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  :global(.tooltip-title) {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.3;
+  }
+
+  :global(.tooltip-link) {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    display: block;
+    margin-bottom: 4px;
+  }
+
   /* Utilidades para truncar texto */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -174,8 +204,8 @@ const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
           if (proyectosEnCoord.length === 1) {
             const p = proyectosEnCoord[0];
             tooltipHtml = `
-              <div class="p-3 max-w-[300px]">
-                <h4 class="font-bold text-[#06214E] text-lg mb-2">${p.nombre}</h4>
+              <div class="tooltip-content p-3">
+                <h4 class="tooltip-title font-bold text-[#06214E] text-lg mb-2 line-clamp-2">${p.nombre}</h4>
                 <p class="text-sm mb-2 line-clamp-2">${p.descripcion}</p>
                 <div class="text-xs text-gray-600 space-y-1">
                   <p><strong>Ubicación:</strong> ${p.ubicacion.ciudad}, ${p.ubicacion.departamento}</p>
@@ -187,12 +217,12 @@ const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
             `;
           } else {
             tooltipHtml = `
-              <div class="p-3 max-w-[300px]">
-                <h4 class="font-bold text-[#06214E] text-lg mb-2">Proyectos en esta ubicación:</h4>
-                <ul>
+              <div class="tooltip-content p-3">
+                <h4 class="tooltip-title font-bold text-[#06214E] text-lg mb-2">Proyectos en esta ubicación:</h4>
+                <ul class="space-y-1">
                   ${proyectosEnCoord.map(p => `
                     <li>
-                      <a href="/proyectos/${p.id}" class="text-blue-700 underline font-semibold">${p.nombre}</a>
+                      <a href="/proyectos/${p.id}" class="tooltip-link text-blue-700 underline font-semibold line-clamp-2">${p.nombre}</a>
                     </li>
                   `).join('')}
                 </ul>
