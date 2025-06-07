@@ -148,7 +148,7 @@ export const proyectos: Proyecto[] = [
     historia: "Proyecto de tratamiento de aguas residuales que incluye la instalación de rejas de cribado para el pretratamiento, distribuidor de flujo para filtro percolador, sedimentador, espesador de lodos y una tea quemadora de gas. Esta planta tiene una capacidad máxima de 543 l/s y fue puesta en funcionamiento en 2022.",
     imagenPrincipal: "/assets/Yumbo 1.webp",
     imagen30proyectos: [
-      "/assets/BUENAVENTURA 1.jpg",
+      "/assets/Yumbo 2.webp",
       "/assets/Yumbo 1.webp",
     ],
     imagenesEquipos: [
