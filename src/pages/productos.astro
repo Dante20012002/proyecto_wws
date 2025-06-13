@@ -1,10 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { productos } from '../data/productos';
+
+const categorias = [
+  'CONTROL DE CAUDAL',
+  'DRAGADO Y PRETRATAMIENTO',
+  'AGITACIÓN Y FLOCULACIÓN',
+  'SEDIMENTACIÓN',
+  'TRATAMIENTO SECUNDARIO',
+  'TRATAMIENTO TERCEARIO',
+  'TRATAMIENTO DE LODOS Y TRANSPORTADORES',
+  'ADECUACIONES ESTRUCTURALES E HIDRÁULICAS',
+];
+
+let selectedCategoria = categorias[0];
+const catParam = Astro.url.searchParams.get('cat');
+if (catParam && categorias.includes(catParam)) selectedCategoria = catParam;
+const productosFiltrados = productos.filter(p => p.categoria === selectedCategoria);
 ---
 
 <Layout title="Productos - WWS">
-  <section class="relative w-full min-h-[60vh] flex items-center justify-center bg-fixed bg-center bg-cover" style="background-image: url('/assets/BARRANQUILLA 1.jpg');">
+  <section class="relative w-full min-h-[40vh] flex items-center justify-center bg-fixed bg-center bg-cover" style="background-image: url('/assets/BARRANQUILLA 1.jpg');">
     <div class="absolute inset-0 bg-[#4F6E6E]/80 z-0"></div>
     <div class="relative max-w-5xl w-full px-4 py-16 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
       <div>
@@ -24,16 +40,32 @@ import { productos } from '../data/productos';
     </div>
   </section>
 
-  <section class="w-full bg-[#546b6b] py-12 px-0">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4">
-      {productos.map(producto => (
-        <a href={`/productos/${producto.slug}`} class="group block bg-[#12726C] rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
-          <div class="relative w-full aspect-[4/3] overflow-hidden">
-            <img src={producto.imagen} alt={producto.nombre} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
-          </div>
-          <div class="p-4 flex flex-col gap-2">
-            <h2 class="text-white text-lg font-bold group-hover:text-[#00b4d8] transition-colors duration-300">{producto.nombre}</h2>
-            <p class="text-gray-200 text-sm line-clamp-3">{producto.descripcion}</p>
+  <section class="w-full flex flex-col items-center py-12 bg-white">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8">NUESTROS<br/>PRODUCTOS</h2>
+    <div class="max-w-6xl w-full px-4 mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
+        {categorias.map(cat => (
+          <a
+            href={`?cat=${encodeURIComponent(cat)}`}
+            class={`w-full aspect-[9/3] flex items-center justify-center rounded-lg font-bold text-white text-sm tracking-wide shadow transition-all duration-200 text-center ${selectedCategoria === cat ? 'bg-[#6B8C8C]' : 'bg-[#A9C6C6] hover:bg-[#6B8C8C]'}`}
+          >
+            {cat}
+          </a>
+        ))}
+      </div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full max-w-6xl px-4 mx-auto">
+      {productosFiltrados.map(producto => (
+        <a href={`/productos/${producto.slug}`} class="group block rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl relative bg-transparent">
+          <div class="relative w-full aspect-[9/3] md:aspect-[6/3] min-h-[320px] md:min-h-[360px] overflow-hidden">
+            <img src={producto.imagen} alt={producto.nombre} class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-black/40">
+              <h2 class="text-white text-lg md:text-2xl font-bold text-center drop-shadow-lg mb-2">{producto.nombre}</h2>
+              <p class="text-white text-center px-4 text-sm md:text-base">{producto.descripcion}</p>
+            </div>
+            <div class="absolute top-0 left-0 w-full px-2 py-2 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300">
+              <h2 class="text-white text-base md:text-lg font-bold text-center w-full drop-shadow-lg">{producto.nombre}</h2>
+            </div>
           </div>
         </a>
       ))}
