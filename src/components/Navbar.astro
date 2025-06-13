@@ -15,21 +15,17 @@ const currentPath = Astro.url.pathname;
 ---
 
 <nav class="sticky top-0 z-10 w-full bg-[#819392] text-white shadow">
-  <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between relative">
-    <!-- Logo a la izquierda -->
-    <div class="flex items-center h-full flex-1">
-      <a href="/" class="flex items-center gap-2 h-full group">
-        <svg class="h-14">
-          <use href="/assets/sprite.svg#logo-splash" />
-        </svg>
-        <span
-          class="ml-2 font-bold text-xl hidden group-hover:text-[#C9D6D7] transition-colors duration-300"
-          id="logo-placeholder">WWS</span
-        >
-      </a>
-    </div>
-    <!-- Links centrados solo en escritorio -->
-    <ul class="hidden md:flex justify-center gap-16 h-full items-center flex-1">
+  <div class="max-w-7xl mx-auto px-0 h-20 flex items-center relative">
+    <a href="/" class="flex items-center h-full">
+      <svg class="h-14 m-0 px-0">
+        <use href="/assets/sprite.svg#logo-splash" />
+      </svg>
+      <span
+        class="ml-2 font-bold text-xl hidden group-hover:text-[#C9D6D7] transition-colors duration-300"
+        id="logo-placeholder">WWS</span
+      >
+    </a>
+    <ul class="hidden md:flex justify-start gap-8 h-full items-center ml-2">
       {
         links.map((link) => (
           <li class="relative flex flex-col items-center text-center">
@@ -46,7 +42,6 @@ const currentPath = Astro.url.pathname;
         ))
       }
     </ul>
-    <!-- Botón hamburguesa solo en móvil -->
     <button id="menuButton" class="md:hidden flex items-center ml-auto" aria-label="Abrir menú">
       <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
         ><path
