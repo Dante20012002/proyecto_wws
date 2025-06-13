@@ -41,7 +41,18 @@ const categorias = [
     x-data={`{
       categorias: ${JSON.stringify(categorias)},
       productos: ${JSON.stringify(productos)},
-      selectedCategoria: "${categorias[0]}"
+      selectedCategoria: "${categorias[0]}",
+      loading: false,
+      loadingStart: 0,
+      loadingTimeout: null,
+      setCategoria(cat) {
+        if (this.selectedCategoria === cat) return;
+        this.loading = true;
+        this.selectedCategoria = cat;
+        this.loadingStart = Date.now();
+        if (this.loadingTimeout) clearTimeout(this.loadingTimeout);
+        this.loadingTimeout = setTimeout(() => { this.loading = false; }, 1000);
+      }
     }`}
   >
     <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8">NUESTROS<br/>PRODUCTOS</h2>
@@ -50,7 +61,7 @@ const categorias = [
         <template x-for="cat in categorias" :key="cat">
           <button
             type="button"
-            @click="selectedCategoria = cat"
+            @click="setCategoria(cat)"
             :class="selectedCategoria === cat ? 'bg-[#6B8C8C] text-white' : 'bg-[#A9C6C6] text-white hover:bg-[#6B8C8C]'"
             class="w-full aspect-[9/3] flex items-center justify-center rounded-lg font-bold text-sm tracking-wide shadow transition-all duration-200 text-center focus:outline-none focus:ring-2 focus:ring-[#12726C]"
           >
@@ -59,20 +70,91 @@ const categorias = [
         </template>
       </div>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full max-w-6xl px-4 mx-auto">
-      <template x-for="producto in productos.filter(p => p.categoria === selectedCategoria)" :key="producto.id">
-        <a :href="`/productos/${producto.slug}`" class="group block rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl relative bg-transparent">
-          <div class="relative w-full aspect-[9/3] md:aspect-[6/3] min-h-[320px] md:min-h-[360px] overflow-hidden">
-            <img :src="producto.imagen" :alt="producto.nombre" class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-black/40">
-              <h2 class="text-white text-lg md:text-2xl font-bold text-center drop-shadow-lg mb-2" x-text="producto.nombre"></h2>
-              <p class="text-white text-center px-4 text-sm md:text-base" x-text="producto.descripcion"></p>
-            </div>
-            <div class="absolute top-0 left-0 w-full px-2 py-2 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300">
-              <h2 class="text-white text-base md:text-lg font-bold text-center w-full drop-shadow-lg" x-text="producto.nombre"></h2>
-            </div>
+    <div x-cloak>
+      <template x-if="loading">
+        <div class="flex justify-center items-center w-full h-64">
+          <div class="relative w-[180px] h-[80px] flex items-center justify-center overflow-hidden shadow-inset-olas">
+            <svg id="olas-loader" class="w-full h-full" viewBox="0 0 279.2 113.97" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path id="wavePath" fill="#8EB8B6" />
+              <path id="wavePath2" fill="#10776A" opacity="0.7" />
+            </svg>
+            <script>
+              (() => {
+                const svgWidth = 279.2;
+                const svgHeight = 113.97;
+                const wavePath = document.getElementById('wavePath');
+                const wavePath2 = document.getElementById('wavePath2');
+                if (!wavePath || !wavePath2) return;
+                function getWavePath(amplitude, frequency, phase, yOffset) {
+                  let d = '';
+                  const points = 60;
+                  for (let i = 0; i <= points; i++) {
+                    const x = (i / points) * svgWidth;
+                    const y = Math.sin((i / points) * frequency * Math.PI * 2 + phase) * amplitude + yOffset;
+                    d += i === 0 ? `M${x},${y}` : ` L${x},${y}`;
+                  }
+                  d += ` L${svgWidth},${svgHeight} L0,${svgHeight} Z`;
+                  return d;
+                }
+                let t = 0;
+                function animate() {
+                  t += 0.03;
+                  if (wavePath) wavePath.setAttribute('d', getWavePath(10, 2, t, 90));
+                  if (wavePath2) wavePath2.setAttribute('d', getWavePath(7, 2.5, t + 1, 97));
+                  requestAnimationFrame(animate);
+                }
+                animate();
+              })();
+            </script>
           </div>
-        </a>
+        </div>
+      </template>
+      <template x-if="!loading">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full max-w-6xl px-4 mx-auto"
+        >
+          <template x-for="producto in productos.filter(p => p.categoria === selectedCategoria)" :key="producto.id">
+            <a :href="`/productos/${producto.slug}`" class="group block rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl relative bg-transparent">
+              <div class="relative w-full aspect-[9/3] md:aspect-[6/3] min-h-[320px] md:min-h-[360px] overflow-hidden">
+                <img :src="producto.imagen" :alt="producto.nombre" data-product-img class="w-full h-full object-cover" loading="lazy" />
+                <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-black/40">
+                  <h2 class="text-white text-lg md:text-2xl font-bold text-center drop-shadow-lg mb-2" x-text="producto.nombre"></h2>
+                  <p class="text-white text-center px-4 text-sm md:text-base" x-text="producto.descripcion"></p>
+                </div>
+                <div class="absolute top-0 left-0 w-full px-2 py-2 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300">
+                  <h2 class="text-white text-base md:text-lg font-bold text-center w-full drop-shadow-lg" x-text="producto.nombre"></h2>
+                </div>
+              </div>
+            </a>
+          </template>
+        </div>
+        <div x-effect="
+          if (!loading) return;
+          $nextTick(() => {
+            let grid = $el.previousElementSibling;
+            let imgs = grid.querySelectorAll('img[data-product-img]');
+            let total = imgs.length;
+            let loaded = 0;
+            if (total === 0) {
+              setTimeout(() => { loading = false; }, Math.max(0, 300 - (Date.now() - loadingStart)));
+            }
+            imgs.forEach(img => {
+              if (img.complete) {
+                loaded++;
+                if (loaded === total) setTimeout(() => { loading = false; }, Math.max(0, 300 - (Date.now() - loadingStart)));
+              } else {
+                img.addEventListener('load', () => {
+                  loaded++;
+                  if (loaded === total) setTimeout(() => { loading = false; }, Math.max(0, 300 - (Date.now() - loadingStart)));
+                });
+                img.addEventListener('error', () => {
+                  loaded++;
+                  if (loaded === total) setTimeout(() => { loading = false; }, Math.max(0, 300 - (Date.now() - loadingStart)));
+                });
+              }
+            });
+          });
+        "></div>
       </template>
     </div>
   </section>
@@ -81,5 +163,35 @@ const categorias = [
 <style is:global>
 .bg-fixed {
   background-attachment: fixed;
+}
+@keyframes olas-move {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-30px); }
+}
+.animate-olas-move {
+  animation: olas-move 1.2s linear infinite alternate;
+}
+.wave1 {
+  opacity: 0.8;
+}
+.wave2 {
+  opacity: 0.7;
+  transform: translateY(10px);
+}
+@keyframes ola-move-1 {
+  0% { transform: translateY(0) scaleX(1); }
+  50% { transform: translateY(-10px) scaleX(1.05); }
+  100% { transform: translateY(0) scaleX(1); }
+}
+@keyframes ola-move-2 {
+  0% { transform: translateY(10px) scaleX(1); }
+  50% { transform: translateY(0) scaleX(0.97); }
+  100% { transform: translateY(10px) scaleX(1); }
+}
+.ola1 { animation: ola-move-1 2s ease-in-out infinite; }
+.ola2 { animation: ola-move-2 2.2s ease-in-out infinite; }
+.shadow-inset-olas {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
 }
 </style> 
