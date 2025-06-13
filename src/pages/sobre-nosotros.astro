@@ -77,8 +77,8 @@ const aliados = [
   <!-- Aliados -->
   <section class="w-full py-12">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-2">NUESTROS <span class="text-[#819392]">ALIADOS</span></h2>
-      <div class="w-16 h-1 bg-[#A9C6DF] mb-6"></div>
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-2">NUESTROS <span class="text-[#4F6E6E]">ALIADOS</span></h2>
+      <div class="w-16 h-1 bg-[#819392] mb-6"></div>
       
       <!-- Contenedor del carrusel con márgenes controlados -->
       <div class="relative w-full overflow-hidden">
@@ -87,14 +87,12 @@ const aliados = [
           {aliados.map((aliado) => (
             <div class="flex-none w-[250px] flex flex-col items-center text-center">
               <a href={aliado.url} target="_blank" rel="noopener noreferrer" class="group">
-                <div class="w-28 h-28 rounded-full bg-white shadow-md p-4 flex items-center justify-center mb-3 transition-transform duration-300 group-hover:scale-110">
-                  <img 
-                    src={aliado.logo} 
-                    alt={`Logo de ${aliado.nombre}`} 
-                    class="w-16 h-16 object-contain"
-                    loading="lazy"
-                  />
-                </div>
+                <img 
+                  src={aliado.logo} 
+                  alt={`Logo de ${aliado.nombre}`} 
+                  class="w-32 h-32 object-contain mb-3 transition-transform duration-300 group-hover:scale-110"
+                  loading="lazy"
+                />
                 <h4 class="font-bold text-[#81939] text-sm">{aliado.nombre}</h4>
               </a>
             </div>
@@ -103,14 +101,12 @@ const aliados = [
           {aliados.map((aliado) => (
             <div class="flex-none w-[250px] flex flex-col items-center text-center">
               <a href={aliado.url} target="_blank" rel="noopener noreferrer" class="group">
-                <div class="w-28 h-28 rounded-full bg-white shadow-md p-4 flex items-center justify-center mb-3 transition-transform duration-300 group-hover:scale-110">
-                  <img 
-                    src={aliado.logo} 
-                    alt={`Logo de ${aliado.nombre}`} 
-                    class="w-16 h-16 object-contain"
-                    loading="lazy"
-                  />
-                </div>
+                <img 
+                  src={aliado.logo} 
+                  alt={`Logo de ${aliado.nombre}`} 
+                  class="w-32 h-32 object-contain mb-3 transition-transform duration-300 group-hover:scale-110"
+                  loading="lazy"
+                />
                 <h4 class="font-bold text-[#81939] text-sm">{aliado.nombre}</h4>
               </a>
             </div>
