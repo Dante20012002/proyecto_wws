@@ -57,13 +57,13 @@ const categorias = [
   >
     <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8">NUESTROS<br/>PRODUCTOS</h2>
     <div class="max-w-6xl w-full px-4 mx-auto">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
         <template x-for="cat in categorias" :key="cat">
           <button
             type="button"
             @click="setCategoria(cat)"
             :class="selectedCategoria === cat ? 'bg-[#6B8C8C] text-white' : 'bg-[#A9C6C6] text-white hover:bg-[#6B8C8C]'"
-            class="w-full aspect-[9/3] flex items-center justify-center rounded-lg font-bold text-sm tracking-wide shadow transition-all duration-200 text-center focus:outline-none focus:ring-2 focus:ring-[#12726C]"
+            class="w-full aspect-[9/3] flex items-center justify-center rounded-lg font-bold text-sm tracking-wide shadow transition-all duration-200 text-center focus:outline-none focus:ring-2 focus:ring-[#12726C] p-2 sm:p-3 md:p-4"
           >
             <span x-text="cat"></span>
           </button>
@@ -95,7 +95,7 @@ const categorias = [
                   }
                   d += ` L${svgWidth},${svgHeight} L0,${svgHeight} Z`;
                   return d;
-                }
+                };
                 let t = 0;
                 function animate() {
                   t += 0.03;
@@ -111,11 +111,11 @@ const categorias = [
       </template>
       <template x-if="!loading">
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full max-w-6xl px-4 mx-auto"
+          class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full max-w-6xl px-2 sm:px-4 mx-auto"
         >
           <template x-for="producto in productos.filter(p => p.categoria === selectedCategoria)" :key="producto.id">
             <a :href="`/productos/${producto.slug}`" class="group block rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl relative bg-transparent">
-              <div class="relative w-full aspect-[9/3] md:aspect-[6/3] min-h-[320px] md:min-h-[360px] overflow-hidden">
+              <div class="relative w-full aspect-[9/4] sm:aspect-[9/3] min-h-[160px] sm:min-h-[220px] md:min-h-[320px] md:aspect-[6/3] overflow-hidden">
                 <img :src="producto.imagen" :alt="producto.nombre" data-product-img class="w-full h-full object-cover" loading="lazy" />
                 <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-black/40">
                   <h2 class="text-white text-lg md:text-2xl font-bold text-center drop-shadow-lg mb-2" x-text="producto.nombre"></h2>
@@ -194,4 +194,4 @@ const categorias = [
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
 }
-</style> 
+</style>
