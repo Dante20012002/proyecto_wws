@@ -45,7 +45,7 @@ const { socialLinks } = Astro.props;
           <svg class="w-8 h-8" viewBox="0 0 38 50" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M21.3453 48.75C26.4219 42.4805 38 27.2852 38 18.75C38 8.39844 29.4896 0 19 0C8.51042 0 0 8.39844 0 18.75C0 27.2852 11.5781 42.4805 16.6547 48.75C17.8719 50.2441 20.1281 50.2441 21.3453 48.75ZM19 12.5C20.6797 12.5 22.2906 13.1585 23.4783 14.3306C24.6661 15.5027 25.3333 17.0924 25.3333 18.75C25.3333 20.4076 24.6661 21.9973 23.4783 23.1694C22.2906 24.3415 20.6797 25 19 25C17.3203 25 15.7094 24.3415 14.5217 23.1694C13.3339 21.9973 12.6667 20.4076 12.6667 18.75C12.6667 17.0924 13.3339 15.5027 14.5217 14.3306C15.7094 13.1585 17.3203 12.5 19 12.5Z" fill="currentColor"/>
           </svg>            
-          <span>Avenida 6 # 14N - 31</span>
+          <span>Cra 124a #18a-81</span>
         </div>
         <!-- Mapa interactivo -->
         <div id="wws-map" class="rounded-lg w-full h-32 sm:h-36 md:h-40 object-cover my-2 cursor-pointer z-0 min-h-[128px] min-w-[200px]" style="min-height:128px;min-width:200px;"></div>
@@ -202,7 +202,7 @@ if (typeof window !== 'undefined') {
           });
           
           const map = L.map('wws-map', {
-            center: [3.4578939885328484, -76.53301965825993],
+            center: [4.69174985303186, -74.15650708861324],
             zoom: 16,
             zoomControl: false,
             attributionControl: false,
@@ -216,9 +216,9 @@ if (typeof window !== 'undefined') {
             maxZoom: 19,
           }).addTo(map);
           
-          const marker = L.marker([3.4578939885328484, -76.53301965825993], { icon: svgIcon }).addTo(map);
+          const marker = L.marker([4.69174985303186, -74.15650708861324], { icon: svgIcon }).addTo(map);
           map.on('click', () => {
-            window.open('https://www.google.com/maps?q=3.4578939885328484,-76.53301965825993', '_blank');
+            window.open('https://www.google.com/maps?q=4.69174985303186,-74.15650708861324', '_blank');
           });
           observer.disconnect();
         }
