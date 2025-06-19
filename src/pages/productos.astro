@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { productos } from '../data/productos';
 
+// Lista de categorías principales para los tabs de filtrado
 const categorias = [
   'CONTROL DE CAUDAL',
   'DRAGADO Y PRETRATAMIENTO',
@@ -15,7 +16,10 @@ const categorias = [
 ---
 
 <Layout title="Productos - WWS">
+  <!-- Script de Alpine.js para la interactividad de tabs y loading -->
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+  <!-- HERO: Imagen de fondo y título principal de la página de productos -->
   <section class="relative w-full min-h-[40vh] flex items-center justify-center bg-fixed bg-center bg-cover" style="background-image: url('/assets/BARRANQUILLA 1.jpg');">
     <div class="absolute inset-0 bg-[#4F6E6E]/80 z-0"></div>
     <div class="relative max-w-5xl w-full px-4 py-16 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
@@ -36,6 +40,11 @@ const categorias = [
     </div>
   </section>
 
+  <!-- SECCIÓN PRINCIPAL DE PRODUCTOS:
+       - Tabs de categorías
+       - Grid de productos filtrados por categoría
+       - Loader animado mientras se filtra
+       - Cada tarjeta de producto tiene overlay, hover y descripción -->
   <section
     class="w-full flex flex-col items-center py-12 bg-white"
     x-data={`{
@@ -56,6 +65,7 @@ const categorias = [
     }`}
   >
     <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8">NUESTROS<br/>PRODUCTOS</h2>
+    <!-- Tabs de categorías -->
     <div class="max-w-6xl w-full px-4 mx-auto">
       <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
         <template x-for="cat in categorias" :key="cat">
@@ -70,6 +80,7 @@ const categorias = [
         </template>
       </div>
     </div>
+    <!-- Loader animado de olas mientras se filtra -->
     <div x-cloak>
       <template x-if="loading">
         <div class="flex justify-center items-center w-full h-64">
@@ -85,7 +96,8 @@ const categorias = [
                 const wavePath = document.getElementById('wavePath');
                 const wavePath2 = document.getElementById('wavePath2');
                 if (!wavePath || !wavePath2) return;
-                function getWavePath(amplitude, frequency, phase, yOffset) {
+                // Genera la animación de olas para el loader
+                function getWavePath(amplitude: number, frequency: number, phase: number, yOffset: number) {
                   let d = '';
                   const points = 60;
                   for (let i = 0; i <= points; i++) {
@@ -109,6 +121,8 @@ const categorias = [
           </div>
         </div>
       </template>
+      <!-- Grid de productos filtrados por categoría
+           - Cada tarjeta tiene overlay, hover y descripción -->
       <template x-if="!loading">
         <div
           class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full max-w-6xl px-2 sm:px-4 mx-auto"
@@ -128,6 +142,7 @@ const categorias = [
             </a>
           </template>
         </div>
+        <!-- Script para controlar el loading hasta que todas las imágenes estén cargadas -->
         <div x-effect="
           if (!loading) return;
           $nextTick(() => {
@@ -160,6 +175,7 @@ const categorias = [
   </section>
 </Layout>
 
+<!-- Estilos globales para animaciones y efectos visuales de olas y tarjetas -->
 <style is:global>
 .bg-fixed {
   background-attachment: fixed;

@@ -3,16 +3,16 @@ import Layout from '../../layouts/Layout.astro';
 import { productos } from '../../data/productos';
 import ModelViewer from '../../components/ModelViewer.jsx';
 
+// Obtiene el slug de la URL y busca el producto correspondiente
 const { slug } = Astro.params;
 const producto = productos.find(p => p.slug === slug);
 const notFound = !producto;
 
-// Brochure general (puedes ponerlo en config si lo prefieres)
+// URL del brochure general y formulario de contacto
 const brochureUrl = "https://drive.google.com/your-brochure-link";
-// Formulario de Google
 const formUrl = "https://forms.gle/your-form-link";
 
-// Productos relacionados (misma categoría, excluyendo el actual)
+// Filtra productos relacionados por categoría, excluyendo el actual
 const relacionados = producto
   ? productos.filter(p => p.categoria === producto.categoria && p.slug !== slug)
   : [];
@@ -20,13 +20,14 @@ const relacionados = producto
 
 <Layout title={notFound ? 'Producto no encontrado' : producto.nombre + ' - WWS'}>
   {notFound ? (
+    <!-- Sección de error si el producto no existe -->
     <section class="min-h-[60vh] flex flex-col items-center justify-center">
       <h1 class="text-3xl font-bold text-red-600 mb-4">Producto no encontrado</h1>
       <a href="/productos" class="text-blue-600 underline">Volver a productos</a>
     </section>
   ) : (
     <main class="w-full bg-[#f5f5f5]">
-      {/* HERO */}
+      <!-- HERO: Imagen de fondo y título principal de la página de producto -->
       <section class="relative w-full h-[220px] md:h-[320px] flex items-end justify-start bg-cover bg-center z-0">
         <div class="absolute inset-0 bg-black/50"></div>
         <div class="relative z-10 p-6 md:p-12">
@@ -36,7 +37,7 @@ const relacionados = producto
         </div>
       </section>
 
-      {/* DESCRIPCIÓN AMPLIADA Y BROCHURE */}
+      <!-- DESCRIPCIÓN AMPLIADA Y BROCHURE: Información principal del producto, descripción y enlaces de descarga -->
       <section class="w-full bg-white py-8">
         <div class="max-w-2xl md:max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-start px-4 md:px-8">
           <div class="md:col-span-2 flex flex-col justify-center">
@@ -51,11 +52,13 @@ const relacionados = producto
         </div>
       </section>
 
-      {/* PARTES Y MODELO 3D */}
+      <!-- PARTES Y MODELO 3D: Lista de partes (marcadores3d) y visor interactivo del modelo 3D
+           - La lista de partes se numera y se alinea con los hotspots del modelo 3D
+           - El modelo 3D es responsivo y está envuelto en un fondo blanco con sombra -->
       {(Array.isArray(producto.marcadores3d) && producto.marcadores3d.length > 0 && producto.modelo3d) && (
         <section class="w-full bg-[#eaeaea] py-8">
           <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-6 md:gap-14 px-2 md:px-4">
-            {/* PARTES */}
+            <!-- Lista de partes numeradas -->
             <div class="w-full md:max-w-xs flex flex-col mb-6 md:mb-0">
               <h3 class="text-lg font-bold text-white bg-[#6B8C8C] rounded-t-md px-4 py-2 mb-0">PARTES</h3>
               <ul class="bg-[#6B8C8C] rounded-b-md p-0 divide-y divide-[#eaeaea] flex-1">
@@ -67,9 +70,12 @@ const relacionados = producto
                 ))}
               </ul>
             </div>
-            {/* MODELO 3D */}
+            <!-- Visor del modelo 3D con hotspots numerados -->
             <div class="flex-1 flex items-center justify-center w-full">
               <div class="w-full bg-white rounded-xl shadow-lg flex items-center justify-center p-2 md:p-6" style="max-width: 100%;">
+                <!-- ModelViewer: componente React que renderiza el modelo 3D y los hotspots
+                     - Props: src (ruta del modelo), marcadores3d (array de partes), showNumbers (muestra números en los hotspots)
+                     - style: controla el tamaño responsivo del visor -->
                 <ModelViewer src={producto.modelo3d} marcadores3d={producto.marcadores3d} client:only="react" showNumbers style={{ width: '100%', maxWidth: 500, minHeight: 220, maxHeight: 400, background: '#fff', borderRadius: '1rem' }} />
               </div>
             </div>
@@ -77,7 +83,7 @@ const relacionados = producto
         </section>
       )}
 
-      {/* QR */}
+      <!-- QR: Sección con código QR para el producto, responsiva y compacta -->
       <section class="w-full bg-[#eaeaea] py-8">
         <div class="max-w-md mx-auto flex flex-row items-center gap-0 px-4">
           <div class="bg-white rounded-l-lg rounded-r-none flex items-center justify-center p-4 shadow-md" style="width: 100px; min-width: 100px; height: 90px;">
@@ -91,7 +97,9 @@ const relacionados = producto
         </div>
       </section>
 
-      {/* PRODUCTOS RELACIONADOS */}
+      <!-- PRODUCTOS RELACIONADOS: Tarjetas de productos con overlay, centradas y responsivas
+           - Usa flex-wrap y justify-center para centrar las tarjetas
+           - Tarjetas con hover, blur y descripción -->
       {relacionados.length > 0 && (
         <section class="max-w-6xl mx-auto py-12 pb-24">
           <h2 class="text-2xl md:text-3xl font-extrabold text-center mb-8">Productos relacionados</h2>
@@ -101,9 +109,9 @@ const relacionados = producto
                 <a href={`/productos/${prod.slug}`} class="group block rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl relative bg-transparent max-w-xs w-full sm:w-[220px] md:w-[240px]">
                   <div class="relative w-full aspect-[9/4] sm:aspect-[9/3] min-h-[160px] sm:min-h-[220px] md:min-h-[220px] md:aspect-[6/3] overflow-hidden">
                     <img src={prod.imagen} alt={prod.nombre} class="w-full h-full object-cover" loading="lazy" />
-                    <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-black/40">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-black/40 px-4 py-4 overflow-y-auto max-h-full">
                       <h2 class="text-white text-lg md:text-xl font-bold text-center drop-shadow-lg mb-2">{prod.nombre}</h2>
-                      <p class="text-white text-center px-4 text-sm md:text-base">{prod.descripcion}</p>
+                      <p class="text-white text-center text-sm md:text-base break-words">{prod.descripcion}</p>
                     </div>
                     <div class="absolute top-0 left-0 w-full px-2 py-2 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300">
                       <h2 class="text-white text-base md:text-lg font-bold text-center w-full drop-shadow-lg">{prod.nombre}</h2>
@@ -116,7 +124,9 @@ const relacionados = producto
         </section>
       )}
 
-      {/* CUÉNTANOS MÁS SOBRE TI Y TU PROYECTO */}
+      <!-- CUÉNTANOS MÁS SOBRE TI Y TU PROYECTO: Sección de contacto con imagen sobresaliente y sombra
+           - La imagen sobresale hacia arriba y tiene sombra
+           - El layout es responsivo y la imagen se mantiene centrada -->
       <section class="w-full bg-[#eaeaea] py-8">
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 rounded-lg items-center px-4 md:px-8 relative">
           <div class="md:col-span-2 z-10">
