@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { productos } from '../../data/productos';
+import ModelViewer from '../../components/ModelViewer.jsx';
 
 const { slug } = Astro.params;
 const producto = productos.find(p => p.slug === slug);
@@ -26,109 +27,111 @@ const relacionados = producto
   ) : (
     <main class="w-full bg-[#f5f5f5]">
       {/* HERO */}
-      <section class="relative w-full h-64 md:h-80 flex items-end justify-start bg-cover bg-center z-0" style={`background-image: url('${producto.imagen}')`}>
-        <div class="absolute inset-0 bg-black/40"></div>
-        <div class="relative z-10 p-8">
-          <h1 class="text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg">{producto.nombre}</h1>
+      <section class="relative w-full h-[220px] md:h-[320px] flex items-end justify-start bg-cover bg-center z-0">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative z-10 p-6 md:p-12">
+          <h1 class="text-3xl md:text-5xl font-extrabold text-white drop-shadow-xl leading-tight md:leading-tight uppercase" style="text-shadow: 2px 2px 8px #000;">
+            W-COMP WATER WISE<br />SERVICES
+          </h1>
         </div>
       </section>
 
       {/* DESCRIPCIÓN AMPLIADA Y BROCHURE */}
-      <section class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 items-start">
-        <div class="md:col-span-2 flex flex-col justify-center">
-          <h2 class="text-2xl md:text-3xl font-extrabold text-[#20405C] mb-2 uppercase tracking-tight" style="letter-spacing:0;">{producto.categoria}</h2>
-          <p class="text-black text-justify mb-4" style="hyphens:auto;">{producto.descripcion}</p>
-          <a href={brochureUrl} target="_blank" rel="noopener" class="text-[#20405C] underline font-medium mb-2 w-fit">Descarga nuestro catálogo</a>
-          <a href={brochureUrl} target="_blank" rel="noopener" class="mt-1 w-fit px-6 py-2 rounded font-bold shadow bg-[#7A8C8C] text-white text-lg hover:bg-[#5a6c6c] transition block" style="box-shadow:0 2px 6px 0 rgba(0,0,0,0.10);">BROCHURE</a>
-        </div>
-        <div class="flex items-center justify-center">
-          <img src={producto.imagen} alt={producto.nombre} class="rounded-lg max-h-56 object-cover border border-[#bfc9c9]" style="box-shadow:0 2px 8px 0 rgba(0,0,0,0.10);" loading="lazy" />
+      <section class="w-full bg-white py-8">
+        <div class="max-w-2xl md:max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-start px-4 md:px-8">
+          <div class="md:col-span-2 flex flex-col justify-center">
+            <h2 class="text-2xl md:text-3xl font-extrabold text-[#20405C] mb-2 uppercase tracking-tight" style="letter-spacing:0;">{producto.nombre}</h2>
+            <p class="text-black text-justify mb-4 text-base md:text-lg leading-relaxed" style="hyphens:auto;">{producto.descripcion}</p>
+            <a href={brochureUrl} target="_blank" rel="noopener" class="text-[#20405C] underline font-medium mb-2 w-fit">Descarga nuestro catálogo</a>
+            <a href={brochureUrl} target="_blank" rel="noopener" class="mt-1 w-fit px-8 py-2 rounded font-bold shadow bg-[#7A8C8C] text-white text-lg hover:bg-[#5a6c6c] transition block" style="box-shadow:0 2px 6px 0 rgba(0,0,0,0.10);">BROCHURE</a>
+          </div>
+          <div class="flex items-center justify-center">
+            <img src={producto.imagen} alt={producto.nombre} class="rounded-lg max-h-56 md:max-h-64 aspect-square object-cover border-4 border-[#bfc9c9] shadow-lg" style="box-shadow:0 2px 8px 0 rgba(0,0,0,0.10);" loading="lazy" />
+          </div>
         </div>
       </section>
 
       {/* PARTES Y MODELO 3D */}
-      {(Array.isArray(producto.accesorios) && producto.accesorios.length > 0 || producto.modelo3d) && (
-        <section class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 bg-[#eaeaea] rounded-lg shadow-lg mt-8 p-6">
-          {/* PARTES */}
-          <div>
-            <h3 class="text-lg font-bold text-white bg-[#6B8C8C] rounded-t px-4 py-2 mb-2">PARTES</h3>
-            <ul class="bg-white rounded-b p-2">
-              {producto.accesorios?.map((parte, idx) => (
-                <li class="border-b last:border-b-0 py-1 text-[#355353] font-semibold text-sm">
-                  • {parte.nombre}
-                </li>
-              ))}
-            </ul>
-          </div>
-          {/* MODELO 3D */}
-          <div class="md:col-span-2 flex items-center justify-center">
-            {producto.modelo3d ? (
-              <>
-                <model-viewer
-                  src={producto.modelo3d}
-                  camera-controls
-                  ar
-                  auto-rotate
-                  style="width: 100%; max-width: 500px; height: 320px; background: #fff; border-radius: 1rem;"
-                  exposure="1"
-                >
-                  {producto.marcadores3d && producto.marcadores3d.map((m, i) => (
-                    <button
-                      slot={`hotspot-${i}`}
-                      data-position={`${m.x} ${m.y} ${m.z}`}
-                      data-normal="0 1 0"
-                      class="bg-[#4F6E6E] text-white rounded px-2 py-1 text-xs font-bold"
-                      style="pointer-events: auto;"
-                    >{m.label}</button>
-                  ))}
-                </model-viewer>
-                <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-              </>
-            ) : (
-              <div class="text-gray-500 italic">No hay modelo 3D disponible</div>
-            )}
+      {(Array.isArray(producto.marcadores3d) && producto.marcadores3d.length > 0 && producto.modelo3d) && (
+        <section class="w-full bg-[#eaeaea] py-8">
+          <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-6 md:gap-14 px-2 md:px-4">
+            {/* PARTES */}
+            <div class="w-full md:max-w-xs flex flex-col mb-6 md:mb-0">
+              <h3 class="text-lg font-bold text-white bg-[#6B8C8C] rounded-t-md px-4 py-2 mb-0">PARTES</h3>
+              <ul class="bg-[#6B8C8C] rounded-b-md p-0 divide-y divide-[#eaeaea] flex-1">
+                {producto.marcadores3d.map((marcador, idx) => (
+                  <li class="flex items-center gap-2 py-2 px-4 text-white font-semibold text-sm cursor-pointer hover:bg-[#355353] transition" data-hotspot={idx}>
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#20405C] text-white font-bold mr-2">{idx + 1}</span>
+                    {marcador.label && marcador.label[0]?.nombre}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* MODELO 3D */}
+            <div class="flex-1 flex items-center justify-center w-full">
+              <div class="w-full bg-white rounded-xl shadow-lg flex items-center justify-center p-2 md:p-6" style="max-width: 100%;">
+                <ModelViewer src={producto.modelo3d} marcadores3d={producto.marcadores3d} client:only="react" showNumbers style={{ width: '100%', maxWidth: 500, minHeight: 220, maxHeight: 400, background: '#fff', borderRadius: '1rem' }} />
+              </div>
+            </div>
           </div>
         </section>
       )}
 
       {/* QR */}
-      <section class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-6 bg-[#eaeaea] rounded-lg shadow-lg mt-8 p-6">
-        <img src={`/assets/qr/${producto.slug}.png`} alt="Código QR" class="w-32 h-32 object-contain bg-white rounded shadow" />
-        <div>
-          <h3 class="text-2xl font-bold text-[#355353] mb-2">ESCANEA EL CÓDIGO</h3>
+      <section class="w-full bg-[#eaeaea] py-8">
+        <div class="max-w-md mx-auto flex flex-row items-center gap-0 px-4">
+          <div class="bg-white rounded-l-lg rounded-r-none flex items-center justify-center p-4 shadow-md" style="width: 100px; min-width: 100px; height: 90px;">
+            <img src={`/assets/qr/${producto.slug}.png`} alt="Código QR" class="w-16 h-16 object-contain" />
+          </div>
+          <div class="flex-1 flex items-center h-[90px]">
+            <div class="w-full h-full flex items-center justify-center bg-[#6B8C8C] rounded-r-lg rounded-l-none">
+              <h3 class="text-lg md:text-2xl font-extrabold text-white px-4 py-2 uppercase text-center w-full">ESCANEA EL CÓDIGO</h3>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* PRODUCTOS RELACIONADOS */}
       {relacionados.length > 0 && (
-        <section class="max-w-6xl mx-auto py-12">
+        <section class="max-w-6xl mx-auto py-12 pb-24">
           <h2 class="text-2xl md:text-3xl font-extrabold text-center mb-8">Productos relacionados</h2>
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {relacionados.map(prod => (
-              <a href={`/productos/${prod.slug}`} class="group block rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl bg-white">
-                <div class="relative w-full aspect-[1/1] min-h-[120px] overflow-hidden">
-                  <img src={prod.imagen} alt={prod.nombre} class="w-full h-full object-cover" loading="lazy" />
-                </div>
-                <div class="p-2 text-center font-bold text-[#355353] group-hover:text-[#12726C] uppercase">{prod.nombre}</div>
-              </a>
-            ))}
+          <div class="w-full flex justify-center">
+            <div class="flex flex-wrap justify-center gap-4 w-full">
+              {relacionados.map(prod => (
+                <a href={`/productos/${prod.slug}`} class="group block rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl relative bg-transparent max-w-xs w-full sm:w-[220px] md:w-[240px]">
+                  <div class="relative w-full aspect-[9/4] sm:aspect-[9/3] min-h-[160px] sm:min-h-[220px] md:min-h-[220px] md:aspect-[6/3] overflow-hidden">
+                    <img src={prod.imagen} alt={prod.nombre} class="w-full h-full object-cover" loading="lazy" />
+                    <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-black/40">
+                      <h2 class="text-white text-lg md:text-xl font-bold text-center drop-shadow-lg mb-2">{prod.nombre}</h2>
+                      <p class="text-white text-center px-4 text-sm md:text-base">{prod.descripcion}</p>
+                    </div>
+                    <div class="absolute top-0 left-0 w-full px-2 py-2 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300">
+                      <h2 class="text-white text-base md:text-lg font-bold text-center w-full drop-shadow-lg">{prod.nombre}</h2>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </section>
       )}
 
       {/* CUÉNTANOS MÁS SOBRE TI Y TU PROYECTO */}
-      <section class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 bg-[#d3dbdb] rounded-lg shadow-lg mt-8 p-6 items-center">
-        <div class="md:col-span-2">
-          <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Cuéntanos más sobre ti y tu proyecto</h2>
-          <p class="mb-4 text-gray-700">
-            Para ofrecerte un acompañamiento más personalizado y eficiente, necesitamos conocer algunos detalles sobre ti y tus objetivos. Llena el siguiente formulario y nuestro equipo se pondrá en contacto contigo con una propuesta ajustada a tus necesidades.
-          </p>
-          <a href={formUrl} target="_blank" rel="noopener" class="inline-block bg-[#6B8C8C] text-white px-6 py-3 rounded font-bold shadow hover:bg-[#355353] transition">
-            LLENA AQUÍ
-          </a>
-        </div>
-        <div class="flex items-center justify-center">
-          <img src="/assets/imagen-formulario.jpg" alt="Imagen proyecto" class="rounded-lg shadow max-h-48 object-cover" loading="lazy" />
+      <section class="w-full bg-[#eaeaea] py-8">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 rounded-lg items-center px-4 md:px-8 relative">
+          <div class="md:col-span-2 z-10">
+            <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Cuéntanos más sobre ti y tu proyecto</h2>
+            <p class="mb-4 text-gray-700 text-base md:text-lg">
+              Para ofrecerte un acompañamiento más personalizado y eficiente, necesitamos conocer algunos detalles sobre ti y tus objetivos. Llena el siguiente formulario y nuestro equipo se pondrá en contacto contigo con una propuesta ajustada a tus necesidades.
+            </p>
+            <a href={formUrl} target="_blank" rel="noopener" class="inline-block bg-[#6B8C8C] text-white px-8 py-3 rounded font-bold shadow hover:bg-[#355353] transition text-lg">
+              LLENA AQUÍ
+            </a>
+          </div>
+          <div class="flex items-center justify-center relative h-full">
+            <img src="/assets/Imagen formulario.jpg" alt="Imagen proyecto" class="rounded-lg shadow-2xl max-h-64 aspect-square object-cover relative z-20" style="top: -60px; box-shadow: 0 12px 40px 0 rgba(0,0,0,0.28);" />
+            <div class="absolute left-1/2 -translate-x-1/2 top-0 w-full h-full z-10 pointer-events-none"></div>
+          </div>
         </div>
       </section>
     </main>

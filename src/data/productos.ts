@@ -1,13 +1,11 @@
 export interface Accesorio {
   nombre: string;
-  descripcion: string;
-  imagen: string;
 }
 export interface Marcador3D {
   x: number;
   y: number;
   z: number;
-  label: string;
+  label: Accesorio[];
 }
 export interface Producto {
   id: number;
@@ -32,6 +30,13 @@ export const productos: Producto[] = [
     imagen: '/assets/BARRANQUILLA 4.JPG',
     slug: 'compuerta-mural',
     categoria: 'CONTROL DE CAUDAL',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 2,
@@ -40,6 +45,13 @@ export const productos: Producto[] = [
     imagen: '/assets/Proyector Compuertas Actuadas.jpg',
     slug: 'compuerta-canal-abierto',
     categoria: 'CONTROL DE CAUDAL',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 3,
@@ -48,6 +60,13 @@ export const productos: Producto[] = [
     imagen: '/assets/PIEDECUESTA 1.jpg',
     slug: 'compuerta-stop-log',
     categoria: 'CONTROL DE CAUDAL',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 4,
@@ -56,6 +75,13 @@ export const productos: Producto[] = [
     imagen: '/assets/PIEDECUESTA 2.jpg',
     slug: 'compuerta-radial',
     categoria: 'CONTROL DE CAUDAL',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
 
   // DRAGADO Y PRETRATAMIENTO
@@ -66,6 +92,13 @@ export const productos: Producto[] = [
     imagen: '/assets/IMAGEN 2.jpg',
     slug: 'cuchara-bivalva',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 6,
@@ -74,6 +107,13 @@ export const productos: Producto[] = [
     imagen: '/assets/Rejilla.jpg',
     slug: 'rejillas-automaticas',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 7,
@@ -82,6 +122,13 @@ export const productos: Producto[] = [
     imagen: '/assets/ARMENIA 2.JPG',
     slug: 'filtros-tornillo',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 8,
@@ -90,6 +137,13 @@ export const productos: Producto[] = [
     imagen: '/assets/ARMENIA 3.jpg',
     slug: 'rejillas-tambor',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 9,
@@ -98,6 +152,13 @@ export const productos: Producto[] = [
     imagen: '/assets/CHITRE 1.jpg',
     slug: 'compactadores',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 10,
@@ -106,6 +167,13 @@ export const productos: Producto[] = [
     imagen: '/assets/Gramalote 1.jpg',
     slug: 'clasificadores-arena',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 11,
@@ -114,6 +182,13 @@ export const productos: Producto[] = [
     imagen: '/assets/Gramalote 2.jpg',
     slug: 'lavadores-arena',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 12,
@@ -122,6 +197,13 @@ export const productos: Producto[] = [
     imagen: '/assets/PIEDECUESTA 3.jpg',
     slug: 'desarenadores',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 13,
@@ -130,6 +212,13 @@ export const productos: Producto[] = [
     imagen: '/assets/PIEDECUESTA 4.jpg',
     slug: 'tratamientos-combinados',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
 
   // AGITACIÓN Y FLOCULACIÓN
@@ -140,6 +229,13 @@ export const productos: Producto[] = [
     imagen: '/assets/Sedimentador.jpg',
     slug: 'agitador-turbina-axial',
     categoria: 'AGITACIÓN Y FLOCULACIÓN',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 15,
@@ -148,6 +244,13 @@ export const productos: Producto[] = [
     imagen: '/assets/ARMENIA 3.jpg',
     slug: 'floculadores',
     categoria: 'AGITACIÓN Y FLOCULACIÓN',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
 
   // SEDIMENTACIÓN
@@ -158,6 +261,13 @@ export const productos: Producto[] = [
     imagen: '/assets/SESQUILE 1.JPG',
     slug: 'sedimentador-diametral',
     categoria: 'SEDIMENTACIÓN',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 17,
@@ -166,6 +276,13 @@ export const productos: Producto[] = [
     imagen: '/assets/LOS PATOS 1.jpg',
     slug: 'sedimentador-radial',
     categoria: 'SEDIMENTACIÓN',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 18,
@@ -174,6 +291,13 @@ export const productos: Producto[] = [
     imagen: '/assets/LOS PATOS 2.jpg',
     slug: 'sedimentador-central',
     categoria: 'SEDIMENTACIÓN',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 19,
@@ -182,6 +306,13 @@ export const productos: Producto[] = [
     imagen: '/assets/PIEDECUESTA 5.jpg',
     slug: 'puente-longitudinal-sedimentador',
     categoria: 'SEDIMENTACIÓN',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
 
   // TRATAMIENTO SECUNDARIO
@@ -192,6 +323,13 @@ export const productos: Producto[] = [
     imagen: '/assets/PIEDECUESTA 2.jpg',
     slug: 'sedimentador-cadenas',
     categoria: 'TRATAMIENTO SECUNDARIO',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 21,
@@ -200,6 +338,13 @@ export const productos: Producto[] = [
     imagen: '/assets/Proyector Compuertas Actuadas.jpg',
     slug: 'distribuidor-flujo',
     categoria: 'TRATAMIENTO SECUNDARIO',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
 
   // TRATAMIENTO TERCIARIO
@@ -210,6 +355,13 @@ export const productos: Producto[] = [
     imagen: '/assets/Yumbo 1.webp',
     slug: 'filtro-discos',
     categoria: 'TRATAMIENTO TERCIARIO',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
 
   // TRATAMIENTO DE LODOS Y TRANSPORTADORES
@@ -220,6 +372,13 @@ export const productos: Producto[] = [
     imagen: '/assets/ARMENIA 2.JPG',
     slug: 'espesador-lodos-central',
     categoria: 'TRATAMIENTO DE LODOS Y TRANSPORTADORES',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 24,
@@ -228,6 +387,13 @@ export const productos: Producto[] = [
     imagen: '/assets/ARMENIA 1.jpg',
     slug: 'espesador-deshidratador-modular',
     categoria: 'TRATAMIENTO DE LODOS Y TRANSPORTADORES',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 25,
@@ -236,6 +402,13 @@ export const productos: Producto[] = [
     imagen: '/assets/PIEDECUESTA 1.jpg',
     slug: 'transportador-tornillo',
     categoria: 'TRATAMIENTO DE LODOS Y TRANSPORTADORES',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 26,
@@ -244,6 +417,13 @@ export const productos: Producto[] = [
     imagen: '/assets/PIEDECUESTA 3.jpg',
     slug: 'transportador-banda',
     categoria: 'TRATAMIENTO DE LODOS Y TRANSPORTADORES',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
 
   // ADECUACIONES ESTRUCTURALES E HIDRÁULICAS
@@ -254,6 +434,13 @@ export const productos: Producto[] = [
     imagen: '/assets/ARMENIA 1.jpg',
     slug: 'cubiertas-soportes-metalicos',
     categoria: 'ADECUACIONES ESTRUCTURALES E HIDRÁULICAS',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 28,
@@ -262,6 +449,13 @@ export const productos: Producto[] = [
     imagen: '/assets/ARMENIA 2.JPG',
     slug: 'escaleras-pasarelas',
     categoria: 'ADECUACIONES ESTRUCTURALES E HIDRÁULICAS',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 29,
@@ -270,6 +464,13 @@ export const productos: Producto[] = [
     imagen: '/assets/ARMENIA 3.jpg',
     slug: 'porticos',
     categoria: 'ADECUACIONES ESTRUCTURALES E HIDRÁULICAS',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
   {
     id: 30,
@@ -278,5 +479,12 @@ export const productos: Producto[] = [
     imagen: '/assets/ARMENIA 4.jpg',
     slug: 'sistemas-bombeo-redes',
     categoria: 'ADECUACIONES ESTRUCTURALES E HIDRÁULICAS',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
   },
 ]; 
