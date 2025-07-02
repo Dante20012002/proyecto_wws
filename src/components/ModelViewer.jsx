@@ -4,16 +4,19 @@ export default function ModelViewer({ src, marcadores3d, showNumbers, style }) {
   useEffect(() => {
     import('@google/model-viewer');
   }, []);
+
   return (
     <model-viewer
       src={src}
       camera-controls
       ar
       auto-rotate
-      
       loading="lazy"
       style={style || { width: '100%', maxWidth: 500, minHeight: 220, maxHeight: 320, background: '#fff', borderRadius: '1rem' }}
       exposure="1"
+      camera-orbit="0deg 75deg 22m"
+      min-camera-orbit="auto auto 1m"
+      max-camera-orbit="auto auto 28m"
     >
       {Array.isArray(marcadores3d) && marcadores3d.map((m, i) => (
         <button

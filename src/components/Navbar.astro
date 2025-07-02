@@ -25,7 +25,7 @@ const currentPath = Astro.url.pathname;
         id="logo-placeholder">WWS</span
       >
     </a>
-    <ul class="hidden md:flex justify-start gap-8 h-full items-center ml-2">
+    <ul id="desktopMenu" class="hidden lg:flex justify-start gap-8 h-full items-center ml-2">
       {
         links.map((link) => (
           <li class="relative flex flex-col items-center text-center">
@@ -42,7 +42,7 @@ const currentPath = Astro.url.pathname;
         ))
       }
     </ul>
-    <button id="menuButton" class="md:hidden flex items-center ml-auto pr-4" aria-label="Abrir menú">
+    <button id="menuButton" class="hidden lg:hidden flex items-center ml-auto pr-4" aria-label="Abrir menú">
       <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
         ><path
           stroke-linecap="round"
@@ -55,9 +55,9 @@ const currentPath = Astro.url.pathname;
   <!-- Menú móvil -->
   <div
     id="mobileMenu"
-    class="w-full bg-[#819392] shadow-md md:hidden transition-all duration-300 max-h-0 overflow-hidden"
+    class="w-full bg-[#819392] shadow-md hidden lg:hidden transition-all duration-300 max-h-0 overflow-hidden"
   >
-    <ul class="flex flex-col gap-4 py-4 px-6">
+    <ul id="mobileMenuList" class="flex flex-col gap-4 py-4 px-6 transform translate-y-[-20px] opacity-0 transition-all duration-300">
       {
         links.map((link) => (
           <li class="relative">
@@ -81,16 +81,85 @@ const currentPath = Astro.url.pathname;
   // Funcionalidad del menú móvil
   const menuButton = document.getElementById('menuButton');
   const mobileMenu = document.getElementById('mobileMenu');
+  const mobileMenuList = document.getElementById('mobileMenuList');
+  const desktopMenu = document.getElementById('desktopMenu');
   let isMenuOpen = false;
+
+  // Función para verificar si los enlaces caben en el espacio disponible
+  const checkMenuFit = () => {
+    if (!desktopMenu || !menuButton) return;
+
+    // Obtener el contenedor principal
+    const navContainer = menuButton.parentElement;
+    if (!navContainer) return;
+
+    // Solo verificar en pantallas grandes (lg y superiores)
+    if (window.innerWidth < 1024) {
+      desktopMenu.classList.add('hidden');
+      menuButton.classList.remove('hidden');
+      mobileMenu?.classList.remove('hidden');
+      return;
+    }
+
+    // Calcular el espacio disponible (después del logo)
+    const logo = navContainer.querySelector('a');
+    const logoWidth = logo ? logo.offsetWidth + 32 : 0; // 32px de margen
+    const availableWidth = navContainer.offsetWidth - logoWidth - menuButton.offsetWidth - 32; // 32px de padding total
+
+    // Calcular el ancho total de los enlaces
+    const menuItems = desktopMenu.querySelectorAll('li');
+    let totalMenuWidth = 0;
+    
+    menuItems.forEach(item => {
+      totalMenuWidth += item.offsetWidth + 32; // 32px de gap
+    });
+
+    // Si los enlaces no caben, mostrar el menú hamburguesa
+    if (totalMenuWidth > availableWidth) {
+      desktopMenu.classList.add('hidden');
+      menuButton.classList.remove('hidden');
+      mobileMenu?.classList.remove('hidden');
+    } else {
+      desktopMenu.classList.remove('hidden');
+      menuButton.classList.add('hidden');
+      mobileMenu?.classList.add('hidden');
+    }
+  };
+
+  // Verificar al cargar la página
+  window.addEventListener('load', () => {
+    setTimeout(checkMenuFit, 100);
+  });
+  
+  // Verificar al cambiar el tamaño de la ventana
+  let resizeTimeout: ReturnType<typeof setTimeout>;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(checkMenuFit, 100);
+  });
 
   menuButton?.addEventListener('click', () => {
     isMenuOpen = !isMenuOpen;
     if (isMenuOpen) {
+      // Abrir el menú
       mobileMenu?.classList.remove('max-h-0', 'overflow-hidden');
       mobileMenu?.classList.add('max-h-[500px]');
+      
+      // Animar los enlaces después de que el fondo se expanda
+      setTimeout(() => {
+        mobileMenuList?.classList.remove('translate-y-[-20px]', 'opacity-0');
+        mobileMenuList?.classList.add('translate-y-0', 'opacity-100');
+      }, 150); // Pequeño retraso para que el fondo se expanda primero
     } else {
-      mobileMenu?.classList.add('max-h-0', 'overflow-hidden');
-      mobileMenu?.classList.remove('max-h-[500px]');
+      // Cerrar el menú
+      mobileMenuList?.classList.add('translate-y-[-20px]', 'opacity-0');
+      mobileMenuList?.classList.remove('translate-y-0', 'opacity-100');
+      
+      // Cerrar el fondo después de que los enlaces se animen
+      setTimeout(() => {
+        mobileMenu?.classList.add('max-h-0', 'overflow-hidden');
+        mobileMenu?.classList.remove('max-h-[500px]');
+      }, 150);
     }
   });
 
@@ -102,8 +171,13 @@ const currentPath = Astro.url.pathname;
       !menuButton?.contains(event.target as Node)
     ) {
       isMenuOpen = false;
-      mobileMenu?.classList.add('max-h-0', 'overflow-hidden');
-      mobileMenu?.classList.remove('max-h-[500px]');
+      mobileMenuList?.classList.add('translate-y-[-20px]', 'opacity-0');
+      mobileMenuList?.classList.remove('translate-y-0', 'opacity-100');
+      
+      setTimeout(() => {
+        mobileMenu?.classList.add('max-h-0', 'overflow-hidden');
+        mobileMenu?.classList.remove('max-h-[500px]');
+      }, 150);
     }
   });
 
@@ -155,8 +229,13 @@ const currentPath = Astro.url.pathname;
         // Cerrar el menú móvil si está abierto
         if (isMenuOpen) {
           isMenuOpen = false;
-          mobileMenu?.classList.add('max-h-0', 'overflow-hidden');
-          mobileMenu?.classList.remove('max-h-[500px]');
+          mobileMenuList?.classList.add('translate-y-[-20px]', 'opacity-0');
+          mobileMenuList?.classList.remove('translate-y-0', 'opacity-100');
+          
+          setTimeout(() => {
+            mobileMenu?.classList.add('max-h-0', 'overflow-hidden');
+            mobileMenu?.classList.remove('max-h-[500px]');
+          }, 150);
         }
         
         // Realizar el scroll con un pequeño retraso

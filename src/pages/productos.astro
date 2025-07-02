@@ -54,6 +54,7 @@ const categorias = [
       loading: false,
       loadingStart: 0,
       loadingTimeout: null,
+      animationId: null,
       setCategoria(cat) {
         if (this.selectedCategoria === cat) return;
         this.loading = true;
@@ -61,6 +62,41 @@ const categorias = [
         this.loadingStart = Date.now();
         if (this.loadingTimeout) clearTimeout(this.loadingTimeout);
         this.loadingTimeout = setTimeout(() => { this.loading = false; }, 1000);
+      },
+      initWaveAnimation() {
+        const svgWidth = 279.2;
+        const svgHeight = 113.97;
+        const wavePath = this.$refs.wavePath;
+        const wavePath2 = this.$refs.wavePath2;
+        
+        if (!wavePath || !wavePath2) return;
+        
+        const getWavePath = (amplitude, frequency, phase, yOffset) => {
+          let d = '';
+          const points = 60;
+          for (let i = 0; i <= points; i++) {
+            const x = (i / points) * svgWidth;
+            const y = Math.sin((i / points) * frequency * Math.PI * 2 + phase) * amplitude + yOffset;
+            d += i === 0 ? \`M\${x},\${y}\` : \` L\${x},\${y}\`;
+          }
+          d += \` L\${svgWidth},\${svgHeight} L0,\${svgHeight} Z\`;
+          return d;
+        };
+        
+        let t = 0;
+        const animate = () => {
+          t += 0.03;
+          if (wavePath) wavePath.setAttribute('d', getWavePath(10, 2, t, 90));
+          if (wavePath2) wavePath2.setAttribute('d', getWavePath(7, 2.5, t + 1, 97));
+          this.animationId = requestAnimationFrame(animate);
+        };
+        animate();
+      },
+      stopWaveAnimation() {
+        if (this.animationId) {
+          cancelAnimationFrame(this.animationId);
+          this.animationId = null;
+        }
       }
     }`}
   >
@@ -80,98 +116,85 @@ const categorias = [
         </template>
       </div>
     </div>
+    
     <!-- Loader animado de olas mientras se filtra -->
-    <div x-cloak>
-      <template x-if="loading">
-        <div class="flex justify-center items-center w-full h-64">
-          <div class="relative w-[180px] h-[80px] flex items-center justify-center overflow-hidden shadow-inset-olas">
-            <svg id="olas-loader" class="w-full h-full" viewBox="0 0 279.2 113.97" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path id="wavePath" fill="#8EB8B6" />
-              <path id="wavePath2" fill="#10776A" opacity="0.7" />
-            </svg>
-            <script>
-              (() => {
-                const svgWidth = 279.2;
-                const svgHeight = 113.97;
-                const wavePath = document.getElementById('wavePath');
-                const wavePath2 = document.getElementById('wavePath2');
-                if (!wavePath || !wavePath2) return;
-                // Genera la animación de olas para el loader
-                function getWavePath(amplitude: number, frequency: number, phase: number, yOffset: number) {
-                  let d = '';
-                  const points = 60;
-                  for (let i = 0; i <= points; i++) {
-                    const x = (i / points) * svgWidth;
-                    const y = Math.sin((i / points) * frequency * Math.PI * 2 + phase) * amplitude + yOffset;
-                    d += i === 0 ? `M${x},${y}` : ` L${x},${y}`;
-                  }
-                  d += ` L${svgWidth},${svgHeight} L0,${svgHeight} Z`;
-                  return d;
-                };
-                let t = 0;
-                function animate() {
-                  t += 0.03;
-                  if (wavePath) wavePath.setAttribute('d', getWavePath(10, 2, t, 90));
-                  if (wavePath2) wavePath2.setAttribute('d', getWavePath(7, 2.5, t + 1, 97));
-                  requestAnimationFrame(animate);
-                }
-                animate();
-              })();
-            </script>
-          </div>
+    <div x-show="loading" x-cloak>
+      <div class="flex justify-center items-center w-full h-64">
+        <div class="relative w-[180px] h-[80px] flex items-center justify-center overflow-hidden shadow-inset-olas">
+          <svg class="w-full h-full" viewBox="0 0 279.2 113.97" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path x-ref="wavePath" fill="#8EB8B6" />
+            <path x-ref="wavePath2" fill="#10776A" opacity="0.7" />
+          </svg>
         </div>
-      </template>
-      <!-- Grid de productos filtrados por categoría
-           - Cada tarjeta tiene overlay, hover y descripción -->
-      <template x-if="!loading">
-        <div
-          class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full max-w-6xl px-2 sm:px-4 mx-auto"
-        >
-          <template x-for="producto in productos.filter(p => p.categoria === selectedCategoria)" :key="producto.id">
-            <a :href="`/productos/${producto.slug}`" class="group block rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl relative bg-transparent">
-              <div class="relative w-full aspect-[9/4] sm:aspect-[9/3] min-h-[160px] sm:min-h-[220px] md:min-h-[320px] md:aspect-[6/3] overflow-hidden">
-                <img :src="producto.imagen" :alt="producto.nombre" data-product-img class="w-full h-full object-cover" loading="lazy" />
-                <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-black/40">
-                  <h2 class="text-white text-lg md:text-2xl font-bold text-center drop-shadow-lg mb-2" x-text="producto.nombre"></h2>
-                  <p class="text-white text-center px-4 text-sm md:text-base" x-text="producto.descripcion"></p>
-                </div>
-                <div class="absolute top-0 left-0 w-full px-2 py-2 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300">
-                  <h2 class="text-white text-base md:text-lg font-bold text-center w-full drop-shadow-lg" x-text="producto.nombre"></h2>
-                </div>
-              </div>
-            </a>
-          </template>
-        </div>
-        <!-- Script para controlar el loading hasta que todas las imágenes estén cargadas -->
-        <div x-effect="
-          if (!loading) return;
-          $nextTick(() => {
-            let grid = $el.previousElementSibling;
-            let imgs = grid.querySelectorAll('img[data-product-img]');
-            let total = imgs.length;
-            let loaded = 0;
-            if (total === 0) {
-              setTimeout(() => { loading = false; }, Math.max(0, 300 - (Date.now() - loadingStart)));
-            }
-            imgs.forEach(img => {
-              if (img.complete) {
-                loaded++;
-                if (loaded === total) setTimeout(() => { loading = false; }, Math.max(0, 300 - (Date.now() - loadingStart)));
-              } else {
-                img.addEventListener('load', () => {
-                  loaded++;
-                  if (loaded === total) setTimeout(() => { loading = false; }, Math.max(0, 300 - (Date.now() - loadingStart)));
-                });
-                img.addEventListener('error', () => {
-                  loaded++;
-                  if (loaded === total) setTimeout(() => { loading = false; }, Math.max(0, 300 - (Date.now() - loadingStart)));
-                });
-              }
-            });
-          });
-        "></div>
-      </template>
+      </div>
     </div>
+    
+    <!-- Grid de productos filtrados por categoría -->
+    <div x-show="!loading" x-cloak>
+      <div
+        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full max-w-6xl px-2 sm:px-4 mx-auto"
+      >
+        <template x-for="producto in productos.filter(p => p.categoria === selectedCategoria)" :key="producto.id">
+          <a :href="`/productos/${producto.slug}`" class="group block rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl relative bg-transparent">
+            <div class="relative w-full aspect-[9/4] sm:aspect-[9/3] min-h-[160px] sm:min-h-[220px] md:min-h-[320px] md:aspect-[6/3] overflow-hidden">
+              <img :src="producto.imagen" :alt="producto.nombre" data-product-img class="w-full h-full object-cover" loading="lazy" />
+              <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-black/40">
+                <h2 class="text-white text-lg md:text-2xl font-bold text-center drop-shadow-lg mb-2" x-text="producto.nombre"></h2>
+                <p class="text-white text-center px-4 text-sm md:text-base" x-text="producto.descripcion"></p>
+              </div>
+              <div class="absolute top-0 left-0 w-full px-2 py-2 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300">
+                <h2 class="text-white text-base md:text-lg font-bold text-center w-full drop-shadow-lg" x-text="producto.nombre"></h2>
+              </div>
+            </div>
+            <template x-if="producto.marca === 'XS Solutions'">
+              <div class="absolute bottom-2 right-2 bg-white p-1 rounded-md shadow-md">
+                <img src="/assets/Aliados/XS Solutions.jpg" alt="Logo XS Solutions" class="h-6 object-contain" />
+              </div>
+            </template>
+          </a>
+        </template>
+      </div>
+    </div>
+    
+    <!-- Script para controlar el loading hasta que todas las imágenes estén cargadas -->
+    <div x-effect="
+      if (!loading) return;
+      $nextTick(() => {
+        let grid = $el.previousElementSibling;
+        let imgs = grid.querySelectorAll('img[data-product-img]');
+        let total = imgs.length;
+        let loaded = 0;
+        if (total === 0) {
+          setTimeout(() => { loading = false; }, Math.max(0, 300 - (Date.now() - loadingStart)));
+        }
+        imgs.forEach(img => {
+          if (img.complete) {
+            loaded++;
+            if (loaded === total) setTimeout(() => { loading = false; }, Math.max(0, 300 - (Date.now() - loadingStart)));
+          } else {
+            img.addEventListener('load', () => {
+              loaded++;
+              if (loaded === total) setTimeout(() => { loading = false; }, Math.max(0, 300 - (Date.now() - loadingStart)));
+            });
+            img.addEventListener('error', () => {
+              loaded++;
+              if (loaded === total) setTimeout(() => { loading = false; }, Math.max(0, 300 - (Date.now() - loadingStart)));
+            });
+          }
+        });
+      });
+    "></div>
+    
+    <!-- Inicializar animación cuando se muestra el loader -->
+    <div x-effect="
+      if (loading) {
+        $nextTick(() => {
+          initWaveAnimation();
+        });
+      } else {
+        stopWaveAnimation();
+      }
+    "></div>
   </section>
 </Layout>
 
@@ -180,32 +203,7 @@ const categorias = [
 .bg-fixed {
   background-attachment: fixed;
 }
-@keyframes olas-move {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-30px); }
-}
-.animate-olas-move {
-  animation: olas-move 1.2s linear infinite alternate;
-}
-.wave1 {
-  opacity: 0.8;
-}
-.wave2 {
-  opacity: 0.7;
-  transform: translateY(10px);
-}
-@keyframes ola-move-1 {
-  0% { transform: translateY(0) scaleX(1); }
-  50% { transform: translateY(-10px) scaleX(1.05); }
-  100% { transform: translateY(0) scaleX(1); }
-}
-@keyframes ola-move-2 {
-  0% { transform: translateY(10px) scaleX(1); }
-  50% { transform: translateY(0) scaleX(0.97); }
-  100% { transform: translateY(10px) scaleX(1); }
-}
-.ola1 { animation: ola-move-1 2s ease-in-out infinite; }
-.ola2 { animation: ola-move-2 2.2s ease-in-out infinite; }
+
 .shadow-inset-olas {
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
