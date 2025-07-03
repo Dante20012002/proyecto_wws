@@ -1,12 +1,27 @@
 export interface Accesorio {
   nombre: string;
 }
+
 export interface Marcador3D {
   x: number;
   y: number;
   z: number;
   label: Accesorio[];
 }
+
+export interface SubProducto {
+  id: string;
+  nombre: string;
+  descripcion: string;
+  descripcionLarga: string;
+  imagen: string;
+  slug: string;
+  modelo3d?: string;
+  marcadores3d?: Marcador3D[];
+  qr?: string;
+  formularioCotizacion?: string;
+}
+
 export interface Producto {
   id: number;
   nombre: string;
@@ -21,6 +36,7 @@ export interface Producto {
   marcadores3d?: Marcador3D[];
   pdf?: string;
   marca?: string;
+  subProductos?: SubProducto[]; // Nuevo: subdivisiones del producto
 }
 
 export const productos: Producto[] = [
@@ -33,7 +49,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/1.jpg',
     slug: 'compuerta-mural',
     categoria: 'CONTROL DE CAUDAL',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/1.1 W-CPM.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -49,7 +65,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/2.jpg',
     slug: 'compuerta-canal-abierto',
     categoria: 'CONTROL DE CAUDAL',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/1.2 W-CPC.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -65,7 +81,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/3.Proyector Compuertas Actuadas.jpg',
     slug: 'compuerta-stop-log',
     categoria: 'CONTROL DE CAUDAL',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/1.3 W-CPS.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -99,7 +115,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/0.jpg',
     slug: 'cuchara-bivalva',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/2.1 C-CB 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -116,13 +132,50 @@ export const productos: Producto[] = [
     slug: 'rejillas-automaticas',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
-    marcadores3d: [
+    subProductos: [
       {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
+        id: 'x-rake',
+        nombre: 'X-RAKE / X-H.RAKE REJILLA DE GRUESOS, MEDIOS Y FINOS',
+        descripcion: 'Rejilla automática de rastrillos para retención de sólidos gruesos, medios y finos.',
+        descripcionLarga: 'La rejilla X-RAKE / X-H.RAKE es un sistema automático de cribado que utiliza rastrillos para la retención eficiente de sólidos gruesos, medios y finos en canales de tratamiento de aguas residuales. Su sistema de limpieza automática con rastrillos elimina la necesidad de intervención manual, reduciendo costos operativos y mejorando la eficiencia del proceso. El diseño incluye sensores de nivel y control automático que se adaptan a las variaciones de caudal, garantizando un cribado continuo y eficiente.',
+        imagen: '/assets/Productos/1. 1722508586316.jpg',
+        slug: 'x-rake-rejilla-gruesos',
+        modelo3d: '/models/X-RAKE.glb',
+        marcadores3d: [
+          {
+            x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+            label: [{ nombre: 'Sistema de Rastrillos' }],
+          },
+          {
+            x: 0.5, y: -1.2, z: 1.5,
+            label: [{ nombre: 'Motor de Accionamiento' }],
+          },
+        ],
+        qr: '/assets/qr/x-rake-rejilla-gruesos.png',
+        formularioCotizacion: 'https://forms.gle/x-rake-cotizacion'
       },
-    ],
+      {
+        id: 'x-step',
+        nombre: 'X-STEP REJILLA DE ESCALONES',
+        descripcion: 'Rejilla automática de escalones para cribado eficiente de sólidos.',
+        descripcionLarga: 'La rejilla X-STEP es un sistema automático de cribado que utiliza un mecanismo de escalones para la retención eficiente de sólidos en canales de tratamiento de aguas residuales. Su diseño único de escalones permite un cribado continuo y automático, eliminando la necesidad de paradas para limpieza manual. El sistema incluye sensores de nivel y control automático que optimizan el rendimiento según las condiciones de operación.',
+        imagen: '/assets/Productos/1. 1722508586316.jpg',
+        slug: 'x-step-rejilla-escalones',
+        modelo3d: '/models/X-STEP.glb',
+        marcadores3d: [
+          {
+            x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+            label: [{ nombre: 'Sistema de Escalones' }],
+          },
+          {
+            x: 0.3, y: -1.1, z: 1.6,
+            label: [{ nombre: 'Mecanismo de Elevación' }],
+          },
+        ],
+        qr: '/assets/qr/x-step-rejilla-escalones.png',
+        formularioCotizacion: 'https://forms.gle/x-step-cotizacion'
+      }
+    ]
   },
   {
     id: 7,
@@ -235,13 +288,68 @@ export const productos: Producto[] = [
     slug: 'tratamientos-combinados',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
-    marcadores3d: [
+    subProductos: [
       {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
+        id: 'set-1',
+        nombre: 'SET-1 TOLVA LONGITUDINAL PARA LA SEPARACIÓN DE ARENAS',
+        descripcion: 'Tolva longitudinal diseñada para la separación eficiente de arenas en el pretratamiento.',
+        descripcionLarga: 'La SET-1 es una tolva longitudinal especialmente diseñada para la separación eficiente de arenas en plantas de tratamiento de aguas residuales. Su diseño optimiza la sedimentación y facilita la extracción de arenas, mejorando la eficiencia global del pretratamiento.',
+        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        slug: 'set-1-tolva-longitudinal',
+        modelo3d: '/models/SET-1.glb',
+        marcadores3d: [],
+        qr: '/assets/qr/set-1-tolva-longitudinal.png',
+        formularioCotizacion: 'https://forms.gle/set-1-cotizacion'
       },
-    ],
+      {
+        id: 'set-2',
+        nombre: 'SET-2 UNIDAD COMBINADA',
+        descripcion: 'Unidad compacta que integra cribado y desarenado en un solo equipo.',
+        descripcionLarga: 'La SET-2 es una unidad combinada que integra los procesos de cribado y desarenado en un solo equipo compacto, ideal para plantas con espacio limitado y altos requerimientos de eficiencia.',
+        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        slug: 'set-2-unidad-combinada',
+        modelo3d: '/models/SET-2.glb',
+        marcadores3d: [],
+        qr: '/assets/qr/set-2-unidad-combinada.png',
+        formularioCotizacion: 'https://forms.gle/set-2-cotizacion'
+      },
+      {
+        id: 'set-3',
+        nombre: 'SET-3 UNIDAD COMBINADA CON SISTEMA DE DESENGRASADO',
+        descripcion: 'Unidad combinada que incluye sistema de desengrasado para mayor eficiencia.',
+        descripcionLarga: 'La SET-3 es una unidad combinada avanzada que, además de cribado y desarenado, incorpora un sistema de desengrasado, permitiendo un pretratamiento aún más completo y eficiente.',
+        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        slug: 'set-3-unidad-combinada-desengrasado',
+        modelo3d: '/models/SET-3.glb',
+        marcadores3d: [],
+        qr: '/assets/qr/set-3-unidad-combinada-desengrasado.png',
+        formularioCotizacion: 'https://forms.gle/set-3-cotizacion'
+      },
+      {
+        id: 'mini-set-2',
+        nombre: 'MINI.SET-2 MINI UNIDAD COMBINADA 2',
+        descripcion: 'Versión mini de la unidad combinada 2 para aplicaciones de menor escala.',
+        descripcionLarga: 'La MINI.SET-2 es una versión compacta de la unidad combinada 2, ideal para instalaciones pequeñas o aplicaciones piloto que requieren eficiencia en poco espacio.',
+        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        slug: 'mini-set-2-mini-unidad-combinada-2',
+        modelo3d: '/models/MINI-SET-2.glb',
+        marcadores3d: [],
+        qr: '/assets/qr/mini-set-2-mini-unidad-combinada-2.png',
+        formularioCotizacion: 'https://forms.gle/mini-set-2-cotizacion'
+      },
+      {
+        id: 'mini-set-3',
+        nombre: 'MINI.SET-3 MINI UNIDAD COMBINADA 3',
+        descripcion: 'Versión mini de la unidad combinada 3 con sistema de desengrasado.',
+        descripcionLarga: 'La MINI.SET-3 es una versión compacta de la unidad combinada 3, que incluye sistema de desengrasado, pensada para aplicaciones de menor escala con altos estándares de pretratamiento.',
+        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        slug: 'mini-set-3-mini-unidad-combinada-3',
+        modelo3d: '/models/MINI-SET-3.glb',
+        marcadores3d: [],
+        qr: '/assets/qr/mini-set-3-mini-unidad-combinada-3.png',
+        formularioCotizacion: 'https://forms.gle/mini-set-3-cotizacion'
+      }
+    ]
   },
 
   // AGITACIÓN Y FLOCULACIÓN
@@ -353,7 +461,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/2. ImagenX.png',
     slug: 'sedimentador-cadenas',
     categoria: 'TRATAMIENTO SECUNDARIO',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/5.1 C-BDC 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
