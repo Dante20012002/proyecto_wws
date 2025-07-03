@@ -406,7 +406,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/1. 480b766e-9ab6-4408-97e4-0fc1f5a4d18a_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
     slug: 'espesador-lodos-central',
     categoria: 'TRATAMIENTO DE LODOS Y TRANSPORTADORES',
-    modelo3d: '/models/3D E-ELM.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.07339679663725747, y: -3.2495521540383785, z: 1.7382068630845202,
