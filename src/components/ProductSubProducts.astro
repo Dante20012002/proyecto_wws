@@ -9,32 +9,24 @@ export interface Props {
 const { subProductos, productSlug } = Astro.props;
 ---
 
-<!-- PRODUCTO CON SUBDIVISIONES: Muestra las variantes del producto -->
-<section class="w-full bg-[#eaeaea] py-8">
-  <div class="max-w-6xl mx-auto px-4 md:px-8">
-    <h2 class="text-2xl md:text-3xl font-extrabold text-center mb-8 text-[#20405C]">Variantes Disponibles</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- PRODUCTO CON SUBDIVISIONES: Tarjetas tipo productos relacionados, pero más grandes -->
+<section class="max-w-6xl mx-auto py-12 pb-24">
+  <h2 class="text-2xl md:text-3xl font-extrabold text-center mb-8 text-[#20405C]">Variantes Disponibles</h2>
+  <div class="w-full flex justify-center">
+    <div class="flex flex-wrap justify-center gap-6 w-full">
       {subProductos.map(subProducto => (
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-          <!-- Imagen del subproducto -->
-          <div class="relative h-48 overflow-hidden">
+        <a href={`/productos/${productSlug}/${subProducto.slug}`} class="group block rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl relative bg-transparent max-w-sm w-full sm:w-[270px] md:w-[300px]">
+          <div class="relative w-full aspect-[9/4] sm:aspect-[9/3] min-h-[220px] sm:min-h-[270px] md:min-h-[300px] md:aspect-[6/3] overflow-hidden">
             <img src={subProducto.imagen} alt={subProducto.nombre} class="w-full h-full object-cover" loading="lazy" />
-            <div class="absolute inset-0 bg-black/20"></div>
-          </div>
-          
-          <!-- Contenido del subproducto -->
-          <div class="p-6 flex flex-col flex-1">
-            <h3 class="text-xl font-bold text-[#20405C] mb-3">{subProducto.nombre}</h3>
-            <p class="text-gray-700 mb-4 text-sm leading-relaxed">{subProducto.descripcion}</p>
-            
-            <!-- Botones de acción SIEMPRE ABAJO -->
-            <div class="flex flex-col sm:flex-row gap-3 mt-auto">
-              <a href={`/productos/${productSlug}/${subProducto.slug}`} class="flex-1 bg-[#6B8C8C] text-white px-4 py-2 rounded font-semibold text-center hover:bg-[#355353] transition">
-                VER DETALLES
-              </a>
+            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-black/40 px-6 py-6 overflow-y-auto max-h-full">
+              <h3 class="text-white text-lg md:text-xl font-bold text-center drop-shadow-lg mb-2">{subProducto.nombre}</h3>
+              <p class="text-white text-center text-sm md:text-base break-words mb-4">{subProducto.descripcion}</p>
+            </div>
+            <div class="absolute top-0 left-0 w-full px-2 py-2 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300">
+              <h3 class="text-white text-base md:text-lg font-bold text-center w-full drop-shadow-lg">{subProducto.nombre}</h3>
             </div>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </div>

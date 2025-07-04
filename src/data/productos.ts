@@ -424,6 +424,96 @@ export const productos: Producto[] = [
   // TRATAMIENTO SECUNDARIO
   {
     id: 13,
+    nombre: 'X TRATAMIENTOS COMBINADOS',
+    descripcion: 'Módulos compactos que integran cribado, desarenado y desengrasado en una sola estructura.',
+    descripcionLarga: 'Los tratamientos combinados XS Solutions son módulos compactos e innovadores que integran múltiples procesos de pretratamiento en una sola estructura. Su diseño integrado combina cribado, desarenado y desengrasado, eliminando la necesidad de equipos separados y reduciendo significativamente el espacio requerido. Esta integración optimiza el flujo del proceso y reduce los costos de instalación y mantenimiento. Fabricados en acero inoxidable de alta calidad, incluyen sistemas de control automático que coordinan todos los procesos de manera eficiente. Ideales para plantas con limitaciones de espacio que requieren un pretratamiento completo y eficiente en una solución compacta.',
+    imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+    slug: 'tratamientos-combinados',
+    categoria: 'DRAGADO Y PRETRATAMIENTO',
+    marca: 'XS Solutions',
+    subProductos: [
+      {
+        id: 'set-1',
+        nombre: 'SET-1 TOLVA LONGITUDINAL PARA LA SEPARACIÓN DE ARENAS',
+        descripcion: 'Tolva longitudinal diseñada para la separación eficiente de arenas en el pretratamiento.',
+        descripcionLarga: 'La SET-1 es una tolva longitudinal especialmente diseñada para la separación eficiente de arenas en plantas de tratamiento de aguas residuales. Su diseño optimiza la sedimentación y facilita la extracción de arenas, mejorando la eficiencia global del pretratamiento.',
+        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        slug: 'set-1-tolva-longitudinal',
+        modelo3d: '/models/SET-1.glb',
+        marcadores3d: [],
+        qr: '/assets/qr/set-1-tolva-longitudinal.png',
+        formularioCotizacion: 'https://forms.gle/set-1-cotizacion'
+      },
+      {
+        id: 'set-2',
+        nombre: 'SET-2 UNIDAD COMBINADA',
+        descripcion: 'Unidad compacta que integra cribado y desarenado en un solo equipo.',
+        descripcionLarga: 'La SET-2 es una unidad combinada que integra los procesos de cribado y desarenado en un solo equipo compacto, ideal para plantas con espacio limitado y altos requerimientos de eficiencia.',
+        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        slug: 'set-2-unidad-combinada',
+        modelo3d: '/models/SET-2.glb',
+        marcadores3d: [],
+        qr: '/assets/qr/set-2-unidad-combinada.png',
+        formularioCotizacion: 'https://forms.gle/set-2-cotizacion'
+      },
+      {
+        id: 'set-3',
+        nombre: 'SET-3 UNIDAD COMBINADA CON SISTEMA DE DESENGRASADO',
+        descripcion: 'Unidad combinada que incluye sistema de desengrasado para mayor eficiencia.',
+        descripcionLarga: 'La SET-3 es una unidad combinada avanzada que, además de cribado y desarenado, incorpora un sistema de desengrasado, permitiendo un pretratamiento aún más completo y eficiente.',
+        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        slug: 'set-3-unidad-combinada-desengrasado',
+        modelo3d: '/models/SET-3.glb',
+        marcadores3d: [],
+        qr: '/assets/qr/set-3-unidad-combinada-desengrasado.png',
+        formularioCotizacion: 'https://forms.gle/set-3-cotizacion'
+      },
+      {
+        id: 'mini-set-2',
+        nombre: 'MINI.SET-2 MINI UNIDAD COMBINADA 2',
+        descripcion: 'Versión mini de la unidad combinada 2 para aplicaciones de menor escala.',
+        descripcionLarga: 'La MINI.SET-2 es una versión compacta de la unidad combinada 2, ideal para instalaciones pequeñas o aplicaciones piloto que requieren eficiencia en poco espacio.',
+        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        slug: 'mini-set-2-mini-unidad-combinada-2',
+        modelo3d: '/models/MINI-SET-2.glb',
+        marcadores3d: [],
+        qr: '/assets/qr/mini-set-2-mini-unidad-combinada-2.png',
+        formularioCotizacion: 'https://forms.gle/mini-set-2-cotizacion'
+      },
+      {
+        id: 'mini-set-3',
+        nombre: 'MINI.SET-3 MINI UNIDAD COMBINADA 3',
+        descripcion: 'Versión mini de la unidad combinada 3 con sistema de desengrasado.',
+        descripcionLarga: 'La MINI.SET-3 es una versión compacta de la unidad combinada 3, que incluye sistema de desengrasado, pensada para aplicaciones de menor escala con altos estándares de pretratamiento.',
+        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        slug: 'mini-set-3-mini-unidad-combinada-3',
+        modelo3d: '/models/MINI-SET-3.glb',
+        marcadores3d: [],
+        qr: '/assets/qr/mini-set-3-mini-unidad-combinada-3.png',
+        formularioCotizacion: 'https://forms.gle/mini-set-3-cotizacion'
+      }
+    ]
+  },
+  {
+    id: 14,
+    nombre: 'E-AGI AGITADOR DE TURBINA AXIAL',
+    descripcion: 'Agitador mecánico con de turbina para mezcla de productos químicos.',
+    descripcionLarga: 'El agitador de turbina axial E-AGI es un equipo mecánico especializado diseñado para la mezcla eficiente de productos químicos en plantas de tratamiento de aguas residuales. Su diseño de turbina axial genera un flujo vertical que optimiza la distribución de químicos en el agua, asegurando una mezcla uniforme y rápida. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control de velocidad variable que permite ajustar la intensidad de la agitación según los requerimientos del proceso. Ideal para la dosificación de coagulantes, floculantes y otros productos químicos, garantizando una reacción óptima y mejorando la eficiencia del tratamiento.',
+    imagen: '/assets/Productos/1. 5239d63c-6ba2-4d19-9a8b-daf0f67fb400.jpg',
+    slug: 'agitador-turbina-axial',
+    categoria: 'AGITACIÓN Y FLOCULACIÓN',
+    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
+  },
+
+  // TRATAMIENTO SECUNDARIO
+  {
+    id: 15,
     nombre: 'C-BDC SEDIMENTADOR DE CADENAS',
     descripcion: 'Sedimentador de lodos de cadena para remoción de fondo, superficial o combinada.',
     descripcionLarga: 'El sedimentador de cadenas C-BDC es un sistema de clarificación avanzado diseñado para la remoción eficiente de lodos en plantas de tratamiento de aguas residuales. Su sistema de cadenas permite la remoción de lodos del fondo, superficie o de manera combinada, adaptándose a las necesidades específicas de cada aplicación. El diseño de cadenas proporciona un movimiento continuo y uniforme que optimiza la separación sólido-líquido. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de las cadenas según las condiciones de operación. Esencial para aplicaciones que requieren una clarificación eficiente con remoción flexible de lodos.',
@@ -439,7 +529,7 @@ export const productos: Producto[] = [
     ],
   },
   {
-    id: 14,
+    id: 16,
     nombre: 'E-DF DISTRIBUIDOR DE FLUJO',
     descripcion: 'Distribuye uniformemente el caudal sobre el medio filtrante en filtros percoladores, optimizando el contacto agua-biomasa y la degradación orgánica.',
     descripcionLarga: 'El distribuidor de flujo E-DF es un sistema especializado diseñado para distribuir uniformemente el caudal sobre el medio filtrante en filtros percoladores de plantas de tratamiento de aguas residuales. Su diseño optimiza el contacto entre el agua y la biomasa, mejorando la eficiencia de la degradación orgánica. El sistema de distribución uniforme asegura que toda la superficie del medio filtrante reciba el caudal de manera equilibrada, evitando zonas de sobrecarga o subcarga. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la distribución del flujo según las condiciones de operación. Esencial para optimizar el rendimiento de filtros percoladores y mejorar la calidad del efluente tratado.',
@@ -457,7 +547,7 @@ export const productos: Producto[] = [
 
   // TRATAMIENTO TERCIARIO
   {
-    id: 15,
+    id: 17,
     nombre: 'E-FLO FLOCULADORES',
     descripcion: 'Sistema de agitación suave para promover la formación de flóculos.',
     descripcionLarga: 'Los floculadores E-FLO son sistemas de agitación suave diseñados específicamente para promover la formación y crecimiento de flóculos en plantas de tratamiento de aguas residuales. Su diseño de agitación controlada permite que las partículas coaguladas se unan gradualmente formando flóculos más grandes y densos, facilitando su posterior sedimentación. El sistema incluye múltiples cámaras con agitación decreciente que optimizan el proceso de floculación. Fabricados en acero inoxidable resistente a la corrosión, incluyen un sistema de control de velocidad variable que permite ajustar la intensidad de la agitación según las características del agua. Esenciales para optimizar la eficiencia de la clarificación y mejorar la calidad del efluente tratado.',
@@ -493,7 +583,7 @@ export const productos: Producto[] = [
 
   // SEDIMENTACIÓN
   {
-    id: 16,
+    id: 18,
     nombre: 'E-SLD SEDIMENTADOR DE LODOS PARA TANQUE CIRCULAR DE ACCIONAMIENTO DIAMETRAL',
     descripcion: 'Sedimentador con puente y rastrillos accionados diametralmente para extracción de lodos al centro, natas y agua clarificada por el perimetro.',
     descripcionLarga: 'El sedimentador de lodos E-SLD con accionamiento diametral es un sistema avanzado de clarificación diseñado para tanques circulares en plantas de tratamiento de aguas residuales. Su puente giratorio con rastrillos accionados diametralmente permite una extracción eficiente de lodos sedimentados hacia el centro del tanque, mientras que las natas flotantes son removidas por el perímetro. El sistema de accionamiento diametral proporciona un movimiento uniforme y estable, optimizando la separación sólido-líquido. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de rotación según las condiciones de operación. Esencial para la clarificación eficiente y la producción de agua clarificada de alta calidad.',
@@ -509,7 +599,7 @@ export const productos: Producto[] = [
     ],
   },
   {
-    id: 17,
+    id: 19,
     nombre: 'E-SLR SEDIMENTADOR DE LODOS PARA TANQUE CIRCULAR DE ACCIONAMIENTO RADIAL',
     descripcion: 'Sedimentador con puente y rastrillos accionados radialmente para extracción de lodos al centro, natas y agua clarificada por el perimetro.',
     descripcionLarga: 'El sedimentador de lodos E-SLR con accionamiento radial es un sistema de clarificación diseñado para tanques circulares que utiliza un puente giratorio con rastrillos accionados radialmente. Este diseño permite una extracción eficiente de lodos sedimentados hacia el centro del tanque, mientras que las natas flotantes son removidas por el perímetro. El sistema de accionamiento radial proporciona un movimiento suave y continuo que optimiza la separación sólido-líquido. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de rotación según las condiciones de operación. Ideal para aplicaciones que requieren una clarificación eficiente y estable en tanques circulares.',
@@ -525,7 +615,7 @@ export const productos: Producto[] = [
     ],
   },
   {
-    id: 18,
+    id: 20,
     nombre: 'E-SLC SEDIMENTADOR DE LODOS PARA TANQUE CIRCULAR DE ACCIONAMIENTO CENTRAL',
     descripcion: 'Sedimentador con puente radial estático y bastidor accionado centralmentepara extracción de lodos al centro, natas y agua clarificada por el perimetro.',
     descripcionLarga: 'El sedimentador de lodos E-SLC con accionamiento central es un sistema de clarificación diseñado para tanques circulares que utiliza un puente radial estático con un bastidor accionado centralmente. Este diseño único permite una extracción eficiente de lodos sedimentados hacia el centro del tanque, mientras que las natas flotantes son removidas por el perímetro. El sistema de accionamiento central proporciona un movimiento estable y controlado que optimiza la separación sólido-líquido. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de rotación según las condiciones de operación. Ideal para aplicaciones que requieren una clarificación eficiente y estable en tanques circulares con accionamiento central.',
@@ -541,7 +631,7 @@ export const productos: Producto[] = [
     ],
   },
   {
-    id: 19,
+    id: 21,
     nombre: 'E-PSL PUENTE LONGITUDINAL SEDIMENTADOR DE LODOS  PARA TANQUE RECTANGULAR',
     descripcion: 'Puente accionado longitudinalmente en tanque rentangular para extracción de lodos y natas al final del tanque.',
     descripcionLarga: 'El puente longitudinal E-PSL es un sistema de clarificación diseñado específicamente para tanques rectangulares en plantas de tratamiento de aguas residuales. Su puente accionado longitudinalmente permite una extracción eficiente de lodos sedimentados y natas flotantes hacia el final del tanque. El diseño longitudinal optimiza el flujo del agua y mejora la eficiencia de la separación sólido-líquido. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de movimiento según las condiciones de operación. Ideal para aplicaciones que requieren una clarificación eficiente en tanques rectangulares con extracción longitudinal de lodos y natas.',
@@ -559,7 +649,7 @@ export const productos: Producto[] = [
 
   // TRATAMIENTO SECUNDARIO
   {
-    id: 20,
+    id: 22,
     nombre: 'C-BDC SEDIMENTADOR DE CADENAS',
     descripcion: 'Sedimentador de lodos de cadena para remoción de fondo, superficial o combinada.',
     descripcionLarga: 'El sedimentador de cadenas C-BDC es un sistema de clarificación avanzado diseñado para la remoción eficiente de lodos en plantas de tratamiento de aguas residuales. Su sistema de cadenas permite la remoción de lodos del fondo, superficie o de manera combinada, adaptándose a las necesidades específicas de cada aplicación. El diseño de cadenas proporciona un movimiento continuo y uniforme que optimiza la separación sólido-líquido. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de las cadenas según las condiciones de operación. Esencial para aplicaciones que requieren una clarificación eficiente con remoción flexible de lodos.',
@@ -575,7 +665,7 @@ export const productos: Producto[] = [
     ],
   },
   {
-    id: 21,
+    id: 23,
     nombre: 'E-DF DISTRIBUIDOR DE FLUJO',
     descripcion: 'Distribuye uniformemente el caudal sobre el medio filtrante en filtros percoladores, optimizando el contacto agua-biomasa y la degradación orgánica.',
     descripcionLarga: 'El distribuidor de flujo E-DF es un sistema especializado diseñado para distribuir uniformemente el caudal sobre el medio filtrante en filtros percoladores de plantas de tratamiento de aguas residuales. Su diseño optimiza el contacto entre el agua y la biomasa, mejorando la eficiencia de la degradación orgánica. El sistema de distribución uniforme asegura que toda la superficie del medio filtrante reciba el caudal de manera equilibrada, evitando zonas de sobrecarga o subcarga. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la distribución del flujo según las condiciones de operación. Esencial para optimizar el rendimiento de filtros percoladores y mejorar la calidad del efluente tratado.',
@@ -593,7 +683,7 @@ export const productos: Producto[] = [
 
   // TRATAMIENTO TERCIARIO
   {
-    id: 22,
+    id: 24,
     nombre: 'X-DF FILTRO DE DISCOS',
     descripcion: 'Módulos de discos rotativos para filtración fina y mejora de calidad del efluente.',
     descripcionLarga: 'Los filtros de discos X-DF de XS Solutions son sistemas avanzados de filtración fina diseñados para mejorar significativamente la calidad del efluente en plantas de tratamiento de aguas residuales. Su sistema de discos rotativos permite una filtración continua y eficiente, removiendo partículas finas y mejorando la claridad del agua. El diseño modular permite adaptar la capacidad de filtración según los requerimientos específicos de cada aplicación. Fabricados en acero inoxidable resistente a la corrosión, incluyen un sistema de limpieza automática que mantiene la eficiencia del filtro. Esenciales para aplicaciones que requieren efluentes de alta calidad y cumplimiento de estándares estrictos de descarga.',
@@ -612,7 +702,7 @@ export const productos: Producto[] = [
 
   // TRATAMIENTO DE LODOS Y TRANSPORTADORES
   {
-    id: 23,
+    id: 25,
     nombre: 'E-ELM ESPESADOR DE LODOS DE ACCIONAMIENTO CENTRAL',
     descripcion: 'Espesador mecánico con agitador central para concentración de lodos.',
     descripcionLarga: 'El espesador de lodos E-ELM con accionamiento central es un sistema mecánico especializado diseñado para la concentración eficiente de lodos en plantas de tratamiento de aguas residuales. Su agitador central permite una mezcla controlada que facilita la liberación de agua intersticial y la concentración de sólidos. El sistema de accionamiento central proporciona un movimiento uniforme y estable que optimiza el proceso de espesamiento. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de rotación según las características de los lodos. Esencial para reducir el volumen de lodos y optimizar los costos de transporte y disposición final.',
@@ -648,7 +738,7 @@ export const productos: Producto[] = [
     ],
   },
   {
-    id: 24,
+    id: 26,
     nombre: 'X-RA ESPESADOR DESHIDRATADOR MODULAR',
     descripcion: 'Espesador modular con prensas de tornillo para deshidratación previa.',
     descripcionLarga: 'El espesador deshidratador modular X-RA de XS Solutions es un sistema avanzado que combina espesamiento y deshidratación previa de lodos en plantas de tratamiento de aguas residuales. Su diseño modular incluye prensas de tornillo que aplican presión controlada para extraer el exceso de agua y reducir significativamente el volumen de lodos. El sistema modular permite adaptar la capacidad según los requerimientos específicos de cada aplicación. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que optimiza la presión y velocidad según las características de los lodos. Esencial para reducir costos de transporte y disposición final mediante la deshidratación eficiente de lodos.',
@@ -665,7 +755,7 @@ export const productos: Producto[] = [
     ],
   },
   {
-    id: 25,
+    id: 27,
     nombre: 'X-CONV TRASPORTADOR DE TORNILLO',
     descripcion: 'Tornillo sin fin para transporte continuo de lodos o sólidos.',
     descripcionLarga: 'El transportador de tornillo X-CONV de XS Solutions es un sistema de transporte continuo diseñado para el manejo eficiente de lodos y sólidos en plantas de tratamiento de aguas residuales. Su diseño de tornillo sin fin permite un transporte suave y continuo de materiales, evitando la segregación y manteniendo la integridad del producto. El sistema puede transportar tanto lodos húmedos como sólidos secos, adaptándose a diferentes condiciones de operación. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de transporte según las características del material. Esencial para el transporte eficiente y seguro de lodos y sólidos en plantas de tratamiento.',
@@ -682,7 +772,7 @@ export const productos: Producto[] = [
     ],
   },
   {
-    id: 26,
+    id: 28,
     nombre: 'X-BELT.CONV TRASPORTADOR DE BANDA',
     descripcion: 'Cinta transportadora para traslado de lodos o sólidos con velocidad controlada.',
     descripcionLarga: 'El transportador de banda X-BELT.CONV de XS Solutions es un sistema de transporte continuo diseñado para el traslado eficiente de lodos y sólidos en plantas de tratamiento de aguas residuales. Su cinta transportadora con velocidad controlada permite un transporte suave y continuo de materiales, adaptándose a diferentes condiciones de operación. El sistema puede transportar tanto lodos húmedos como sólidos secos, manteniendo la integridad del producto durante el transporte. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de transporte según las características del material. Esencial para el transporte eficiente y seguro de lodos y sólidos en plantas de tratamiento.',
@@ -701,7 +791,7 @@ export const productos: Producto[] = [
 
   // ADECUACIONES ESTRUCTURALES E HIDRÁULICAS
   {
-    id: 27,
+    id: 29,
     nombre: 'C-ACS CUBIERTAS Y SOPORTES METÁLICOS',
     descripcion: 'Estructuras metálicas para protección de equipos y mantenimiento de procesos.',
     descripcionLarga: 'Las cubiertas y soportes metálicos C-ACS son estructuras especializadas diseñadas para la protección y mantenimiento de equipos en plantas de tratamiento de aguas residuales. Su diseño modular permite la instalación y desmontaje fácil para facilitar el mantenimiento y reparación de equipos. Las cubiertas protegen los equipos de las condiciones ambientales adversas, mientras que los soportes proporcionan estabilidad y seguridad durante la operación. Fabricados en acero inoxidable resistente a la corrosión, incluyen sistemas de seguridad que garantizan un entorno de trabajo seguro. Esenciales para proteger equipos sensibles y facilitar el mantenimiento preventivo en plantas de tratamiento.',
@@ -717,7 +807,7 @@ export const productos: Producto[] = [
     ],
   },
   {
-    id: 28,
+    id: 30,
     nombre: 'C-AEP ESCALERAS Y PASARELAS',
     descripcion: 'Accesos metálicos seguros para mantenimiento y operación de plantas.',
     descripcionLarga: 'Las escaleras y pasarelas C-AEP son sistemas de acceso metálicos diseñados para proporcionar acceso seguro y eficiente a equipos y áreas de mantenimiento en plantas de tratamiento de aguas residuales. Su diseño modular permite la instalación y configuración según los requerimientos específicos de cada planta. Las escaleras proporcionan acceso vertical seguro, mientras que las pasarelas facilitan el movimiento horizontal entre equipos. Fabricadas en acero inoxidable resistente a la corrosión, incluyen sistemas de seguridad como barandillas y superficies antideslizantes que garantizan un entorno de trabajo seguro. Esenciales para facilitar el mantenimiento preventivo y la operación eficiente de plantas de tratamiento.',
@@ -733,7 +823,7 @@ export const productos: Producto[] = [
     ],
   },
   {
-    id: 29,
+    id: 31,
     nombre: 'C-APR PÓRTICOS',
     descripcion: 'Estructuras metálicas para izaje y mantenimiento de equipos pesados.',
     descripcionLarga: 'Los pórticos C-APR son estructuras metálicas especializadas diseñadas para el izaje y mantenimiento de equipos pesados en plantas de tratamiento de aguas residuales. Su diseño robusto permite el manejo seguro de equipos de gran peso y dimensiones, facilitando las operaciones de mantenimiento y reparación. Los pórticos incluyen sistemas de izaje con capacidad variable que se adaptan a diferentes tipos de equipos. Fabricados en acero inoxidable resistente a la corrosión, incluyen sistemas de seguridad que garantizan operaciones de izaje seguras y eficientes. Esenciales para facilitar el mantenimiento de equipos pesados y mejorar la eficiencia operativa de plantas de tratamiento.',
@@ -749,7 +839,7 @@ export const productos: Producto[] = [
     ],
   },
   {
-    id: 30,
+    id: 32,
     nombre: 'C-AHID SISTEMAS DE BOMBEO Y REDES DE DISTRIBUCIÓN',
     descripcion: 'Sistemas estructurales e hidráulicos para conducción y distribución de caudales.',
     descripcionLarga: 'Los sistemas de bombeo y redes de distribución C-AHID son soluciones integrales diseñadas para la conducción y distribución eficiente de caudales en plantas de tratamiento de aguas residuales. Su diseño incluye sistemas de bombeo con capacidad variable que se adaptan a diferentes condiciones de operación, así como redes de distribución optimizadas para minimizar pérdidas de carga. El sistema estructural proporciona soporte y estabilidad a los componentes hidráulicos, garantizando una operación confiable y eficiente. Fabricados en acero inoxidable resistente a la corrosión, incluyen sistemas de control automático que optimizan el bombeo según las demandas del proceso. Esenciales para garantizar el flujo eficiente de agua a través de todas las etapas del tratamiento.',
