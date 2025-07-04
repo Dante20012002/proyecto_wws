@@ -4,21 +4,87 @@ import noticias from '../../data/noticias';
 
 const { slug } = Astro.params;
 const noticia = noticias.find(n => n.slug === slug);
+
+// Función para distribuir imágenes entre párrafos
+function distribuirImagenesEntreParrafos(contenido: string, imagenes: string[]) {
+  if (!imagenes || imagenes.length === 0) {
+    return contenido;
+  }
+
+  // Dividir el contenido en párrafos
+  const parrafos = contenido.split('</p>').filter(p => p.trim());
+  const imagenesDisponibles = [...imagenes];
+  
+  // Calcular cada cuántos párrafos insertar una imagen
+  const intervalo = Math.max(1, Math.floor(parrafos.length / (imagenesDisponibles.length + 1)));
+  
+  let resultado = '';
+  let imagenIndex = 0;
+  
+  parrafos.forEach((parrafo, index) => {
+    // Agregar el párrafo
+    resultado += parrafo + '</p>';
+    
+    // Insertar imagen después de ciertos párrafos
+    if (imagenIndex < imagenesDisponibles.length && (index + 1) % intervalo === 0) {
+      const img = imagenesDisponibles[imagenIndex];
+      resultado += `<div class="my-8">
+        <img src="${img}" alt="${noticia?.titulo} imagen ${imagenIndex + 1}" 
+             class="w-full rounded-lg object-cover shadow-lg" 
+             width="700" height="400" 
+             loading="lazy" decoding="async" />
+      </div>`;
+      imagenIndex++;
+    }
+  });
+  
+  // Si quedan imágenes sin insertar, agregarlas al final
+  while (imagenIndex < imagenesDisponibles.length) {
+    const img = imagenesDisponibles[imagenIndex];
+    resultado += `<div class="my-8">
+      <img src="${img}" alt="${noticia?.titulo} imagen ${imagenIndex + 1}" 
+           class="w-full rounded-lg object-cover shadow-lg" 
+           width="700" height="400" 
+           loading="lazy" decoding="async" />
+    </div>`;
+    imagenIndex++;
+  }
+  
+  return resultado;
+}
+
+// Generar contenido con imágenes distribuidas
+const contenidoConImagenes = noticia ? distribuirImagenesEntreParrafos(noticia.contenido, noticia.imagenes) : '';
 ---
 
 <Layout title={noticia ? noticia.titulo + ' - WWS' : 'Noticia no encontrada'}>
   <section class="w-full bg-[#EAEAEA] py-8 md:py-12 min-h-screen">
-    <div class="max-w-3xl mx-auto px-4">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
       {noticia ? (
-        <div class="bg-[#D9D9D9] rounded-lg p-6 md:p-10 min-h-[600px]">
-          <h1 class="text-3xl md:text-4xl font-extrabold mb-4">{noticia.titulo}</h1>
-          <div class="text-gray-800 text-base md:text-lg mb-6" set:html={noticia.contenido}></div>
-          {noticia.imagenes.map((img, idx) => (
-            <img src={img} alt={noticia.titulo + ' imagen ' + (idx+1)} class="w-full rounded-lg mb-8 object-cover" width="700" height="300" loading="lazy" decoding="async" />
-          ))}
+        <div class="bg-[#D9D9D9] rounded-lg p-6 md:p-10 min-h-[600px] max-w-4xl mx-auto">
+          <h1 class="text-3xl md:text-4xl font-extrabold mb-6 text-[#20405C]">{noticia.titulo}</h1>
+          <div class="text-gray-800 text-base md:text-lg leading-relaxed" set:html={contenidoConImagenes}></div>
+          
+          {noticia.enlacesOficiales && noticia.enlacesOficiales.length > 0 && (
+            <div class="mt-8 pt-6 border-t-2 border-[#20405C]">
+              <h3 class="text-xl font-bold text-[#20405C] mb-4">Enlaces oficiales</h3>
+              <div class="flex flex-wrap gap-3">
+                {noticia.enlacesOficiales.map((enlace) => (
+                  <a 
+                    href={enlace.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-block px-4 py-2 bg-[#7A8C8C] text-white font-medium rounded-lg hover:bg-[#5a6c6c] transition-colors duration-200 shadow-md hover:shadow-lg"
+                  >
+                    {enlace.titulo}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       ) : (
-        <div class="bg-[#D9D9D9] rounded-lg p-6 md:p-10 text-center min-h-[400px]">
+        <div class="bg-[#D9D9D9] rounded-lg p-6 md:p-10 text-center min-h-[400px] max-w-4xl mx-auto">
           <h1 class="text-2xl font-bold mb-4">Noticia no encontrada</h1>
           <p>La noticia que buscas no existe o ha sido eliminada.</p>
         </div>

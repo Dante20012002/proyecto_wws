@@ -1,7 +1,12 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { productos } from '../../../data/productos';
-import ModelViewer from '../../../components/ModelViewer.jsx';
+import ProductHero from '../../../components/ProductHero.astro';
+import ProductDescription from '../../../components/ProductDescription.astro';
+import Product3DViewer from '../../../components/Product3DViewer.astro';
+import ProductQR from '../../../components/ProductQR.astro';
+import ProductRelated from '../../../components/ProductRelated.astro';
+import ProductContact from '../../../components/ProductContact.astro';
 
 // Obtiene los parámetros de la URL
 const { producto: productSlug, subproducto: subProductSlug } = Astro.params;
@@ -15,7 +20,7 @@ const subProducto = producto?.subProductos?.find(sp => sp.slug === subProductSlu
 const notFound = !producto || !subProducto;
 
 // URL del brochure general
-const brochureUrl = "https://drive.google.com/your-brochure-link";
+const brochureUrl = "https://drive.google.com/file/d/1Cxu1Nftv6efl52-7mPSrBA_OSv52uKDO/view?usp=sharing";
 
 // Filtra productos relacionados por categoría, excluyendo el actual
 const relacionados = producto
@@ -32,204 +37,47 @@ const relacionados = producto
     </section>
   ) : (
     <main class="w-full bg-[#f5f5f5]">
-      <!-- HERO: Imagen de fondo y título principal de la página de subproducto -->
-      <section class="relative w-full h-[220px] md:h-[320px] flex items-end justify-start bg-cover bg-center z-0" style={`background-image: url('${subProducto.imagen}');`}>
-        <div class="absolute inset-0 bg-black/50"></div>
-        <div class="relative z-10 p-6 md:p-12">
-          <div class="mb-2">
-            <a href={`/productos/${producto.slug}`} class="text-white/80 hover:text-white text-sm md:text-base underline">
-              ← {producto.nombre}
-            </a>
-          </div>
-          <h1 class="text-3xl md:text-5xl font-extrabold text-white drop-shadow-xl leading-tight md:leading-tight uppercase" style="text-shadow: 2px 2px 8px #000;">
-            {subProducto.nombre}
-          </h1>
-        </div>
-      </section>
+      <ProductHero 
+        titulo={subProducto.nombre} 
+        imagen={subProducto.imagen} 
+        breadcrumb={{ texto: producto.nombre, url: `/productos/${producto.slug}` }}
+      />
+      <ProductDescription 
+        nombre={subProducto.nombre} 
+        descripcionLarga={subProducto.descripcionLarga} 
+        imagen={subProducto.imagen} 
+        brochureUrl={brochureUrl} 
+        catalogoUrl={subProducto.pdf}
+      />
 
-      <!-- DESCRIPCIÓN AMPLIADA Y BROCHURE: Información principal del subproducto -->
-      <section class="w-full bg-white py-8">
-        <div class="max-w-2xl md:max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-start px-4 md:px-8">
-          <div class="md:col-span-2 flex flex-col justify-center">
-            <h2 class="text-2xl md:text-3xl font-extrabold text-[#20405C] mb-2 uppercase tracking-tight" style="letter-spacing:0;">{subProducto.nombre}</h2>
-            <p class="text-black text-justify mb-4 text-base md:text-lg leading-relaxed" style="hyphens:auto;">{subProducto.descripcionLarga}</p>
-            <a href={brochureUrl} target="_blank" rel="noopener" class="text-[#20405C] underline font-medium mb-2 w-fit">Descarga nuestro catálogo</a>
-            <a href={brochureUrl} target="_blank" rel="noopener" class="mt-1 w-fit px-8 py-2 rounded font-bold shadow bg-[#7A8C8C] text-white text-lg hover:bg-[#5a6c6c] transition block" style="box-shadow:0 2px 6px 0 rgba(0,0,0,0.10);">BROCHURE</a>
-          </div>
-          <div class="flex items-center justify-center">
-            <img src={subProducto.imagen} alt={subProducto.nombre} class="rounded-lg max-h-56 md:max-h-64 aspect-square object-cover border-4 border-[#bfc9c9] shadow-lg" style="box-shadow:0 2px 8px 0 rgba(0,0,0,0.10);" loading="lazy" />
-          </div>
-        </div>
-      </section>
-
-      <!-- PARTES Y MODELO 3D: Lista de partes y visor interactivo del modelo 3D -->
       {(Array.isArray(subProducto.marcadores3d) && subProducto.marcadores3d.length > 0 && subProducto.modelo3d) && (
-        <section class="w-full bg-[#eaeaea] py-8">
-          <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-6 md:gap-14 px-2 md:px-4">
-            <!-- Lista de partes numeradas -->
-            <div class="w-full md:max-w-xs flex flex-col mb-6 md:mb-0">
-              <h3 class="text-lg font-bold text-white bg-[#6B8C8C] rounded-t-md px-4 py-2 mb-0">PARTES</h3>
-              <ul class="bg-[#6B8C8C] rounded-b-md p-0 divide-y divide-[#eaeaea] flex-1" id="partes-lista">
-                {subProducto.marcadores3d.map((marcador, idx) => (
-                  <li 
-                    class="flex items-center gap-2 py-2 px-4 text-white font-semibold text-sm cursor-pointer hover:bg-[#355353] transition hover:scale-105 transform duration-200" 
-                    data-hotspot={idx}
-                    data-part-index={idx}
-                  >
-                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#20405C] text-white font-bold mr-2">{idx + 1}</span>
-                    {marcador.label && marcador.label[0]?.nombre}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <!-- Visor del modelo 3D con hotspots numerados -->
-            <div class="flex-1 flex items-center justify-center w-full">
-              <div class="w-full bg-white rounded-xl shadow-lg flex items-center justify-center p-2 md:p-6" style="max-width: 100%;">
-                <ModelViewer 
-                  src={subProducto.modelo3d} 
-                  marcadores3d={subProducto.marcadores3d} 
-                  client:only="react" 
-                  showNumbers 
-                  style={{ width: '100%', maxWidth: 500, minHeight: 220, maxHeight: 400, background: '#fff', borderRadius: '1rem' }} 
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        <Product3DViewer modelo3d={subProducto.modelo3d} marcadores3d={subProducto.marcadores3d} />
       )}
 
-      <!-- QR: Sección con código QR específico del subproducto -->
       {subProducto.qr && (
-        <section class="w-full bg-[#eaeaea] py-8">
-          <div class="max-w-md mx-auto flex flex-row items-center gap-0 px-4">
-            <div class="bg-white rounded-l-lg rounded-r-none flex items-center justify-center p-4 shadow-md" style="width: 100px; min-width: 100px; height: 90px;">
-              <img src={subProducto.qr} alt="Código QR" class="w-16 h-16 object-contain" />
-            </div>
-            <div class="flex-1 flex items-center h-[90px]">
-              <div class="w-full h-full flex items-center justify-center bg-[#6B8C8C] rounded-r-lg rounded-l-none">
-                <h3 class="text-lg md:text-2xl font-extrabold text-white px-4 py-2 uppercase text-center w-full">ESCANEA EL CÓDIGO</h3>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ProductQR qrUrl={subProducto.qr} />
       )}
 
-      <!-- PRODUCTOS RELACIONADOS: Tarjetas de productos relacionados -->
       {relacionados.length > 0 && (
-        <section class="max-w-6xl mx-auto py-12 pb-24">
-          <h2 class="text-2xl md:text-3xl font-extrabold text-center mb-8">Productos relacionados</h2>
-          <div class="w-full flex justify-center">
-            <div class="flex flex-wrap justify-center gap-4 w-full">
-              {relacionados.map(prod => (
-                <a href={`/productos/${prod.slug}`} class="group block rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl relative bg-transparent max-w-xs w-full sm:w-[220px] md:w-[240px]">
-                  <div class="relative w-full aspect-[9/4] sm:aspect-[9/3] min-h-[160px] sm:min-h-[220px] md:min-h-[220px] md:aspect-[6/3] overflow-hidden">
-                    <img src={prod.imagen} alt={prod.nombre} class="w-full h-full object-cover" loading="lazy" />
-                    <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-black/40 px-4 py-4 overflow-y-auto max-h-full">
-                      <h2 class="text-white text-lg md:text-xl font-bold text-center drop-shadow-lg mb-2">{prod.nombre}</h2>
-                      <p class="text-white text-center text-sm md:text-base break-words">{prod.descripcion}</p>
-                    </div>
-                    <div class="absolute top-0 left-0 w-full px-2 py-2 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300">
-                      <h2 class="text-white text-base md:text-lg font-bold text-center w-full drop-shadow-lg">{prod.nombre}</h2>
-                    </div>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ProductRelated productos={relacionados} />
       )}
 
-      <!-- FORMULARIO DE COTIZACIÓN ESPECÍFICO: Sección de contacto específica del subproducto -->
       {subProducto.formularioCotizacion ? (
-        <section class="w-full bg-[#eaeaea] py-8">
-          <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 rounded-lg items-center px-4 md:px-8 relative">
-            <div class="md:col-span-2 z-10">
-              <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Cotiza este producto</h2>
-              <p class="mb-4 text-gray-700 text-base md:text-lg">
-                ¿Te interesa {subProducto.nombre}? Llena el formulario de cotización específico para este producto y nuestro equipo te contactará con una propuesta personalizada.
-              </p>
-              <a href={subProducto.formularioCotizacion} target="_blank" rel="noopener" class="inline-block bg-[#6B8C8C] text-white px-8 py-3 rounded font-bold shadow hover:bg-[#355353] transition text-lg">
-                COTIZAR AHORA
-              </a>
-            </div>
-            <div class="flex items-center justify-center relative h-full">
-              <img src="/assets/Imagen formulario.jpg" alt="Imagen proyecto" class="rounded-lg shadow-2xl max-h-64 aspect-square object-cover relative z-20" style="top: -60px; box-shadow: 0 12px 40px 0 rgba(0,0,0,0.28);" />
-              <div class="absolute left-1/2 -translate-x-1/2 top-0 w-full h-full z-10 pointer-events-none"></div>
-            </div>
-          </div>
-        </section>
+        <ProductContact 
+          titulo="Cotiza este producto"
+          descripcion={`¿Te interesa ${subProducto.nombre}? Llena el formulario de cotización específico para este producto y nuestro equipo te contactará con una propuesta personalizada.`}
+          botonTexto="COTIZAR AHORA"
+          botonUrl={subProducto.formularioCotizacion}
+        />
       ) : (
-        <!-- FORMULARIO GENERAL: Sección de contacto general -->
-        <section class="w-full bg-[#eaeaea] py-8">
-          <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 rounded-lg items-center px-4 md:px-8 relative">
-            <div class="md:col-span-2 z-10">
-              <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Cuéntanos más sobre ti y tu proyecto</h2>
-              <p class="mb-4 text-gray-700 text-base md:text-lg">
-                Para ofrecerte un acompañamiento más personalizado y eficiente, necesitamos conocer algunos detalles sobre ti y tus objetivos. Llena el siguiente formulario y nuestro equipo se pondrá en contacto contigo con una propuesta ajustada a tus necesidades.
-              </p>
-              <a href="https://forms.gle/your-form-link" target="_blank" rel="noopener" class="inline-block bg-[#6B8C8C] text-white px-8 py-3 rounded font-bold shadow hover:bg-[#355353] transition text-lg">
-                LLENA AQUÍ
-              </a>
-            </div>
-            <div class="flex items-center justify-center relative h-full">
-              <img src="/assets/Imagen formulario.jpg" alt="Imagen proyecto" class="rounded-lg shadow-2xl max-h-64 aspect-square object-cover relative z-20" style="top: -60px; box-shadow: 0 12px 40px 0 rgba(0,0,0,0.28);" />
-              <div class="absolute left-1/2 -translate-x-1/2 top-0 w-full h-full z-10 pointer-events-none"></div>
-            </div>
-          </div>
-        </section>
+        <ProductContact 
+          titulo="Cuéntanos más sobre ti y tu proyecto"
+          descripcion="Para ofrecerte un acompañamiento más personalizado y eficiente, necesitamos conocer algunos detalles sobre ti y tus objetivos. Llena el siguiente formulario y nuestro equipo se pondrá en contacto contigo con una propuesta ajustada a tus necesidades."
+          botonTexto="LLENA AQUÍ"
+          botonUrl="https://forms.gle/your-form-link"
+        />
       )}
     </main>
   )}
 
-  <!-- Script para manejar la interacción entre la lista de partes y el modelo 3D -->
-  {(Array.isArray(subProducto?.marcadores3d) && subProducto.marcadores3d.length > 0 && subProducto.modelo3d) && (
-    <script define:vars={{ marcadores3d: subProducto.marcadores3d }}>
-      document.addEventListener('DOMContentLoaded', function() {
-        const partesLista = document.getElementById('partes-lista');
-        if (!partesLista) return;
-
-        // Esperar a que el componente React se renderice
-        setTimeout(() => {
-          const modelViewer = document.querySelector('model-viewer');
-          if (!modelViewer) return;
-
-          // Agregar event listeners a cada parte de la lista
-          const partesItems = partesLista.querySelectorAll('li[data-part-index]');
-          partesItems.forEach(item => {
-            item.addEventListener('click', function() {
-              const partIndex = parseInt(this.getAttribute('data-part-index'));
-              
-              // Remover clase activa de todos los items
-              partesItems.forEach(li => li.classList.remove('bg-[#355353]'));
-              
-              // Agregar clase activa al item clickeado
-              this.classList.add('bg-[#355353]');
-              
-              // Hacer zoom al hotspot correspondiente
-              if (modelViewer && modelViewer.cameraTarget && marcadores3d && marcadores3d[partIndex]) {
-                const hotspot = marcadores3d[partIndex];
-                const position = `${hotspot.x}m ${hotspot.y}m ${hotspot.z}m`;
-                
-                // Obtener la distancia actual de la cámara para calcular el zoom
-                const currentOrbit = modelViewer.cameraOrbit;
-                const currentDistance = parseFloat(currentOrbit.split(' ')[2]);
-                
-                // Animar la cámara hacia el hotspot con distancia intermedia
-                const intermediateDistance = currentDistance * 0.8;
-                modelViewer.cameraOrbit = `0deg 75deg ${intermediateDistance}m`;
-                modelViewer.cameraTarget = position;
-                
-                // Zoom más cercano al hotspot
-                setTimeout(() => {
-                  const closeDistance = currentDistance * 0.5;
-                  modelViewer.cameraOrbit = `0deg 75deg ${closeDistance}m`;
-                  modelViewer.cameraTarget = position;
-                }, 500);
-              }
-            });
-          });
-        }, 1000); // Esperar 1 segundo para que el componente React se renderice completamente
-      });
-    </script>
-  )}
 </Layout> 

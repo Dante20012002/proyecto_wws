@@ -4,78 +4,130 @@ export interface Noticia {
   slug: string;
   imagenes: string[];
   contenido: string;
+  enlacesOficiales: Array<{
+    titulo: string;
+    url: string;
+  }>;
 }
 
 const noticias: Noticia[] = [
   {
-    titulo: "PTAR NEMOCON",
-    resumen: "Planta de 32 l/s entregada en 2016, con sedimentador, compuertas, espesadores gravimétricos, filtro prensa y filtros de arena.",
-    slug: "ptar-nemocon",
-    imagenes: ["/assets/NEMOCON 1.jpg", "/assets/NEMOCON 2.jpg"],
-    contenido: `<p>Proyecto destacado en Nemocón. <a href='https://ejemplo.com/nemocon' target='_blank'>Ver más</a></p>`
+    titulo: "Inauguración de la PTAR de Buga, la más moderna del país",
+    resumen: "La ciudad de Buga, en el Valle del Cauca, cuenta ahora con una de las plantas de tratamiento de aguas residuales más modernas de Colombia. Con una inversión superior a los $100.000 millones, esta PTAR tiene la capacidad de tratar las aguas residuales de aproximadamente 150.000 habitantes, reduciendo en más de 3.200 toneladas anuales la carga contaminante que llegaba al río Cauca.",
+    slug: "ptar-buga-inauguracion",
+    imagenes: ["/assets/Buga 1.jpg", "/assets/Buga 2.jpg", "/assets/Buga 3.jpg"],
+    contenido: `<p>La ciudad de Buga, en el Valle del Cauca, cuenta ahora con una de las plantas de tratamiento de aguas residuales más modernas de Colombia. Con una inversión superior a los $100.000 millones, esta PTAR tiene la capacidad de tratar las aguas residuales de aproximadamente 150.000 habitantes, reduciendo en más de 3.200 toneladas anuales la carga contaminante que llegaba al río Cauca.</p>
+    
+    <p>Esta planta representa un hito importante en el saneamiento ambiental del Valle del Cauca, contribuyendo significativamente a la descontaminación del río Cauca y mejorando la calidad de vida de los habitantes de la región. La PTAR de Buga es la tercera inversión más grande en el Valle del Cauca y está entre las 50 más importantes a nivel nacional.</p>
+    
+    <p>La construcción de esta infraestructura generó 80 empleos directos y 200 indirectos, beneficiando a cerca de 172.130 habitantes de Buga. La planta está totalmente automatizada y tiene capacidad para tratar 715 litros por segundo, convirtiéndola en una de las de mayor capacidad a nivel nacional para ciudades intermedias.</p>
+    
+    <p>Este proyecto es parte del plan de la CVC para construir 11 PTAR en el Valle del Cauca, contribuyendo al objetivo de descontaminar el río Cauca y cumplir con los Objetivos de Desarrollo Sostenible. La gobernadora del Valle, Dilian Francisca Toro, destacó que esta iniciativa permite mostrar el compromiso ambiental de la región de cara a la COP16.</p>`,
+    enlacesOficiales: [
+      {
+        titulo: "Leer más en El País",
+        url: "https://www.elpais.com.co/valle/asi-es-la-planta-de-tratamiento-de-aguas-residuales-que-se-inauguro-en-buga-valle-0905.html"
+      }
+    ]
   },
   {
-    titulo: "PTAR SESQUILE",
-    resumen: "Para este proyecto suministramos el sedimentador de la PTAR en el año 2010, esta planta está diseñada para 15 l/s.",
-    slug: "ptar-sesquile",
-    imagenes: ["/assets/SESQUILE 1.JPG"],
-    contenido: `<p>Planta de Sesquilé, entrega y operación exitosa.</p>`
+    titulo: "PTAR de Yumbo entra en operación para descontaminar el río Cauca",
+    resumen: "En la vereda Platanares de Yumbo, se puso en marcha la primera fase de la PTAR que permitirá descontaminar las aguas residuales de cerca de 100.000 habitantes. Esta planta tratará aproximadamente el 85% de las aguas residuales del municipio antes de su vertimiento al río Cauca.",
+    slug: "ptar-yumbo-platanares",
+    imagenes: ["/assets/Yumbo 1.webp", "/assets/Yumbo 2.webp", "/assets/Yumbo 3.webp"],
+    contenido: `<p>En la vereda Platanares de Yumbo, se puso en marcha la primera fase de la PTAR que permitirá descontaminar las aguas residuales de cerca de 100.000 habitantes. Esta planta tratará aproximadamente el 85% de las aguas residuales del municipio antes de su vertimiento al río Cauca.</p>
+    
+    <p>Este proyecto representa un avance significativo en el saneamiento ambiental del Valle del Cauca, contribuyendo a la protección del río Cauca y mejorando la calidad de vida de los habitantes de Yumbo. La PTAR de Platanares es parte de una estrategia integral para el manejo de vertimientos en el municipio industrial más importante del Valle del Cauca.</p>
+    
+    <p>La implementación de esta planta de tratamiento es fundamental para Yumbo, considerando que es uno de los municipios con mayor actividad industrial en la región. La PTAR ayudará a reducir significativamente la contaminación que afectaba al río Cauca, mejorando la calidad del agua para las comunidades aguas abajo.</p>
+    
+    <p>Este proyecto se enmarca en las políticas ambientales del Valle del Cauca para el cumplimiento de los estándares de calidad del agua y la protección de los recursos hídricos. La planta utiliza tecnología moderna para el tratamiento de aguas residuales, garantizando que los vertimientos cumplan con las normativas ambientales vigentes.</p>`,
+    enlacesOficiales: [
+      {
+        titulo: "Leer más en Gobernación del Valle",
+        url: "https://www.valledelcauca.gov.co/publicaciones/76467/entra-en-operacion-la-ptar-de-platanares-que-permitira-descontaminar-los-vertimientos-de-los-yumbenos-al-rio-cauca/"
+      }
+    ]
   },
   {
-    titulo: "PTAR Y PTAP TOCANCIPÁ LOS PATOS",
-    resumen: "Planta de 70 l/s puesta en operación en 2018, con sedimentador y todos los trenes de floculación suministrados.",
-    slug: "ptar-tocancipa-los-patos",
-    imagenes: ["/assets/LOS PATOS 1.jpg", "/assets/LOS PATOS 2.jpg"],
-    contenido: `<p>Proyecto integral en Tocancipá.</p>`
+    titulo: "Florida, Valle del Cauca, inaugura nueva PTAR para más de 55.000 personas",
+    resumen: "La Gobernación del Valle y la CVC entregaron a la comunidad de Florida una nueva planta de tratamiento de aguas residuales, con una inversión de más de $20.000 millones. Esta PTAR beneficiará a más de 55.000 personas y contribuirá a la descontaminación de los ríos Fraile y Cauca.",
+    slug: "ptar-florida-valle",
+    imagenes: ["/assets/Florida 1.webp"],
+    contenido: `<p>La Gobernación del Valle y la CVC entregaron a la comunidad de Florida una nueva planta de tratamiento de aguas residuales, con una inversión de más de $20.000 millones. Esta PTAR beneficiará a más de 55.000 personas y contribuirá a la descontaminación de los ríos Fraile y Cauca.</p>
+    
+    <p>Este proyecto fortalece el compromiso del Valle del Cauca con el saneamiento ambiental y la protección de los recursos hídricos de la región. La PTAR de Florida es parte de la estrategia integral de la CVC para el saneamiento de los municipios del Valle del Cauca, especialmente aquellos ubicados en zonas rurales y de alta importancia ambiental.</p>
+    
+    <p>La implementación de esta planta de tratamiento es especialmente importante para Florida, municipio que se caracteriza por su vocación agrícola y ganadera. La PTAR ayudará a proteger tanto el río Fraile como el río Cauca, mejorando la calidad del agua para las actividades productivas y el consumo humano.</p>
+    
+    <p>Este proyecto demuestra el compromiso de las autoridades ambientales y gubernamentales del Valle del Cauca con el desarrollo sostenible y la protección de los recursos naturales. La inversión de más de $20.000 millones refleja la importancia estratégica de este proyecto para el saneamiento ambiental de la región.</p>`,
+    enlacesOficiales: [
+      {
+        titulo: "Leer más en Gobernación del Valle",
+        url: "https://www.valledelcauca.gov.co/publicaciones/82478/nueva-planta-de-aguas-residuales-beneficiara-a-mas-de-55000-personas-del-municipio-de-florida/"
+      }
+    ]
   },
   {
-    titulo: "PTAR FUSAGASUGÁ",
-    resumen: "Planta de 90 l/s operativa desde 2020, con sedimentador, distribuidores de flujo, compuertas y tamiz rotativo.",
-    slug: "ptar-fusagasuga",
-    imagenes: ["/assets/fusagasuga 1.jpg", "/assets/fusagasuga 2.jpg"],
-    contenido: `<p>Fusagasugá: innovación en tratamiento de aguas.</p>`
+    titulo: "Aeropuerto El Dorado implementa PTAR para contribuir al saneamiento del río Bogotá",
+    resumen: "El Aeropuerto Internacional El Dorado de Bogotá cuenta con una Planta de Tratamiento de Aguas Residuales que procesa el 100% de las aguas residuales generadas en sus instalaciones. Esta iniciativa permite devolver 1.1 millones de litros de agua tratada anualmente al río Bogotá, contribuyendo significativamente a su saneamiento.",
+    slug: "ptar-aeropuerto-el-dorado",
+    imagenes: ["/assets/AREOPUERTO EL DORADO 1.jpg"],
+    contenido: `<p>El Aeropuerto Internacional El Dorado de Bogotá cuenta con una Planta de Tratamiento de Aguas Residuales que procesa el 100% de las aguas residuales generadas en sus instalaciones. Esta iniciativa permite devolver 1.1 millones de litros de agua tratada anualmente al río Bogotá, contribuyendo significativamente a su saneamiento.</p>
+    
+    <p>Este proyecto demuestra el compromiso del sector aeroportuario con la sostenibilidad ambiental y la protección de los recursos hídricos de la capital colombiana. La PTAR del Aeropuerto El Dorado es un ejemplo de cómo las grandes infraestructuras pueden implementar soluciones ambientales innovadoras para minimizar su impacto en los ecosistemas.</p>
+    
+    <p>La implementación de esta planta de tratamiento es especialmente relevante considerando que el Aeropuerto El Dorado es el más importante de Colombia y uno de los más transitados de América Latina. El procesamiento del 100% de las aguas residuales generadas en sus instalaciones incluye el tratamiento de aguas provenientes de restaurantes, baños, limpieza de aeronaves y otras actividades operativas.</p>
+    
+    <p>Esta iniciativa se enmarca en las prácticas de sostenibilidad que ha implementado el Aeropuerto El Dorado, incluyendo el uso de energías renovables, gestión eficiente de residuos y reducción de la huella de carbono. El proyecto contribuye al cumplimiento de los Objetivos de Desarrollo Sostenible y demuestra el liderazgo del sector aeroportuario en materia ambiental.</p>`,
+    enlacesOficiales: [
+      {
+        titulo: "Leer más en Portafolio",
+        url: "https://www.portafolio.co/sostenibilidad/practicas-de-sostenibilidad-que-ha-implementado-el-aeropuerto-el-dorado-599789"
+      },
+      {
+        titulo: "Leer más en Canal Capital",
+        url: "https://www.canalcapital.gov.co/medio-ambiente/racionamiento-agua-aeropuerto-ptar"
+      }
+    ]
   },
   {
-    titulo: "PTAR VERGANZO TOCANCIPÁ",
-    resumen: "PTAR optimizada para 60 l/s en 2024, con equipo de cribado automático y floculación primaria suministrada.",
-    slug: "ptar-verganzo-tocancipa",
-    imagenes: ["/assets/Verganzo 1.jpg", "/assets/Verganzo 2.jpg"],
-    contenido: `<p>Modernización de la planta Verganzo.</p>`
+    titulo: "Avanza la estructuración de la PTAR en Villavicencio para descontaminar los ríos Ocoa y Guatiquía",
+    resumen: "En Villavicencio, Meta, se está estructurando un proyecto para la construcción de una Planta de Tratamiento de Aguas Residuales que busca reducir significativamente la contaminación de los ríos Ocoa y Guatiquía. Este proyecto es parte del Plan de Saneamiento y Manejo de Vertimientos (PSMV) de la ciudad.",
+    slug: "ptar-villavicencio-estructuracion",
+    imagenes: ["/assets/IMAGEN 1.jpg", "/assets/IMAGEN 2.jpg", "/assets/IMAGEN 3.jpg"],
+    contenido: `<p>En Villavicencio, Meta, se está estructurando un proyecto para la construcción de una Planta de Tratamiento de Aguas Residuales que busca reducir significativamente la contaminación de los ríos Ocoa y Guatiquía. Este proyecto es parte del Plan de Saneamiento y Manejo de Vertimientos (PSMV) de la ciudad.</p>
+    
+    <p>La implementación de esta PTAR será fundamental para el saneamiento ambiental de Villavicencio y la protección de los recursos hídricos de la región del Meta. Los ríos Ocoa y Guatiquía son afluentes importantes del río Meta y su contaminación afecta no solo a Villavicencio sino también a las comunidades aguas abajo y a la biodiversidad de la región.</p>
+    
+    <p>Este proyecto representa un desafío importante para la capital del Meta, considerando que Villavicencio ha experimentado un crecimiento poblacional significativo en los últimos años. La PTAR será diseñada para atender las necesidades actuales y futuras de la ciudad, contribuyendo al desarrollo sostenible de la región.</p>
+    
+    <p>La estructuración del proyecto incluye estudios técnicos, ambientales y financieros para garantizar su viabilidad y sostenibilidad. La implementación de esta PTAR será un paso fundamental para cumplir con las normativas ambientales y mejorar la calidad de vida de los habitantes de Villavicencio y la región del Meta.</p>`,
+    enlacesOficiales: [
+      {
+        titulo: "Leer más en Periódico del Meta",
+        url: "https://periodicodelmeta.com/un-sueno-lejano-para-rios-contaminados/"
+      }
+    ]
   },
   {
-    titulo: "PTAR ARMENIA",
-    resumen: "Planta de 81 l/s entregada en 2015, con espesador, distribuidor de flujo, barredor de lodos y desarenador.",
-    slug: "ptar-armenia",
-    imagenes: ["/assets/ARMENIA 1.jpg", "/assets/ARMENIA 2.JPG"],
-    contenido: `<p>Proyecto Armenia, referencia nacional.</p>`
-  },
-  {
-    titulo: "PTAR CHITRÉ PANAMÁ",
-    resumen: "Planta de 1100 m³/h con barredores de lodos suministrados en 2015 y repuestos vendidos en 2025.",
-    slug: "ptar-chitre-panama",
-    imagenes: ["/assets/CHITRE 1.jpg", "/assets/CHITRE 2.jpg"],
-    contenido: `<p>Exportación de tecnología a Panamá.</p>`
-  },
-  {
-    titulo: "PTAR SANTANDER",
-    resumen: "PTAR diseñada para 672 l/s en 2015, con puentes desarenadores, compuertas manuales y sistema de aireación suministrados.",
-    slug: "ptar-santander",
-    imagenes: ["/assets/Sedimentador.jpg"],
-    contenido: `<p>Innovación en aireación y sedimentación.</p>`
-  },
-  {
-    titulo: "PTAR TENJO",
-    resumen: "Proyecto de 384 l/s con entregas desde 2015: 6 sedimentadores, 4 espesadores gravimétricos y 1 tea quemadora de gas.",
-    slug: "ptar-tenjo",
-    imagenes: ["/assets/Tenjo 1.png"],
-    contenido: `<p>Tenjo: eficiencia y capacidad.</p>`
-  },
-  {
-    titulo: "PTAR GRAMALOTE",
-    resumen: "Planta de 18 l/s entregada en 2017 con sedimentadores, distribuidores, tea quemadora, compuertas y rejillas.",
-    slug: "ptar-gramalote",
-    imagenes: ["/assets/Gramalote 1.jpg", "/assets/Gramalote 2.jpg"],
-    contenido: `<p>Gramalote: soluciones integrales.</p>`
+    titulo: "Buenaventura inaugura PTAR para la Ciudadela San Antonio",
+    resumen: "La Sociedad de Acueducto y Alcantarillado de Buenaventura (SAAB) recibió una nueva Planta de Tratamiento de Aguas Residuales que atenderá el sistema de alcantarillado de más de 3.000 viviendas en la Ciudadela San Antonio. Actualmente, la planta opera al 45% de su capacidad, con proyecciones de expansión en el futuro.",
+    slug: "ptar-buenaventura-ciudadela-san-antonio",
+    imagenes: ["/assets/BUENAVENTURA 1.jpg", "/assets/BUENAVENTURA 2.jpg"],
+    contenido: `<p>La Sociedad de Acueducto y Alcantarillado de Buenaventura (SAAB) recibió una nueva Planta de Tratamiento de Aguas Residuales que atenderá el sistema de alcantarillado de más de 3.000 viviendas en la Ciudadela San Antonio. Actualmente, la planta opera al 45% de su capacidad, con proyecciones de expansión en el futuro.</p>
+    
+    <p>Este proyecto representa un avance importante en el saneamiento ambiental del puerto más importante de Colombia, contribuyendo a la protección de los recursos marinos y costeros de la región del Pacífico. La PTAR de la Ciudadela San Antonio es parte de una estrategia integral para mejorar el saneamiento básico en Buenaventura, ciudad que enfrenta desafíos significativos en materia de servicios públicos.</p>
+    
+    <p>La implementación de esta planta de tratamiento es especialmente relevante para Buenaventura, considerando que es el puerto más importante de Colombia y una ciudad con alta biodiversidad marina. La PTAR ayudará a proteger la bahía de Buenaventura y los ecosistemas marinos de la región del Pacífico colombiano.</p>
+    
+    <p>El hecho de que la planta opere actualmente al 45% de su capacidad permite una expansión futura para atender más viviendas y contribuir al desarrollo sostenible de Buenaventura. Este proyecto demuestra el compromiso de las autoridades locales y la SAAB con el mejoramiento de la calidad de vida de los habitantes del puerto y la protección del medio ambiente.</p>`,
+    enlacesOficiales: [
+      {
+        titulo: "Leer más en Alcaldía de Buenaventura",
+        url: "https://www.buenaventura.gov.co/?articulos=buenaventura-cuenta-una-nueva-planta-de-tratamiento-de-aguas-residuales"
+      }
+    ]
   }
 ];
 

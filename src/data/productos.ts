@@ -20,6 +20,7 @@ export interface SubProducto {
   marcadores3d?: Marcador3D[];
   qr?: string;
   formularioCotizacion?: string;
+  pdf?: string;
 }
 
 export interface Producto {
@@ -52,8 +53,24 @@ export const productos: Producto[] = [
     modelo3d: '/models/1.1 W-CPM.glb',
     marcadores3d: [
       {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
+        x: 0.34550000000000003, y: -0.7699, z: -0.002401534275545694,
+        label: [{ nombre: 'Obturador' }],
+      },
+      {
+        x: -0.17325557982475953, y: -0.6546891548696081, z: -0.11680000004768279,
+        label: [{ nombre: 'Esquema de Estanqueidad' }],
+      },
+      {
+        x: 0.9004999998092649, y: 0.3590577269455435, z: -0.07671179391551707,
+        label: [{ nombre: 'Marco Estructural' }],
+      },
+      {
+        x: 0.35325914842274214, y: -0.07304145663446904, z: -0.04698626671524325,
+        label: [{ nombre: 'Vástago' }],
+      },
+      {
+        x: 0.34656044379960954, y: 0.5608762399636784, z: 0.04162998400075424,
+        label: [{ nombre: 'Esquema de Izaje' }],
       },
     ],
   },

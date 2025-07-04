@@ -1,0 +1,21 @@
+---
+export interface Props {
+  qrUrl: string;
+}
+
+const { qrUrl } = Astro.props;
+---
+
+<!-- QR: Sección con código QR para el producto, responsiva y compacta -->
+<section class="w-full bg-[#eaeaea] py-8">
+  <div class="max-w-md mx-auto flex flex-row items-center gap-0 px-4">
+    <div class="bg-white rounded-l-lg rounded-r-none flex items-center justify-center p-4 shadow-md" style="width: 100px; min-width: 100px; height: 90px;">
+      <img src={qrUrl} alt="Código QR" class="w-16 h-16 object-contain" />
+    </div>
+    <div class="flex-1 flex items-center h-[90px]">
+      <div class="w-full h-full flex items-center justify-center bg-[#6B8C8C] rounded-r-lg rounded-l-none">
+        <h3 class="text-lg md:text-2xl font-extrabold text-white px-4 py-2 uppercase text-center w-full">ESCANEA EL CÓDIGO</h3>
+      </div>
+    </div>
+  </div>
+</section> 

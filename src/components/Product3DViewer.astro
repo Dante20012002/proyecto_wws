@@ -1,0 +1,108 @@
+---
+import ModelViewer from './ModelViewer.jsx';
+import type { Marcador3D } from '../data/productos';
+
+export interface Props {
+  modelo3d: string;
+  marcadores3d: Marcador3D[];
+}
+
+const { modelo3d, marcadores3d } = Astro.props;
+---
+
+<!-- PARTES Y MODELO 3D: Lista de partes (marcadores3d) y visor interactivo del modelo 3D
+     - La lista de partes se numera y se alinea con los hotspots del modelo 3D
+     - El modelo 3D es responsivo y está envuelto en un fondo blanco con sombra
+     - Al hacer clic en una parte de la lista, se hace zoom al hotspot correspondiente -->
+<section class="w-full bg-[#eaeaea] py-12">
+  <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start justify-center gap-8 lg:gap-12 px-4 md:px-8">
+    <!-- Lista de partes numeradas -->
+    <div class="w-full md:max-w-xs flex flex-col mb-6 md:mb-0">
+      <h3 class="text-lg font-bold text-white bg-[#6B8C8C] rounded-t-md px-4 py-2 mb-0">PARTES</h3>
+      <ul class="bg-[#6B8C8C] rounded-b-md p-0 divide-y divide-[#eaeaea] flex-1" id="partes-lista">
+        {marcadores3d.map((marcador: Marcador3D, idx: number) => (
+          <li 
+            class="flex items-center gap-2 py-2 px-4 text-white font-semibold text-sm cursor-pointer hover:bg-[#355353] transition hover:scale-105 transform duration-200" 
+            data-hotspot={idx}
+            data-part-index={idx}
+          >
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#20405C] text-white font-bold mr-2">{idx + 1}</span>
+            {marcador.label && marcador.label[0]?.nombre}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <!-- Visor del modelo 3D con hotspots numerados -->
+    <div class="flex-1 flex items-center justify-center w-full">
+      <div class="w-full bg-white rounded-xl shadow-lg flex items-center justify-center p-4 md:p-8" style="max-width: 100%; min-height: 500px;">
+        <!-- ModelViewer: componente React que renderiza el modelo 3D y los hotspots
+             - Props: src (ruta del modelo), marcadores3d (array de partes), showNumbers (muestra números en los hotspots)
+             - style: controla el tamaño responsivo del visor -->
+        <ModelViewer 
+          src={modelo3d} 
+          marcadores3d={marcadores3d} 
+          client:only="react" 
+          showNumbers
+          style={{ width: '100%', maxWidth: 800, minHeight: 500, maxHeight: 700, background: '#fff', borderRadius: '1rem' }} 
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Script para manejar la interacción entre la lista de partes y el modelo 3D -->
+<script define:vars={{ marcadores3d }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    const partesLista = document.getElementById('partes-lista');
+    if (!partesLista) return;
+
+    // Esperar a que el componente React se renderice
+    setTimeout(() => {
+      const modelViewer = document.querySelector('model-viewer');
+      if (!modelViewer) return;
+
+      // Agregar event listeners a cada parte de la lista
+      const partesItems = partesLista.querySelectorAll('li[data-part-index]');
+      partesItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const partIndex = parseInt(this.getAttribute('data-part-index'));
+          
+          // Remover clase activa de todos los items
+          partesItems.forEach(li => li.classList.remove('bg-[#355353]'));
+          
+          // Agregar clase activa al item clickeado
+          this.classList.add('bg-[#355353]');
+          
+          // Hacer zoom al hotspot correspondiente
+          if (modelViewer && modelViewer.cameraTarget && marcadores3d && marcadores3d[partIndex]) {
+            const hotspot = marcadores3d[partIndex];
+            const position = `${hotspot.x}m ${hotspot.y}m ${hotspot.z}m`;
+            
+            // Obtener la distancia actual de la cámara para calcular el zoom
+            const currentOrbit = modelViewer.cameraOrbit;
+            const currentDistance = parseFloat(currentOrbit.split(' ')[2]);
+            
+            // Animar la cámara hacia el hotspot con distancia intermedia
+            const intermediateDistance = currentDistance * 0.6;
+            modelViewer.cameraOrbit = `0deg 75deg ${intermediateDistance}m`;
+            modelViewer.cameraTarget = position;
+            
+            // Zoom más cercano al hotspot (zoom más pronunciado)
+            setTimeout(() => {
+              const closeDistance = currentDistance * 0.25;
+              modelViewer.cameraOrbit = `0deg 75deg ${closeDistance}m`;
+              modelViewer.cameraTarget = position;
+            }, 400);
+            
+            // Zoom final muy cercano para mejor detalle
+            setTimeout(() => {
+              const finalDistance = currentDistance * 0.15;
+              modelViewer.cameraOrbit = `0deg 75deg ${finalDistance}m`;
+              modelViewer.cameraTarget = position;
+            }, 800);
+          }
+        });
+      });
+    }, 1000); // Esperar 1 segundo para que el componente React se renderice completamente
+  });
+</script> 

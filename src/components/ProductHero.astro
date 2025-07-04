@@ -1,0 +1,29 @@
+---
+export interface Props {
+  titulo: string;
+  imagen: string;
+  breadcrumb?: {
+    texto: string;
+    url: string;
+  };
+}
+
+const { titulo, imagen, breadcrumb } = Astro.props;
+---
+
+<!-- HERO: Imagen de fondo y título principal de la página de producto -->
+<section class="relative w-full h-[220px] md:h-[320px] flex items-end justify-start bg-cover bg-center z-0" style={`background-image: url('${imagen}');`}>
+  <div class="absolute inset-0 bg-black/50"></div>
+  <div class="relative z-10 p-6 md:p-12">
+    {breadcrumb && (
+      <div class="mb-2">
+        <a href={breadcrumb.url} class="text-white/80 hover:text-white text-sm md:text-base underline">
+          ← {breadcrumb.texto}
+        </a>
+      </div>
+    )}
+    <h1 class="text-3xl md:text-5xl font-extrabold text-white drop-shadow-xl leading-tight md:leading-tight uppercase" style="text-shadow: 2px 2px 8px #000;">
+      {titulo}
+    </h1>
+  </div>
+</section> 
