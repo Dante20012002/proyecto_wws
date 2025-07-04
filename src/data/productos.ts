@@ -114,7 +114,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/4.MONTAJE SIN OBRA CIVIL.jpg',
     slug: 'compuerta-radial',
     categoria: 'CONTROL DE CAUDAL',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/1.4 W-CPR.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -203,7 +203,7 @@ export const productos: Producto[] = [
     slug: 'filtros-tornillo',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -254,7 +254,7 @@ export const productos: Producto[] = [
     slug: 'rejillas-tambor',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -297,7 +297,7 @@ export const productos: Producto[] = [
     slug: 'compactadores',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -332,7 +332,7 @@ export const productos: Producto[] = [
     slug: 'clasificadores-arena',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -367,7 +367,7 @@ export const productos: Producto[] = [
     slug: 'lavadores-arena',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -394,7 +394,7 @@ export const productos: Producto[] = [
     slug: 'desarenadores',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -502,7 +502,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/1. 5239d63c-6ba2-4d19-9a8b-daf0f67fb400.jpg',
     slug: 'agitador-turbina-axial',
     categoria: 'AGITACIÓN Y FLOCULACIÓN',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/3.1 WWS E-AGI.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -536,7 +536,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/1. 6f978b15-5597-4b4c-9b48-e3e435d9ca25_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
     slug: 'distribuidor-flujo',
     categoria: 'TRATAMIENTO SECUNDARIO',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -554,7 +554,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/2. 904302bd-f670-4752-a754-baf963c101fd.jpg',
     slug: 'floculadores',
     categoria: 'AGITACIÓN Y FLOCULACIÓN',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/3.2 WWS E-FLV.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -577,6 +577,7 @@ export const productos: Producto[] = [
         descripcionLarga: 'El E-FLH es un floculador de paletas con eje horizontal, ideal para la mezcla suave y eficiente de partículas en suspensión, facilitando la formación de flóculos grandes y densos.',
         imagen: '/assets/Productos/2. 904302bd-f670-4752-a754-baf963c101fd.jpg',
         slug: 'e-flh-floculador-eje-horizontal',
+        modelo3d: '/models/3.2 WWS E-FLH.glb',
       }
     ],
   },
@@ -590,7 +591,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/1. c533c62e-d32e-4cf6-9242-38eda9fb1932_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
     slug: 'sedimentador-diametral',
     categoria: 'SEDIMENTACIÓN',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -606,7 +607,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/2. snapedit_1741888425139.jpg',
     slug: 'sedimentador-radial',
     categoria: 'SEDIMENTACIÓN',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -622,7 +623,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/3. BARREDOR DE  LODOS  TRACCION CENTRAL Ø 35 M.jpg',
     slug: 'sedimentador-central',
     categoria: 'SEDIMENTACIÓN',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -638,7 +639,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/4. 173220334_2917813575132890_2857803827292992920_n.jpg',
     slug: 'puente-longitudinal-sedimentador',
     categoria: 'SEDIMENTACIÓN',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -672,7 +673,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/1. 6f978b15-5597-4b4c-9b48-e3e435d9ca25_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
     slug: 'distribuidor-flujo',
     categoria: 'TRATAMIENTO SECUNDARIO',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -691,7 +692,7 @@ export const productos: Producto[] = [
     slug: 'filtro-discos',
     categoria: 'TRATAMIENTO TERCIARIO',
     marca: 'XS Solutions',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -746,7 +747,7 @@ export const productos: Producto[] = [
     slug: 'espesador-deshidratador-modular',
     categoria: 'TRATAMIENTO DE LODOS Y TRANSPORTADORES',
     marca: 'XS Solutions',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -763,7 +764,7 @@ export const productos: Producto[] = [
     slug: 'transportador-tornillo',
     categoria: 'TRATAMIENTO DE LODOS Y TRANSPORTADORES',
     marca: 'XS Solutions',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -780,7 +781,7 @@ export const productos: Producto[] = [
     slug: 'transportador-banda',
     categoria: 'TRATAMIENTO DE LODOS Y TRANSPORTADORES',
     marca: 'XS Solutions',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -798,7 +799,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/1. imagen 1_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
     slug: 'cubiertas-soportes-metalicos',
     categoria: 'ADECUACIONES ESTRUCTURALES E HIDRÁULICAS',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -814,7 +815,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/2. imagen 8_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
     slug: 'escaleras-pasarelas',
     categoria: 'ADECUACIONES ESTRUCTURALES E HIDRÁULICAS',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -830,7 +831,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/3. Imagen13_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
     slug: 'porticos',
     categoria: 'ADECUACIONES ESTRUCTURALES E HIDRÁULICAS',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -846,7 +847,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/4. image_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
     slug: 'sistemas-bombeo-redes',
     categoria: 'ADECUACIONES ESTRUCTURALES E HIDRÁULICAS',
-    modelo3d: '/models/ESPESADOR DE LODOS.glb',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,

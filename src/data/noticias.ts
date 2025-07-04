@@ -95,7 +95,7 @@ const noticias: Noticia[] = [
     titulo: "Avanza la estructuración de la PTAR en Villavicencio para descontaminar los ríos Ocoa y Guatiquía",
     resumen: "En Villavicencio, Meta, se está estructurando un proyecto para la construcción de una Planta de Tratamiento de Aguas Residuales que busca reducir significativamente la contaminación de los ríos Ocoa y Guatiquía. Este proyecto es parte del Plan de Saneamiento y Manejo de Vertimientos (PSMV) de la ciudad.",
     slug: "ptar-villavicencio-estructuracion",
-    imagenes: ["/assets/IMAGEN 1.jpg", "/assets/IMAGEN 2.jpg", "/assets/IMAGEN 3.jpg"],
+    imagenes: ["/assets/esmerlada 3.jpg", "/assets/esmerlada 2.jpg", "/assets/esmerlada 1.jpg"],
     contenido: `<p>En Villavicencio, Meta, se está estructurando un proyecto para la construcción de una Planta de Tratamiento de Aguas Residuales que busca reducir significativamente la contaminación de los ríos Ocoa y Guatiquía. Este proyecto es parte del Plan de Saneamiento y Manejo de Vertimientos (PSMV) de la ciudad.</p>
     
     <p>La implementación de esta PTAR será fundamental para el saneamiento ambiental de Villavicencio y la protección de los recursos hídricos de la región del Meta. Los ríos Ocoa y Guatiquía son afluentes importantes del río Meta y su contaminación afecta no solo a Villavicencio sino también a las comunidades aguas abajo y a la biodiversidad de la región.</p>
