@@ -210,6 +210,40 @@ export const productos: Producto[] = [
         label: [{ nombre: 'Bafle de Aquietamiento' }],
       },
     ],
+    subProductos: [
+      {
+        id: 's-filtro-tornillo',
+        nombre: 'S FILTRO TORNILLO / SC FILTRO TORNILLO COMPACTADOR',
+        descripcion: 'Filtro tornillo estándar y compactador para separación y transporte de sólidos.',
+        descripcionLarga: 'El S Filtro Tornillo y SC Filtro Tornillo Compactador son equipos diseñados para la separación y transporte eficiente de sólidos en plantas de tratamiento. El modelo compactador incluye una zona adicional para reducir el volumen de residuos.',
+        imagen: '/assets/Productos/2. 143246876_774032859861155_2466509016048709070_n.jpg',
+        slug: 's-filtro-tornillo-compactador',
+      },
+      {
+        id: 's-mini',
+        nombre: 'S.MINI MINI FILTRO TORNILLO',
+        descripcion: 'Filtro tornillo compacto para aplicaciones de menor escala.',
+        descripcionLarga: 'El S.MINI es un filtro tornillo de tamaño reducido, ideal para instalaciones pequeñas o aplicaciones piloto que requieren separación eficiente de sólidos en poco espacio.',
+        imagen: '/assets/Productos/2. 143246876_774032859861155_2466509016048709070_n.jpg',
+        slug: 's-mini-mini-filtro-tornillo',
+      },
+      {
+        id: 'ts-filtro-tornillo',
+        nombre: 'TS FILTRO TORNILLO CON TANQUE / TSC FILTRO TORNILLO COMPACTADOR CON TANQUE',
+        descripcion: 'Filtro tornillo con tanque integrado para mayor capacidad y eficiencia.',
+        descripcionLarga: 'El TS Filtro Tornillo y TSC Filtro Tornillo Compactador con Tanque integran un tanque de almacenamiento para aumentar la capacidad de procesamiento y mejorar la eficiencia en la separación y compactación de sólidos.',
+        imagen: '/assets/Productos/2. 143246876_774032859861155_2466509016048709070_n.jpg',
+        slug: 'ts-filtro-tornillo-tanque',
+      },
+      {
+        id: 'vs-filtro-tornillo',
+        nombre: 'VS FILTRO TORNILLO VERTICAL / VSC FILTRO TORNILLO COMPACTADOR VERTICAL',
+        descripcion: 'Filtro tornillo vertical para optimización de espacio y compactación.',
+        descripcionLarga: 'El VS Filtro Tornillo Vertical y VSC Compactador Vertical están diseñados para instalaciones donde el espacio es limitado, permitiendo una separación y compactación eficiente de sólidos en orientación vertical.',
+        imagen: '/assets/Productos/2. 143246876_774032859861155_2466509016048709070_n.jpg',
+        slug: 'vs-filtro-tornillo-vertical',
+      }
+    ],
   },
   {
     id: 8,
@@ -226,6 +260,32 @@ export const productos: Producto[] = [
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
         label: [{ nombre: 'Bafle de Aquietamiento' }],
       },
+    ],
+    subProductos: [
+      {
+        id: 'x-drum',
+        nombre: 'X-DRUM REJILLA DE ALIMENACIÓN EXTERNA A TAMBOR ROTATIVO',
+        descripcion: 'Rejilla de alimentación externa para separación eficiente de sólidos.',
+        descripcionLarga: 'La X-DRUM es una rejilla de tambor rotativo con alimentación externa, diseñada para separar sólidos de manera eficiente en procesos de tratamiento de aguas. Su diseño permite un cribado continuo y automático, ideal para aplicaciones industriales y municipales.',
+        imagen: '/assets/Productos/3. 93888766_595226131075163_3212793549254819840_n.jpg',
+        slug: 'x-drum-rejilla-alimentacion-externa',
+      },
+      {
+        id: 'x-int-drum',
+        nombre: 'X-INT.DRUM REJILLA DE ALIMENACIÓN INTERNA A TAMBOR ROTATIVO',
+        descripcion: 'Rejilla de alimentación interna para cribado fino y continuo.',
+        descripcionLarga: 'La X-INT.DRUM es una rejilla de tambor rotativo con alimentación interna, optimizada para el cribado fino y continuo de sólidos en el tratamiento de aguas residuales. Su diseño compacto facilita la integración en sistemas existentes.',
+        imagen: '/assets/Productos/3. 93888766_595226131075163_3212793549254819840_n.jpg',
+        slug: 'x-int-drum-rejilla-alimentacion-interna',
+      },
+      {
+        id: 'x-srd',
+        nombre: 'X-SRD / X-SRD.D REJILLA DE TAMBOR ROTATIVO INMERSO EN MEDIO A FILTRAR',
+        descripcion: 'Rejilla de tambor rotativo sumergida para filtración directa.',
+        descripcionLarga: 'La X-SRD y X-SRD.D son rejillas de tambor rotativo diseñadas para operar sumergidas en el medio a filtrar, permitiendo una separación directa y eficiente de sólidos en aplicaciones de alta demanda.',
+        imagen: '/assets/Productos/3. 93888766_595226131075163_3212793549254819840_n.jpg',
+        slug: 'x-srd-rejilla-tambor-inmerso',
+      }
     ],
   },
   {
@@ -244,6 +304,24 @@ export const productos: Producto[] = [
         label: [{ nombre: 'Bafle de Aquietamiento' }],
       },
     ],
+    subProductos: [
+      {
+        id: 'x-s-comp',
+        nombre: 'X-S.COMP TORNILLO SIN FIN COMPACTADOR',
+        descripcion: 'Tornillo sin fin para compactación eficiente de sólidos cribados.',
+        descripcionLarga: 'El X-S.COMP es un tornillo sin fin diseñado para compactar sólidos cribados, reduciendo su volumen y facilitando su disposición final en plantas de tratamiento de aguas.',
+        imagen: '/assets/Productos/4. 84036293_549328035664973_4077440993597587456_n_cleanup.jpg.png',
+        slug: 'x-s-comp-tornillo-compactador',
+      },
+      {
+        id: 'x-comp',
+        nombre: 'X-COMP TORNILLO SIN FIN COMPACTADOR-LAVADOR',
+        descripcion: 'Tornillo sin fin que compacta y lava sólidos cribados.',
+        descripcionLarga: 'El X-COMP es un tornillo sin fin que, además de compactar, incorpora un sistema de lavado para mejorar la limpieza de los sólidos cribados antes de su disposición.',
+        imagen: '/assets/Productos/4. 84036293_549328035664973_4077440993597587456_n_cleanup.jpg.png',
+        slug: 'x-comp-tornillo-compactador-lavador',
+      }
+    ],
   },
   {
     id: 10,
@@ -260,6 +338,24 @@ export const productos: Producto[] = [
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
         label: [{ nombre: 'Bafle de Aquietamiento' }],
       },
+    ],
+    subProductos: [
+      {
+        id: 'x-gc',
+        nombre: 'X-GC CLASIFICADOR DE ARENAS',
+        descripcion: 'Clasificador de arenas para separación eficiente de partículas minerales.',
+        descripcionLarga: 'El X-GC es un clasificador de arenas diseñado para separar partículas minerales del agua, protegiendo equipos aguas abajo y mejorando la eficiencia del tratamiento.',
+        imagen: '/assets/Productos/5.EQUIPOS DE PRE TRTATAMIENTO X2SOLUTION.jpg',
+        slug: 'x-gc-clasificador-arenas',
+      },
+      {
+        id: 'x-gc-cone',
+        nombre: 'X-GC CONE CLASIFICADOR DE ARENAS CÓNICO',
+        descripcion: 'Clasificador de arenas con diseño cónico para mayor eficiencia.',
+        descripcionLarga: 'El X-GC CONE es un clasificador de arenas con geometría cónica que mejora la eficiencia de separación y facilita la extracción de partículas minerales.',
+        imagen: '/assets/Productos/5.EQUIPOS DE PRE TRTATAMIENTO X2SOLUTION.jpg',
+        slug: 'x-gc-cone-clasificador-arenas-conico',
+      }
     ],
   },
   {
@@ -278,6 +374,16 @@ export const productos: Producto[] = [
         label: [{ nombre: 'Bafle de Aquietamiento' }],
       },
     ],
+    subProductos: [
+      {
+        id: 'x-g-wash',
+        nombre: 'X-G.WASH LAVADOR DE ARENAS',
+        descripcion: 'Lavador de arenas para remover materia orgánica adherida.',
+        descripcionLarga: 'El X-G.WASH es un lavador de arenas diseñado para remover la materia orgánica adherida a partículas minerales, mejorando la calidad del material separado para su reutilización o disposición.',
+        imagen: '/assets/Productos/6. Imagen2_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
+        slug: 'x-g-wash-lavador-arenas',
+      }
+    ],
   },
   {
     id: 12,
@@ -295,89 +401,51 @@ export const productos: Producto[] = [
         label: [{ nombre: 'Bafle de Aquietamiento' }],
       },
     ],
-  },
-  {
-    id: 13,
-    nombre: 'X TRATAMIENTOS COMBINADOS',
-    descripcion: 'Módulos compactos que integran cribado, desarenado y desengrasado en una sola estructura.',
-    descripcionLarga: 'Los tratamientos combinados XS Solutions son módulos compactos e innovadores que integran múltiples procesos de pretratamiento en una sola estructura. Su diseño integrado combina cribado, desarenado y desengrasado, eliminando la necesidad de equipos separados y reduciendo significativamente el espacio requerido. Esta integración optimiza el flujo del proceso y reduce los costos de instalación y mantenimiento. Fabricados en acero inoxidable de alta calidad, incluyen sistemas de control automático que coordinan todos los procesos de manera eficiente. Ideales para plantas con limitaciones de espacio que requieren un pretratamiento completo y eficiente en una solución compacta.',
-    imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
-    slug: 'tratamientos-combinados',
-    categoria: 'DRAGADO Y PRETRATAMIENTO',
-    marca: 'XS Solutions',
     subProductos: [
       {
-        id: 'set-1',
-        nombre: 'SET-1 TOLVA LONGITUDINAL PARA LA SEPARACIÓN DE ARENAS',
-        descripcion: 'Tolva longitudinal diseñada para la separación eficiente de arenas en el pretratamiento.',
-        descripcionLarga: 'La SET-1 es una tolva longitudinal especialmente diseñada para la separación eficiente de arenas en plantas de tratamiento de aguas residuales. Su diseño optimiza la sedimentación y facilita la extracción de arenas, mejorando la eficiencia global del pretratamiento.',
-        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
-        slug: 'set-1-tolva-longitudinal',
-        modelo3d: '/models/SET-1.glb',
-        marcadores3d: [],
-        qr: '/assets/qr/set-1-tolva-longitudinal.png',
-        formularioCotizacion: 'https://forms.gle/set-1-cotizacion'
+        id: 'x-vortex',
+        nombre: 'X-VORTEX DESARENADOR TIPO VORTEX',
+        descripcion: 'Desarenador tipo vortex para separación eficiente de arenas.',
+        descripcionLarga: 'El X-VORTEX es un desarenador que utiliza un flujo circular para separar partículas arenosas del agua, optimizando la protección de equipos aguas abajo.',
+        imagen: '/assets/Productos/7. EQUIPOS DE PRE TRTATAMIENTO X2SOLUTION.jpg',
+        slug: 'x-vortex-desarenador',
       },
       {
-        id: 'set-2',
-        nombre: 'SET-2 UNIDAD COMBINADA',
-        descripcion: 'Unidad compacta que integra cribado y desarenado en un solo equipo.',
-        descripcionLarga: 'La SET-2 es una unidad combinada que integra los procesos de cribado y desarenado en un solo equipo compacto, ideal para plantas con espacio limitado y altos requerimientos de eficiencia.',
-        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
-        slug: 'set-2-unidad-combinada',
-        modelo3d: '/models/SET-2.glb',
-        marcadores3d: [],
-        qr: '/assets/qr/set-2-unidad-combinada.png',
-        formularioCotizacion: 'https://forms.gle/set-2-cotizacion'
-      },
-      {
-        id: 'set-3',
-        nombre: 'SET-3 UNIDAD COMBINADA CON SISTEMA DE DESENGRASADO',
-        descripcion: 'Unidad combinada que incluye sistema de desengrasado para mayor eficiencia.',
-        descripcionLarga: 'La SET-3 es una unidad combinada avanzada que, además de cribado y desarenado, incorpora un sistema de desengrasado, permitiendo un pretratamiento aún más completo y eficiente.',
-        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
-        slug: 'set-3-unidad-combinada-desengrasado',
-        modelo3d: '/models/SET-3.glb',
-        marcadores3d: [],
-        qr: '/assets/qr/set-3-unidad-combinada-desengrasado.png',
-        formularioCotizacion: 'https://forms.gle/set-3-cotizacion'
-      },
-      {
-        id: 'mini-set-2',
-        nombre: 'MINI.SET-2 MINI UNIDAD COMBINADA 2',
-        descripcion: 'Versión mini de la unidad combinada 2 para aplicaciones de menor escala.',
-        descripcionLarga: 'La MINI.SET-2 es una versión compacta de la unidad combinada 2, ideal para instalaciones pequeñas o aplicaciones piloto que requieren eficiencia en poco espacio.',
-        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
-        slug: 'mini-set-2-mini-unidad-combinada-2',
-        modelo3d: '/models/MINI-SET-2.glb',
-        marcadores3d: [],
-        qr: '/assets/qr/mini-set-2-mini-unidad-combinada-2.png',
-        formularioCotizacion: 'https://forms.gle/mini-set-2-cotizacion'
-      },
-      {
-        id: 'mini-set-3',
-        nombre: 'MINI.SET-3 MINI UNIDAD COMBINADA 3',
-        descripcion: 'Versión mini de la unidad combinada 3 con sistema de desengrasado.',
-        descripcionLarga: 'La MINI.SET-3 es una versión compacta de la unidad combinada 3, que incluye sistema de desengrasado, pensada para aplicaciones de menor escala con altos estándares de pretratamiento.',
-        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
-        slug: 'mini-set-3-mini-unidad-combinada-3',
-        modelo3d: '/models/MINI-SET-3.glb',
-        marcadores3d: [],
-        qr: '/assets/qr/mini-set-3-mini-unidad-combinada-3.png',
-        formularioCotizacion: 'https://forms.gle/mini-set-3-cotizacion'
+        id: 'e-pba',
+        nombre: 'E-PBA PUENTE LONGITUDINAL DESARENADOR',
+        descripcion: 'Puente longitudinal para extracción de arenas en tanques desarenadores.',
+        descripcionLarga: 'El E-PBA es un sistema de puente longitudinal diseñado para la extracción eficiente de arenas en tanques desarenadores, facilitando el mantenimiento y operación continua.',
+        imagen: '/assets/Productos/7. EQUIPOS DE PRE TRTATAMIENTO X2SOLUTION.jpg',
+        slug: 'e-pba-puente-longitudinal-desarenador',
       }
-    ]
+    ],
   },
 
-  // AGITACIÓN Y FLOCULACIÓN
+  // TRATAMIENTO SECUNDARIO
+  {
+    id: 13,
+    nombre: 'C-BDC SEDIMENTADOR DE CADENAS',
+    descripcion: 'Sedimentador de lodos de cadena para remoción de fondo, superficial o combinada.',
+    descripcionLarga: 'El sedimentador de cadenas C-BDC es un sistema de clarificación avanzado diseñado para la remoción eficiente de lodos en plantas de tratamiento de aguas residuales. Su sistema de cadenas permite la remoción de lodos del fondo, superficie o de manera combinada, adaptándose a las necesidades específicas de cada aplicación. El diseño de cadenas proporciona un movimiento continuo y uniforme que optimiza la separación sólido-líquido. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de las cadenas según las condiciones de operación. Esencial para aplicaciones que requieren una clarificación eficiente con remoción flexible de lodos.',
+    imagen: '/assets/Productos/2. ImagenX.png',
+    slug: 'sedimentador-cadenas',
+    categoria: 'TRATAMIENTO SECUNDARIO',
+    modelo3d: '/models/5.1 C-BDC 3D.glb',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
+  },
   {
     id: 14,
-    nombre: 'E-AGI AGITADOR DE TURBINA AXIAL',
-    descripcion: 'Agitador mecánico con de turbina para mezcla de productos químicos.',
-    descripcionLarga: 'El agitador de turbina axial E-AGI es un equipo mecánico especializado diseñado para la mezcla eficiente de productos químicos en plantas de tratamiento de aguas residuales. Su diseño de turbina axial genera un flujo vertical que optimiza la distribución de químicos en el agua, asegurando una mezcla uniforme y rápida. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control de velocidad variable que permite ajustar la intensidad de la agitación según los requerimientos del proceso. Ideal para la dosificación de coagulantes, floculantes y otros productos químicos, garantizando una reacción óptima y mejorando la eficiencia del tratamiento.',
-    imagen: '/assets/Productos/1. 5239d63c-6ba2-4d19-9a8b-daf0f67fb400.jpg',
-    slug: 'agitador-turbina-axial',
-    categoria: 'AGITACIÓN Y FLOCULACIÓN',
+    nombre: 'E-DF DISTRIBUIDOR DE FLUJO',
+    descripcion: 'Distribuye uniformemente el caudal sobre el medio filtrante en filtros percoladores, optimizando el contacto agua-biomasa y la degradación orgánica.',
+    descripcionLarga: 'El distribuidor de flujo E-DF es un sistema especializado diseñado para distribuir uniformemente el caudal sobre el medio filtrante en filtros percoladores de plantas de tratamiento de aguas residuales. Su diseño optimiza el contacto entre el agua y la biomasa, mejorando la eficiencia de la degradación orgánica. El sistema de distribución uniforme asegura que toda la superficie del medio filtrante reciba el caudal de manera equilibrada, evitando zonas de sobrecarga o subcarga. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la distribución del flujo según las condiciones de operación. Esencial para optimizar el rendimiento de filtros percoladores y mejorar la calidad del efluente tratado.',
+    imagen: '/assets/Productos/1. 6f978b15-5597-4b4c-9b48-e3e435d9ca25_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
+    slug: 'distribuidor-flujo',
+    categoria: 'TRATAMIENTO SECUNDARIO',
     modelo3d: '/models/ESPESADOR DE LODOS.glb',
     marcadores3d: [
       {
@@ -386,6 +454,8 @@ export const productos: Producto[] = [
       },
     ],
   },
+
+  // TRATAMIENTO TERCIARIO
   {
     id: 15,
     nombre: 'E-FLO FLOCULADORES',
@@ -400,6 +470,24 @@ export const productos: Producto[] = [
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
         label: [{ nombre: 'Bafle de Aquietamiento' }],
       },
+    ],
+    subProductos: [
+      {
+        id: 'e-flv',
+        nombre: 'E-FLV FLOCULADOR DE PALETAS DE EJE VERTICAL',
+        descripcion: 'Floculador de paletas con eje vertical para formación eficiente de flóculos.',
+        descripcionLarga: 'El E-FLV es un floculador de paletas con eje vertical, diseñado para promover la formación y crecimiento de flóculos en procesos de tratamiento de aguas, optimizando la clarificación.',
+        imagen: '/assets/Productos/2. 904302bd-f670-4752-a754-baf963c101fd.jpg',
+        slug: 'e-flv-floculador-eje-vertical',
+      },
+      {
+        id: 'e-flh',
+        nombre: 'E-FLH FLOCULADOR DE PALETAS DE EJE HORIZONTAL',
+        descripcion: 'Floculador de paletas con eje horizontal para mezcla suave y eficiente.',
+        descripcionLarga: 'El E-FLH es un floculador de paletas con eje horizontal, ideal para la mezcla suave y eficiente de partículas en suspensión, facilitando la formación de flóculos grandes y densos.',
+        imagen: '/assets/Productos/2. 904302bd-f670-4752-a754-baf963c101fd.jpg',
+        slug: 'e-flh-floculador-eje-horizontal',
+      }
     ],
   },
 
