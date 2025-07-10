@@ -3,12 +3,14 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 279.2 113.97" style="enable-background:new 0 0 279.2 113.97;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#8EB8B6;}
+	.st0{fill:#FFFFFF;}
 	.st1{fill:#10776A;}
 	.st2{display:none;fill:#659DEF;}
 	.st3{display:none;}
 	.st4{display:inline;}
 	.st5{fill:#659DEF;}
+	width: 100%;
+	height: 100%;
 </style>
 <g id="Capa_1">
 </g>
