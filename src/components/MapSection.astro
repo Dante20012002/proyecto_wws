@@ -157,17 +157,6 @@ const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
 </style>
 
 <script define:vars={{ proyectos }}>
-  // Función para obtener el color según el tipo de proyecto
-  const getColorByType = (tipo) => {
-    const colors = {
-      instalacion: '#06214E',
-      mantenimiento: '#1a4b9c',
-      consultoria: '#2c6cb0',
-      venta: '#3d8cc4'
-    };
-    return colors[tipo] || '#06214E';
-  };
-
   // Agrupar proyectos por coordenadas
   const proyectosPorCoord = {};
   proyectos.forEach(p => {
@@ -198,14 +187,13 @@ const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
 
         Object.entries(proyectosPorCoord).forEach(([key, proyectosEnCoord]) => {
           const [lat, lng] = key.split(',').map(Number);
-          const color = getColorByType(proyectosEnCoord[0].tipo);
           // Tooltip personalizado
           let tooltipHtml = '';
           if (proyectosEnCoord.length === 1) {
             const p = proyectosEnCoord[0];
             tooltipHtml = `
               <div class="tooltip-content p-3">
-                <h4 class="tooltip-title font-bold text-[#06214E] text-lg mb-2 line-clamp-2">${p.nombre}</h4>
+                <h4 class="tooltip-title font-bold text-[#4F6E6E] text-lg mb-2 line-clamp-2">${p.nombre}</h4>
                 <p class="text-sm mb-2 line-clamp-2">${p.descripcion}</p>
                 <div class="text-xs text-gray-600 space-y-1">
                   <p><strong>Ubicación:</strong> ${p.ubicacion.ciudad}, ${p.ubicacion.departamento}</p>
@@ -233,7 +221,7 @@ const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
           const marker = L.marker([lat, lng], {
             icon: L.divIcon({
               className: '',
-              html: `<div class="marker-pulse" style="background:${color};width:28px;height:28px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px 0 rgba(0,0,0,0.18);position:relative;"><span class='pulse-circle'></span></div>`,
+              html: `<div class="marker-pulse" style="background:#4F6E6E;width:28px;height:28px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px 0 rgba(0,0,0,0.18);position:relative;"><span class='pulse-circle'></span></div>`,
               iconSize: [28, 28],
               iconAnchor: [14, 14]
             })

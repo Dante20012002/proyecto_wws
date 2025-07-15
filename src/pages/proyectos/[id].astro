@@ -49,8 +49,8 @@ const notFound = !proyecto;
         </div>
         <!-- Información del proyecto -->
         <div class="flex flex-col gap-2 animate-slide-up text-center md:text-left w-full md:w-1/2" style="animation-delay: 0.3s;">
-          <span class="text-lg font-semibold text-[#06214E] uppercase tracking-wide">{proyecto.ubicacion.ciudad}</span>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-black mb-2 leading-tight">{proyecto.nombre}</h2>
+          <span class="text-lg font-semibold text-[#4F6E6E] uppercase tracking-wide">{proyecto.ubicacion.ciudad}</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-[#4F6E6E] mb-2 leading-tight">{proyecto.nombre}</h2>
           <hr class="border-black w-16 mb-4 mx-auto md:mx-0" />
           <p class="text-gray-700 text-justify">{proyecto.historia}</p>
         </div>
@@ -60,7 +60,7 @@ const notFound = !proyecto;
     <!-- Sección de equipos utilizados -->
     <section class="bg-gray-100 py-12">
       <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-2xl md:text-3xl font-extrabold mb-8 tracking-wide animate-slide-up text-center">EQUIPOS UTILIZADOS</h2>
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-8 tracking-wide animate-slide-up text-center text-[#4F6E6E]">EQUIPOS UTILIZADOS</h2>
         <div class="flex flex-wrap justify-center gap-6">
           {proyecto.imagenesEquipos?.map((img: string, i: number) => (
             <div class="flex flex-col items-center animate-fade-in" style={{ animationDelay: `${i * 0.15 + 0.2}s` }}>
@@ -72,7 +72,7 @@ const notFound = !proyecto;
                   loading="lazy"
                 />
               </div>
-              <h3 class="text-base md:text-lg font-semibold text-center">
+              <h3 class="text-base md:text-lg font-semibold text-center text-[#4F6E6E]">
                 {proyecto.equipos?.[i]}
               </h3>
             </div>
@@ -81,7 +81,7 @@ const notFound = !proyecto;
         <div class="text-center mt-8 animate-fade-in" style="animation-delay: 0.7s;">
           <a 
             href="/productos" 
-            class="inline-block bg-[#A9C6DF] text-[#06214E] font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-[#06214E] hover:text-white transition duration-300"
+            class="inline-block bg-[#4F6E6E] text-[#FFFFFF] font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-[#FFFFFF] hover:text-[#4F6E6E] transition duration-300"
           >
             MÁS PRODUCTOS
           </a>
@@ -99,7 +99,7 @@ const notFound = !proyecto;
               href={proyecto.linkNoticia} 
               target="_blank" 
               rel="noopener" 
-              class="inline-block bg-[#A9C6DF] text-[#06214E] font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-[#06214E] hover:text-white transition duration-300"
+              class="inline-block bg-[#4F6E6E] text-white font-bold px-8 py-3 rounded-lg shadow-lg hover:bg-[#FFFFFF] hover:text-[#4F6E6E] transition duration-300"
             >
               SABER MÁS
             </a>
