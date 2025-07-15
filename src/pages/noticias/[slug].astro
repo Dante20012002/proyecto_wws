@@ -62,12 +62,12 @@ const contenidoConImagenes = noticia ? distribuirImagenesEntreParrafos(noticia.c
     <div class="max-w-6xl mx-auto px-4 md:px-8">
       {noticia ? (
         <div class="bg-[#D9D9D9] rounded-lg p-6 md:p-10 min-h-[600px] max-w-4xl mx-auto">
-          <h1 class="text-3xl md:text-4xl font-extrabold mb-6 text-[#20405C]">{noticia.titulo}</h1>
+          <h1 class="text-3xl md:text-4xl font-extrabold mb-6 text-[#577979]">{noticia.titulo}</h1>
           <div class="text-gray-800 text-base md:text-lg leading-relaxed" set:html={contenidoConImagenes}></div>
           
           {noticia.enlacesOficiales && noticia.enlacesOficiales.length > 0 && (
-            <div class="mt-8 pt-6 border-t-2 border-[#20405C]">
-              <h3 class="text-xl font-bold text-[#20405C] mb-4">Enlaces oficiales</h3>
+            <div class="mt-8 pt-6 border-t-2 border-[#577979]">
+              <h3 class="text-xl font-bold text-[#577979] mb-4">Enlaces oficiales</h3>
               <div class="flex flex-wrap gap-3">
                 {noticia.enlacesOficiales.map((enlace) => (
                   <a 

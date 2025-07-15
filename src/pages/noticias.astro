@@ -14,7 +14,7 @@ const noticiasPagina = noticias.slice(start, end);
 <Layout title="Noticias - WWS">
   <section class="w-full bg-[#EAEAEA] py-8 md:py-12 min-h-screen">
     <div class="max-w-6xl mx-auto px-4">
-      <h1 class="text-4xl md:text-6xl font-extrabold mb-8 text-[#222]">NOTICIAS</h1>
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-8 text-[#577979]">NOTICIAS</h1>
       <div class="flex flex-col gap-6">
         {noticiasPagina.map((noticia) => (
           <a 
@@ -35,7 +35,7 @@ const noticiasPagina = noticias.slice(start, end);
               </div>
               <div class="flex-1 p-6 flex flex-col justify-between overflow-hidden">
                 <div>
-                  <h2 class="font-bold text-xl md:text-2xl text-[#222] mb-3 line-clamp-2">{noticia.titulo}</h2>
+                  <h2 class="font-bold text-xl md:text-2xl text-[#577979] mb-3 line-clamp-2">{noticia.titulo}</h2>
                   <p class="text-gray-700 text-base md:text-lg leading-relaxed line-clamp-3">{noticia.resumen}</p>
                 </div>
                 <div class="mt-2 flex items-center text-[#4F6E6E]">

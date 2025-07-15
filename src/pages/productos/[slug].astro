@@ -16,7 +16,7 @@ const notFound = !producto;
 
   // URL del brochure general y formulario de contacto
   const brochureUrl = "https://drive.google.com/file/d/1Cxu1Nftv6efl52-7mPSrBA_OSv52uKDO/view?usp=sharing";
-  const formUrl = "https://forms.gle/your-form-link";
+  
 
 
 // Filtra productos relacionados por categoría, excluyendo el actual
@@ -54,7 +54,9 @@ const tieneSubProductos = producto && producto.subProductos && producto.subProdu
           {(Array.isArray(producto.marcadores3d) && producto.marcadores3d.length > 0 && producto.modelo3d) && (
             <Product3DViewer modelo3d={producto.modelo3d} marcadores3d={producto.marcadores3d} />
           )}
-          <ProductQR qrUrl={`/assets/qr/${producto.slug}.png`} />
+          {producto.qr && (
+            <ProductQR qrUrl={producto.qr} />
+          )}
         </>
       )}
 
@@ -66,7 +68,7 @@ const tieneSubProductos = producto && producto.subProductos && producto.subProdu
         titulo="Cuéntanos más sobre ti y tu proyecto"
         descripcion="Para ofrecerte un acompañamiento más personalizado y eficiente, necesitamos conocer algunos detalles sobre ti y tus objetivos. Llena el siguiente formulario y nuestro equipo se pondrá en contacto contigo con una propuesta ajustada a tus necesidades."
         botonTexto="LLENA AQUÍ"
-        botonUrl={formUrl}
+        botonUrl={producto.formUrl}
       />
     </main>
   )}

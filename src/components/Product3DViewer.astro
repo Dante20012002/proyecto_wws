@@ -15,9 +15,9 @@ const { modelo3d, marcadores3d } = Astro.props;
      - El modelo 3D es responsivo y está envuelto en un fondo blanco con sombra
      - Al hacer clic en una parte de la lista, se hace zoom al hotspot correspondiente -->
 <section class="w-full bg-[#eaeaea] py-12">
-  <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start justify-center gap-8 lg:gap-12 px-4 md:px-8">
+  <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 px-4 md:px-8">
     <!-- Lista de partes numeradas -->
-    <div class="w-full md:max-w-xs flex flex-col mb-6 md:mb-0">
+    <div class="w-full md:max-w-xs flex flex-col mb-6 md:mb-0 mx-auto">
       <h3 class="text-lg font-bold text-white bg-[#6B8C8C] rounded-t-md px-4 py-2 mb-0">PARTES</h3>
       <ul class="bg-[#6B8C8C] rounded-b-md p-0 divide-y divide-[#eaeaea] flex-1" id="partes-lista">
         {marcadores3d.map((marcador: Marcador3D, idx: number) => (

@@ -1,49 +1,22 @@
 ---
-const servicios = [
-  {
-    img: '/assets/NEMOCON 1.jpg',
-    alt: 'Servicio 1',
-    titulo: 'Servicio 1',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Lacus pulvinar pharetra senectus sociis.'
-  },
-  {
-    img: '/assets/SESQUILE 1.JPG',
-    alt: 'Servicio 2',
-    titulo: 'Servicio 2',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Lacus pulvinar pharetra senectus sociis.'
-  },
-  {
-    img: '/assets/LOS PATOS 1.jpg',
-    alt: 'Servicio 3',
-    titulo: 'Servicio 3',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Lacus pulvinar pharetra senectus sociis.'
-  },
-  {
-    img: '/assets/fusagasuga 1.jpg',
-    alt: 'Servicio 4',
-    titulo: 'Servicio 4',
-    desc: 'Soluciones avanzadas para el tratamiento de aguas residuales industriales.'
-  },
-  {
-    img: '/assets/Verganzo 1.jpg',
-    alt: 'Servicio 5',
-    titulo: 'Servicio 5',
-    desc: 'Asesoría y consultoría en normativas ambientales y de agua.'
-  },
-  {
-    img: '/assets/ARMENIA 1.jpg',
-    alt: 'Servicio 6',
-    titulo: 'Servicio 6',
-    desc: 'Mantenimiento preventivo y correctivo de equipos de tratamiento.'
-  },
-];
+import { productos } from '../data/productos.ts';
+
+// Filtrar solo los productos que son servicios
+const servicios = productos
+  .filter(producto => producto.categoria === 'SERVICIOS')
+  .map(servicio => ({
+    img: servicio.imagen,
+    alt: servicio.nombre,
+    titulo: servicio.nombre,
+    desc: servicio.descripcion
+  }));
 ---
 <section class="w-full bg-[#EAEAEA] py-8 md:py-12" id="servicios">
   <div class="max-w-6xl mx-auto px-4">
     <h3 class="text-[#4F6E6E] text-xl sm:text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center fade-section opacity-0 translate-y-8 transition-all duration-700 will-change-transform">
       Nuestros Servicios
     </h3>
-    <div class="relative">
+    <div class="relative z-0">
       <!-- Controles de navegación -->
       <button
         id="prev-servicio"
@@ -78,8 +51,8 @@ const servicios = [
               decoding="async"
               fetchpriority="low"
             />
-            <h4 class="text-[#06214E] font-semibold mb-2 text-sm md:text-base break-words">{servicio.titulo}</h4>
-            <p class="text-gray-700 text-center text-xs sm:text-sm md:text-base text-balance break-words">
+            <h4 class="text-[#577979] font-semibold mb-2 text-sm md:text-base break-words text-center">{servicio.titulo}</h4>
+            <p class="text-gray-700 text-center text-justify text-xs sm:text-sm md:text-base text-balance break-words">
               {servicio.desc}
             </p>
           </div>

@@ -38,6 +38,8 @@ export interface Producto {
   pdf?: string;
   marca?: string;
   subProductos?: SubProducto[]; // Nuevo: subdivisiones del producto
+  qr?: string;
+  formUrl?: string;
 }
 
 export const productos: Producto[] = [
@@ -46,11 +48,13 @@ export const productos: Producto[] = [
     id: 1,
     nombre: 'W-CPM COMPUERTA MURAL',
     descripcion: 'Compuerta mural para regulación de caudal en canal mediante escudo móvil.',
-    descripcionLarga: 'La compuerta mural W-CPM es un dispositivo de control hidráulico diseñado para la regulación precisa del caudal en canales de tratamiento de aguas residuales. Fabricada en acero inoxidable de alta resistencia, cuenta con un sistema de elevación vertical que permite ajustar la altura del escudo móvil según los requerimientos del proceso. Su diseño hermético previene fugas y garantiza un control eficiente del flujo, optimizando el rendimiento de las etapas posteriores del tratamiento. Ideal para plantas de tratamiento que requieren control automático de niveles y caudales.',
+    descripcionLarga: 'La compuerta mural W CPM es un equipo hidráulico diseñado para regular caudales o aislar estructuras en plantas de tratamiento. Fabricada en acero al carbono, galvanizado, acero inoxidable o aluminio, se adapta a distintas condiciones operativas y ambientales. Su obturador se acciona verticalmente mediante un sistema de izaje, compatible con actuadores manuales o eléctricos. El diseño incluye sello en los cuatro lados, lo que permite una operación hermética bajo cargas hidrostáticas a favor y en contra, evitando fugas y asegurando un control eficiente del flujo.',
     imagen: '/assets/Productos/1.jpg',
     slug: 'compuerta-mural',
     categoria: 'CONTROL DE CAUDAL',
     modelo3d: '/models/1.1 W-CPM.glb',
+    qr: '/assets/QR/1.1 WWS W-CPM AR.png',
+    formUrl: 'https://forms.gle/x-rake-cotizacionhttps://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UNlhIUkdMOVg1MUkwOEZZSFczUzNDSkRLNyQlQCN0PWcu',
     marcadores3d: [
       {
         x: 0.34550000000000003, y: -0.7699, z: -0.002401534275545694,
@@ -78,15 +82,33 @@ export const productos: Producto[] = [
     id: 2,
     nombre: 'W-CPC COMPUERTA CANAL ABIERTO',
     descripcion: 'Compuerta de hoja vertical para control de nivel y bloqueos en canales abiertos.',
-    descripcionLarga: 'La compuerta de canal abierto W-CPC es un sistema de control hidráulico versátil diseñado para la gestión eficiente de caudales en canales de tratamiento de aguas residuales. Su hoja vertical ajustable permite controlar tanto el nivel del agua como realizar bloqueos temporales para mantenimiento. Fabricada con materiales resistentes a la corrosión, incluye un sistema de sellado que minimiza las pérdidas de agua. Su operación puede ser manual o automatizada mediante actuadores eléctricos, facilitando la integración en sistemas de control centralizado. Perfecta para plantas que requieren flexibilidad operativa y control preciso de niveles.',
+    descripcionLarga: 'La compuerta tipo canal abierto W CPC está diseñada para regular el flujo en canales de tratamiento o conducción de aguas residuales. Fabricada en acero al carbono, galvanizado, acero inoxidable o aluminio, se adapta a diversas condiciones hidráulicas y ambientales. Su obturador se acciona verticalmente mediante un sistema de izaje con vástago ascendente, operado de forma manual o eléctrica. El sistema de sellado en tres lados (laterales e inferior) proporciona un cierre eficiente frente a la presión de aguas arriba, ideal para maniobras de control de nivel, aislamiento parcial o bloqueo temporal para mantenimiento.',
     imagen: '/assets/Productos/2.jpg',
     slug: 'compuerta-canal-abierto',
     categoria: 'CONTROL DE CAUDAL',
     modelo3d: '/models/1.2 W-CPC.glb',
+    qr: '/assets/QR/1.2 WWS W-CPC.png',
+    formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UNzFFWjY2MVlUUFFGUUw5VkpVN0JYUzk5NCQlQCN0PWcu',
     marcadores3d: [
       {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
+        x: 0.0018184148227173287, y: 0.5379323416180531, z: 0.08656901124123755,
+        label: [{ nombre: 'Obturador' }],
+      },
+      {
+        x: -0.5414033994400831, y: 0.6216893066420072, z: -0.052083768588296095,
+        label: [{ nombre: 'Esquema de Estanqueidad' }],
+      },
+      {
+        x: 0.5518500137329102, y: 1.7228807970679068, z: 0.011942292737985555,
+        label: [{ nombre: 'Marco Estructural' }],
+      },
+      {
+        x: -0.0009394591150247308, y: 1.1762151810032262, z: 0.027777941932934445,
+        label: [{ nombre: 'Vástago' }],
+      },
+      {
+        x: -0.004453387722667172, y: 1.8730558270731175, z: 0.11904597326158248,
+        label: [{ nombre: 'Esquema de Izaje' }],
       },
     ],
   },
@@ -94,15 +116,25 @@ export const productos: Producto[] = [
     id: 3,
     nombre: 'W-CPS COMPUERTA STOP LOG',
     descripcion: 'Elemento modular de cierre manual para seccionar rápidamente líneas de agua.',
-    descripcionLarga: 'La compuerta stop log W-CPS es un sistema modular de cierre rápido diseñado para el aislamiento temporal de líneas de agua en plantas de tratamiento de aguas residuales. Su diseño modular permite la instalación de múltiples elementos según la altura requerida, facilitando el mantenimiento y limpieza de equipos aguas abajo. Fabricada en acero inoxidable con juntas de sellado especiales, garantiza un cierre hermético que previene el paso de agua durante las operaciones de mantenimiento. Su instalación y remoción manual es sencilla, reduciendo los tiempos de parada y mejorando la eficiencia operativa de la planta.',
+    descripcionLarga: 'La compuerta tipo Stop Log W CPS está diseñada para el aislamiento temporal de canales o estructuras durante labores de mantenimiento o intervención operativa. Su diseño modular permite apilar uno o más elementos tipo “log” en guías laterales, adaptando la altura de cierre según los requerimientos del proceso. Se fabrica en acero al carbono, galvanizado, acero inoxidable o aluminio, y cuenta con un sistema de sellado en tres lados que garantiza estanqueidad ante presión unidireccional. La instalación y el retiro de los módulos se realiza manualmente mediante barra de izaje, cabrestante o pinza de sujeción automática, lo que permite una operación rápida, y segura.',
     imagen: '/assets/Productos/3.Proyector Compuertas Actuadas.jpg',
     slug: 'compuerta-stop-log',
     categoria: 'CONTROL DE CAUDAL',
     modelo3d: '/models/1.3 W-CPS.glb',
+    qr: '/assets/QR/1.3 WWS W-CPS.png',
+    formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UMU41RUtTR09INjZTNUhTTDlSMUowRFA2OSQlQCN0PWcu',
     marcadores3d: [
       {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
+        x: -0.0031261597519264533, y: 0.8280217003658756, z: 0.0225,
+        label: [{ nombre: 'Obturador Log' }],
+      },
+      {
+        x: -0.5340162365056494, y: 1.0302817440329366, z: -0.05250000000000057,
+        label: [{ nombre: 'Esquema de Estanqueidad' }],
+      },
+      {
+        x: 0.5518500137329102, y: 1.7085153332394807, z: 0.0051113250045705175,
+        label: [{ nombre: 'Marco Estructural' }],
       },
     ],
   },
@@ -110,15 +142,37 @@ export const productos: Producto[] = [
     id: 4,
     nombre: 'W-CPR COMPUERTA RADIAL',
     descripcion: 'Compuerta curvada que ajusta el flujo gradualmente con perfil sectorial.',
-    descripcionLarga: 'La compuerta radial W-CPR es un dispositivo de control hidráulico avanzado que utiliza un perfil sectorial curvado para regular el flujo de agua de manera gradual y eficiente. Su diseño único permite un control preciso del caudal con mínimas turbulencias, optimizando el rendimiento de las etapas posteriores del tratamiento. El perfil curvado reduce la erosión y el desgaste, prolongando la vida útil del equipo. Fabricada en acero inoxidable de alta calidad, incluye un sistema de sellado que previene fugas y garantiza un control hermético. Ideal para aplicaciones que requieren regulación fina del caudal y control de niveles en canales de tratamiento.',
+    descripcionLarga: 'La compuerta radial W CPR es un dispositivo hidráulico diseñado para regular grandes caudales en estructuras como canales, aliviaderos o vertederos. Su obturador curvo se apoya en un sistema de pivote superior, lo que permite un giro suave y eficiente bajo cargas hidráulicas elevadas. Esta geometría reduce las fuerzas estructurales y facilita la operación, minimizando el desgaste por fricción. Puede fabricarse en acero al carbono, galvanizado, acero inoxidable o aluminio, y su diseño incluye sistema de sellado lateral e inferior para garantizar estanqueidad durante la operación. Es compatible con apertura por elevación o descenso, según el tipo de instalación (vertedero o muro de contención), y puede ser accionada manualmente, por cabrestante o mediante actuadores eléctricos, electrohidráulicos o electroneumáticos. La compuerta W CPR es ideal para aplicaciones que requieren regulación fina del caudal, maniobras seguras y durabilidad estructural en condiciones exigentes.',
     imagen: '/assets/Productos/4.MONTAJE SIN OBRA CIVIL.jpg',
     slug: 'compuerta-radial',
     categoria: 'CONTROL DE CAUDAL',
     modelo3d: '/models/1.4 W-CPR.glb',
+    qr: '/assets/QR/1.4 WWS W-CPR.png',
+    formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UQ0tRUFZUSlMzT0RVUEJSSENWQllNWTY0MyQlQCN0PWcu',
     marcadores3d: [
       {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
+        x: -0.022028782608019853, y: 3.127452613002659, z: 0.509431145627099,
+        label: [{ nombre: 'Obturador' }],
+      },
+      {
+        x: -0.7572499990462246, y: 3.826033073722239, z: -0.42195227254179946,
+        label: [{ nombre: 'Esquema de Estanqueidad' }],
+      },
+      {
+        x: -0.5322499999403918, y: 2.58484805082915, z: -0.1814007610134738,
+        label: [{ nombre: 'Marco Pivotante' }],
+      },
+      {
+        x: -0.6566999961853022, y: 1.2011172130602197, z: -1.801273827670546,
+        label: [{ nombre: 'Pivote' }],
+      },
+      {
+        x: 0.5756788528840571, y: 1.2965689455147091, z: -2.0913138722402476,
+        label: [{ nombre: 'Esquema de Sujección' }],
+      },
+      {
+        x: -0.8000000002384178, y: 1.1853639318473062, z: 1.1991461259586624,
+        label: [{ nombre: 'Marco Guía' }],
       },
     ],
   },
@@ -133,10 +187,19 @@ export const productos: Producto[] = [
     slug: 'cuchara-bivalva',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     modelo3d: '/models/2.1 C-CB 3D.glb',
+    qr: '/assets/QR/2.1 WWS C-CB 3D AR.jpg',
     marcadores3d: [
       {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
+        x: 0.002069352458137539, y: -0.12759864480690686, z: 0.25367478605882854,
+        label: [{ nombre: 'Cuerpo Principal' }],
+      },
+      {
+        x: 0.5529943062649031, y: -1.1374182157364678, z: 0.35449999999999876,
+        label: [{ nombre: 'Valva' }],
+      },
+      {
+        x: 0.42923624532950444, y: -0.4259714710610246, z: 0.01396097856062986,
+        label: [{ nombre: 'Sistema Hidráulico' }],
       },
     ],
   },
@@ -503,10 +566,35 @@ export const productos: Producto[] = [
     slug: 'agitador-turbina-axial',
     categoria: 'AGITACIÓN Y FLOCULACIÓN',
     modelo3d: '/models/3.1 WWS E-AGI.glb',
+    qr: '/assets/QR/3.1 WWS E-AGI.png',
     marcadores3d: [
       {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
+        x: 0.09149026524060949, y: 3.481983262684383, z: -0.028678447799860698,
+        label: [{ nombre: 'Motorreductor' }],
+      },
+      {
+        x: 0.19834062226730764, y: 3.3126100303712973, z: 0.17011540644459414,
+        label: [{ nombre: 'Esquema de Sujección' }],
+      },
+      {
+        x: -0.016774062007025442, y: 3.099546209176421, z: -0.026556984594932727,
+        label: [{ nombre: 'Eje de Motriz' }],
+      },
+      {
+        x: -0.01692896449921469, y: 2.4689206459107247, z: -0.0220718307887072,
+        label: [{ nombre: 'Eje Conducido' }],
+      },
+      {
+        x: -0.016059305499492933, y: 0.6245377629132322, z: -0.013555139853729851,
+        label: [{ nombre: 'Soporte Aspas' }],
+      },
+      {
+        x: -0.010846859828721498, y: 0.5807432500997789, z: 0.48296764352810245,
+        label: [{ nombre: 'Aspas' }],
+      },
+      {
+        x: -0.014369406404962757, y: 0.5756637730732097, z: -0.17523478552667487,
+        label: [{ nombre: 'Sujetadores' }],
       },
     ],
   },
@@ -554,13 +642,6 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/2. 904302bd-f670-4752-a754-baf963c101fd.jpg',
     slug: 'floculadores',
     categoria: 'AGITACIÓN Y FLOCULACIÓN',
-    modelo3d: '/models/3.2 WWS E-FLV.glb',
-    marcadores3d: [
-      {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
-      },
-    ],
     subProductos: [
       {
         id: 'e-flv',
@@ -569,6 +650,38 @@ export const productos: Producto[] = [
         descripcionLarga: 'El E-FLV es un floculador de paletas con eje vertical, diseñado para promover la formación y crecimiento de flóculos en procesos de tratamiento de aguas, optimizando la clarificación.',
         imagen: '/assets/Productos/2. 904302bd-f670-4752-a754-baf963c101fd.jpg',
         slug: 'e-flv-floculador-eje-vertical',
+        qr: '/assets/QR/3.2 WWS E-FLV.png',
+        modelo3d: '/models/3.2 WWS E-FLV.glb',
+        marcadores3d: [
+          {
+            x: 0.004333555432392009, y: 2.6577187665012567, z: 0.2564999961853121,
+            label: [{ nombre: 'Carcasa de Protección' }],
+          },
+          {
+            x: -0.02531419074925971, y: 2.0595228860617585, z: -0.0006013749810148871,
+            label: [{ nombre: 'Eje Motriz' }],
+          },
+          {
+            x: -0.041866564878232454, y: 1.8880496782323875, z: -0.0013447429603055884,
+            label: [{ nombre: 'Acople Mecánico' }],
+          },
+          {
+            x: -0.02865807596352976, y: 1.2390739421148427, z: 0.004630138344660176,
+            label: [{ nombre: 'Eje Conducido' }],
+          },
+          {
+            x: 0.03651250038146833, y: 0.9162765921320786, z: -0.796487366030703,
+            label: [{ nombre: 'Bastidor' }],
+          },
+          {
+            x: 0.03501249999999749, y: 0.6174944098616811, z: -1.8261329882788768,
+            label: [{ nombre: 'Paleta' }],
+          },
+          {
+            x: -0.031714053904509536, y: -1.219832884402082, z: 0.0014217339921841349,
+            label: [{ nombre: 'Soporte Inferior' }],
+          },
+        ],
       },
       {
         id: 'e-flh',
@@ -577,7 +690,48 @@ export const productos: Producto[] = [
         descripcionLarga: 'El E-FLH es un floculador de paletas con eje horizontal, ideal para la mezcla suave y eficiente de partículas en suspensión, facilitando la formación de flóculos grandes y densos.',
         imagen: '/assets/Productos/2. 904302bd-f670-4752-a754-baf963c101fd.jpg',
         slug: 'e-flh-floculador-eje-horizontal',
-        modelo3d: '/models/3.2 WWS E-FLH.glb',
+        modelo3d: '/models/3.3 WWS E-FLH.glb',
+        marcadores3d: [
+          {
+            x: -0.17358748995903084, y: 0.03128987413442902, z: 4.392263340010484,
+            label: [{ nombre: 'Motorreductor' }],
+          },
+          {
+            x: -0.11344026586656172, y: 0.01906079834282368, z: 3.869187687187509,
+            label: [{ nombre: 'Acople Mecánico' }],
+          },
+          {
+            x: -0.05567102149166112, y: 0.0037222754704182605, z: 3.4395649219521056,
+            label: [{ nombre: 'Eje Motriz' }],
+          },
+          {
+            x: -0.1016510724842058, y: 0.021966797837722603, z: 2.054109162927919,
+            label: [{ nombre: 'Chumacera' }],
+          },
+          {
+            x: -0.13547434785169138, y: 0.022265701851757275, z: 1.8064740005493167,
+            label: [{ nombre: 'Eje de Acople' }],
+          },
+          {
+            x: -0.08407345586562315, y: 0.0003848115926493355, z: -0.03443903087177708,
+            label: [{ nombre: 'Eje Conducido' }],
+          },
+          {
+            x: -0.10567499961852891, y: 0.4591400211917853, z: -1.0603787996576486,
+            label: [{ nombre: 'Bastidor' }],
+          },
+          {
+            x: -0.09967500009537685, y: 2.1790827477670223, z: -0.06841344115666737,
+            label: [{ nombre: 'Paleta' }],
+          },
+          {
+            x: -0.1390007942859529, y: -0.012215105519001268, z: -1.7998633027825965,
+            label: [{ nombre: 'Eje de Acople Final' }],
+          },
+          
+          
+        ],
+        qr: '/assets/QR/3.3 WWS E-FLH.png',
       }
     ],
   },
@@ -861,7 +1015,7 @@ export const productos: Producto[] = [
     nombre: 'INGENIERÍA DE SOLUCIONES A MEDIDA',
     descripcion: 'Diseño y desarrollo de equipos no convencionales con innovación aplicada.',
     descripcionLarga: 'Creamos soluciones únicas para necesidades específicas en tratamiento de agua que no se resuelven con equipos estándar. Proyectos especiales: diseñamos y fabricamos maquinaria adaptada a condiciones técnicas, espaciales u operativas complejas. Soluciones personalizadas: desarrolladas desde cero, con enfoque en innovación técnica y alto valor agregado. Eficiencia energética: priorizamos configuraciones con motores, sistemas de control y procesos que reduzcan consumo. Ideal para empresas que enfrentan desafíos fuera de lo común y buscan soluciones innovadoras a medida.',
-    imagen: '/assets/Productos/0.jpg',
+    imagen: '/assets/Productos/Ingenieria de Soluciones a Medida.jpg',
     slug: 'ingenieria-soluciones-medida',
     categoria: 'SERVICIOS',
   },
@@ -870,7 +1024,7 @@ export const productos: Producto[] = [
     nombre: 'ESTUDIOS DE PREFACTIBILIDAD',
     descripcion: 'Analizamos con rigor para proyectar con innovación.',
     descripcionLarga: 'Nuestros estudios de prefactibilidad te brindan la certeza de elegir la mejor alternativa técnico-económica antes de iniciar tu proyecto. Evaluamos en profundidad: Alcance y objetivos, comparativa de tecnologías, evaluación de riesgos y rentabilidad. Beneficios clave: toma de decisiones basada en datos rigurosos, ahorro de tiempo y costos, base sólida para avanzar hacia diseños, selección de equipos o importaciones específicas.',
-    imagen: '/assets/Productos/1.jpg',
+    imagen: '/assets/Estudios de Prefactibilidad.jpg',
     slug: 'estudios-prefactibilidad',
     categoria: 'SERVICIOS',
   },
@@ -879,7 +1033,7 @@ export const productos: Producto[] = [
     nombre: 'MODELOS 3D Y PLANOS EJECUTIVOS',
     descripcion: 'Del concepto a la fabricación: modelado 3D y documentación ejecutiva.',
     descripcionLarga: 'Desarrollamos modelos 3D precisos y documentación ejecutiva adaptada a los desafíos reales de cada proyecto, permitiendo visualizar, coordinar y construir con seguridad. Modelado 3D paramétrico (BIM/CAD), planos ejecutivos detallados, incluso para soluciones fuera de portafolio. Beneficios clave: reduce retrabajos, mejora la coordinación y facilita una ejecución ágil y segura.',
-    imagen: '/assets/Productos/2.jpg',
+    imagen: '/assets/Productos/Modelos 3D y Planos Ejecutivos.jpg',
     slug: 'modelos-3d-planos-ejecutivos',
     categoria: 'SERVICIOS',
   },
@@ -888,7 +1042,7 @@ export const productos: Producto[] = [
     nombre: 'MEMORIAS DE CÁLCULO Y ANÁLISIS TÉCNICO',
     descripcion: 'Fundamento técnico para elegir con certeza.',
     descripcionLarga: 'Brindamos el respaldo de ingeniería necesario para tomar decisiones técnicas informadas que llevan a la selección, diseño y adquisición del equipo más adecuado. Cálculos hidráulicos, estructurales y de tuberías, análisis por Elementos Finitos (FEA), resultados y documentación completa. Permite validar la viabilidad técnica y operativa antes de concretar una compra.',
-    imagen: '/assets/Productos/3.jpg',
+    imagen: '/assets/Productos/Memorias de Calculo y Analisis Tecnico.jpg',
     slug: 'memorias-calculo-analisis-tecnico',
     categoria: 'SERVICIOS',
   },
@@ -897,25 +1051,16 @@ export const productos: Producto[] = [
     nombre: 'BÚSQUEDA DE EQUIPAMIENTO ESPECIALIZADO',
     descripcion: 'Acceso a tecnología de vanguardia con soluciones innovadoras.',
     descripcionLarga: 'Identificamos, negociamos e importamos equipos de tratamiento avanzados no disponibles localmente. Análisis de requerimientos, gestión de compras e importación, validación técnica y soporte posventa. Beneficios: tecnología de punta, reducción de tiempos, costos optimizados y escalabilidad regional.',
-    imagen: '/assets/Productos/4.jpg',
+    imagen: '/assets/Productos/Busqueda de Equipamiento Especializado.jpg',
     slug: 'busqueda-equipamiento-especializado',
     categoria: 'SERVICIOS',
   },
   {
     id: 1006,
-    nombre: 'PUESTA A PUNTO (COMMISSIONING)',
-    descripcion: 'Arranque seguro y optimizado de tu planta.',
-    descripcionLarga: 'Aseguramos que tu planta funcione según lo diseñado, desde el FAT hasta la garantía operativa. Beneficios: minimiza paros y sobrecostos, verificación de KPIs, soporte 24/7 durante el arranque. Entregables: resultados de pruebas, informes, entrenamiento y certificaciones.',
-    imagen: '/assets/Productos/5.jpg',
-    slug: 'puesta-punto-commissioning',
-    categoria: 'SERVICIOS',
-  },
-  {
-    id: 1007,
     nombre: 'OPERACIÓN Y MANTENIMIENTO (O&M)',
     descripcion: 'Eficiencia día a día para tu planta.',
     descripcionLarga: 'Ofrecemos un servicio integral para que tu planta funcione siempre en óptimas condiciones: operación diaria, mantenimiento preventivo y predictivo, gestión de repuestos. Beneficios: aumenta la vida útil de tus activos, reduce paradas no planificadas y costos de emergencia, informes de desempeño para la toma de decisiones.',
-    imagen: '/assets/Productos/6.jpg',
+    imagen: '/assets/Productos/Operacion y Mantenimiento.png',
     slug: 'operacion-mantenimiento-om',
     categoria: 'SERVICIOS',
   },
