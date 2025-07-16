@@ -54,6 +54,7 @@ export const productos: Producto[] = [
     categoria: 'CONTROL DE CAUDAL',
     modelo3d: '/models/1.1 W-CPM.glb',
     qr: '/assets/QR/1.1 WWS W-CPM AR.png',
+    pdf: '',
     formUrl: 'https://forms.gle/x-rake-cotizacionhttps://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UNlhIUkdMOVg1MUkwOEZZSFczUzNDSkRLNyQlQCN0PWcu',
     marcadores3d: [
       {
@@ -186,6 +187,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/0.jpg',
     slug: 'cuchara-bivalva',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
+    pdf: 'https://drive.google.com/uc?export=download&id=1FrwtsfHeiy8W0pHCo_i8iYjWTK_kyPtD',
     modelo3d: '/models/2.1 C-CB 3D.glb',
     qr: '/assets/QR/2.1 WWS C-CB 3D AR.jpg',
     marcadores3d: [
@@ -608,6 +610,7 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/2. ImagenX.png',
     slug: 'sedimentador-cadenas',
     categoria: 'TRATAMIENTO SECUNDARIO',
+    pdf: 'https://drive.google.com/file/d/1kmpqTEYJbd8Yy7wV8dDofDAbYFoK4LSZ/view?usp=sharing',
     modelo3d: '/models/5.1 C-BDC 3D.glb',
     marcadores3d: [
       {
