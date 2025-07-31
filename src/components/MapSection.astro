@@ -1,6 +1,5 @@
 ---
 // Importamos los estilos de Leaflet
-import 'leaflet/dist/leaflet.css';
 import { proyectos } from '../data/proyectos';
 
 // Obtener tipos únicos de proyectos
@@ -156,6 +155,11 @@ const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
   }
 </style>
 
+<!-- Cargar CSS de Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <script define:vars={{ proyectos }}>
   // Agrupar proyectos por coordenadas
   const proyectosPorCoord = {};
@@ -165,112 +169,175 @@ const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
     proyectosPorCoord[key].push(p);
   });
 
+  // Función para cargar scripts de manera segura
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      // Verificar si ya está cargado
+      if (document.querySelector(`script[src="${src}"]`)) {
+        resolve();
+        return;
+      }
+      
+      const script = document.createElement('script');
+      script.src = src;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
+
   // Inicializar el mapa cuando el DOM esté listo
-  document.addEventListener('DOMContentLoaded', () => {
-    // Cargar Leaflet y MarkerCluster dinámicamente
-    const leafletScript = document.createElement('script');
-    leafletScript.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-    leafletScript.onload = () => {
-      const clusterScript = document.createElement('script');
-      clusterScript.src = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js';
-      clusterScript.onload = () => {
-        const L = window.L;
-        // Configuración del mapa
-        const map = L.map('map').setView([4.5709, -74.2973], 6);
-        // Añadir capa de mapa base
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      console.log('Iniciando carga del mapa...');
+      
+      // Cargar Leaflet y MarkerCluster secuencialmente
+      await loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js');
+      console.log('Leaflet cargado');
+      
+      await loadScript('https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js');
+      console.log('MarkerCluster cargado');
 
-        // Crear grupo de cluster
-        const markerCluster = L.markerClusterGroup();
+      // Verificar que Leaflet está disponible
+      if (typeof L === 'undefined') {
+        throw new Error('Leaflet no se cargó correctamente');
+      }
 
-        Object.entries(proyectosPorCoord).forEach(([key, proyectosEnCoord]) => {
-          const [lat, lng] = key.split(',').map(Number);
-          // Tooltip personalizado
-          let tooltipHtml = '';
-          if (proyectosEnCoord.length === 1) {
-            const p = proyectosEnCoord[0];
-            tooltipHtml = `
-              <div class="tooltip-content p-3">
-                <h4 class="tooltip-title font-bold text-[#4F6E6E] text-lg mb-2 line-clamp-2">${p.nombre}</h4>
-                <p class="text-sm mb-2 line-clamp-2">${p.descripcion}</p>
-                <div class="text-xs text-gray-600 space-y-1">
-                  <p><strong>Ubicación:</strong> ${p.ubicacion.ciudad}, ${p.ubicacion.departamento}</p>
-                  <p><strong>Fecha:</strong> ${p.fecha}</p>
-                  <p><strong>Capacidad:</strong> ${p.capacidad}</p>
-                  <p class="line-clamp-3"><strong>Detalles:</strong> ${p.detalles}</p>
-                </div>
+      // Configurar los iconos por defecto de Leaflet
+      L.Icon.Default.mergeOptions({
+        iconRetinaUrl: '/leaflet-icons/marker-icon-2x.png',
+        iconUrl: '/leaflet-icons/marker-icon.png',
+        shadowUrl: '/leaflet-icons/marker-shadow.png',
+      });
+
+      // Configuración del mapa con opciones robustas
+      const map = L.map('map', {
+        zoomControl: true,
+        attributionControl: true,
+        preferCanvas: false,
+        tap: true,
+        tapTolerance: 15
+      }).setView([4.5709, -74.2973], 6);
+      
+      // Añadir capa de mapa base con configuración robusta
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 19,
+        detectRetina: true,
+        crossOrigin: true
+      }).addTo(map);
+
+      // Crear grupo de cluster con configuración optimizada para servidores compartidos
+      const markerCluster = L.markerClusterGroup({
+        maxClusterRadius: 50,
+        disableClusteringAtZoom: 15,
+        spiderfyOnMaxZoom: true,
+        showCoverageOnHover: false,
+        zoomToBoundsOnClick: true,
+        removeOutsideVisibleBounds: false,
+        animateAddingMarkers: true,
+        chunkedLoading: true,
+        chunkProgress: function(processed, total, elapsed, layersArray) {
+          // Opcional: mostrar progreso de carga
+        }
+      });
+
+      Object.entries(proyectosPorCoord).forEach(([key, proyectosEnCoord]) => {
+        const [lat, lng] = key.split(',').map(Number);
+        
+        // Tooltip personalizado
+        let tooltipHtml = '';
+        if (proyectosEnCoord.length === 1) {
+          const p = proyectosEnCoord[0];
+          tooltipHtml = `
+            <div class="tooltip-content p-3">
+              <h4 class="tooltip-title font-bold text-[#4F6E6E] text-lg mb-2 line-clamp-2">${p.nombre}</h4>
+              <p class="text-sm mb-2 line-clamp-2">${p.descripcion}</p>
+              <div class="text-xs text-gray-600 space-y-1">
+                <p><strong>Ubicación:</strong> ${p.ubicacion.ciudad}, ${p.ubicacion.departamento}</p>
+                <p><strong>Fecha:</strong> ${p.fecha}</p>
+                <p><strong>Capacidad:</strong> ${p.capacidad}</p>
+                <p class="line-clamp-3"><strong>Detalles:</strong> ${p.detalles}</p>
               </div>
-            `;
-          } else {
-            tooltipHtml = `
-              <div class="tooltip-content p-3">
-                <h4 class="tooltip-title font-bold text-[#06214E] text-lg mb-2">Proyectos en esta ubicación:</h4>
-                <ul class="space-y-1">
-                  ${proyectosEnCoord.map(p => `
-                    <li>
-                      <a href="/proyectos/${p.id}" class="tooltip-link text-blue-700 underline font-semibold line-clamp-2">${p.nombre}</a>
-                    </li>
-                  `).join('')}
-                </ul>
-              </div>
-            `;
-          }
+            </div>
+          `;
+        } else {
+          tooltipHtml = `
+            <div class="tooltip-content p-3">
+              <h4 class="tooltip-title font-bold text-[#06214E] text-lg mb-2">Proyectos en esta ubicación:</h4>
+              <ul class="space-y-1">
+                ${proyectosEnCoord.map(p => `
+                  <li>
+                    <a href="/proyectos/${p.id}" class="tooltip-link text-blue-700 underline font-semibold line-clamp-2">${p.nombre}</a>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          `;
+        }
 
-          const marker = L.marker([lat, lng], {
-            icon: L.divIcon({
-              className: '',
-              html: `<div class="marker-pulse" style="background:#4F6E6E;width:28px;height:28px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px 0 rgba(0,0,0,0.18);position:relative;"><span class='pulse-circle'></span></div>`,
-              iconSize: [28, 28],
-              iconAnchor: [14, 14]
-            })
-          });
-
-          marker.bindTooltip(tooltipHtml, {
-            permanent: false,
-            direction: 'top',
-            className: 'custom-tooltip'
-          });
-
-          // Si solo hay un proyecto, redirige al hacer clic
-          if (proyectosEnCoord.length === 1) {
-            marker.on('click', () => {
-              window.location.href = `/proyectos/${proyectosEnCoord[0].id}`;
-            });
-          }
-          // Si hay varios, solo muestra el tooltip
-
-          markerCluster.addLayer(marker);
+        const marker = L.marker([lat, lng], {
+          icon: L.divIcon({
+            className: '',
+            html: `<div class="marker-pulse" style="background:#4F6E6E;width:28px;height:28px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px 0 rgba(0,0,0,0.18);position:relative;"><span class='pulse-circle'></span></div>`,
+            iconSize: [28, 28],
+            iconAnchor: [14, 14]
+          })
         });
 
-        map.addLayer(markerCluster);
-
-        // Manejar clic en items de la lista de forma semántica usando el id
-        document.querySelectorAll('.proyecto-item').forEach((item) => {
-          item.addEventListener('click', () => {
-            const id = item.getAttribute('data-id');
-            const p = proyectos.find(p => String(p.id) === id);
-            if (p) {
-              map.setView([p.ubicacion.lat, p.ubicacion.lng], 12);
-              // Buscar el marcador correspondiente y abrir el tooltip
-              // No es trivial con clusters, pero el usuario verá el cluster abierto
-            }
-          });
+        marker.bindTooltip(tooltipHtml, {
+          permanent: false,
+          direction: 'top',
+          className: 'custom-tooltip'
         });
-      };
-      document.head.appendChild(clusterScript);
-    };
-    document.head.appendChild(leafletScript);
 
-    // Cargar CSS de MarkerCluster
-    const clusterCSS = document.createElement('link');
-    clusterCSS.rel = 'stylesheet';
-    clusterCSS.href = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css';
-    document.head.appendChild(clusterCSS);
-    const clusterDefaultCSS = document.createElement('link');
-    clusterDefaultCSS.rel = 'stylesheet';
-    clusterDefaultCSS.href = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css';
-    document.head.appendChild(clusterDefaultCSS);
+        // Si solo hay un proyecto, redirige al hacer clic
+        if (proyectosEnCoord.length === 1) {
+          marker.on('click', () => {
+            window.location.href = `/proyectos/${proyectosEnCoord[0].id}`;
+          });
+        }
+
+        markerCluster.addLayer(marker);
+      });
+
+      map.addLayer(markerCluster);
+
+      // Manejar clic en items de la lista
+      document.querySelectorAll('.proyecto-item').forEach((item) => {
+        item.addEventListener('click', () => {
+          const id = item.getAttribute('data-id');
+          const p = proyectos.find(p => String(p.id) === id);
+          if (p) {
+            map.setView([p.ubicacion.lat, p.ubicacion.lng], 12);
+          }
+        });
+      });
+
+      console.log('Mapa inicializado correctamente con clusters');
+      
+    } catch (error) {
+      console.error('Error al cargar el mapa:', error);
+      
+      // Fallback: mostrar un mensaje de error amigable
+      const mapContainer = document.getElementById('map');
+      if (mapContainer) {
+        mapContainer.innerHTML = `
+          <div class="flex items-center justify-center h-full bg-gray-100 rounded-lg">
+            <div class="text-center p-6">
+              <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <h3 class="text-lg font-medium text-gray-900 mb-2">Error al cargar el mapa</h3>
+              <p class="text-gray-600 mb-4">Por favor, recarga la página o verifica tu conexión a internet</p>
+              <button onclick="window.location.reload()" class="bg-[#4F6E6E] hover:bg-[#3a5555] text-white px-4 py-2 rounded-lg transition-colors">
+                Recargar página
+              </button>
+            </div>
+          </div>
+        `;
+      }
+    }
   });
 </script>

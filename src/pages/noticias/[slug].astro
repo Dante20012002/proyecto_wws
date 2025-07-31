@@ -2,6 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import noticias from '../../data/noticias';
 
+export async function getStaticPaths() {
+  return noticias.map(noticia => ({
+    params: { slug: noticia.slug }
+  }));
+}
+
 const { slug } = Astro.params;
 const noticia = noticias.find(n => n.slug === slug);
 

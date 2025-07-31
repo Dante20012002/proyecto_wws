@@ -10,11 +10,16 @@ interface Props {
     links: Array<{
       text: string;
       href: string;
+      isScroll?: boolean;
+      needsBase?: boolean;
     }>;
   }>;
 }
 
 const { socialLinks, footerLinks } = Astro.props;
+
+// Obtener la ruta actual
+const currentPath = Astro.url.pathname;
 ---
 
 <footer class="bg-[#4F6E6E] text-white py-12">
@@ -22,10 +27,8 @@ const { socialLinks, footerLinks } = Astro.props;
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- Logo y redes -->
       <div class="text-center md:text-left">
-        <svg class="h-12 mb-4">
-          <use href="/assets/sprite.svg#logo-splash" />
-        </svg>
-        <p class="mb-4 text-[#EAEAEA]">Transformando ideas en soluciones digitales innovadoras</p>
+        <img src="/assets/Logo azul y negro.png" alt="Logo" class="h-12 mb-4 mx-auto">
+        <p class="mb-4 text-[#EAEAEA]">Soluciones que trabajan por el agua del futuro</p>
         <div class="flex gap-4 justify-center md:justify-start">
           {socialLinks.map((link) => (
             <a href={link.href} target="_blank" rel="noopener noreferrer" class="hover:opacity-80">
@@ -36,19 +39,27 @@ const { socialLinks, footerLinks } = Astro.props;
           ))}
         </div>
       </div>
-      <!-- Enlaces útiles -->
+      
+      <!-- Enlaces del menú -->
       <div>
-        <h3 class="font-bold mb-4 text-[#EAEAEA]">Enlaces</h3>
+        <h3 class="font-bold mb-4 text-[#EAEAEA]">{footerLinks[0]?.title}</h3>
         <ul class="space-y-2">
           {footerLinks[0]?.links.map((link) => (
             <li>
-              <a href={link.href} class="hover:text-[#EAEAEA] transition text-sm">
+              <a 
+                href={link.href}
+                data-scroll={link.isScroll}
+                data-needs-base={link.needsBase}
+                data-current-path={currentPath}
+                class="hover:text-[#EAEAEA] transition text-sm"
+              >
                 {link.text}
               </a>
             </li>
           ))}
         </ul>
       </div>
+      
       <!-- Contacto -->
       <div>
         <h3 class="font-bold mb-4 text-[#EAEAEA]">Contacto</h3>
@@ -60,7 +71,10 @@ const { socialLinks, footerLinks } = Astro.props;
             <span class="font-semibold">Teléfono:</span> +57 123 456 7890
           </li>
           <li>
-            <span class="font-semibold">Dirección:</span> Cra 124a #18a-81, Bogotá, Colombia
+            <span class="font-semibold">Dirección:</span> <ul>
+              <li>Cra 124a #18a-81, Bogotá, Colombia</li>
+              <li>Avenida 6 14 31 Oficina 501, Cali, Colombia</li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -70,4 +84,59 @@ const { socialLinks, footerLinks } = Astro.props;
     </div>
   </div>
 </footer>
+
+<script>
+  // Función para realizar el scroll
+  const scrollToElement = (targetId: string) => {
+    const targetElement = document.getElementById(targetId);
+    if (!targetElement) return;
+
+    // Obtener la altura de la navbar
+    const navbar = document.querySelector('nav');
+    const navbarHeight = navbar ? navbar.offsetHeight : 0;
+
+    // Ajustes adicionales según la sección
+    const offsets: Record<string, number> = {
+      'mapa': 10,
+      'contacto': 10
+    };
+
+    const additionalOffset = offsets[targetId] || 0;
+
+    // Calcular la posición final
+    const elementPosition = targetElement.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.scrollY - navbarHeight + additionalOffset;
+
+    // Realizar el scroll
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  };
+
+  // Manejar el scrolling suave para los enlaces del footer
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('footer a[data-scroll="true"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const needsBase = link.getAttribute('data-needs-base') === 'true';
+        const currentPath = link.getAttribute('data-current-path');
+        const href = link.getAttribute('href');
+        
+        // Si estamos en una página diferente a la principal y necesitamos redireccionar
+        if (needsBase && currentPath && currentPath !== '/') {
+          // No prevenimos el evento por defecto, dejamos que redirija
+          return;
+        }
+
+        // Si estamos en la página principal o no necesitamos redireccionar
+        e.preventDefault();
+        const targetId = href?.split('#')[1];
+        if (targetId) {
+          // Realizar el scroll con un pequeño retraso
+          setTimeout(() => scrollToElement(targetId), 50);
+        }
+      });
+    });
+  });
+</script>
 

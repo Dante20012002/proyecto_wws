@@ -8,6 +8,25 @@ import ProductQR from '../../../components/ProductQR.astro';
 import ProductRelated from '../../../components/ProductRelated.astro';
 import ProductContact from '../../../components/ProductContact.astro';
 
+export async function getStaticPaths() {
+  const paths = [];
+  
+  for (const producto of productos) {
+    if (producto.subProductos && producto.subProductos.length > 0) {
+      for (const subProducto of producto.subProductos) {
+        paths.push({
+          params: { 
+            producto: producto.slug, 
+            subproducto: subProducto.slug 
+          }
+        });
+      }
+    }
+  }
+  
+  return paths;
+}
+
 // Obtiene los parámetros de la URL
 const { producto: productSlug, subproducto: subProductSlug } = Astro.params;
 
@@ -62,12 +81,12 @@ const relacionados = producto
         <ProductRelated productos={relacionados} />
       )}
 
-      {subProducto.formularioCotizacion ? (
+      {subProducto.formUrl ? (
         <ProductContact 
           titulo="Cotiza este producto"
           descripcion={`¿Te interesa ${subProducto.nombre}? Llena el formulario de cotización específico para este producto y nuestro equipo te contactará con una propuesta personalizada.`}
           botonTexto="COTIZAR AHORA"
-          botonUrl={subProducto.formularioCotizacion}
+          botonUrl={subProducto.formUrl}
         />
       ) : (
         <ProductContact 

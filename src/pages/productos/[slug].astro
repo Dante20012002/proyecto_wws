@@ -9,6 +9,12 @@ import ProductQR from '../../components/ProductQR.astro';
 import ProductRelated from '../../components/ProductRelated.astro';
 import ProductContact from '../../components/ProductContact.astro';
 
+export async function getStaticPaths() {
+  return productos.map(producto => ({
+    params: { slug: producto.slug }
+  }));
+}
+
 // Obtiene el slug de la URL y busca el producto correspondiente
 const { slug } = Astro.params;
 const producto = productos.find(p => p.slug === slug);

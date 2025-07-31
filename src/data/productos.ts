@@ -19,8 +19,9 @@ export interface SubProducto {
   modelo3d?: string;
   marcadores3d?: Marcador3D[];
   qr?: string;
-  formularioCotizacion?: string;
+  formUrl?: string;
   pdf?: string;
+  marca?: string;
 }
 
 export interface Producto {
@@ -52,11 +53,15 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/1.jpg',
     slug: 'compuerta-mural',
     categoria: 'CONTROL DE CAUDAL',
-    modelo3d: '/models/1.1 W-CPM.glb',
+    modelo3d: '/models/1.1 W-CPM R001.glb',
     qr: '/assets/QR/1.1 WWS W-CPM AR.png',
-    pdf: '',
-    formUrl: 'https://forms.gle/x-rake-cotizacionhttps://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UNlhIUkdMOVg1MUkwOEZZSFczUzNDSkRLNyQlQCN0PWcu',
+    pdf: 'https://drive.google.com/uc?export=download&id=1U77g5QxfLzy6ZiWPgwkXoOkl4z7_D4M2',
+    formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UNlhIUkdMOVg1MUkwOEZZSFczUzNDSkRLNyQlQCN0PWcu',
     marcadores3d: [
+      {
+        x: -0.404299999999999, y: 0.41056953253830697, z: -0.14086978158773777,
+        label: [{ nombre: 'Obra Civil Con Pase Hidráulico' }],
+      },
       {
         x: 0.34550000000000003, y: -0.7699, z: -0.002401534275545694,
         label: [{ nombre: 'Obturador' }],
@@ -87,10 +92,15 @@ export const productos: Producto[] = [
     imagen: '/assets/Productos/2.jpg',
     slug: 'compuerta-canal-abierto',
     categoria: 'CONTROL DE CAUDAL',
-    modelo3d: '/models/1.2 W-CPC.glb',
+    modelo3d: '/models/1.2 W-CPC R001.glb',
     qr: '/assets/QR/1.2 WWS W-CPC.png',
+    pdf: 'https://drive.google.com/uc?export=download&id=1U77g5QxfLzy6ZiWPgwkXoOkl4z7_D4M2',
     formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UNzFFWjY2MVlUUFFGUUw5VkpVN0JYUzk5NCQlQCN0PWcu',
     marcadores3d: [
+      {
+        x: -0.003186200719598067, y: -0.6178383213638442, z: 0.2555,
+        label: [{ nombre: 'Obra Civil Con Pase Hidráulico' }],
+      },
       {
         x: 0.0018184148227173287, y: 0.5379323416180531, z: 0.08656901124123755,
         label: [{ nombre: 'Obturador' }],
@@ -123,6 +133,7 @@ export const productos: Producto[] = [
     categoria: 'CONTROL DE CAUDAL',
     modelo3d: '/models/1.3 W-CPS.glb',
     qr: '/assets/QR/1.3 WWS W-CPS.png',
+    pdf: 'https://drive.google.com/uc?export=download&id=1U77g5QxfLzy6ZiWPgwkXoOkl4z7_D4M2',
     formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UMU41RUtTR09INjZTNUhTTDlSMUowRFA2OSQlQCN0PWcu',
     marcadores3d: [
       {
@@ -149,6 +160,7 @@ export const productos: Producto[] = [
     categoria: 'CONTROL DE CAUDAL',
     modelo3d: '/models/1.4 W-CPR.glb',
     qr: '/assets/QR/1.4 WWS W-CPR.png',
+    pdf: 'https://drive.google.com/uc?export=download&id=1U77g5QxfLzy6ZiWPgwkXoOkl4z7_D4M2',
     formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UQ0tRUFZUSlMzT0RVUEJSSENWQllNWTY0MyQlQCN0PWcu',
     marcadores3d: [
       {
@@ -183,13 +195,14 @@ export const productos: Producto[] = [
     id: 5,
     nombre: 'C-CB CUCHARA BIVALVA',
     descripcion: 'Cuchara de dos valvas para extracción y transporte de sólidos en fondo de canales.',
-    descripcionLarga: 'La cuchara bivalva C-CB es un equipo especializado para la extracción y transporte de sólidos sedimentados en el fondo de canales de tratamiento de aguas residuales. Su diseño de dos valvas articuladas permite capturar eficientemente los lodos y sedimentos acumulados, facilitando su remoción sin interrumpir el flujo del proceso. Fabricada en acero inoxidable de alta resistencia, incluye un sistema de cierre hermético que previene la pérdida de material durante el transporte. Su operación puede ser manual o automatizada, adaptándose a las necesidades específicas de cada planta. Ideal para el mantenimiento preventivo y la limpieza de canales de sedimentación.',
+    descripcionLarga: 'La cuchara bivalva C-CB es un equipo especializado para la extracción y transporte de sólidos sedimentados en el fondo de canales de tratamiento de aguas residuales. Su diseño de dos valvas articuladas permite capturar eficientemente los lodos y sedimentos acumulados, facilitando su remoción sin interrumpir el flujo del proceso. Fabricada en acero al carbono o inoxidable. Su operación puede ser manual o automatizada, adaptándose a las necesidades específicas de cada planta. Ideal para el mantenimiento preventivo y la limpieza de canales de sedimentación.',
     imagen: '/assets/Productos/0.jpg',
     slug: 'cuchara-bivalva',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     pdf: 'https://drive.google.com/uc?export=download&id=1FrwtsfHeiy8W0pHCo_i8iYjWTK_kyPtD',
     modelo3d: '/models/2.1 C-CB 3D.glb',
     qr: '/assets/QR/2.1 WWS C-CB 3D AR.jpg',
+    formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UQjM2TEJBNEhNMEJVVFc4QVVEUTlZTlNCSyQlQCN0PWcu',
     marcadores3d: [
       {
         x: 0.002069352458137539, y: -0.12759864480690686, z: 0.25367478605882854,
@@ -214,48 +227,27 @@ export const productos: Producto[] = [
     slug: 'rejillas-automaticas',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
+    pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
     subProductos: [
       {
         id: 'x-rake',
         nombre: 'X-RAKE / X-H.RAKE REJILLA DE GRUESOS, MEDIOS Y FINOS',
         descripcion: 'Rejilla automática de rastrillos para retención de sólidos gruesos, medios y finos.',
         descripcionLarga: 'La rejilla X-RAKE / X-H.RAKE es un sistema automático de cribado que utiliza rastrillos para la retención eficiente de sólidos gruesos, medios y finos en canales de tratamiento de aguas residuales. Su sistema de limpieza automática con rastrillos elimina la necesidad de intervención manual, reduciendo costos operativos y mejorando la eficiencia del proceso. El diseño incluye sensores de nivel y control automático que se adaptan a las variaciones de caudal, garantizando un cribado continuo y eficiente.',
-        imagen: '/assets/Productos/1. 1722508586316.jpg',
+        imagen: '/assets/Productos/X-RAKE.png',
         slug: 'x-rake-rejilla-gruesos',
         modelo3d: '/models/X-RAKE.glb',
-        marcadores3d: [
-          {
-            x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-            label: [{ nombre: 'Sistema de Rastrillos' }],
-          },
-          {
-            x: 0.5, y: -1.2, z: 1.5,
-            label: [{ nombre: 'Motor de Accionamiento' }],
-          },
-        ],
-        qr: '/assets/qr/x-rake-rejilla-gruesos.png',
-        formularioCotizacion: 'https://forms.gle/x-rake-cotizacion'
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       },
       {
         id: 'x-step',
         nombre: 'X-STEP REJILLA DE ESCALONES',
         descripcion: 'Rejilla automática de escalones para cribado eficiente de sólidos.',
         descripcionLarga: 'La rejilla X-STEP es un sistema automático de cribado que utiliza un mecanismo de escalones para la retención eficiente de sólidos en canales de tratamiento de aguas residuales. Su diseño único de escalones permite un cribado continuo y automático, eliminando la necesidad de paradas para limpieza manual. El sistema incluye sensores de nivel y control automático que optimizan el rendimiento según las condiciones de operación.',
-        imagen: '/assets/Productos/1. 1722508586316.jpg',
+        imagen: '/assets/Productos/X-STEP.png',
         slug: 'x-step-rejilla-escalones',
         modelo3d: '/models/X-STEP.glb',
-        marcadores3d: [
-          {
-            x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-            label: [{ nombre: 'Sistema de Escalones' }],
-          },
-          {
-            x: 0.3, y: -1.1, z: 1.6,
-            label: [{ nombre: 'Mecanismo de Elevación' }],
-          },
-        ],
-        qr: '/assets/qr/x-step-rejilla-escalones.png',
-        formularioCotizacion: 'https://forms.gle/x-step-cotizacion'
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       }
     ]
   },
@@ -269,6 +261,7 @@ export const productos: Producto[] = [
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -281,32 +274,36 @@ export const productos: Producto[] = [
         nombre: 'S FILTRO TORNILLO / SC FILTRO TORNILLO COMPACTADOR',
         descripcion: 'Filtro tornillo estándar y compactador para separación y transporte de sólidos.',
         descripcionLarga: 'El S Filtro Tornillo y SC Filtro Tornillo Compactador son equipos diseñados para la separación y transporte eficiente de sólidos en plantas de tratamiento. El modelo compactador incluye una zona adicional para reducir el volumen de residuos.',
-        imagen: '/assets/Productos/2. 143246876_774032859861155_2466509016048709070_n.jpg',
+        imagen: '/assets/Productos/S FILTRO TORNILLO.jpg',
         slug: 's-filtro-tornillo-compactador',
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       },
       {
         id: 's-mini',
         nombre: 'S.MINI MINI FILTRO TORNILLO',
         descripcion: 'Filtro tornillo compacto para aplicaciones de menor escala.',
         descripcionLarga: 'El S.MINI es un filtro tornillo de tamaño reducido, ideal para instalaciones pequeñas o aplicaciones piloto que requieren separación eficiente de sólidos en poco espacio.',
-        imagen: '/assets/Productos/2. 143246876_774032859861155_2466509016048709070_n.jpg',
+        imagen: '/assets/Productos/S MINI MINI FLTRO TORNILLO.jpg',
         slug: 's-mini-mini-filtro-tornillo',
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       },
       {
         id: 'ts-filtro-tornillo',
         nombre: 'TS FILTRO TORNILLO CON TANQUE / TSC FILTRO TORNILLO COMPACTADOR CON TANQUE',
         descripcion: 'Filtro tornillo con tanque integrado para mayor capacidad y eficiencia.',
         descripcionLarga: 'El TS Filtro Tornillo y TSC Filtro Tornillo Compactador con Tanque integran un tanque de almacenamiento para aumentar la capacidad de procesamiento y mejorar la eficiencia en la separación y compactación de sólidos.',
-        imagen: '/assets/Productos/2. 143246876_774032859861155_2466509016048709070_n.jpg',
+        imagen: '/assets/Productos/ts-filtro-tornillo.jpg',
         slug: 'ts-filtro-tornillo-tanque',
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       },
       {
         id: 'vs-filtro-tornillo',
         nombre: 'VS FILTRO TORNILLO VERTICAL / VSC FILTRO TORNILLO COMPACTADOR VERTICAL',
         descripcion: 'Filtro tornillo vertical para optimización de espacio y compactación.',
         descripcionLarga: 'El VS Filtro Tornillo Vertical y VSC Compactador Vertical están diseñados para instalaciones donde el espacio es limitado, permitiendo una separación y compactación eficiente de sólidos en orientación vertical.',
-        imagen: '/assets/Productos/2. 143246876_774032859861155_2466509016048709070_n.jpg',
+        imagen: '/assets/Productos/VS FILTRO TORNILLO VERTICAL.jpg',
         slug: 'vs-filtro-tornillo-vertical',
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       }
     ],
   },
@@ -320,6 +317,7 @@ export const productos: Producto[] = [
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -332,24 +330,30 @@ export const productos: Producto[] = [
         nombre: 'X-DRUM REJILLA DE ALIMENACIÓN EXTERNA A TAMBOR ROTATIVO',
         descripcion: 'Rejilla de alimentación externa para separación eficiente de sólidos.',
         descripcionLarga: 'La X-DRUM es una rejilla de tambor rotativo con alimentación externa, diseñada para separar sólidos de manera eficiente en procesos de tratamiento de aguas. Su diseño permite un cribado continuo y automático, ideal para aplicaciones industriales y municipales.',
-        imagen: '/assets/Productos/3. 93888766_595226131075163_3212793549254819840_n.jpg',
+        imagen: '/assets/Productos/x-drum.jpg',
         slug: 'x-drum-rejilla-alimentacion-externa',
+        marca: 'XS Solutions',
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       },
       {
         id: 'x-int-drum',
         nombre: 'X-INT.DRUM REJILLA DE ALIMENACIÓN INTERNA A TAMBOR ROTATIVO',
         descripcion: 'Rejilla de alimentación interna para cribado fino y continuo.',
         descripcionLarga: 'La X-INT.DRUM es una rejilla de tambor rotativo con alimentación interna, optimizada para el cribado fino y continuo de sólidos en el tratamiento de aguas residuales. Su diseño compacto facilita la integración en sistemas existentes.',
-        imagen: '/assets/Productos/3. 93888766_595226131075163_3212793549254819840_n.jpg',
+        imagen: '/assets/Productos/X-INT-DRUM.jpg',
         slug: 'x-int-drum-rejilla-alimentacion-interna',
+        marca: 'XS Solutions',
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       },
       {
         id: 'x-srd',
         nombre: 'X-SRD / X-SRD.D REJILLA DE TAMBOR ROTATIVO INMERSO EN MEDIO A FILTRAR',
         descripcion: 'Rejilla de tambor rotativo sumergida para filtración directa.',
         descripcionLarga: 'La X-SRD y X-SRD.D son rejillas de tambor rotativo diseñadas para operar sumergidas en el medio a filtrar, permitiendo una separación directa y eficiente de sólidos en aplicaciones de alta demanda.',
-        imagen: '/assets/Productos/3. 93888766_595226131075163_3212793549254819840_n.jpg',
+        imagen: '/assets/Productos/X-SRD.jpg',
         slug: 'x-srd-rejilla-tambor-inmerso',
+        marca: 'XS Solutions',
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       }
     ],
   },
@@ -363,6 +367,7 @@ export const productos: Producto[] = [
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -375,16 +380,18 @@ export const productos: Producto[] = [
         nombre: 'X-S.COMP TORNILLO SIN FIN COMPACTADOR',
         descripcion: 'Tornillo sin fin para compactación eficiente de sólidos cribados.',
         descripcionLarga: 'El X-S.COMP es un tornillo sin fin diseñado para compactar sólidos cribados, reduciendo su volumen y facilitando su disposición final en plantas de tratamiento de aguas.',
-        imagen: '/assets/Productos/4. 84036293_549328035664973_4077440993597587456_n_cleanup.jpg.png',
+        imagen: '/assets/Productos/X-S.COMP TORNILLO SIN FIN COMPACTADOR.jpg',
         slug: 'x-s-comp-tornillo-compactador',
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       },
       {
         id: 'x-comp',
         nombre: 'X-COMP TORNILLO SIN FIN COMPACTADOR-LAVADOR',
         descripcion: 'Tornillo sin fin que compacta y lava sólidos cribados.',
         descripcionLarga: 'El X-COMP es un tornillo sin fin que, además de compactar, incorpora un sistema de lavado para mejorar la limpieza de los sólidos cribados antes de su disposición.',
-        imagen: '/assets/Productos/4. 84036293_549328035664973_4077440993597587456_n_cleanup.jpg.png',
+        imagen: '/assets/Productos/X-COMP TORNILLO SIN FIN COMPACTADOR-LAVADOR.jpg',
         slug: 'x-comp-tornillo-compactador-lavador',
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       }
     ],
   },
@@ -398,6 +405,7 @@ export const productos: Producto[] = [
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -410,16 +418,18 @@ export const productos: Producto[] = [
         nombre: 'X-GC CLASIFICADOR DE ARENAS',
         descripcion: 'Clasificador de arenas para separación eficiente de partículas minerales.',
         descripcionLarga: 'El X-GC es un clasificador de arenas diseñado para separar partículas minerales del agua, protegiendo equipos aguas abajo y mejorando la eficiencia del tratamiento.',
-        imagen: '/assets/Productos/5.EQUIPOS DE PRE TRTATAMIENTO X2SOLUTION.jpg',
+        imagen: '/assets/Productos/X-GC.jpg',
         slug: 'x-gc-clasificador-arenas',
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       },
       {
         id: 'x-gc-cone',
         nombre: 'X-GC CONE CLASIFICADOR DE ARENAS CÓNICO',
         descripcion: 'Clasificador de arenas con diseño cónico para mayor eficiencia.',
         descripcionLarga: 'El X-GC CONE es un clasificador de arenas con geometría cónica que mejora la eficiencia de separación y facilita la extracción de partículas minerales.',
-        imagen: '/assets/Productos/5.EQUIPOS DE PRE TRTATAMIENTO X2SOLUTION.jpg',
+        imagen: '/assets/Productos/X-GC CONE.jpg',
         slug: 'x-gc-cone-clasificador-arenas-conico',
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       }
     ],
   },
@@ -433,6 +443,7 @@ export const productos: Producto[] = [
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -445,8 +456,9 @@ export const productos: Producto[] = [
         nombre: 'X-G.WASH LAVADOR DE ARENAS',
         descripcion: 'Lavador de arenas para remover materia orgánica adherida.',
         descripcionLarga: 'El X-G.WASH es un lavador de arenas diseñado para remover la materia orgánica adherida a partículas minerales, mejorando la calidad del material separado para su reutilización o disposición.',
-        imagen: '/assets/Productos/6. Imagen2_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
+        imagen: '/assets/Productos/X-G.WASH.jpg',
         slug: 'x-g-wash-lavador-arenas',
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       }
     ],
   },
@@ -460,6 +472,7 @@ export const productos: Producto[] = [
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -472,8 +485,9 @@ export const productos: Producto[] = [
         nombre: 'X-VORTEX DESARENADOR TIPO VORTEX',
         descripcion: 'Desarenador tipo vortex para separación eficiente de arenas.',
         descripcionLarga: 'El X-VORTEX es un desarenador que utiliza un flujo circular para separar partículas arenosas del agua, optimizando la protección de equipos aguas abajo.',
-        imagen: '/assets/Productos/7. EQUIPOS DE PRE TRTATAMIENTO X2SOLUTION.jpg',
+        imagen: '/assets/Productos/X-VORTEX.jpg',
         slug: 'x-vortex-desarenador',
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       },
       {
         id: 'e-pba',
@@ -482,11 +496,10 @@ export const productos: Producto[] = [
         descripcionLarga: 'El E-PBA es un sistema de puente longitudinal diseñado para la extracción eficiente de arenas en tanques desarenadores, facilitando el mantenimiento y operación continua.',
         imagen: '/assets/Productos/7. EQUIPOS DE PRE TRTATAMIENTO X2SOLUTION.jpg',
         slug: 'e-pba-puente-longitudinal-desarenador',
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       }
     ],
   },
-
-  // TRATAMIENTO SECUNDARIO
   {
     id: 13,
     nombre: 'X TRATAMIENTOS COMBINADOS',
@@ -496,79 +509,84 @@ export const productos: Producto[] = [
     slug: 'tratamientos-combinados',
     categoria: 'DRAGADO Y PRETRATAMIENTO',
     marca: 'XS Solutions',
+    pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
     subProductos: [
       {
         id: 'set-1',
         nombre: 'SET-1 TOLVA LONGITUDINAL PARA LA SEPARACIÓN DE ARENAS',
         descripcion: 'Tolva longitudinal diseñada para la separación eficiente de arenas en el pretratamiento.',
         descripcionLarga: 'La SET-1 es una tolva longitudinal especialmente diseñada para la separación eficiente de arenas en plantas de tratamiento de aguas residuales. Su diseño optimiza la sedimentación y facilita la extracción de arenas, mejorando la eficiencia global del pretratamiento.',
-        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        imagen: '/assets/Productos/SET-1.jpg',
         slug: 'set-1-tolva-longitudinal',
         modelo3d: '/models/SET-1.glb',
         marcadores3d: [],
         qr: '/assets/qr/set-1-tolva-longitudinal.png',
-        formularioCotizacion: 'https://forms.gle/set-1-cotizacion'
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       },
       {
         id: 'set-2',
         nombre: 'SET-2 UNIDAD COMBINADA',
         descripcion: 'Unidad compacta que integra cribado y desarenado en un solo equipo.',
         descripcionLarga: 'La SET-2 es una unidad combinada que integra los procesos de cribado y desarenado en un solo equipo compacto, ideal para plantas con espacio limitado y altos requerimientos de eficiencia.',
-        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        imagen: '/assets/Productos/SET-2.jpg',
         slug: 'set-2-unidad-combinada',
         modelo3d: '/models/SET-2.glb',
         marcadores3d: [],
         qr: '/assets/qr/set-2-unidad-combinada.png',
-        formularioCotizacion: 'https://forms.gle/set-2-cotizacion'
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       },
       {
         id: 'set-3',
         nombre: 'SET-3 UNIDAD COMBINADA CON SISTEMA DE DESENGRASADO',
         descripcion: 'Unidad combinada que incluye sistema de desengrasado para mayor eficiencia.',
         descripcionLarga: 'La SET-3 es una unidad combinada avanzada que, además de cribado y desarenado, incorpora un sistema de desengrasado, permitiendo un pretratamiento aún más completo y eficiente.',
-        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        imagen: '/assets/Productos/SET-3.jpg',
         slug: 'set-3-unidad-combinada-desengrasado',
         modelo3d: '/models/SET-3.glb',
         marcadores3d: [],
         qr: '/assets/qr/set-3-unidad-combinada-desengrasado.png',
-        formularioCotizacion: 'https://forms.gle/set-3-cotizacion'
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       },
       {
         id: 'mini-set-2',
         nombre: 'MINI.SET-2 MINI UNIDAD COMBINADA 2',
         descripcion: 'Versión mini de la unidad combinada 2 para aplicaciones de menor escala.',
         descripcionLarga: 'La MINI.SET-2 es una versión compacta de la unidad combinada 2, ideal para instalaciones pequeñas o aplicaciones piloto que requieren eficiencia en poco espacio.',
-        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        imagen: '/assets/Productos/MINI.SET-2.jpg',
         slug: 'mini-set-2-mini-unidad-combinada-2',
         modelo3d: '/models/MINI-SET-2.glb',
         marcadores3d: [],
         qr: '/assets/qr/mini-set-2-mini-unidad-combinada-2.png',
-        formularioCotizacion: 'https://forms.gle/mini-set-2-cotizacion'
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       },
       {
         id: 'mini-set-3',
         nombre: 'MINI.SET-3 MINI UNIDAD COMBINADA 3',
         descripcion: 'Versión mini de la unidad combinada 3 con sistema de desengrasado.',
         descripcionLarga: 'La MINI.SET-3 es una versión compacta de la unidad combinada 3, que incluye sistema de desengrasado, pensada para aplicaciones de menor escala con altos estándares de pretratamiento.',
-        imagen: '/assets/Productos/8. 145925091_777582819506159_1644089623811956408_n.jpg',
+        imagen: '/assets/Productos/MINI.SET-3.jpg',
         slug: 'mini-set-3-mini-unidad-combinada-3',
         modelo3d: '/models/MINI-SET-3.glb',
         marcadores3d: [],
         qr: '/assets/qr/mini-set-3-mini-unidad-combinada-3.png',
-        formularioCotizacion: 'https://forms.gle/mini-set-3-cotizacion'
+        pdf: 'https://drive.google.com/uc?export=download&id=1AizZyR5xrCaG8BpOaQow2Tj64F558IB8',
       }
     ]
   },
+
+  // AGITACIÓN Y FLOCULACIÓN
   {
     id: 14,
     nombre: 'E-AGI AGITADOR DE TURBINA AXIAL',
     descripcion: 'Agitador mecánico con de turbina para mezcla de productos químicos.',
-    descripcionLarga: 'El agitador de turbina axial E-AGI es un equipo mecánico especializado diseñado para la mezcla eficiente de productos químicos en plantas de tratamiento de aguas residuales. Su diseño de turbina axial genera un flujo vertical que optimiza la distribución de químicos en el agua, asegurando una mezcla uniforme y rápida. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control de velocidad variable que permite ajustar la intensidad de la agitación según los requerimientos del proceso. Ideal para la dosificación de coagulantes, floculantes y otros productos químicos, garantizando una reacción óptima y mejorando la eficiencia del tratamiento.',
+    descripcionLarga: 'El agitador de turbina axial E‑AGI está diseñado para la mezcla rápida y homogénea de coagulantes en procesos de tratamiento de agua potable, especialmente durante la coagulación. Su turbina de 4 palas inclinadas genera un flujo axial eficiente, favoreciendo la dispersión de reactivos y la formación de microflóculos en tiempos muy cortos. Fabricado en acero inoxidable AISI 304 o 316L, incorpora un motorreductor de ejes paralelos o planetario con acoplamiento directo. El sentido de giro se invierte fácilmente desde el control eléctrico. Opcionalmente, puede integrarse con variador de frecuencia, monitoreo de torque y tablero con PLC y telemetría para un control preciso y operación remota.',
     imagen: '/assets/Productos/1. 5239d63c-6ba2-4d19-9a8b-daf0f67fb400.jpg',
     slug: 'agitador-turbina-axial',
     categoria: 'AGITACIÓN Y FLOCULACIÓN',
+    pdf: 'https://drive.google.com/uc?export=download&id=1uF2Ro9t8mhogY8GuXJ7KK5zQt1l65PWE',
     modelo3d: '/models/3.1 WWS E-AGI.glb',
     qr: '/assets/QR/3.1 WWS E-AGI.png',
+    formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UNUxVUUYwNldHT1JDSVkwWUlEUUkyNDk1SiQlQCN0PWcu',
     marcadores3d: [
       {
         x: 0.09149026524060949, y: 3.481983262684383, z: -0.028678447799860698,
@@ -600,61 +618,27 @@ export const productos: Producto[] = [
       },
     ],
   },
-
-  // TRATAMIENTO SECUNDARIO
-  {
-    id: 15,
-    nombre: 'C-BDC SEDIMENTADOR DE CADENAS',
-    descripcion: 'Sedimentador de lodos de cadena para remoción de fondo, superficial o combinada.',
-    descripcionLarga: 'El sedimentador de cadenas C-BDC es un sistema de clarificación avanzado diseñado para la remoción eficiente de lodos en plantas de tratamiento de aguas residuales. Su sistema de cadenas permite la remoción de lodos del fondo, superficie o de manera combinada, adaptándose a las necesidades específicas de cada aplicación. El diseño de cadenas proporciona un movimiento continuo y uniforme que optimiza la separación sólido-líquido. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de las cadenas según las condiciones de operación. Esencial para aplicaciones que requieren una clarificación eficiente con remoción flexible de lodos.',
-    imagen: '/assets/Productos/2. ImagenX.png',
-    slug: 'sedimentador-cadenas',
-    categoria: 'TRATAMIENTO SECUNDARIO',
-    pdf: 'https://drive.google.com/file/d/1kmpqTEYJbd8Yy7wV8dDofDAbYFoK4LSZ/view?usp=sharing',
-    modelo3d: '/models/5.1 C-BDC 3D.glb',
-    marcadores3d: [
-      {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
-      },
-    ],
-  },
-  {
-    id: 16,
-    nombre: 'E-DF DISTRIBUIDOR DE FLUJO',
-    descripcion: 'Distribuye uniformemente el caudal sobre el medio filtrante en filtros percoladores, optimizando el contacto agua-biomasa y la degradación orgánica.',
-    descripcionLarga: 'El distribuidor de flujo E-DF es un sistema especializado diseñado para distribuir uniformemente el caudal sobre el medio filtrante en filtros percoladores de plantas de tratamiento de aguas residuales. Su diseño optimiza el contacto entre el agua y la biomasa, mejorando la eficiencia de la degradación orgánica. El sistema de distribución uniforme asegura que toda la superficie del medio filtrante reciba el caudal de manera equilibrada, evitando zonas de sobrecarga o subcarga. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la distribución del flujo según las condiciones de operación. Esencial para optimizar el rendimiento de filtros percoladores y mejorar la calidad del efluente tratado.',
-    imagen: '/assets/Productos/1. 6f978b15-5597-4b4c-9b48-e3e435d9ca25_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
-    slug: 'distribuidor-flujo',
-    categoria: 'TRATAMIENTO SECUNDARIO',
-    modelo3d: '/models/7.1 E-ELM 3D.glb',
-    marcadores3d: [
-      {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
-      },
-    ],
-  },
-
-  // TRATAMIENTO TERCIARIO
   {
     id: 17,
-    nombre: 'E-FLO FLOCULADORES',
+    nombre: 'E-FL FLOCULADORES',
     descripcion: 'Sistema de agitación suave para promover la formación de flóculos.',
-    descripcionLarga: 'Los floculadores E-FLO son sistemas de agitación suave diseñados específicamente para promover la formación y crecimiento de flóculos en plantas de tratamiento de aguas residuales. Su diseño de agitación controlada permite que las partículas coaguladas se unan gradualmente formando flóculos más grandes y densos, facilitando su posterior sedimentación. El sistema incluye múltiples cámaras con agitación decreciente que optimizan el proceso de floculación. Fabricados en acero inoxidable resistente a la corrosión, incluyen un sistema de control de velocidad variable que permite ajustar la intensidad de la agitación según las características del agua. Esenciales para optimizar la eficiencia de la clarificación y mejorar la calidad del efluente tratado.',
+    descripcionLarga: 'Los floculadores E‑FL son sistemas de mezcla lenta diseñados para promover el crecimiento de flóculos en plantas de tratamiento de agua potable. Aplican una agitación controlada que favorece la unión progresiva de partículas coaguladas, generando flóculos estables que luego sedimentan. Están disponibles en configuraciones de eje vertical u horizontal y operan a velocidades bajas (2–6 rpm), preservando la calma hidráulica. Fabricados con componentes acero inoxidable AISI 304/316 o acero al carbono pintado, pueden incorporar variador de frecuencia, monitoreo de torque y tableros con PLC, optimizando la eficiencia del proceso y el control operativo.',
     imagen: '/assets/Productos/2. 904302bd-f670-4752-a754-baf963c101fd.jpg',
     slug: 'floculadores',
     categoria: 'AGITACIÓN Y FLOCULACIÓN',
+    pdf: 'https://drive.google.com/uc?export=download&id=10RL2fHC0WHQp06qPv9tDSB7WU1FW02Rf',
     subProductos: [
       {
         id: 'e-flv',
         nombre: 'E-FLV FLOCULADOR DE PALETAS DE EJE VERTICAL',
         descripcion: 'Floculador de paletas con eje vertical para formación eficiente de flóculos.',
         descripcionLarga: 'El E-FLV es un floculador de paletas con eje vertical, diseñado para promover la formación y crecimiento de flóculos en procesos de tratamiento de aguas, optimizando la clarificación.',
-        imagen: '/assets/Productos/2. 904302bd-f670-4752-a754-baf963c101fd.jpg',
+        imagen: '/assets/Productos/E-FLV.jpg',
         slug: 'e-flv-floculador-eje-vertical',
         qr: '/assets/QR/3.2 WWS E-FLV.png',
+        formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UNDFCRTJNUjFPU00ySTZRWERSNUVXV0cwSyQlQCN0PWcu',
         modelo3d: '/models/3.2 WWS E-FLV.glb',
+        pdf: 'https://drive.google.com/uc?export=download&id=10RL2fHC0WHQp06qPv9tDSB7WU1FW02Rf',
         marcadores3d: [
           {
             x: 0.004333555432392009, y: 2.6577187665012567, z: 0.2564999961853121,
@@ -691,9 +675,11 @@ export const productos: Producto[] = [
         nombre: 'E-FLH FLOCULADOR DE PALETAS DE EJE HORIZONTAL',
         descripcion: 'Floculador de paletas con eje horizontal para mezcla suave y eficiente.',
         descripcionLarga: 'El E-FLH es un floculador de paletas con eje horizontal, ideal para la mezcla suave y eficiente de partículas en suspensión, facilitando la formación de flóculos grandes y densos.',
-        imagen: '/assets/Productos/2. 904302bd-f670-4752-a754-baf963c101fd.jpg',
+        imagen: '/assets/Productos/E-FLH.jpg',
         slug: 'e-flh-floculador-eje-horizontal',
         modelo3d: '/models/3.3 WWS E-FLH.glb',
+        formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UMUtITE4yMzFUUFA3QkdaQzA1SkNaN1QzVCQlQCN0PWcu',
+        pdf: 'https://drive.google.com/uc?export=download&id=10RL2fHC0WHQp06qPv9tDSB7WU1FW02Rf',
         marcadores3d: [
           {
             x: -0.17358748995903084, y: 0.03128987413442902, z: 4.392263340010484,
@@ -738,82 +724,16 @@ export const productos: Producto[] = [
       }
     ],
   },
-
-  // SEDIMENTACIÓN
-  {
-    id: 18,
-    nombre: 'E-SLD SEDIMENTADOR DE LODOS PARA TANQUE CIRCULAR DE ACCIONAMIENTO DIAMETRAL',
-    descripcion: 'Sedimentador con puente y rastrillos accionados diametralmente para extracción de lodos al centro, natas y agua clarificada por el perimetro.',
-    descripcionLarga: 'El sedimentador de lodos E-SLD con accionamiento diametral es un sistema avanzado de clarificación diseñado para tanques circulares en plantas de tratamiento de aguas residuales. Su puente giratorio con rastrillos accionados diametralmente permite una extracción eficiente de lodos sedimentados hacia el centro del tanque, mientras que las natas flotantes son removidas por el perímetro. El sistema de accionamiento diametral proporciona un movimiento uniforme y estable, optimizando la separación sólido-líquido. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de rotación según las condiciones de operación. Esencial para la clarificación eficiente y la producción de agua clarificada de alta calidad.',
-    imagen: '/assets/Productos/1. c533c62e-d32e-4cf6-9242-38eda9fb1932_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
-    slug: 'sedimentador-diametral',
-    categoria: 'SEDIMENTACIÓN',
-    modelo3d: '/models/7.1 E-ELM 3D.glb',
-    marcadores3d: [
-      {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
-      },
-    ],
-  },
-  {
-    id: 19,
-    nombre: 'E-SLR SEDIMENTADOR DE LODOS PARA TANQUE CIRCULAR DE ACCIONAMIENTO RADIAL',
-    descripcion: 'Sedimentador con puente y rastrillos accionados radialmente para extracción de lodos al centro, natas y agua clarificada por el perimetro.',
-    descripcionLarga: 'El sedimentador de lodos E-SLR con accionamiento radial es un sistema de clarificación diseñado para tanques circulares que utiliza un puente giratorio con rastrillos accionados radialmente. Este diseño permite una extracción eficiente de lodos sedimentados hacia el centro del tanque, mientras que las natas flotantes son removidas por el perímetro. El sistema de accionamiento radial proporciona un movimiento suave y continuo que optimiza la separación sólido-líquido. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de rotación según las condiciones de operación. Ideal para aplicaciones que requieren una clarificación eficiente y estable en tanques circulares.',
-    imagen: '/assets/Productos/2. snapedit_1741888425139.jpg',
-    slug: 'sedimentador-radial',
-    categoria: 'SEDIMENTACIÓN',
-    modelo3d: '/models/7.1 E-ELM 3D.glb',
-    marcadores3d: [
-      {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
-      },
-    ],
-  },
-  {
-    id: 20,
-    nombre: 'E-SLC SEDIMENTADOR DE LODOS PARA TANQUE CIRCULAR DE ACCIONAMIENTO CENTRAL',
-    descripcion: 'Sedimentador con puente radial estático y bastidor accionado centralmentepara extracción de lodos al centro, natas y agua clarificada por el perimetro.',
-    descripcionLarga: 'El sedimentador de lodos E-SLC con accionamiento central es un sistema de clarificación diseñado para tanques circulares que utiliza un puente radial estático con un bastidor accionado centralmente. Este diseño único permite una extracción eficiente de lodos sedimentados hacia el centro del tanque, mientras que las natas flotantes son removidas por el perímetro. El sistema de accionamiento central proporciona un movimiento estable y controlado que optimiza la separación sólido-líquido. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de rotación según las condiciones de operación. Ideal para aplicaciones que requieren una clarificación eficiente y estable en tanques circulares con accionamiento central.',
-    imagen: '/assets/Productos/3. BARREDOR DE  LODOS  TRACCION CENTRAL Ø 35 M.jpg',
-    slug: 'sedimentador-central',
-    categoria: 'SEDIMENTACIÓN',
-    modelo3d: '/models/7.1 E-ELM 3D.glb',
-    marcadores3d: [
-      {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
-      },
-    ],
-  },
-  {
-    id: 21,
-    nombre: 'E-PSL PUENTE LONGITUDINAL SEDIMENTADOR DE LODOS  PARA TANQUE RECTANGULAR',
-    descripcion: 'Puente accionado longitudinalmente en tanque rentangular para extracción de lodos y natas al final del tanque.',
-    descripcionLarga: 'El puente longitudinal E-PSL es un sistema de clarificación diseñado específicamente para tanques rectangulares en plantas de tratamiento de aguas residuales. Su puente accionado longitudinalmente permite una extracción eficiente de lodos sedimentados y natas flotantes hacia el final del tanque. El diseño longitudinal optimiza el flujo del agua y mejora la eficiencia de la separación sólido-líquido. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de movimiento según las condiciones de operación. Ideal para aplicaciones que requieren una clarificación eficiente en tanques rectangulares con extracción longitudinal de lodos y natas.',
-    imagen: '/assets/Productos/4. 173220334_2917813575132890_2857803827292992920_n.jpg',
-    slug: 'puente-longitudinal-sedimentador',
-    categoria: 'SEDIMENTACIÓN',
-    modelo3d: '/models/7.1 E-ELM 3D.glb',
-    marcadores3d: [
-      {
-        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
-        label: [{ nombre: 'Bafle de Aquietamiento' }],
-      },
-    ],
-  },
-
   // TRATAMIENTO SECUNDARIO
   {
-    id: 22,
+    id: 15,
     nombre: 'C-BDC SEDIMENTADOR DE CADENAS',
     descripcion: 'Sedimentador de lodos de cadena para remoción de fondo, superficial o combinada.',
     descripcionLarga: 'El sedimentador de cadenas C-BDC es un sistema de clarificación avanzado diseñado para la remoción eficiente de lodos en plantas de tratamiento de aguas residuales. Su sistema de cadenas permite la remoción de lodos del fondo, superficie o de manera combinada, adaptándose a las necesidades específicas de cada aplicación. El diseño de cadenas proporciona un movimiento continuo y uniforme que optimiza la separación sólido-líquido. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de las cadenas según las condiciones de operación. Esencial para aplicaciones que requieren una clarificación eficiente con remoción flexible de lodos.',
     imagen: '/assets/Productos/2. ImagenX.png',
     slug: 'sedimentador-cadenas',
     categoria: 'TRATAMIENTO SECUNDARIO',
+    pdf: 'https://drive.google.com/uc?export=download&id=1kmpqTEYJbd8Yy7wV8dDofDAbYFoK4LSZ',
     modelo3d: '/models/5.1 C-BDC 3D.glb',
     marcadores3d: [
       {
@@ -823,7 +743,7 @@ export const productos: Producto[] = [
     ],
   },
   {
-    id: 23,
+    id: 16,
     nombre: 'E-DF DISTRIBUIDOR DE FLUJO',
     descripcion: 'Distribuye uniformemente el caudal sobre el medio filtrante en filtros percoladores, optimizando el contacto agua-biomasa y la degradación orgánica.',
     descripcionLarga: 'El distribuidor de flujo E-DF es un sistema especializado diseñado para distribuir uniformemente el caudal sobre el medio filtrante en filtros percoladores de plantas de tratamiento de aguas residuales. Su diseño optimiza el contacto entre el agua y la biomasa, mejorando la eficiencia de la degradación orgánica. El sistema de distribución uniforme asegura que toda la superficie del medio filtrante reciba el caudal de manera equilibrada, evitando zonas de sobrecarga o subcarga. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la distribución del flujo según las condiciones de operación. Esencial para optimizar el rendimiento de filtros percoladores y mejorar la calidad del efluente tratado.',
@@ -838,6 +758,80 @@ export const productos: Producto[] = [
       },
     ],
   },
+  // SEDIMENTACIÓN
+  {
+    id: 18,
+    nombre: 'E-SLD SEDIMENTADOR DE LODOS PARA TANQUE CIRCULAR DE ACCIONAMIENTO DIAMETRAL',
+    descripcion: 'Sedimentador con puente y rastrillos accionados diametralmente para extracción de lodos al centro, natas y agua clarificada por el perimetro.',
+    descripcionLarga: 'El sedimentador de lodos E-SLD con accionamiento diametral es un sistema avanzado de clarificación diseñado para tanques circulares en plantas de tratamiento de aguas residuales. Su puente giratorio con rastrillos accionados diametralmente permite una extracción eficiente de lodos sedimentados hacia el centro del tanque, mientras que las natas flotantes son removidas por el perímetro. El sistema de accionamiento diametral proporciona un movimiento uniforme y estable, optimizando la separación sólido-líquido. Opcionalmente puede incluir un sistema de control automático que regula la velocidad de rotación según las condiciones de operación. Esencial para la clarificación eficiente y la producción de agua clarificada de alta calidad.',
+    imagen: '/assets/Productos/1. c533c62e-d32e-4cf6-9242-38eda9fb1932_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
+    slug: 'sedimentador-diametral',
+    categoria: 'SEDIMENTACIÓN',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1ZaJy-hxRz90sGUYdEA7B32wnejk-t3g-',
+    formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UNjZZMlYwVTI3Nk9aNlcwRFRPVkQ3RlI0MiQlQCN0PWcu',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
+  },
+  {
+    id: 19,
+    nombre: 'E-SLR SEDIMENTADOR DE LODOS PARA TANQUE CIRCULAR DE ACCIONAMIENTO RADIAL',
+    descripcion: 'Sedimentador con puente y rastrillos accionados radialmente para extracción de lodos al centro, natas y agua clarificada por el perimetro.',
+    descripcionLarga: 'El sedimentador de lodos E-SLR con accionamiento radial es un sistema de clarificación diseñado para tanques circulares que utiliza un puente giratorio con rastrillos accionados radialmente. Este diseño permite una extracción eficiente de lodos sedimentados hacia el centro del tanque, mientras que las natas flotantes son removidas por el perímetro. El sistema de accionamiento radial proporciona un movimiento suave y continuo que optimiza la separación sólido-líquido. Opcionalmente puede Incluir un sistema de control automático que regula la velocidad de rotación según las condiciones de operación. Esencial para la clarificación eficiente y la producción de agua clarificada de alta calidad.',
+    imagen: '/assets/Productos/2. snapedit_1741888425139.jpg',
+    slug: 'sedimentador-radial',
+    categoria: 'SEDIMENTACIÓN',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1ZaJy-hxRz90sGUYdEA7B32wnejk-t3g-',
+    formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UNjZZMlYwVTI3Nk9aNlcwRFRPVkQ3RlI0MiQlQCN0PWcu',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
+  },
+  {
+    id: 20,
+    nombre: 'E-SLC SEDIMENTADOR DE LODOS PARA TANQUE CIRCULAR DE ACCIONAMIENTO CENTRAL',
+    descripcion: 'Sedimentador con puente radial estático y bastidor accionado centralmentepara extracción de lodos al centro, natas y agua clarificada por el perimetro.',
+    descripcionLarga: 'El sedimentador de lodos E-SLC con accionamiento central es un sistema de clarificación diseñado para tanques circulares que utiliza un puente radial estático con un bastidor accionado centralmente. Este diseño único permite una extracción eficiente de lodos sedimentados hacia el centro del tanque, mientras que las natas flotantes son removidas por el perímetro. El sistema de accionamiento central proporciona un movimiento estable y controlado que optimiza la separación sólido-líquido. Opcionalmente puede incluir un sistema de control automático que regula la velocidad de rotación según las condiciones de operación. Esencial para la clarificación eficiente y la producción de agua clarificada de alta calidad.',
+    imagen: '/assets/Productos/3. BARREDOR DE  LODOS  TRACCION CENTRAL Ø 35 M.jpg',
+    slug: 'sedimentador-central',
+    categoria: 'SEDIMENTACIÓN',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1ZaJy-hxRz90sGUYdEA7B32wnejk-t3g-',
+    formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UNjZZMlYwVTI3Nk9aNlcwRFRPVkQ3RlI0MiQlQCN0PWcu',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
+  },
+  {
+    id: 21,
+    nombre: 'E-PSL PUENTE LONGITUDINAL SEDIMENTADOR DE LODOS  PARA TANQUE RECTANGULAR',
+    descripcion: 'Puente accionado longitudinalmente en tanque rentangular para extracción de lodos y natas al final del tanque.',
+    descripcionLarga: 'El puente longitudinal E-PSL es un equipo electromecánico diseñado para la clarificación en tanques rectangulares de plantas de tratamiento de aguas residuales. Durante su desplazamiento a lo largo del tanque, permite la remoción de lodos sedimentados desde el fondo y la recolección de natas flotantes en superficie. El sistema opera con movimiento alternativo de vaivén y puede incorporar control automático para ajustar la velocidad según la carga hidráulica. La estructura del puente se construye en acero al carbono con recubrimiento protector, mientras que los elementos sumergidos se fabrican en acero inoxidable 304/316L o acero galvanizado, según requerimientos del proyecto.',
+    imagen: '/assets/Productos/4. 173220334_2917813575132890_2857803827292992920_n.jpg',
+    slug: 'puente-longitudinal-sedimentador',
+    categoria: 'SEDIMENTACIÓN',
+    modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1ZaJy-hxRz90sGUYdEA7B32wnejk-t3g-',
+    formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UNjZZMlYwVTI3Nk9aNlcwRFRPVkQ3RlI0MiQlQCN0PWcu',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Bafle de Aquietamiento' }],
+      },
+    ],
+  },
+  
 
   // TRATAMIENTO TERCIARIO
   {
@@ -850,6 +844,7 @@ export const productos: Producto[] = [
     categoria: 'TRATAMIENTO TERCIARIO',
     marca: 'XS Solutions',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1y9u-v7fBjVgvCenJdMMye6uBbtO-EOcU',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -868,6 +863,7 @@ export const productos: Producto[] = [
     slug: 'espesador-lodos-central',
     categoria: 'TRATAMIENTO DE LODOS Y TRANSPORTADORES',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1l_1h848XSfhZdq5jgKNyYEdwfO4ib-yU',
     marcadores3d: [
       {
         x: -0.07339679663725747, y: -3.2495521540383785, z: 1.7382068630845202,
@@ -905,6 +901,7 @@ export const productos: Producto[] = [
     categoria: 'TRATAMIENTO DE LODOS Y TRANSPORTADORES',
     marca: 'XS Solutions',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1lcNV_ceArdwaLx4NR1aOa1u9LHtDj2Za',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -922,6 +919,7 @@ export const productos: Producto[] = [
     categoria: 'TRATAMIENTO DE LODOS Y TRANSPORTADORES',
     marca: 'XS Solutions',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1lcNV_ceArdwaLx4NR1aOa1u9LHtDj2Za',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -939,6 +937,7 @@ export const productos: Producto[] = [
     categoria: 'TRATAMIENTO DE LODOS Y TRANSPORTADORES',
     marca: 'XS Solutions',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1lcNV_ceArdwaLx4NR1aOa1u9LHtDj2Za',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -957,6 +956,7 @@ export const productos: Producto[] = [
     slug: 'cubiertas-soportes-metalicos',
     categoria: 'ADECUACIONES ESTRUCTURALES E HIDRÁULICAS',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=12KBcfAe0LEY3o50mnUkF69OB6QfpAqSL',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -973,6 +973,7 @@ export const productos: Producto[] = [
     slug: 'escaleras-pasarelas',
     categoria: 'ADECUACIONES ESTRUCTURALES E HIDRÁULICAS',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=12KBcfAe0LEY3o50mnUkF69OB6QfpAqSL',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -989,6 +990,7 @@ export const productos: Producto[] = [
     slug: 'porticos',
     categoria: 'ADECUACIONES ESTRUCTURALES E HIDRÁULICAS',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=12KBcfAe0LEY3o50mnUkF69OB6QfpAqSL',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
@@ -1005,6 +1007,7 @@ export const productos: Producto[] = [
     slug: 'sistemas-bombeo-redes',
     categoria: 'ADECUACIONES ESTRUCTURALES E HIDRÁULICAS',
     modelo3d: '/models/7.1 E-ELM 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=12KBcfAe0LEY3o50mnUkF69OB6QfpAqSL',
     marcadores3d: [
       {
         x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,

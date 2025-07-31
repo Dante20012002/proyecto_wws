@@ -2,6 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import { proyectos } from '../../data/proyectos';
 
+export async function getStaticPaths() {
+  return proyectos.map(proyecto => ({
+    params: { id: proyecto.id.toString() }
+  }));
+}
+
 const { id } = Astro.params;
 
 console.log('ID de la URL:', id, typeof id);
