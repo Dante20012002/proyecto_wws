@@ -12,11 +12,23 @@ export default function ModelViewer({ src, marcadores3d, showNumbers, style }) {
       ar
       auto-rotate
       loading="lazy"
-      style={style || { width: '100%', maxWidth: 500, minHeight: 220, maxHeight: 320, background: '#fff', borderRadius: '1rem' }}
+      style={style || {
+        width: '100%',
+        maxWidth: 500,
+        minHeight: 220,
+        maxHeight: 320,
+        background: '#fff',
+        borderRadius: '1rem'
+      }}
       exposure="1"
       camera-orbit="auto auto 22m"
       min-camera-orbit="auto auto 2m"
       max-camera-orbit="auto auto auto"
+      environment-image="neutral" // Añadir iluminación neutral
+      shadow-intensity="1" // Mejorar sombras
+      shadow-softness="1"
+      tone-mapping="aces" // Mejor manejo de materiales
+      experimental-webgl2 // Forzar WebGL2 si está disponible
     >
       {Array.isArray(marcadores3d) && marcadores3d.map((m, i) => (
         <button

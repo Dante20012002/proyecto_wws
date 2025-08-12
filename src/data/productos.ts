@@ -727,9 +727,9 @@ export const productos: Producto[] = [
   // TRATAMIENTO SECUNDARIO
   {
     id: 15,
-    nombre: 'C-BDC SEDIMENTADOR DE CADENAS',
-    descripcion: 'Sedimentador de lodos de cadena para remoción de fondo, superficial o combinada.',
-    descripcionLarga: 'El sedimentador de cadenas C-BDC es un sistema de clarificación avanzado diseñado para la remoción eficiente de lodos en plantas de tratamiento de aguas residuales. Su sistema de cadenas permite la remoción de lodos del fondo, superficie o de manera combinada, adaptándose a las necesidades específicas de cada aplicación. El diseño de cadenas proporciona un movimiento continuo y uniforme que optimiza la separación sólido-líquido. Fabricado en acero inoxidable resistente a la corrosión, incluye un sistema de control automático que regula la velocidad de las cadenas según las condiciones de operación. Esencial para aplicaciones que requieren una clarificación eficiente con remoción flexible de lodos.',
+    nombre: 'C-SCI SEDIMENTADOR DE CADENAS DE REMOSIÓN SUPERIOR PARA TANQUE REGULAR',
+    descripcion: 'Sedimentador de lodos de cadena para remoción de fondo en PTAPS.',
+    descripcionLarga: 'El sedimentador de cadenas C-SCI está diseñado para la recolección continua de lodos en procesos de tratamiento de agua potable, optimizando la eficiencia de la sedimentación posterior a la floculación. Las paletas, fijadas a una cadena transportadora, arrastran suavemente el lodo hacia una tolva, sin alterar el flujo del agua clarificada. El sistema opera completamente bajo el nivel del módulo hidráulico, lo que evita turbulencias o recirculaciones. Gracias a su diseño que separa la zona de remoción del paso del agua, asegura una operación estable, libre de interferencias. Construido con materiales resistentes y de bajo desgaste, es esencial para mantener la calidad del efluente y facilitar el manejo de lodos.',
     imagen: '/assets/Productos/2. ImagenX.png',
     slug: 'sedimentador-cadenas',
     categoria: 'TRATAMIENTO SECUNDARIO',
@@ -831,7 +831,42 @@ export const productos: Producto[] = [
       },
     ],
   },
-  
+  {
+    id: 33,
+    nombre: 'C-SCS SEDIMENTADOR DE CADENAS PARA REMOCIÓN DE FLOTANTES',
+    descripcion: 'Sistema especializado en la remoción superficial de flotantes mediante cadenas con paletas para tanques DAF.',
+    descripcionLarga: 'El sedimentador de cadenas C-SCS es un sistema especializado en la remoción superficial de flotantes, diseñado para su uso en tanques DAF en plantas de tratamiento de agua residual. A través de un sistema de cadenas en movimiento continuo, las paletas recolectoras arrastran espumas, aceites y otros sólidos flotantes hacia una tolva de recolección, sin generar turbulencia en el flujo hidráulico. Su configuración permite mantener una superficie limpia, estableciendo condiciones óptimas para la separación sólido-líquido por flotación. Fabricado en materiales resistentes a la corrosión y al desgaste, el equipo garantiza un funcionamiento continuo con bajo requerimiento de mantenimiento, ideal para procesos de flotación de alta eficiencia.',
+    imagen: '/assets/Productos/1. 1722508586316.jpg',
+    slug: 'sedimentador-cadenas-flotantes',
+    categoria: 'SEDIMENTACIÓN',
+    modelo3d: '/models/5.1 C-BDC 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1ZaJy-hxRz90sGUYdEA7B32wnejk-t3g-',
+    formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UNjZZMlYwVTI3Nk9aNlcwRFRPVkQ3RlI0MiQlQCN0PWcu',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Sistema de Cadenas' }],
+      },
+    ],
+  },
+  {
+    id: 34,
+    nombre: 'C-SCC SEDIMENTADOR DE CADENAS PARA REMOCIÓN COMBINADA',
+    descripcion: 'Sistema de remoción simultánea de lodos del fondo y flotantes de la superficie en tanques rectangulares.',
+    descripcionLarga: 'El sedimentador de cadenas C-SCC es un equipo de remoción combinada, diseñado para separar simultáneamente lodos del fondo y flotantes de la superficie en tanques rectangulares. Gracias a su sistema de cadenas con paletas sincronizadas, el equipo desplaza los sólidos sedimentados hacia una tolva de fondo y, a la vez, empuja los materiales flotantes hacia un canal recolector. Esta acción combinada permite una clarificación continua del agua sin interrupciones ni interferencias en el flujo. Su construcción en acero inoxidable y componentes de alta resistencia aseguran durabilidad y eficiencia operativa, haciéndolo ideal para aplicaciones donde se requiere la remoción integral de sólidos en una sola etapa.',
+    imagen: '/assets/Productos/1. 480b766e-9ab6-4408-97e4-0fc1f5a4d18a_LE_upscale_balanced_x4_light_ai_30_tone_enhance_30_color_enhance_30.jpg',
+    slug: 'sedimentador-cadenas-combinado',
+    categoria: 'SEDIMENTACIÓN',
+    modelo3d: '/models/5.1 C-BDC 3D.glb',
+    pdf: 'https://drive.google.com/uc?export=download&id=1ZaJy-hxRz90sGUYdEA7B32wnejk-t3g-',
+    formUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=3VHHd2MdYU2Z8buF13zow9TfpytasxRPnU81r6iwMY1UNjZZMlYwVTI3Nk9aNlcwRFRPVkQ3RlI0MiQlQCN0PWcu',
+    marcadores3d: [
+      {
+        x: -0.04800620673775484, y: -1.3397690966630114, z: 1.74,
+        label: [{ nombre: 'Sistema de Cadenas Combinado' }],
+      },
+    ],
+  },
 
   // TRATAMIENTO TERCIARIO
   {
