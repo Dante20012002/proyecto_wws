@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { productos } from '../data/productos';
+import { getProductos } from '../lib/getProductos';
+
+// Obtener productos desde Firestore
+const productos = await getProductos();
 
 // Lista de categorías principales para los tabs de filtrado
 const categorias = [

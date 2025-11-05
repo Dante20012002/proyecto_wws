@@ -1,6 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import { productos } from '../../../data/productos';
+import { getProductos } from '../../../lib/getProductos';
 import ProductHero from '../../../components/ProductHero.astro';
 import ProductDescription from '../../../components/ProductDescription.astro';
 import Product3DViewer from '../../../components/Product3DViewer.astro';
@@ -9,6 +9,7 @@ import ProductRelated from '../../../components/ProductRelated.astro';
 import ProductContact from '../../../components/ProductContact.astro';
 
 export async function getStaticPaths() {
+  const productos = await getProductos();
   const paths = [];
   
   for (const producto of productos) {
@@ -31,6 +32,7 @@ export async function getStaticPaths() {
 const { producto: productSlug, subproducto: subProductSlug } = Astro.params;
 
 // Busca el producto principal
+const productos = await getProductos();
 const producto = productos.find(p => p.slug === productSlug);
 
 // Busca el subproducto específico
