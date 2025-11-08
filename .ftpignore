@@ -1,0 +1,36 @@
+# Archivos a ignorar en el deploy FTP
+# (Similar a .gitignore)
+
+# Archivos de desarrollo
+.git/
+.github/
+node_modules/
+.astro/
+.vscode/
+.idea/
+
+# Archivos de configuración local
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de build anteriores (se regeneran)
+# dist/ se sube completo, pero estos no:
+*.map
+*.tsbuildinfo
+
+# Archivos temporales
+*.tmp
+*.temp
+.cache/
+
