@@ -2,7 +2,7 @@
 dist/
 
 #archivos pesados
-public/assets/pdfs/
+public/
 
 # generated types
 .astro/
