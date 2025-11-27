@@ -1,29 +1,36 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getEmpresaInfo } from '../lib/getEmpresa';
+import { getAliados } from '../lib/getAliados';
 
-// Obtener la lista de aliados
-const aliados = [
-  { 
-    nombre: 'Equom', 
-    logo: '/assets/Aliados/Equom.png',
-    url: 'https://www.gequom.com/'
-  },
-  { 
-    nombre: 'X2 Solutions', 
-    logo: '/assets/Aliados/XS Solutions.jpg',
-    url: 'https://www-x2solutions-it.translate.goog/en/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc'
-  },
-  { 
-    nombre: 'Biolam Colombia', 
-    logo: '/assets/Aliados/Biolam Colombia.png',
-    url: 'https://biolamcolombia.com/'
-  },
-  { 
-    nombre: 'Coningeniería', 
-    logo: '/assets/Aliados/Conngeniería.png',
-    url: 'https://coningenieria.com.co/'
-  }
-];
+// Obtener información de la empresa desde Firestore
+const empresaInfo = await getEmpresaInfo();
+
+// Valores por defecto si no hay datos en Firestore
+const sobreNosotros = empresaInfo?.sobreNosotros || {
+  titulo: 'Sobre Nosotros',
+  texto: 'Garantizar un servicio de alta calidad que genere confianza y satisfacción en nuestros clientes, fortaleciendo nuestra presencia en el mercado Colombiana y suramericano mediante procesos eficientes, asesoría especializada.',
+  imagen: '/assets/Agua.jpg'
+};
+
+const mision = empresaInfo?.mision || {
+  titulo: 'MISIÓN',
+  texto: 'Brindar soluciones integrales y de alta calidad en procesos de tratamiento y manejo de aguas, a través de la comercialización, instalación y mantenimiento de equipos especializados. Nos comprometemos a ofrecer un servicio excepcional, basado en la asesoría técnica experta, la innovación y la satisfacción total de nuestros clientes en Colombia y Sudamérica.'
+};
+
+const vision = empresaInfo?.vision || {
+  titulo: 'VISIÓN',
+  texto: 'Ser reconocidos como la empresa líder en soluciones para la gestión del agua a través de nuestros equipos en Colombia y Sudamérica, destacándose por la excelencia en nuestro servicio y la confiabilidad de nuestros productos. Nos esforzamos por superar las expectativas de nuestros clientes a través de un enfoque centrado en la calidad, la eficiencia y la mejora continua.'
+};
+
+const objetivos = empresaInfo?.objetivos || {
+  titulo: 'NUESTRO OBJETIVO',
+  texto: 'Garantizar un servicio de alta calidad que genere confianza y satisfacción en nuestros clientes, fortaleciendo nuestra presencia en el mercado Colombiana y suramericano mediante procesos eficientes, asesoría especializada y soluciones y equipos innovadores en gestión del agua.',
+  imagen: '/assets/BARRANQUILLA 1.jpg'
+};
+
+// Obtener la lista de aliados desde Firestore
+const aliados = await getAliados();
 ---
 
 <Layout title="Sobre Nosotros - WWS">
@@ -38,11 +45,11 @@ const aliados = [
   <!-- Sobre Nosotros -->
   <section class="max-w-6xl mx-auto py-12 px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
     <div>
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-[#577979]">Sobre Nosotros</h2>
-      <p class="text-lg text-gray-700 mb-4 break-words">Garantizar un servicio de alta calidad que genere confianza y satisfacción en nuestros clientes, fortaleciendo nuestra presencia en el mercado Colombiana y suramericano mediante procesos eficientes, asesoría especializada.</p>
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-[#577979]">{sobreNosotros.titulo}</h2>
+      <p class="text-lg text-gray-700 mb-4 break-words" set:html={sobreNosotros.texto} />
     </div>
     <div class="flex flex-col gap-4 items-center">
-      <img src="/assets/Agua.jpg" alt="Agua" class="rounded-lg shadow-lg w-full max-w-full object-cover h-48 md:h-56" loading="lazy" />
+      <img src={sobreNosotros.imagen || '/assets/Agua.jpg'} alt="Agua" class="rounded-lg shadow-lg w-full max-w-full object-cover h-48 md:h-56" loading="lazy" />
       <div class="relative -mt-10 md:-mt-12">
         <span class="inline-block bg-white text-[#06214E] px-6 py-4 rounded-lg text-lg font-bold shadow-lg border-2 border-[#A9C6DF]">+30 Proyectos en Colombia</span>
       </div>
@@ -53,12 +60,12 @@ const aliados = [
   <section class="bg-gray-100 py-12">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
       <div>
-        <h3 class="text-2xl font-bold mb-2 text-[#577979]">MISIÓN</h3>
-        <p class="text-gray-700 break-words">Brindar soluciones integrales y de alta calidad en procesos de tratamiento y manejo de aguas, a través de la comercialización, instalación y mantenimiento de equipos especializados. Nos comprometemos a ofrecer un servicio excepcional, basado en la asesoría técnica experta, la innovación y la satisfacción total de nuestros clientes en Colombia y Sudamérica.</p>
+        <h3 class="text-2xl font-bold mb-2 text-[#577979]">{mision.titulo}</h3>
+        <p class="text-gray-700 break-words" set:html={mision.texto} />
       </div>
       <div>
-        <h3 class="text-2xl font-bold mb-2 text-[#577979]">VISIÓN</h3>
-        <p class="text-gray-700 break-words">Ser reconocidos como la empresa líder en soluciones para la gestión del agua a través de nuestros equipos en Colombia y Sudamérica, destacándose por la excelencia en nuestro servicio y la confiabilidad de nuestros productos. Nos esforzamos por superar las expectativas de nuestros clientes a través de un enfoque centrado en la calidad, la eficiencia y la mejora continua.</p>
+        <h3 class="text-2xl font-bold mb-2 text-[#577979]">{vision.titulo}</h3>
+        <p class="text-gray-700 break-words" set:html={vision.texto} />
       </div>
     </div>
   </section>
@@ -66,11 +73,11 @@ const aliados = [
   <!-- Objetivo -->
   <section class="max-w-6xl mx-auto py-12 px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
     <div>
-      <img src="/assets/BARRANQUILLA 1.jpg" alt="Objetivo" class="rounded-lg shadow-lg w-full max-w-full object-cover h-48 md:h-56" loading="lazy" />
+      <img src={objetivos.imagen || '/assets/BARRANQUILLA 1.jpg'} alt="Objetivo" class="rounded-lg shadow-lg w-full max-w-full object-cover h-48 md:h-56" loading="lazy" />
     </div>
     <div>
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-[#577979]">NUESTRO OBJETIVO</h2>
-      <p class="text-lg text-gray-700 break-words">Garantizar un servicio de alta calidad que genere confianza y satisfacción en nuestros clientes, fortaleciendo nuestra presencia en el mercado Colombiana y suramericano mediante procesos eficientes, asesoría especializada y soluciones y equipos innovadores en gestión del agua.</p>
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-[#577979]">{objetivos.titulo}</h2>
+      <p class="text-lg text-gray-700 break-words" set:html={objetivos.texto} />
     </div>
   </section>
 

@@ -1,14 +1,16 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import noticias from '../../data/noticias';
+import { getNoticias } from '../../lib/getNoticias';
 
 export async function getStaticPaths() {
+  const noticias = await getNoticias();
   return noticias.map(noticia => ({
     params: { slug: noticia.slug }
   }));
 }
 
 const { slug } = Astro.params;
+const noticias = await getNoticias();
 const noticia = noticias.find(n => n.slug === slug);
 
 // Función para distribuir imágenes entre párrafos

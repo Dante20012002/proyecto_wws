@@ -4,7 +4,7 @@ export interface Props {
   descripcionLarga: string;
   imagen: string;
   brochureUrl: string;
-  catalogoUrl?: string;
+  catalogoUrl?: string; // Puede ser URL absoluta (Google Drive) o ruta relativa de cPanel (ej: /assets/PDF/producto.pdf)
 }
 
 const { nombre, descripcionLarga, imagen, brochureUrl, catalogoUrl } = Astro.props;
@@ -23,4 +23,4 @@ const { nombre, descripcionLarga, imagen, brochureUrl, catalogoUrl } = Astro.pro
       <img src={imagen} alt={nombre} class="rounded-lg max-h-56 md:max-h-64 aspect-square object-cover border-4 border-[#bfc9c9] shadow-lg" style="box-shadow:0 2px 8px 0 rgba(0,0,0,0.10);" loading="lazy" />
     </div>
   </div>
-</section> 
+</section>

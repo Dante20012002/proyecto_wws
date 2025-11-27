@@ -53,10 +53,21 @@ const { socialLinks } = Astro.props;
           </svg>
           <span>Avenida 6 #14N 31 Oficina 501, Cali, Colombia</span>
         </div>
-        <!-- Mapa interactivo -->
-        <div id="wws-map" class="rounded-lg w-full h-32 sm:h-36 md:h-40 object-cover my-2 cursor-pointer z-0 min-h-[128px] min-w-[200px]" style="min-height:128px;min-width:200px;"></div>
+        <!-- Mapas interactivos -->
+        <div class="flex flex-col gap-2 my-2 max-w-md">
+          <div class="flex gap-2">
+            <!-- Mapa interactivo Bogotá -->
+            <div id="wws-map" class="rounded-lg flex-1 h-32 sm:h-36 md:h-40 object-cover cursor-pointer z-0 min-h-[128px]" style="min-height:128px;"></div>
+            <!-- Mapa interactivo Cali -->
+            <div id="wws-map-cali" class="rounded-lg flex-1 h-32 sm:h-36 md:h-40 object-cover cursor-pointer z-0 min-h-[128px]" style="min-height:128px;"></div>
+          </div>
+          <div class="flex gap-2 text-sm text-white/90">
+            <span class="flex-1 text-center">Bogotá</span>
+            <span class="flex-1 text-center">Cali</span>
+          </div>
+        </div>
         <!-- Redes sociales en círculos -->
-        <div class="flex gap-6 mt-2 mb-4 justify-center md:justify-start">
+        <!-- <div class="flex gap-6 mt-2 mb-4 justify-center md:justify-start">
           {socialLinks.map((link) => (
             <a 
               href={link.href} 
@@ -73,7 +84,9 @@ const { socialLinks } = Astro.props;
         </div>
         <!-- Logo splash debajo de las redes -->
         <div class="flex justify-center mt-4">
-          <img src="/assets/Logo azul y negro.png" alt="Logo" class="w-40 md:w-45 select-none pointer-events-none">
+          <svg class="w-40 md:w-45 select-none pointer-events-none">
+            <use href="/assets/sprite.svg#logo-splash" />
+          </svg>
         </div>
       </div>
       <!-- Lado derecho: formulario -->
@@ -181,10 +194,12 @@ const { socialLinks } = Astro.props;
 
 <script>
 if (typeof window !== 'undefined') {
-  // Solo carga Leaflet cuando el mapa entra en pantalla
-  const mapContainer = document.getElementById('wws-map');
-  let mapLoaded = false;
-  if (mapContainer) {
+  // Función para inicializar un mapa
+  async function initMap(containerId: string, lat: number, lng: number) {
+    const mapContainer = document.getElementById(containerId);
+    if (!mapContainer) return;
+
+    let mapLoaded = false;
     const observer = new window.IntersectionObserver((entries) => {
       entries.forEach(async (entry) => {
         if (entry.isIntersecting && !mapLoaded) {
@@ -205,8 +220,8 @@ if (typeof window !== 'undefined') {
             popupAnchor: [1, -34]
           });
           
-          const map = L.map('wws-map', {
-            center: [4.69174985303186, -74.15650708861324],
+          const map = L.map(containerId, {
+            center: [lat, lng],
             zoom: 16,
             zoomControl: false,
             attributionControl: false,
@@ -220,9 +235,9 @@ if (typeof window !== 'undefined') {
             maxZoom: 19,
           }).addTo(map);
           
-          const marker = L.marker([4.69174985303186, -74.15650708861324], { icon: svgIcon }).addTo(map);
+          const marker = L.marker([lat, lng], { icon: svgIcon }).addTo(map);
           map.on('click', () => {
-            window.open('https://www.google.com/maps?q=4.69174985303186,-74.15650708861324', '_blank');
+            window.open(`https://www.google.com/maps?q=${lat},${lng}`, '_blank');
           });
           observer.disconnect();
         }
@@ -230,6 +245,12 @@ if (typeof window !== 'undefined') {
     }, { threshold: 0.1 });
     observer.observe(mapContainer);
   }
+
+  // Inicializar mapa de Bogotá
+  initMap('wws-map', 4.69174985303186, -74.15650708861324);
+  
+  // Inicializar mapa de Cali
+  initMap('wws-map-cali', 3.459306214253186, -76.53206283590163);
 }
 </script>
 

@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import noticias from '../data/noticias';
+import { getNoticias } from '../lib/getNoticias';
+
+// Obtener noticias desde Firestore
+const noticias = await getNoticias();
 
 const PAGE_SIZE = 10;
 const totalNoticias = noticias.length;

@@ -150,6 +150,7 @@ productos/
 │   ├── nombre: "Compuerta Mural"
 │   ├── descripcion: "..."
 │   ├── imagen: "/assets/Productos/1.jpg"
+│   ├── pdf: "/assets/PDF/producto.pdf" (o URL de Google Drive para compatibilidad)
 │   ├── categoria: "CONTROL DE CAUDAL"
 │   ├── slug: "compuerta-mural"
 │   └── subproductos/ (subcolección)
