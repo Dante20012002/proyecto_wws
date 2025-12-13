@@ -5,9 +5,34 @@ export interface Props {
   imagen: string;
   brochureUrl: string;
   catalogoUrl?: string; // Puede ser URL absoluta (Google Drive) o ruta relativa de cPanel (ej: /assets/PDF/producto.pdf)
+  aliadoLogo?: string;
+  aliadoUrl?: string;
+  aliadoNombre?: string;
 }
 
-const { nombre, descripcionLarga, imagen, brochureUrl, catalogoUrl } = Astro.props;
+const { nombre, descripcionLarga, imagen, brochureUrl, catalogoUrl, aliadoLogo, aliadoUrl, aliadoNombre } = Astro.props;
+
+// Función helper para convertir rutas relativas a URLs absolutas
+function getAbsolutePdfUrl(url: string | undefined): string {
+  if (!url) return '';
+  // Si ya es una URL absoluta (http:// o https://), devolverla tal cual
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+  // Usar la URL del sitio desde la configuración de Astro (definida en astro.config.mjs)
+  // Astro.site es una string con la URL completa del sitio (ej: 'https://waterwises.com')
+  // Durante el build estático, siempre usará la URL de producción, no localhost
+  const baseUrl = Astro.site || 'https://waterwises.com';
+  // Si es una ruta relativa que empieza con /, convertirla a URL absoluta
+  if (url.startsWith('/')) {
+    return `${baseUrl}${url}`;
+  }
+  // Si no empieza con /, asumir que es relativa y agregar /
+  return `${baseUrl}/${url}`;
+}
+
+const catalogoUrlFinal = getAbsolutePdfUrl(catalogoUrl);
+const brochureUrlFinal = getAbsolutePdfUrl(brochureUrl);
 ---
 
 <!-- DESCRIPCIÓN AMPLIADA Y BROCHURE: Información principal del producto, descripción y enlaces de descarga -->
@@ -16,11 +41,28 @@ const { nombre, descripcionLarga, imagen, brochureUrl, catalogoUrl } = Astro.pro
     <div class="md:col-span-2 flex flex-col justify-center">
       <h2 class="text-2xl md:text-3xl font-extrabold text-[#577979] mb-2 uppercase tracking-tight" style="letter-spacing:0;">{nombre}</h2>
       <p class="text-black text-justify mb-4 text-base md:text-lg leading-relaxed" style="hyphens:auto;">{descripcionLarga}</p>
-                  <a href={catalogoUrl || brochureUrl} target="_blank" rel="noopener noreferrer" class="text-[#577979] underline font-medium mb-2 w-fit">Descarga nuestro catálogo</a>
-            <a href={brochureUrl} target="_blank" rel="noopener noreferrer" class="mt-1 w-fit px-8 py-2 rounded font-bold shadow bg-[#6B8C8C] text-white text-lg hover:bg-[#5a6c6c] transition block" style="box-shadow:0 2px 6px 0 rgba(0,0,0,0.10);">BROCHURE</a>
+                  <a href={catalogoUrlFinal || brochureUrlFinal} target="_blank" rel="noopener noreferrer" class="text-[#577979] underline font-medium mb-2 w-fit">Descarga nuestro catálogo</a>
+            <a href={brochureUrlFinal} target="_blank" rel="noopener noreferrer" class="mt-1 w-fit px-8 py-2 rounded font-bold shadow bg-[#6B8C8C] text-white text-lg hover:bg-[#5a6c6c] transition block" style="box-shadow:0 2px 6px 0 rgba(0,0,0,0.10);">BROCHURE</a>
     </div>
-    <div class="flex items-center justify-center">
+    <div class="flex flex-col items-center justify-center gap-4">
       <img src={imagen} alt={nombre} class="rounded-lg max-h-56 md:max-h-64 aspect-square object-cover border-4 border-[#bfc9c9] shadow-lg" style="box-shadow:0 2px 8px 0 rgba(0,0,0,0.10);" loading="lazy" />
+      {aliadoLogo && aliadoUrl && (
+        <a 
+          href={aliadoUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="flex flex-col items-center gap-2 hover:opacity-80 transition-opacity group"
+          title={aliadoNombre ? `Visitar ${aliadoNombre}` : 'Visitar aliado'}
+        >
+          <p class="text-xs text-gray-600 group-hover:text-[#577979] transition-colors">Producto de</p>
+          <img 
+            src={aliadoLogo} 
+            alt={aliadoNombre || 'Logo del aliado'} 
+            class="max-w-32 max-h-16 object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+            loading="lazy"
+          />
+        </a>
+      )}
     </div>
   </div>
 </section>

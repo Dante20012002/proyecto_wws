@@ -21,7 +21,8 @@ export interface SubProducto {
   qr?: string;
   formUrl?: string;
   pdf?: string;
-  marca?: string;
+  marca?: string; // Mantener para compatibilidad con datos antiguos
+  aliadoId?: string; // ID del documento del aliado en Firestore
 }
 
 export interface Producto {
@@ -37,7 +38,8 @@ export interface Producto {
   modelo3d?: string;
   marcadores3d?: Marcador3D[];
   pdf?: string;
-  marca?: string;
+  marca?: string; // Mantener para compatibilidad con datos antiguos
+  aliadoId?: string; // ID del documento del aliado en Firestore
   subProductos?: SubProducto[];
   qr?: string;
   formUrl?: string;

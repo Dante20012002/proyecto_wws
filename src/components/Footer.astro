@@ -31,7 +31,7 @@ const currentPath = Astro.url.pathname;
           <use href="/assets/sprite.svg#logo-splash" />
         </svg>
         <p class="mb-4 text-[#EAEAEA]">Soluciones que trabajan por el agua del futuro</p>
-        <div class="flex gap-4 justify-center md:justify-start">
+        <!-- <div class="flex gap-4 justify-center md:justify-start">
           {socialLinks.map((link) => (
             <a href={link.href} target="_blank" rel="noopener noreferrer" class="hover:opacity-80">
               <svg class="w-7 h-7">
@@ -39,7 +39,7 @@ const currentPath = Astro.url.pathname;
               </svg>
             </a>
           ))}
-        </div>
+        </div> -->
       </div>
       
       <!-- Enlaces del menú -->
@@ -67,10 +67,12 @@ const currentPath = Astro.url.pathname;
         <h3 class="font-bold mb-4 text-[#EAEAEA]">Contacto</h3>
         <ul class="space-y-2 text-sm">
           <li>
-            <span class="font-semibold">Email:</span> contacto@wws.com
+            <span class="font-semibold">Email:</span> 
+            <a href="mailto:jm.pinedad@waterwises.com" class="hover:opacity-80 transition-opacity">jm.pinedad@waterwises.com</a>
           </li>
           <li>
-            <span class="font-semibold">Teléfono:</span> +57 123 456 7890
+            <span class="font-semibold">Teléfono:</span> 
+            <a href="tel:+573107665112" class="hover:opacity-80 transition-opacity">+57 3107665112</a>
           </li>
           <li>
             <span class="font-semibold">Dirección:</span> <ul>

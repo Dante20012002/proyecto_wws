@@ -2,6 +2,7 @@ import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { db } from './firebase';
 
 export interface Aliado {
+  id: string; // ID del documento en Firestore
   nombre: string;
   logo: string;
   url: string;
@@ -20,6 +21,7 @@ export async function getAliados(): Promise<Aliado[]> {
       const data = docSnap.data();
       
       return {
+        id: docSnap.id, // ID del documento
         nombre: data.nombre,
         logo: data.logo,
         url: data.url

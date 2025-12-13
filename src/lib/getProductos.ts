@@ -33,7 +33,8 @@ export async function getProductos(): Promise<Producto[]> {
             qr: subData.qr || undefined,
             pdf: subData.pdf || undefined,
             formUrl: subData.formUrl || undefined,
-            marca: subData.marca || undefined
+            marca: subData.marca || undefined, // Mantener para compatibilidad
+            aliadoId: subData.aliadoId || undefined // Priorizar aliadoId sobre marca
           };
         });
 
@@ -51,7 +52,8 @@ export async function getProductos(): Promise<Producto[]> {
           modelo3d: data.modelo3d || undefined,
           marcadores3d: data.marcadores3d || [],
           pdf: data.pdf || undefined,
-          marca: data.marca || undefined,
+          marca: data.marca || undefined, // Mantener para compatibilidad
+          aliadoId: data.aliadoId || undefined, // Priorizar aliadoId sobre marca
           subProductos: subProductos,
           qr: data.qr || undefined,
           formUrl: data.formUrl || undefined

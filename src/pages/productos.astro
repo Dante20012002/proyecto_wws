@@ -1,9 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getProductos } from '../lib/getProductos';
+import { getAliados } from '../lib/getAliados';
 
-// Obtener productos desde Firestore
+// Obtener productos y aliados desde Firestore
 const productos = await getProductos();
+const aliados = await getAliados();
+
+// Crear objetos de aliados por ID y por nombre para acceso rápido (compatible con JSON)
+const aliadosMap: Record<string, { nombre: string; logo: string; url: string }> = {};
+const aliadosMapByName: Record<string, { nombre: string; logo: string; url: string }> = {};
+aliados.forEach(aliado => {
+  aliadosMap[aliado.id] = {
+    nombre: aliado.nombre,
+    logo: aliado.logo,
+    url: aliado.url
+  };
+  // También crear mapa por nombre (normalizado) para compatibilidad con datos antiguos
+  const nombreNormalizado = aliado.nombre.toLowerCase().trim();
+  aliadosMapByName[nombreNormalizado] = {
+    nombre: aliado.nombre,
+    logo: aliado.logo,
+    url: aliado.url
+  };
+});
 
 // Lista de categorías principales para los tabs de filtrado
 const categorias = [
@@ -54,7 +74,36 @@ const categorias = [
     x-data={`{
       categorias: ${JSON.stringify(categorias)},
       productos: ${JSON.stringify(productos)},
+      aliados: ${JSON.stringify(aliados)},
+      aliadosMap: ${JSON.stringify(aliadosMap)},
+      aliadosMapByName: ${JSON.stringify(aliadosMapByName)},
       selectedCategoria: "${categorias[0]}",
+      getAliadoLogo(producto) {
+        // Priorizar aliadoId sobre marca (misma lógica que en [slug].astro)
+        if (producto.aliadoId) {
+          const aliado = this.aliadosMap[producto.aliadoId];
+          return aliado ? aliado.logo : null;
+        }
+        if (producto.marca) {
+          const nombreNormalizado = producto.marca.toLowerCase().trim();
+          const aliado = this.aliadosMapByName[nombreNormalizado];
+          return aliado ? aliado.logo : null;
+        }
+        return null;
+      },
+      getAliadoNombre(producto) {
+        // Priorizar aliadoId sobre marca
+        if (producto.aliadoId) {
+          const aliado = this.aliadosMap[producto.aliadoId];
+          return aliado ? aliado.nombre : null;
+        }
+        if (producto.marca) {
+          const nombreNormalizado = producto.marca.toLowerCase().trim();
+          const aliado = this.aliadosMapByName[nombreNormalizado];
+          return aliado ? aliado.nombre : null;
+        }
+        return null;
+      },
       loading: false,
       loadingStart: 0,
       loadingTimeout: null,
@@ -150,9 +199,9 @@ const categorias = [
                 <h2 class="text-[#6B8C8C] text-base md:text-lg font-bold text-center w-full drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] bg-white/90 backdrop-blur-sm rounded-md px-2 py-1" x-text="producto.nombre"></h2>
               </div>
             </div>
-            <template x-if="producto.marca === 'XS Solutions'">
+            <template x-if="getAliadoLogo(producto)">
               <div class="absolute bottom-2 right-2 bg-white p-1 rounded-md shadow-md">
-                <img src="/assets/Aliados/XS Solutions.jpg" alt="Logo XS Solutions" class="h-6 object-contain" />
+                <img :src="getAliadoLogo(producto)" :alt="`Logo ${getAliadoNombre(producto) || 'Aliado'}`" class="h-6 object-contain" />
               </div>
             </template>
           </a>

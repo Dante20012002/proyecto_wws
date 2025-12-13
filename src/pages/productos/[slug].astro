@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getProductos } from '../../lib/getProductos';
+import { getAliados } from '../../lib/getAliados';
 import ProductHero from '../../components/ProductHero.astro';
 import ProductDescription from '../../components/ProductDescription.astro';
 import ProductSubProducts from '../../components/ProductSubProducts.astro';
@@ -22,10 +23,17 @@ const productos = await getProductos();
 const producto = productos.find(p => p.slug === slug);
 const notFound = !producto;
 
-  // URL del brochure general y formulario de contacto
-  const brochureUrl = "https://drive.google.com/uc?export=download&id=1Cxu1Nftv6efl52-7mPSrBA_OSv52uKDO";
+  // Ruta del brochure en cPanel (assets/Productos/)
+  const brochureUrl = "/assets/Productos/brochure.pdf";
   
-
+  // Obtener aliados y buscar si el producto tiene un aliado asociado
+  const aliados = await getAliados();
+  // Priorizar aliadoId sobre marca (para compatibilidad con datos antiguos)
+  const aliadoProducto = producto?.aliadoId
+    ? aliados.find(aliado => aliado.id === producto.aliadoId)
+    : producto?.marca
+      ? aliados.find(aliado => aliado.nombre.toLowerCase() === producto.marca!.toLowerCase())
+      : null;
 
 // Filtra productos relacionados por categoría, excluyendo el actual
 const relacionados = producto
@@ -52,6 +60,9 @@ const tieneSubProductos = producto && producto.subProductos && producto.subProdu
         imagen={producto.imagen} 
         brochureUrl={brochureUrl} 
         catalogoUrl={producto.pdf}
+        aliadoLogo={aliadoProducto?.logo}
+        aliadoUrl={aliadoProducto?.url}
+        aliadoNombre={aliadoProducto?.nombre}
       />
 
       {tieneSubProductos ? (

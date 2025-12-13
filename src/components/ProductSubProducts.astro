@@ -1,5 +1,6 @@
 ---
 import type { SubProducto } from '../data/productos';
+import { getAliados } from '../lib/getAliados';
 
 export interface Props {
   subProductos: SubProducto[];
@@ -7,6 +8,21 @@ export interface Props {
 }
 
 const { subProductos, productSlug } = Astro.props;
+
+// Obtener aliados desde Firestore
+const aliados = await getAliados();
+
+// Función helper para obtener el aliado por ID o nombre (compatibilidad)
+function getAliadoForSubProducto(subProducto: SubProducto): typeof aliados[0] | undefined {
+  // Priorizar aliadoId sobre marca (para compatibilidad con datos antiguos)
+  if (subProducto.aliadoId) {
+    return aliados.find(aliado => aliado.id === subProducto.aliadoId);
+  }
+  if (subProducto.marca) {
+    return aliados.find(aliado => aliado.nombre.toLowerCase() === subProducto.marca?.toLowerCase());
+  }
+  return undefined;
+}
 ---
 
 <!-- PRODUCTO CON SUBDIVISIONES: Tarjetas tipo productos relacionados, pero más grandes -->
@@ -25,11 +41,14 @@ const { subProductos, productSlug } = Astro.props;
             <div class="absolute top-0 left-0 w-full px-2 py-2 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300">
               <h3 class="text-[#6B8C8C] text-base md:text-lg font-bold text-center w-full drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] bg-white/90 backdrop-blur-sm rounded-md px-2 py-1">{subProducto.nombre}</h3>
             </div>
-            {subProducto.marca === 'XS Solutions' && (
-              <div class="absolute bottom-2 right-2 bg-white p-1 rounded-md shadow-md">
-                <img src="/assets/Aliados/XS Solutions.jpg" alt="Logo XS Solutions" class="h-6 object-contain" />
-              </div>
-            )}
+            {(() => {
+              const aliado = getAliadoForSubProducto(subProducto);
+              return aliado && aliado.logo ? (
+                <div class="absolute bottom-2 right-2 bg-white p-1 rounded-md shadow-md">
+                  <img src={aliado.logo} alt={`Logo ${aliado.nombre}`} class="h-6 object-contain" />
+                </div>
+              ) : null;
+            })()}
           </div>
         </a>
       ))}
