@@ -2,8 +2,8 @@ name: Auto Build & Deploy (pnpm)
 
 on:
   schedule:
-    - cron: "*/15 * * * *"  # cada 15 minutos (ajusta)
-  workflow_dispatch:        # permite ejecución manual
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -21,7 +21,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 10 # o la versión que uses; ajustar si es 10
+          version: 10
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -34,11 +34,13 @@ jobs:
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
         run: pnpm run build
 
-      - name: Deploy to cPanel via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+      - name: Deploy to cPanel via SFTP
+        uses: appleboy/scp-action@v0.1.7
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          host: ${{ secrets.FTP_SERVER }}
+          port: 2323
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: "dist/"
-          server-dir: "/public_html/"
+          source: "dist/*"
+          target: "/home/wwses/public_html/"
+          strip_components: 1
