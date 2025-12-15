@@ -34,13 +34,13 @@ jobs:
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
         run: pnpm run build
 
-      - name: Deploy to cPanel via SFTP (rsync)
-        uses: Burnett01/rsync-deployments@7.0.1
-        with:
-          switches: -avz --delete
-          path: dist/
-          remote_path: /home/wwses/public_html/
-          remote_host: waterwises.com
-          remote_user: ${{ secrets.FTP_USERNAME }}
-          remote_port: 2323
-          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Deploy to cPanel via SFTP (lftp)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lftp
+      
+          lftp -u "${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }}" sftp://waterwises.com:2323 <<EOF
+          set sftp:auto-confirm yes
+          mirror -R --delete --verbose dist/ /home/wwses/public_html/
+          quit
+          EOF
