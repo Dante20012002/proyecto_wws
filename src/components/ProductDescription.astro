@@ -22,7 +22,7 @@ function getAbsolutePdfUrl(url: string | undefined): string {
   // Usar la URL del sitio desde la configuración de Astro (definida en astro.config.mjs)
   // Astro.site es una string con la URL completa del sitio (ej: 'https://waterwises.com')
   // Durante el build estático, siempre usará la URL de producción, no localhost
-  const baseUrl = Astro.site || 'https://waterwises.com';
+  const baseUrl = 'https://waterwises.com';
   // Si es una ruta relativa que empieza con /, convertirla a URL absoluta
   if (url.startsWith('/')) {
     return `${baseUrl}${url}`;

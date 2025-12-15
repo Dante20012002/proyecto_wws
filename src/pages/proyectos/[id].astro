@@ -1,8 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { proyectos } from '../../data/proyectos';
+import { getProyectos, getProyectoById } from '../../lib/getProyectos';
 
 export async function getStaticPaths() {
+  const proyectos = await getProyectos();
   return proyectos.map(proyecto => ({
     params: { id: proyecto.id.toString() }
   }));
@@ -10,11 +11,8 @@ export async function getStaticPaths() {
 
 const { id } = Astro.params;
 
-console.log('ID de la URL:', id, typeof id);
-console.log('IDs disponibles:', proyectos.map(p => p.id));
-console.log('Comparaciones:', proyectos.map(p => [String(p.id).trim(), String(id).trim(), String(p.id).trim() === String(id).trim()]));
-
-const proyecto = proyectos.find(p => String(p.id).trim() === String(id).trim());
+const proyectoId = id ? parseInt(id) : null;
+const proyecto = proyectoId ? await getProyectoById(proyectoId) : undefined;
 const notFound = !proyecto;
 ---
 
@@ -39,8 +37,8 @@ const notFound = !proyecto;
         <div class="grid grid-cols-2 gap-4 w-full md:w-1/2">
           {proyecto.imagen30proyectos?.slice(0, 2).map((img: string, i: number) => (
             <div class="flex justify-center items-center">
-              <img 
-                src={img} 
+              <img
+                src={img}
                 alt={`Vista del proyecto ${i+1}`}
                 class="w-full h-40 md:h-56 object-cover rounded-lg shadow-md max-w-full animate-fade-in"
                 style={{ animationDelay: `${i * 0.2 + 0.2}s` }}

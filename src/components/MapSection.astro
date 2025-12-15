@@ -1,6 +1,9 @@
 ---
 // Importamos los estilos de Leaflet
-import { proyectos } from '../data/proyectos';
+import { getProyectos } from '../lib/getProyectos';
+
+// Obtener proyectos desde Firestore
+const proyectos = await getProyectos();
 
 // Obtener tipos únicos de proyectos
 const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
@@ -102,8 +105,9 @@ const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
     border: none;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    max-width: 300px !important;
-    min-width: 250px !important;
+    min-width: 280px !important;
+    width: auto !important;
+    white-space: normal !important;
   }
 
   :global(.custom-tooltip) {
@@ -251,13 +255,13 @@ const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
           const p = proyectosEnCoord[0];
           tooltipHtml = `
             <div class="tooltip-content p-3">
-              <h4 class="tooltip-title font-bold text-[#4F6E6E] text-lg mb-2 line-clamp-2">${p.nombre}</h4>
-              <p class="text-sm mb-2 line-clamp-2">${p.descripcion}</p>
+              <h4 class="tooltip-title font-bold text-[#4F6E6E] text-lg mb-2">${p.nombre}</h4>
+              <p class="text-sm mb-2">${p.descripcion}</p>
               <div class="text-xs text-gray-600 space-y-1">
                 <p><strong>Ubicación:</strong> ${p.ubicacion.ciudad}, ${p.ubicacion.departamento}</p>
                 <p><strong>Fecha:</strong> ${p.fecha}</p>
                 <p><strong>Capacidad:</strong> ${p.capacidad}</p>
-                <p class="line-clamp-3"><strong>Detalles:</strong> ${p.detalles}</p>
+                <p><strong>Detalles:</strong> ${p.detalles}</p>
               </div>
             </div>
           `;
@@ -268,7 +272,7 @@ const tiposProyectos = [...new Set(proyectos.map(p => p.tipo))];
               <ul class="space-y-1">
                 ${proyectosEnCoord.map(p => `
                   <li>
-                    <a href="/proyectos/${p.id}" class="tooltip-link text-blue-700 underline font-semibold line-clamp-2">${p.nombre}</a>
+                    <a href="/proyectos/${p.id}" class="tooltip-link text-blue-700 underline font-semibold">${p.nombre}</a>
                   </li>
                 `).join('')}
               </ul>
