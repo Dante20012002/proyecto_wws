@@ -44,3 +44,8 @@ jobs:
           source: "dist/*"
           target: "/home/wwses/public_html/"
           strip_components: 1
+          command_timeout: "10m"
+          timeout: "10m"
+          rm: false
+          overwrite: true
+          debug: true
