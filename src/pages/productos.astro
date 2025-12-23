@@ -2,10 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import { getProductos } from '../lib/getProductos';
 import { getAliados } from '../lib/getAliados';
+import { getCategorias } from '../lib/getCategorias';
 
-// Obtener productos y aliados desde Firestore
+// Obtener productos, aliados y categorías desde Firestore
 const productos = await getProductos();
 const aliados = await getAliados();
+const categorias = await getCategorias();
 
 // Crear objetos de aliados por ID y por nombre para acceso rápido (compatible con JSON)
 const aliadosMap: Record<string, { nombre: string; logo: string; url: string }> = {};
@@ -25,18 +27,8 @@ aliados.forEach(aliado => {
   };
 });
 
-// Lista de categorías principales para los tabs de filtrado
-const categorias = [
-  'CONTROL DE CAUDAL',
-  'DRAGADO Y PRETRATAMIENTO',
-  'AGITACIÓN Y FLOCULACIÓN',
-  'SEDIMENTACIÓN',
-  'TRATAMIENTO SECUNDARIO',
-  'TRATAMIENTO TERCIARIO',
-  'TRATAMIENTO DE LODOS Y TRANSPORTADORES',
-  'ADECUACIONES ESTRUCTURALES E HIDRÁULICAS',
-  'SERVICIOS',
-];
+// Extraer solo los nombres de las categorías para los tabs de filtrado
+const categoriasNombres = categorias.map(cat => cat.nombre);
 ---
 
 <Layout title="Productos - WWS">
@@ -72,12 +64,12 @@ const categorias = [
   <section
     class="w-full flex flex-col items-center py-12 bg-white"
     x-data={`{
-      categorias: ${JSON.stringify(categorias)},
+      categorias: ${JSON.stringify(categoriasNombres)},
       productos: ${JSON.stringify(productos)},
       aliados: ${JSON.stringify(aliados)},
       aliadosMap: ${JSON.stringify(aliadosMap)},
       aliadosMapByName: ${JSON.stringify(aliadosMapByName)},
-      selectedCategoria: "${categorias[0]}",
+      selectedCategoria: "${categoriasNombres[0] || ''}",
       getAliadoLogo(producto) {
         // Priorizar aliadoId sobre marca (misma lógica que en [slug].astro)
         if (producto.aliadoId) {
