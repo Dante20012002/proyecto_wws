@@ -183,12 +183,12 @@ const categoriasNombres = categorias.map(cat => cat.nombre);
           <a :href="`/productos/${producto.slug}`" class="group block rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl relative bg-transparent">
             <div class="relative w-full aspect-[9/4] sm:aspect-[9/3] min-h-[160px] sm:min-h-[220px] md:min-h-[320px] md:aspect-[6/3] overflow-hidden">
               <img :src="producto.imagen" :alt="producto.nombre" data-product-img class="w-full h-full object-cover" loading="lazy" />
-              <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-black/40">
-                <h2 class="text-white text-lg md:text-2xl font-bold text-center drop-shadow-lg mb-2" x-text="producto.nombre"></h2>
-                <p class="text-white text-center px-4 text-sm md:text-base" x-text="producto.descripcion"></p>
+              <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md bg-black/40 overflow-y-auto py-4 px-2">
+                <h2 class="text-white text-sm sm:text-base md:text-lg lg:text-xl font-bold text-center drop-shadow-lg mb-2" x-text="producto.nombre"></h2>
+                <p class="text-white text-center px-2 sm:px-3 md:px-4 text-xs sm:text-sm md:text-base" x-text="producto.descripcion"></p>
               </div>
               <div class="absolute top-0 left-0 w-full px-2 py-2 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-300">
-                <h2 class="text-[#6B8C8C] text-base md:text-lg font-bold text-center w-full drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] bg-white/90 backdrop-blur-sm rounded-md px-2 py-1" x-text="producto.nombre"></h2>
+                <h2 class="text-[#6B8C8C] text-sm sm:text-base md:text-lg lg:text-xl font-bold text-center w-full drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] bg-white/90 backdrop-blur-sm rounded-md px-2 py-1" x-text="producto.nombre"></h2>
               </div>
             </div>
             <template x-if="getAliadoLogo(producto)">
@@ -252,5 +252,34 @@ const categoriasNombres = categorias.map(cat => cat.nombre);
 .shadow-inset-olas {
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+/* Personalizar barra de scroll - estilo estético */
+.group:hover .overflow-y-auto {
+  scrollbar-width: thin; /* Firefox - barra delgada */
+  scrollbar-color: rgba(255, 255, 255, 0.5) transparent; /* Firefox - thumb y track */
+}
+
+/* Chrome, Safari y Opera */
+.group:hover .overflow-y-auto::-webkit-scrollbar {
+  width: 6px; /* Ancho de la barra */
+}
+
+.group:hover .overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent; /* Fondo transparente */
+}
+
+.group:hover .overflow-y-auto::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4); /* Color del thumb semi-transparente */
+  border-radius: 10px; /* Bordes redondeados */
+  transition: background 0.3s ease;
+}
+
+.group:hover .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.7); /* Más visible al hacer hover en la barra */
+}
+
+.group:hover .overflow-y-auto::-webkit-scrollbar-thumb:active {
+  background: rgba(255, 255, 255, 0.9); /* Aún más visible al hacer clic */
 }
 </style>
