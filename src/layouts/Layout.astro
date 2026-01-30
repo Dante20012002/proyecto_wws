@@ -25,6 +25,14 @@ declare global {
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17889120367"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-17889120367');
+    </script>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
@@ -34,6 +42,7 @@ declare global {
     <title>{title}</title>
     <meta name="description" content="WWS - Soluciones digitales innovadoras para tu negocio" />
 
+    
   </head>
   <body>
     <Navbar links={navLinks} />
