@@ -1,0 +1,38 @@
+---
+// Componente de botón flotante de WhatsApp
+const whatsappLink = 'https://wa.me/573107665112?text=Hola%2C%20quiero%20realizar%20una%20cotizaci%C3%B3n';
+const whatsappIcon = '/assets/sprite.svg#whatsapp';
+---
+
+<a 
+  href={whatsappLink}
+  target="_blank" 
+  rel="noopener noreferrer"
+  class="fixed bottom-6 right-6 z-50 group rounded-full bg-[#25D366] w-14 h-14 flex items-center justify-center shadow-lg hover:bg-[#20BA5A] transition-all duration-300 hover:scale-110 animate-bounce"
+  aria-label="Contactar por WhatsApp"
+  title="¿Preguntas? ¡Escribenos por WhatsApp!"
+>
+  <svg class="w-8 h-8 text-white group-hover:scale-110 transition-transform" aria-hidden="true">
+    <use href={whatsappIcon} />
+  </svg>
+</a>
+
+<style>
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-bounce {
+    animation: bounce 2s infinite;
+  }
+
+  /* Animar el icono al hover */
+  a:hover .animate-bounce {
+    animation: none;
+  }
+</style>
